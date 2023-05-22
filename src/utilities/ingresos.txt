@@ -1,0 +1,35 @@
+{
+    "type": "negocio",
+    "value": 2550,
+    "category": "algo"
+}
+{
+    "type": "personales",
+    "value": 550,
+    "category": "algo"
+}
+{
+    "type": "negocio",
+    "value": 10550,
+    "category": "algo"
+}
+{
+    "type": "negocio",
+    "value": 2000,
+    "category": "algo"
+}
+{
+    "type": "personales",
+    "value": 550,
+    "category": "algo"
+}
+{
+    "type": "negocio",
+    "value": 14550,
+    "category": "algo"
+}
+{
+    "type": "personales",
+    "value": 12550,
+    "category": "algo"
+}
