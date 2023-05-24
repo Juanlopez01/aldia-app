@@ -6,7 +6,9 @@ $theme-colors: (
   "Yellow": rgba(242, 159, 4, 1),
   "Green": rgb(0, 130, 33),
 );
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 // #income_canva {
