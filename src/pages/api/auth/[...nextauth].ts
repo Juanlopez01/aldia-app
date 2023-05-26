@@ -3,14 +3,16 @@ import Auth0Provider from "next-auth/providers/auth0";
 import { config } from "dotenv";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import GoogleProvider from 'next-auth/providers/google'
+import FacebookProvider from 'next-auth/providers/facebook'
 import clientPromise from "../../../lib/mongodb";
 import conn from "../../../src-backend/db";
 import { User } from "../../../models/user.model";
 import { compare } from "bcrypt";
 config();
 
-const clientId: string = process.env.CLIENT_ID || "";
-const clientSecret: string = process.env.CLIENT_SECRET || "";
+const clientId: string = process.env.AUTH0_CLIENT_ID || "";
+const clientSecret: string = process.env.AUTH0_CLIENT_SECRET || "";
 const issuer: string = process.env.DOMAIN || "";
 
 export const authOptions: NextAuthOptions = {
@@ -21,6 +23,14 @@ export const authOptions: NextAuthOptions = {
       clientId,
       clientSecret,
       issuer,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
+    }),
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID || '',
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET || ''
     }),
     CredentialsProvider({
       id: "credentials",
@@ -64,7 +74,14 @@ export const authOptions: NextAuthOptions = {
     }),
     
   ],
-
+  callbacks: {
+    session({ session, token, user }) {
+      console.log({session});
+      console.log({token});
+      console.log({user});
+      return session // The return type will match the one returned in `useSession()`
+    },
+  },
   theme: {
     colorScheme: "dark",
   },

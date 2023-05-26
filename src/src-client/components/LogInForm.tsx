@@ -247,9 +247,13 @@ const Auth: NextPage = ({ providers }: any) => {
             }}></input>
             <button onClick={handleChangePassword}>Enviar</button>
           </div>}
+<section className="">
+  <button onClick={()=> signIn('google')}>Continuar con Google</button>
+  <button onClick={()=> signIn('facebook')}>Continuar con Facebook</button>
+</section>
         </div>
       </div>
-
+      <br/>
     </>
   )
 }
