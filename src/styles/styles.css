@@ -5,6 +5,19 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+animate-open-menu	.toggle-btn {
+    @layer [&>div::before]:translate-y-0 [&>div::before]
+    :rotate-45 [&>div::after]:translate-y-0 [&>div::after]:-rotate-45 
+    [&>div]:bg-transparent:rotate-[720deg]
+  }
+}
+
 :root {
   --main-green: "#418154";
   --main-yellow: "#F3D40C";
@@ -10567,3 +10580,28 @@ textarea.form-control-lg {
   }
 }
 /*# sourceMappingURL=styles.css.map */
+
+.toggle-btn > div::before {
+  transform: translateY(0) rotate(-45deg);
+}
+
+.toggle-btn > div::after {
+  transform: translateY(0) rotate(45deg);
+}
+
+.toggle-btn > div {
+  background-color: transparent;
+}
+
+.translateNav {
+  animation: translateNav .9s;
+}
+
+@keyframes translateNav {
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(0%);
+  }
+}

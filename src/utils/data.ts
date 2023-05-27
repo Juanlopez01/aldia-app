@@ -6,8 +6,8 @@ const links = {
 		],
 		[
 			{ name: "Personal", url: "/" },
-			{ name: "Administrador", url: "/" },
-			{ name: "Compañías", url: "/" },
+			{ name: "Administrador", url: "/admin" },
+			{ name: "Compañías", url: "/company" },
 		],
 	],
 	notLoggedIn: [
