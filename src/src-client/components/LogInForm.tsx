@@ -94,8 +94,8 @@ const Auth: NextPage = ({ providers }: any) => {
   };
 
   return (
-    <>
-      <div className="container d-flex h-auto justify-content-center custom-container" >
+    <div className="flex flex-col">
+      <div className="container h-auto custom-container" >
         <div className="form-container" style={{ background: "#9D9D9D" }}>
           <p className="title">{!forgot ? authType : 'Cambio de contraseña'}</p>
 
@@ -250,7 +250,7 @@ const Auth: NextPage = ({ providers }: any) => {
         </div>
       </div>
 
-    </>
+    </div>
   )
 }
 

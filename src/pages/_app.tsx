@@ -8,6 +8,7 @@ import { persistor } from "../redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "@/src-client/components/NavBar";
 import { useRouter } from "next/router";
+import NavBarNvo from "@/src-client/components/NavBarNvo";
 
 export default function App({
   Component,
@@ -17,6 +18,7 @@ export default function App({
     <SessionProvider session={session}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
+          {/* <NavBarNvo/> */}
           <NavBar page="home" />
           <Component {...pageProps} />
         </PersistGate>

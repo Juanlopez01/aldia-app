@@ -6,6 +6,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
+  --main-green: "#418154";
+  --main-yellow: "#F3D40C";
+  --dark-blue: "#271B80";
+  --medium-blue: "#313BAB";
+  --light-blue: "#4F5EC7";
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -10560,4 +10565,5 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+/*# sourceMappingURL=styles.css.map */

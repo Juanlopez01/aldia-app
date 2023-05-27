@@ -27,14 +27,14 @@ export default function Home() {
   } else if(session && session.user && user.status === 'disabled') {
     return (
       <>
-      <h1>Tu cuenta aun no ha sido activada.</h1>
-      <h3>Para activarla podes enviar un correo a .........@gmail.com</h3>
+      {/* <h1>Tu cuenta aun no ha sido activada.</h1> */}
+      {/* <h3>Para activarla podes enviar un correo a .........@gmail.com</h3> */}
       </>
     )
   } else {
     <>
-    <h1>Aun no has iniciado sesion</h1>
-    <LogButton />
+      <h1>Aun no has iniciado sesion</h1>
+      <LogButton />
     </>
   }
 }
