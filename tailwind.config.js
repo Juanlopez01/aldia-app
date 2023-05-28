@@ -17,6 +17,7 @@ module.exports = {
 				"dark-blue": "#271B80",
 				"medium-blue": "#313BAB",
 				"light-blue": "#4F5EC7",
+				link: "#F4F4F5",
 			},
 		},
 	},
