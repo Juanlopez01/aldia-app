@@ -7,6 +7,8 @@ const Schema = mongoose.Schema;
 
 export interface UserType {
   name: String;
+  lastname: String;
+  provider: String;
   email: String;
   hashedPassword?: String;
   image: String;
@@ -23,6 +25,13 @@ const userSchema = new Schema<UserType, Model<UserType>>(
       type: String,
       requeired: true,
     },
+    lastname:{
+      type: String,
+    },
+    provider:{
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -31,7 +40,6 @@ const userSchema = new Schema<UserType, Model<UserType>>(
     hashedPassword: {
       type: String,
       required: true,
-      minlength: 5,
     },
     image: {
       type: String,
@@ -54,10 +62,10 @@ const userSchema = new Schema<UserType, Model<UserType>>(
       },
     ],
     incomes: [
-      { type: Schema.Types.ObjectId, ref: "Income", default: [{ id: "1" }] },
+      { type: Schema.Types.ObjectId, ref: "Income", default: [] },
     ],
     expenses: [
-      { type: Schema.Types.ObjectId, ref: "Expense", default: [{ id: "1" }] },
+      { type: Schema.Types.ObjectId, ref: "Expense", default: [] },
     ],
   },
   { versionKey: false }
