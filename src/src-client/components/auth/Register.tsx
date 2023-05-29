@@ -1,9 +1,9 @@
-import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, FormEvent, MouseEventHandler, useState } from "react";
 import Input from "./Input";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
-export default function Register() {
+export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
   const router = useRouter()
   const [inputs, setInputs] = useState({
     name: "",
@@ -76,6 +76,7 @@ export default function Register() {
           />
           <button className="">Enviar</button>
         </form>
+      <p className="text-sm text-center mt-2">¿Tienes una cuenta? <span onClick={showLogin} className="hover:cursor-pointer font-semibold text-blue-600">Logueate</span></p>
       </section>
     </>
   )

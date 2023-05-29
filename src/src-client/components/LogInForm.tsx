@@ -3,16 +3,17 @@ import {  signIn } from "next-auth/react";
 import Register from "./auth/Register";
 import { useState } from "react";
 import Login from "./auth/Login";
+import { useToggle } from "../hooks/use-toggle";
 
 
 export default function Auth() {
-  const [toggleLogin, setToggleLogin] = useState(true)
+  // TODO: validation
+  const { toggle, toggleHandler } = useToggle()
 
 return (
   <>
     <main className="flex flex-col max-w-lg self-center mx-auto">
-      {toggleLogin ? <Login /> : <Register />}
-      <p className="text-sm text-center mt-2">¿No tienes una cuenta? <span onClick={()=> setToggleLogin(!toggleLogin)} className="hover:cursor-pointer font-semibold text-blue-600">Registrate</span></p>
+      {toggle ? <Login showRegister={toggleHandler}/> : <Register showLogin={toggleHandler} />}
       <hr />
       <section className="flex flex-col gap-4">
         <button

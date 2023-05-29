@@ -1,9 +1,9 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEventHandler, useState } from "react";
 import Input from "./Input";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
-export default function Login() {
+export default function Login({showRegister}:{showRegister: MouseEventHandler}) {
     const router = useRouter()
     const [inputs, setInputs] = useState({
         email: "",
@@ -52,6 +52,7 @@ export default function Login() {
           </fieldset>
           <button  className="text-center">Login</button>
         </form>
+      <p className="text-sm text-center mt-2">¿No tienes una cuenta? <span onClick={showRegister} className="hover:cursor-pointer font-semibold text-blue-600">Registrate</span></p>
       </section>
     </>
   )
