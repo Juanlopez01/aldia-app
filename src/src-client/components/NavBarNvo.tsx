@@ -6,13 +6,17 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { getRole } from "../utilities/getRole";
 import { ButtonSolid, ButtonTransparent } from "./Styles/Button";
 import { links } from "@/utils/data";
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 //*renders the lists
 const GetNavLists = (props: { list: any }) => (
 	<>
 		{props?.list?.map((link: any) => (
-			<Link href={link?.url} className="text-white no-underline" key={link?.name}>
+			<Link
+				href={link?.url}
+				className="link text-link no-underline"
+				key={link?.name}
+			>
 				{link?.name}
 			</Link>
 		))}
@@ -32,11 +36,11 @@ const NavBar = () => {
 
 	return (
 		<>
-			<div className="hidden md:block">
+			<div className="hidden lg:block">
 				<NavBarDesktop />
 			</div>
 
-			<div className="block md:hidden">
+			<div className="block lg:hidden">
 				<NavBarMobile />
 			</div>
 		</>
@@ -46,6 +50,9 @@ const NavBar = () => {
 //todo DESKTOP NAV
 const NavBarDesktop = () => {
 	const { data: session } = useSession();
+	const profile_image = session?.user?.image!;
+	const [isOpenHeaderMenu, setIsOpenHeaderMenu] = useState(false);
+	const router = useRouter()
 
 	return (
 		<div className="fixed z-[10000] w-full h-20 flex justify-between items-center bg-light-blue">
@@ -64,19 +71,58 @@ const NavBarDesktop = () => {
 				) : (
 					<>
 						{/* General, metas */}
-						<ul className="flex md:gap-x-2 xl:gap-x-4 relative top-2">
+						<ul className="flex md:gap-x-2 xl:gap-x-6 relative top-2">
 							<GetNavLists list={links?.loggedIn[0]} />
 						</ul>
 
 						{/* Personal, admin, compañías */}
-						<ul className="flex md:gap-x-2 xl:gap-x-4 relative top-2">
+						<ul className="flex md:gap-x-2 xl:gap-x-6 relative top-2">
 							<GetNavLists list={links?.loggedIn[1]} />
 						</ul>
 					</>
 				)}
 
 				<div className="flex gap-2">
-					{!session ? (
+					{session && session?.user?.image ? (
+						<>
+							{session && (
+								<>
+									<div
+										onMouseOver={() => setIsOpenHeaderMenu(() => true)}
+										onMouseLeave={() => setIsOpenHeaderMenu(() => false)}
+									>
+										<img
+											src={profile_image}
+											alt="profile img"
+											className="w-[50px] h-[50px] cursor-pointer"
+											onClick={() => setIsOpenHeaderMenu((prev) => !prev)}
+										/>
+
+										{/* transition animation */}
+										{isOpenHeaderMenu && (
+											<div
+												className={`absolute z-[10000] w-[400px] text-[16px]`}
+											>
+												<ul
+													className={`bg-medium-blue shadow-sm shadow-gray-600 relative right-[177px] top-1 flex flex-col w-1/2 py-3 rounded-[5px] text-white`}
+												>
+													<li
+														className="hover:text-main-yellow cursor-pointer py-2"
+														onClick={() => router.push("/account")}
+													>
+														Ver perfil
+													</li>
+													<li className="hover:text-main-yellow cursor-pointer py-2" onClick={() => signOut()}>
+														Cerrar Sesión
+													</li>
+												</ul>
+											</div>
+										)}
+									</div>
+								</>
+							)}
+						</>
+					) : (
 						<>
 							<ButtonTransparent
 								handleClick={() => signIn("credentials")}
@@ -86,14 +132,12 @@ const NavBarDesktop = () => {
 							</ButtonTransparent>
 
 							<ButtonSolid color="main-yellow">Registrarse</ButtonSolid>
-						</>
-					) : (
-						<>
-							<ButtonTransparent handleClick={() => signOut()} color="main-yellow">
+
+							{/* <ButtonTransparent handleClick={() => signOut()} color="main-yellow">
 								Cerrar sesión
 							</ButtonTransparent>
 
-							<ButtonSolid color="main-yellow">Ver perfil</ButtonSolid>
+							<ButtonSolid color="main-yellow">Ver perfil</ButtonSolid> */}
 						</>
 					)}
 				</div>
@@ -108,6 +152,7 @@ const NavBarMobile = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const refBtn = useRef<any>(null);
+	const router = useRouter()
 
 	const handleAnimateHamburger = (changeToggle = true) => {
 		//*animation
@@ -148,19 +193,12 @@ const NavBarMobile = () => {
 				className={`w-[50vw] bg-light-blue p-2 min-h-screen translateNav
 			${isOpen ? "block" : "hidden"}`}
 			>
+				{/* lists of links */}
 				<div className="flex flex-col justify-between text-white">
 					<>
 						{!session ? (
 							<ul className="text-white flex flex-col gap-y-4 relative right-4 pt-8">
-								{links?.notLoggedIn?.map((link) => (
-									<Link
-										href={link?.url}
-										className="text-white no-underline text-[18px]"
-										key={link?.name}
-									>
-										{link?.name}
-									</Link>
-								))}
+								<GetNavLists list={links?.notLoggedIn} />
 							</ul>
 						) : (
 							<>
@@ -194,7 +232,7 @@ const NavBarMobile = () => {
 										Cerrar sesión
 									</ButtonTransparent>
 
-									<ButtonSolid>Ver perfil</ButtonSolid>
+									<ButtonSolid onClick={()=>router.push("/account")}>Ver perfil</ButtonSolid>
 								</div>
 							)}
 						</div>
