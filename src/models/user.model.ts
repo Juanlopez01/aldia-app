@@ -10,6 +10,7 @@ export interface UserType {
   lastname: String;
   provider: String;
   email: String;
+  emailVerified: Boolean;
   hashedPassword?: String;
   image: String;
   company?: CompanType[] | [];
@@ -25,10 +26,10 @@ const userSchema = new Schema<UserType, Model<UserType>>(
       type: String,
       requeired: true,
     },
-    lastname:{
+    lastname: {
       type: String,
     },
-    provider:{
+    provider: {
       type: String,
       required: true,
     },
@@ -37,6 +38,10 @@ const userSchema = new Schema<UserType, Model<UserType>>(
       required: true,
       unique: true,
     },
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
     hashedPassword: {
       type: String,
       required: true,
@@ -44,31 +49,28 @@ const userSchema = new Schema<UserType, Model<UserType>>(
     image: {
       type: String,
       default:
-        "https://icon-library.com/images/generic-user-icon/generic-user-icon-18.jpg",
+        'https://icon-library.com/images/generic-user-icon/generic-user-icon-18.jpg',
     },
-    role:{
+    role: {
       type: String,
-      default: 'User'
+      default: 'user',
     },
-    status:{
+    status: {
       type: String,
-      default: 'disabled'
+      default: 'disabled',
     },
+
     company: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Company",
+        ref: 'Company',
         default: [],
       },
     ],
-    incomes: [
-      { type: Schema.Types.ObjectId, ref: "Income", default: [] },
-    ],
-    expenses: [
-      { type: Schema.Types.ObjectId, ref: "Expense", default: [] },
-    ],
+    incomes: [{ type: Schema.Types.ObjectId, ref: 'Income', default: [] }],
+    expenses: [{ type: Schema.Types.ObjectId, ref: 'Expense', default: [] }],
   },
   { versionKey: false }
-);
+)
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
