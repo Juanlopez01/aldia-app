@@ -34,7 +34,7 @@ export default function Register() {
   return (
     <>
       <section className="flex flex-col">
-        <h1 className="text-center text-xl">Register</h1>
+        <h1 className="text-center text-xl">Registate</h1>
         <form onSubmit={handlerFormSubmit} className="flex flex-col gap-2">
           <fieldset className="flex flex-row gap-2">
             <div className="flex flex-col">
@@ -74,7 +74,7 @@ export default function Register() {
             value={inputs.password}
             onChange={handerInputsChange}
           />
-          <button className="">Registrarme</button>
+          <button className="">Enviar</button>
         </form>
       </section>
     </>
