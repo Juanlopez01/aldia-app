@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, MouseEventHandler, useState } from "react";
 import Input from "./Input";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import Button from "./Button";
 
 export default function Login({showRegister}:{showRegister: MouseEventHandler}) {
     const router = useRouter()
@@ -32,9 +33,9 @@ export default function Login({showRegister}:{showRegister: MouseEventHandler}) 
   return (
     <>
       <section>
-        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-2">
-          <h1 className="text-xl text-center">Login</h1>
-          <fieldset className="flex flex-col text-start">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <h1 className="text-xl font-semibold mb-2">Ingresa a tu cuenta</h1>
+          <fieldset className="flex flex-col text-start gap-2 justify-start">
             <Input
               type="email"
               name="email"
@@ -50,9 +51,9 @@ export default function Login({showRegister}:{showRegister: MouseEventHandler}) 
               value={inputs.password}
             />
           </fieldset>
-          <button  className="text-center">Login</button>
+          <Button>Ingresar</Button>
         </form>
-      <p className="text-sm text-center mt-2">¿No tienes una cuenta? <span onClick={showRegister} className="hover:cursor-pointer font-semibold text-blue-600">Registrate</span></p>
+      <p className="text-sm text-center mt-4">¿No tienes una cuenta? <span onClick={showRegister} className="hover:cursor-pointer font-semibold text-blue-600">Registrate</span></p>
       </section>
     </>
   )

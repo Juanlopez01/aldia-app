@@ -2,6 +2,7 @@ import { ChangeEvent, ChangeEventHandler, FormEvent, MouseEventHandler, useState
 import Input from "./Input";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import Button from "./Button";
 
 export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
   const router = useRouter()
@@ -34,7 +35,7 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
   return (
     <>
       <section className="flex flex-col">
-        <h1 className="text-center text-xl">Registate</h1>
+        <h1 className="text-xl font-semibold mb-2">Registra tu cuenta</h1>
         <form onSubmit={handlerFormSubmit} className="flex flex-col gap-2">
           <fieldset className="flex flex-row gap-2">
             <div className="flex flex-col">
@@ -74,9 +75,9 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
             value={inputs.password}
             onChange={handerInputsChange}
           />
-          <button className="">Enviar</button>
+          <Button >Registrate</Button>
         </form>
-      <p className="text-sm text-center mt-2">¿Tienes una cuenta? <span onClick={showLogin} className="hover:cursor-pointer font-semibold text-blue-600">Logueate</span></p>
+      <p className="text-sm text-center mt-2">¿Tienes una cuenta? <span onClick={showLogin} className="hover:cursor-pointer font-semibold text-blue-600">Ingresá</span></p>
       </section>
     </>
   )
