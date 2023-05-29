@@ -11,6 +11,7 @@ $theme-colors: (
 @tailwind utilities;
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
+
 // #income_canva {
 //   width: 150px;
 //   height: 150px;
@@ -19,7 +20,7 @@ $theme-colors: (
 #__next {
   background-color: #F2F2F2;
   min-height: 100vh;
-  display: flex;
+  // display: flex;
 
   main {
     flex-grow: 1;

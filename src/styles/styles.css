@@ -5,7 +5,25 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+animate-open-menu	.toggle-btn {
+    @layer [&>div::before]:translate-y-0 [&>div::before]
+    :rotate-45 [&>div::after]:translate-y-0 [&>div::after]:-rotate-45 
+    [&>div]:bg-transparent:rotate-[720deg]
+  }
+}
+
 :root {
+  --main-green: "#418154";
+  --main-yellow: "#F3D40C";
+  --dark-blue: "#271B80";
+  --medium-blue: "#313BAB";
+  --light-blue: "#4F5EC7";
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -10560,4 +10578,42 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+/*# sourceMappingURL=styles.css.map */
+
+.toggle-btn > div::before {
+  transform: translateY(0) rotate(-45deg);
+}
+
+.toggle-btn > div::after {
+  transform: translateY(0) rotate(45deg);
+}
+
+.toggle-btn > div {
+  background-color: transparent;
+}
+
+.translateNav {
+  animation: translateNav .9s;
+}
+
+@keyframes translateNav {
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(0%);
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+
+*{
+  font-family: 'Work Sans', sans-serif;
+}
+
+.link:hover{
+  color: #F3D40C;
+  text-decoration: underline;
+  transition-duration: 200ms;
+}

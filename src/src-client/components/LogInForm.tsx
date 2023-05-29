@@ -1,4 +1,3 @@
-
 import {  signIn } from "next-auth/react";
 import Register from "./auth/Register";
 import { useState } from "react";
@@ -27,6 +26,5 @@ return (
       </section>
     </main>
   </>
-)
-}
+)}
 
