@@ -10614,6 +10614,15 @@ textarea.form-control-lg {
 
 .link:hover{
   color: #F3D40C;
-  text-decoration: underline;
+  font-weight: 400;
   transition-duration: 200ms;
+}
+
+.unlink{
+  color: #F3D40C;
+  transition-duration: 200ms;
+}
+
+.unlink:hover{
+  color: white !important;
 }
