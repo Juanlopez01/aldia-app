@@ -20,11 +20,11 @@ export default function App({
     <SessionProvider session={session}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <NavBarNvo/>
+          <NavBarNvo />
           {/* <NavBar page="home" /> */}
           <div className="pt-[75px]"></div>
           <Component {...pageProps} />
-          <Footer/>
+          <Footer />
         </PersistGate>
       </Provider>
     </SessionProvider>

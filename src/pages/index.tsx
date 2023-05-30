@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import LogButton from "@/src-client/components/LogIn/button";
 
 export default function Home() {
-  const {data: session} = useSession({required: true})
-  const user = useSelector((state : any) => state.PersonalReducer.user)
-  if(session && session.user && user.status !== 'disabled'){
+  const { data: session } = useSession({ required: true })
+  const user = useSelector((state: any) => state.PersonalReducer.user)
+  if (session && session.user && user.status !== 'disabled') {
 
     return (
       <>
@@ -24,11 +24,11 @@ export default function Home() {
         </main>
       </>
     );
-  } else if(session && session.user && user.status === 'disabled') {
+  } else if (session && session.user && user.status === 'disabled') {
     return (
       <>
-      {/* <h1>Tu cuenta aun no ha sido activada.</h1> */}
-      {/* <h3>Para activarla podes enviar un correo a .........@gmail.com</h3> */}
+        {/* <h1>Tu cuenta aun no ha sido activada.</h1> */}
+        {/* <h3>Para activarla podes enviar un correo a .........@gmail.com</h3> */}
       </>
     )
   } else {
