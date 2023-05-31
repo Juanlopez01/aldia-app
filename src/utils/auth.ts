@@ -1,7 +1,7 @@
 import { User } from '@/models/user.model';
 import conn  from '@/src-backend/db';
 import { compare, hash } from 'bcrypt';
-import { sendVerificationRequest } from './nodemailer';
+import { sendMailToChangePassword, sendVerificationRequest } from './nodemailer';
 import { sign } from 'jsonwebtoken';
 
 interface CreateUserParams {
@@ -65,7 +65,7 @@ interface CreateUserParams {
           provider: 'email',
         })
         const userSaved = await newUser.save()
-        const token = sign({ id: newUser._id}, process.env.NEXTAUTH_JWT_SECRET || '' )  
+        const token = sign({ id: newUser._id}, process.env.NEXTAUTH_JWT_SECRET || '' )
         const url = `${process.env.URL_BASE}api/validate-email?token=${token}`
         await sendVerificationRequest({ email: email, url })
         return userSaved
@@ -108,3 +108,15 @@ interface CreateUserParams {
     if(!user.emailVerified) throw new Error('EMAIL_NOT_VERIFIED')
 return user
   }
+
+
+export const forgotPassword = async (email?: string)=> {
+  await conn()
+  if (!email) throw new Error('EMAIL_REQUIRED')
+  const user = await User.findOne({ email })
+  if (!user) throw new Error('EMAIL_NOT_REGISTERED')
+  const token = sign({ id: user._id}, process.env.NEXTAUTH_JWT_SECRET || '' )  
+  const url = `${process.env.URL_BASE}/recover-account?token=${token}`
+  await sendMailToChangePassword({ email, url })
+return true
+}

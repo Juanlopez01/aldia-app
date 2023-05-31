@@ -7,7 +7,7 @@ interface decodedToken extends JwtPayload{
     id: string;
 }
 
-export default async function personal(req: NextApiRequest,res: NextApiResponse){
+export default async function handler(req: NextApiRequest,res: NextApiResponse){
 const { method, query }= req;
 if(method === 'GET'){
     await conn()

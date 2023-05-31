@@ -35,7 +35,7 @@ export default function Input({ label, name,value , error, type,labelClassName, 
         ${error? "border-red-800" : "border-main-green dark:border-darkest-blue"}
         `}
         />
-      {error? <p className="text-xs text-red-700">{error}</p>: null}
+      {error ? <p className="text-xs text-red-700 m-0">{error}</p>: null}
     </div>
   )
 }

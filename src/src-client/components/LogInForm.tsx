@@ -11,9 +11,9 @@ export default function Auth() {
 
 return (
   <>
-    <main className="flex flex-row w-full self-center h-[70vh]">
+    <main className="flex flex-row w-full self-center min-h-[70vh] ">
  <Welcome contentToShow={toggle} />
-      <section className="flex flex-col max-w-lg m-auto self-center">
+      <section className="flex flex-col max-w-lg m-auto self-center py-4">
         {toggle ? (
           <Login showRegister={toggleHandler} />
         ) : (

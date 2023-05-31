@@ -60,7 +60,7 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
             name="password"
             label="Contraseña"
             placeholder="**********"
-            value={inputs.password}
+            value={inputs.password  || ''}
             error={errors.password}
             onChange={handerInputsChange}
           />
