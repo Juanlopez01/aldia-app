@@ -1,4 +1,5 @@
 import { ExpenseType } from "@/models/expense.model";
+import { GoalsTypes } from "@/models/goal.model";
 import { IncomeType } from "@/models/income.model";
 import { UserType } from "@/models/user.model";
 import { calculateTotal } from "@/utils/calculateTotal";
@@ -11,6 +12,7 @@ interface PersonalFinance {
   user?: UserType;
   incomes: IncomeType[];
   expenses: ExpenseType[];
+  goals: GoalsTypes[]; 
   totalIncomes: number;
   totalExpenses: number;
 }
@@ -18,13 +20,18 @@ interface PersonalFinance {
 const initialState: PersonalFinance = {
   user: {
     name: "",
+    lastname: "",
+    provider: "",
+    emailVerified: false,
     email: "",
     image: "",
     role: "",
     status: "",
+
   },
   incomes: [],
   expenses: [],
+  goals: [],
   totalIncomes: 0,
   totalExpenses: 0,
 };
@@ -160,7 +167,7 @@ export const updateUserStatusP = (user : UserType) => async (dispatch : Function
 }
 
 
-//CHANGE PASSWORD
+//CHANGE PASSWORD   ARREGLAR
 export const changePassword = async (email : string) => {
   console.log(process.env.CLIENT_ID)
   const clientId = process.env.CLIENT_ID
@@ -173,6 +180,20 @@ export const changePassword = async (email : string) => {
   })
 
   console.log(response)
+}
+
+//GOALS
+
+//Create goal
+interface createGoal extends GoalsTypes {
+  email: string
+}
+const createGoal = ({title, category, goalValue, currentValue = 0, expires, email} : createGoal) => async (dispatch: Function) => {
+  try {
+    
+  } catch (error) {
+    
+  }
 }
 
 

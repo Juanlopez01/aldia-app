@@ -23,5 +23,5 @@ const goalsSchema = new Schema<GoalsTypes, Model<GoalsTypes>>(
   }
 );
 
-export const Expense =
+export const Goal =
   mongoose.models.Goal || mongoose.model("Goal", goalsSchema);

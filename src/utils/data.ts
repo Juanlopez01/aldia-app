@@ -2,7 +2,7 @@ const links = {
 	loggedIn: [
 		[
 			{ name: "General", url: "/" },
-			{ name: "Metas", url: "/" },
+			{ name: "Metas", url: "/goals" },
 		],
 		[
 			{ name: "Personal", url: "/" },
