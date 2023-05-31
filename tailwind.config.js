@@ -11,7 +11,8 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				"violet-blue": "#877fa9",
+				"violet-blue-profile": "#877fa9",
+				"violet-blue-landing": "#9ba1ce",
 				"main-green": "#418154",
 				"main-yellow": "#F3D40C",
 				"darkest-blue": "#140E46",
