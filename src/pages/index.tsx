@@ -21,6 +21,7 @@ export default function Home() {
         <main>
           <div className="container-graphics">
             <PersonalFinances />
+
           </div>
         </main>
       </>
