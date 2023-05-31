@@ -5,13 +5,17 @@ import { useAuth } from "@/src-client/hooks/use-auth";
 
 const authProps = {
   action: 'register',
-  redirect: 'check-email',
+  validate: true,
   initialState: {
     email: '',
     password: '',
     name:'',
     lastname: ''
   },
+  success:{
+    title: 'Te enviamos un email',
+    text:'Revisa tu bandeja de entrada o la carpeta de spam'
+  }
 }
 export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
 

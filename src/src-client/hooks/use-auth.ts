@@ -1,7 +1,9 @@
 import { ERRORS_AUTH } from "@/utils/constants"
+import { emailRegex,passRegex } from "@/utils/regexp"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/router"
 import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from "react"
+import Swal from "sweetalert2"
 
 interface AuthInitialState {
   email: string
@@ -9,16 +11,27 @@ interface AuthInitialState {
   repeatPassword?: string
   name?: string
   lastname?: string
+  validate?: boolean
 }
 
-interface AuthProps{
-  action: string
-  redirect: string
+interface BaseAuth{
+  action: string 
+  redirect?: string
+  success:{
+    title: string
+    text: string
+    timer?: number
+  }
+  validate?: boolean
+}
+
+interface signInParams extends BaseAuth {
+   inputs: AuthInitialState
+}
+
+interface AuthProps extends BaseAuth {
   initialState: AuthInitialState
 }
-
-const emailRegex= /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-const passRegex= /^(?=.*[a-z])(?=.*\d).{8,}$/
 
 interface ErrorsValidate {
   email?: string
@@ -54,10 +67,13 @@ const validateAuth = ({email, password, name,lastname, repeatPassword}:AuthIniti
   return errors
 }
 
-export const useAuth = ({action, initialState, redirect}:AuthProps) => {
+
+export const useAuth = (authParams:AuthProps) => {
+  const { initialState, ...restParams } = authParams
   const router = useRouter()
   const [inputs, setInputs] = useState(initialState)
   const [errors, setErrors] = useState<ErrorsValidate>({})
+  const [isLoading, setLoading]=useState(false)
 
   const handerInputsChange: ChangeEventHandler<HTMLInputElement> = (
     e: ChangeEvent<HTMLInputElement>
@@ -76,45 +92,71 @@ export const useAuth = ({action, initialState, redirect}:AuthProps) => {
   }
 
 
-  const handlerFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const { email, password, name, lastname } = inputs
+const singInAction = async (params: signInParams)=>{
+  const { action, inputs, success, redirect, validate } = params
+  const { email, password, name, lastname } = inputs
 
-    if (action === 'register') validateInputs(inputs)
-    signIn('credentials', {
-      redirect: false,
-      name,
-      lastname,
-      email,
-      password,
-      action,
-      callbackUrl: `${window.location.origin}/${redirect}`,
-    }).then((data) => {
-
-      console.log(data)
-
-      // Redirect to the callback
-      if (data?.ok && data?.url) return router.push(data?.url)
-      const { error } = data as { error: string }
-
-      if (error.startsWith('EMAIL'))
-        setErrors((prevState) => ({
-          ...prevState,
-          email: ERRORS_AUTH[error as keyof typeof ERRORS_AUTH],
-        }))
-      else if (error.startsWith('PASS'))
-        setErrors((prevState) => ({
-          ...prevState,
-          password: ERRORS_AUTH[error as keyof typeof ERRORS_AUTH],
-        }))
+  if (validate) validateInputs(inputs)
+  setLoading(true)
+  const data = await signIn('credentials', {
+    redirect: false,
+    name,
+    lastname,
+    email,
+    password,
+    action,
+    callbackUrl: `${window.location.origin}/${redirect}`,
+  })
+  setLoading(false)
+  if(data === undefined) return Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Hubo un error al realizar la acción, intentelo más tarde',
+  })
+  const { error, ok, url } = data 
+  // Redirect to the callback
+  if (ok && url) {
+    return Swal.fire({
+      icon: 'success',
+      ...success,
+    }).then(() => {
+      setInputs(initialState)
+      return (
+        Boolean(redirect) && router.push(url)
+      )
     })
+  }
+
+  if (error?.startsWith('EMAIL'))
+  setErrors((prevState) => ({
+    ...prevState,
+    email: ERRORS_AUTH[error as keyof typeof ERRORS_AUTH],
+  }))
+  else if (error?.startsWith('PASS'))
+  setErrors((prevState) => ({
+    ...prevState,
+    password: ERRORS_AUTH[error as keyof typeof ERRORS_AUTH],
+  }))
+  else
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Hubo un error al realizar la acción, intentelo más tarde',
+  })
+}
+
+  const handlerFormSubmit = (e: FormEvent<HTMLFormElement>) =>() =>{
+    e.preventDefault()
+    singInAction({inputs, ...restParams})
   }
 
   return {
     errors,
     inputs,
+    isLoading,
     handerInputsChange,
     validateInputs,
+    singInAction,
     handlerFormSubmit,
   }
 }

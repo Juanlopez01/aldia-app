@@ -12,6 +12,11 @@ const authProps = {
     email: '',
     password: '',
   },
+  success:{
+    title: '¡Te has logueado correctamente!',
+    text:'Ya puedes seguir manejando tus finanzas',
+    timer: 1000
+  }
 }
 
 

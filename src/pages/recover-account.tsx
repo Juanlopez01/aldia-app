@@ -6,15 +6,21 @@ import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import  { FormEvent, useCallback, useEffect, useState } from 'react'
+import Swal from 'sweetalert2';
 
 const authProps ={
-  redirect: '',
-  action: '',
+  action: 'login',
+  redirect: '/company',
   initialState: {
     password: '',
     repeatPassword: '',
     email: '',
-  }
+  },
+  success:{
+    title: '¡Haz recuperado tu cuenta!',
+    text: 'Inicia sesión con tu nueva contraseña'
+  },
+  validate: true
 }
 
 const BASE_URL = `/api/recover-account?token=`
@@ -22,7 +28,7 @@ const BASE_URL = `/api/recover-account?token=`
 export default function Page() {
   const searchParams = useSearchParams()
   const [user , setUser ] = useState<UserType | null>(null)
-  const {inputs, errors, handerInputsChange, validateInputs} = useAuth(authProps)
+  const {inputs, errors, handerInputsChange, singInAction, validateInputs} = useAuth(authProps)
 
   const getUser = useCallback(async({token}: {token: string|null})=>{
   const res = await fetch(`${BASE_URL}${token}`)
@@ -36,7 +42,7 @@ export default function Page() {
     getUser({ token })
   }, [searchParams, getUser])
 
-  const handlerSubmit =async (e: FormEvent<HTMLFormElement>)=>{
+  const handlerSubmit = async (e: FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
   validateInputs(inputs)
 
@@ -48,17 +54,13 @@ export default function Page() {
     },
     body: JSON.stringify({ newPassword: inputs.password })
   })
-const {success, user} = await res.json()
+
+const {success, user} = await res.json() as { user: {email: string } ; success: boolean}
 if (success) {
-  signIn('credentials', {
-    redirect: true,
-    email: user.email,
-    password: inputs.password,
-    action: 'login',
-    callbackUrl: `${window.location.origin}/company`,
-  })
-}
+  const { email }= user
+   singInAction({inputs: {password: inputs.password , email},...authProps })
   }
+}
   return (
     <>
       <main className="min-h-[74vh] w-full grid place-content-center my-2">

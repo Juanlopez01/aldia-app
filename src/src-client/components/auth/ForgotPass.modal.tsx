@@ -4,11 +4,14 @@ import Button from "./Button"
 import { MouseEventHandler } from "react"
 
 const authProps = {
-  redirect: 'check-email',
   action: 'forgot',
   initialState: {
     email: '',
   },
+  success:{
+    title: 'Te enviamos un email',
+    text:'Revisa tu bandeja de entrada o la carpeta de spam'
+  }
 }
 
 export default function ForgotPass({
