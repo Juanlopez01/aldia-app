@@ -1,40 +1,26 @@
-import { ChangeEvent, ChangeEventHandler, FormEvent, MouseEventHandler, useState } from "react";
+import {  MouseEventHandler } from "react";
 import Input from "./Input";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import Button from "./Button";
+import { useAuth } from "@/src-client/hooks/use-auth";
 
+const authProps = {
+  action: 'register',
+  redirect: 'check-email',
+  initialState: {
+    email: '',
+    password: '',
+    name:'',
+    lastname: ''
+  },
+}
 export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
-  const router = useRouter()
-  const [inputs, setInputs] = useState({
-    name: "",
-    lastname:'',
-    email: "",
-    password: ""
-  })
-  const handerInputsChange: ChangeEventHandler<HTMLInputElement> = (e:ChangeEvent<HTMLInputElement>)=> {
-    const { value, name } = e.target
-    setInputs(prevState =>({...prevState, [name]: value}))
-  }
-  const handlerFormSubmit=(e:FormEvent<HTMLFormElement>)=>{
-    e.preventDefault()
-    const {email, password, name, lastname } = inputs
-  // TODO: error handling
-    signIn("credentials", {
-      redirect: false,
-      name,lastname,
-      email: email,
-      password: password,
-      action: 'register',
-      callbackUrl: `${window.location.origin}/check-email`,
-    }).then(data=>{
-      console.log(data);
-      if(data?.ok && data?.url) router.push(data?.url)
-    })
-  }
+
+
+    const {handerInputsChange,inputs,handlerFormSubmit, errors} = useAuth(authProps)
   return (
     <>
       <section className="flex flex-col">
-        <h1 className="text-center text-xl">Registate</h1>
+        <h1 className="text-xl font-semibold mb-2">Registra tu cuenta</h1>
         <form onSubmit={handlerFormSubmit} className="flex flex-col gap-2">
           <fieldset className="flex flex-row gap-2">
             <div className="flex flex-col">
@@ -43,7 +29,8 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
                 name="name"
                 label="Nombre"
                 placeholder="Jhon"
-                value={inputs.name}
+                value={inputs.name || ''}
+                error={errors.name}
                 onChange={handerInputsChange}
               />
             </div>
@@ -53,7 +40,8 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
                 name="lastname"
                 label="Apellido"
                 placeholder="Doe"
-                value={inputs.lastname}
+                value={inputs.lastname  || ''}
+                error={errors.lastname}
                 onChange={handerInputsChange}
               />
             </div>
@@ -64,6 +52,7 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
             label="Correo Electrónico"
             placeholder="jhon2023@gmail.com"
             value={inputs.email}
+            error={errors.email}
             onChange={handerInputsChange}
           />
           <Input
@@ -71,12 +60,13 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
             name="password"
             label="Contraseña"
             placeholder="**********"
-            value={inputs.password}
+            value={inputs.password  || ''}
+            error={errors.password}
             onChange={handerInputsChange}
           />
-          <button className="">Enviar</button>
+          <Button >Registrate</Button>
         </form>
-      <p className="text-sm text-center mt-2">¿Tienes una cuenta? <span onClick={showLogin} className="hover:cursor-pointer font-semibold text-blue-600">Logueate</span></p>
+      <p className="text-sm text-center mt-2">¿Tienes una cuenta? <span onClick={showLogin} className="hover:cursor-pointer font-semibold text-blue-600">Ingresá</span></p>
       </section>
     </>
   )
