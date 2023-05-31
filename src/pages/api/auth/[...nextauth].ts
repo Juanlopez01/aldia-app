@@ -4,7 +4,7 @@ import { config } from "dotenv";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
-import { createGoogleUser, loginEmailUser, registerNewUser, validateSession } from "@/utils/auth";
+import { createGoogleUser, forgotPassword, loginEmailUser, registerNewUser, validateSession } from "@/utils/auth";
 config();
 
 const clientId: string = process.env.AUTH0_CLIENT_ID || "";
@@ -52,6 +52,8 @@ export const authOptions: NextAuthOptions = {
         return user
         }else if (action === 'login'){
           return await loginEmailUser({...credentials})
+        } else if (action === 'forgot'){
+          return await forgotPassword(credentials?.email)
         }
         throw new Error('Action not implemented')
       },
