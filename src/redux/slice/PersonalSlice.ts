@@ -186,9 +186,10 @@ export const changePassword = async (email : string) => {
 
 //Create goal
 interface createGoal extends GoalsTypes {
-  email: string
+  email: string,
+  expiresDate: string,
 }
-const createGoal = ({title, category, goalValue, currentValue = 0, expires, email} : createGoal) => async (dispatch: Function) => {
+const createGoal = ({title, category, goalValue, currentValue = 0, expiresDate, email} : createGoal) => async (dispatch: Function) => {
   try {
     
   } catch (error) {
