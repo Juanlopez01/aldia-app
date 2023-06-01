@@ -5,18 +5,22 @@ import { useAuth } from "@/src-client/hooks/use-auth";
 
 const authProps = {
   action: 'register',
-  redirect: 'check-email',
+  validate: true,
   initialState: {
     email: '',
     password: '',
     name:'',
     lastname: ''
   },
+  success:{
+    title: 'Te enviamos un email',
+    text:'Revisa tu bandeja de entrada o la carpeta de spam'
+  }
 }
 export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
 
 
-    const {handerInputsChange,inputs,handlerFormSubmit, errors} = useAuth(authProps)
+    const {handerInputsChange,inputs,handlerFormSubmit, errors, isLoading} = useAuth(authProps)
   return (
     <>
       <section className="flex flex-col">
@@ -51,7 +55,7 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
             name="email"
             label="Correo Electrónico"
             placeholder="jhon2023@gmail.com"
-            value={inputs.email}
+            value={inputs.email || ''}
             error={errors.email}
             onChange={handerInputsChange}
           />
@@ -64,7 +68,7 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
             error={errors.password}
             onChange={handerInputsChange}
           />
-          <Button >Registrate</Button>
+          <Button loading={isLoading} >Registrate</Button>
         </form>
       <p className="text-sm text-center mt-2">¿Tienes una cuenta? <span onClick={showLogin} className="hover:cursor-pointer font-semibold text-blue-600">Ingresá</span></p>
       </section>
