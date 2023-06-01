@@ -8,8 +8,8 @@ import { faLinkedinIn, faInstagram, faFacebook } from "@fortawesome/free-brands-
 const Footer = () => {
 	return (
 		<div
-			className="bg-darkest-blue w-full min-h-[200px]
-    grid lg:grid-cols-3 lg:place-content-center py-8 lg:py-12 leading-10"
+			className="bg-darkest-blue w-full min-h-[200px] border-t-2 border-gray-500
+    grid lg:grid-cols-3 lg:place-content-center"
 		>
 			<div className="flex justify-center pb-4 lg:pb-0">
 				<Image src={Logo} alt="logo img" className="w-[120px]" />
