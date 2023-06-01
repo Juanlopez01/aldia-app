@@ -8,7 +8,6 @@ export default function Home() {
   const {data: session} = useSession({required: true})
   console.log(session)
   if(session && session.user ){
-
     return (
       <>
         <Head>

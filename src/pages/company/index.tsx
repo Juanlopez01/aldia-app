@@ -62,7 +62,7 @@ const Company = () => {
             /> */}
 
             <ul className="list-unstyled d-flex flex-row gap-4 w-100 overflow-scroll overflow-hidden">
-              {companyNames?.map((company: any) => {
+              {[companyNames]?.map((company: any) => {
                 return (
                   <li key={company.id} className="flex-row">
                     <button className="btn-general" onClick={() => handleSelect(company.id)}>
