@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import NavBarNvo from "@/src-client/components/NavBarNvo";
 import "../styles/styles.css"
 import Footer from "@/src-client/components/Footer";
-import LandignPage from "@/src-client/components/LandingPage/LandingPage";
 
 export default function App({
   Component,
@@ -22,10 +21,8 @@ export default function App({
         <PersistGate persistor={persistor}>
           <NavBarNvo />
           {/* <NavBar page="home" /> */}
-
           <div className="pt-[75px]"></div>
           <Component {...pageProps} />
-          <LandignPage />
           <Footer />
         </PersistGate>
       </Provider>
