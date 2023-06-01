@@ -1,13 +1,15 @@
 import { useSession } from 'next-auth/react'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const Index = () => {
   const {data: session} = useSession()
-  console.log(session)
+  const goals = useSelector((state : any) => state.PersonalReducer.goals)
   if(session){
     return(
-      <h1>Inicio sesion</h1>
-
+      <>
+        <button>Agregar meta</button>
+      </>
     )
   } else {
     return (
