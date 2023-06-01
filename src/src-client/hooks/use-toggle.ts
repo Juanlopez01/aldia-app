@@ -1,8 +1,10 @@
 import { MouseEventHandler, useState } from "react"
 
 
-export const useToggle = () => {
-const [toggle, setToggle] = useState<Boolean>(true)
+export const useToggle = (initialState? : boolean) => {
+const [toggle, setToggle] = useState<boolean>(
+  initialState !== undefined ? initialState : true
+)
 
 const toggleHandler: MouseEventHandler = () => setToggle(!toggle)
 return { toggle, toggleHandler }

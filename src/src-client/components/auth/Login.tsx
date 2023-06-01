@@ -1,9 +1,8 @@
 import { MouseEventHandler } from "react";
 import Input from "./Input";
-import Button from "./Button";
+import Button from "../generals/Button";
 import { useAuth } from "@/src-client/hooks/use-auth";
-import { useToggle } from "@/src-client/hooks/use-toggle";
-import ForgotPass from "./ForgotPass.modal";
+import ForgotPass from "./ForgotPass";
 
 const authProps = {
   action: 'login',
@@ -23,7 +22,6 @@ const authProps = {
 export default function Login({showRegister}:{showRegister: MouseEventHandler}) {
     const { handerInputsChange, inputs, handlerFormSubmit, errors,isLoading } =
       useAuth(authProps)
-      const {toggle,toggleHandler}= useToggle()
   return (
     <>
       <section className="flex flex-col gap-2">
@@ -49,9 +47,7 @@ export default function Login({showRegister}:{showRegister: MouseEventHandler}) 
           </fieldset>
           <Button loading={isLoading}>Ingresar</Button>
         </form>
-        <p className="text-sm m-0 hover:underline hover:text-medium-blue hover:cursor-pointer" onClick={toggleHandler}>
-          Me olvidé mi constraseña
-        </p>
+        <ForgotPass />
         <p className="text-sm text-center m-0">
           ¿No tienes una cuenta?{' '}
           <span
@@ -61,7 +57,6 @@ export default function Login({showRegister}:{showRegister: MouseEventHandler}) 
             Registrate
           </span>
         </p>
-        {!toggle && <ForgotPass closeModal={toggleHandler} /> }
       </section>
     </>
   )

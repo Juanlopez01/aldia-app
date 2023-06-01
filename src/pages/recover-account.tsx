@@ -1,5 +1,5 @@
 import { UserType } from '@/models/user.model';
-import Button from '@/src-client/components/auth/Button';
+import Button from '@/src-client/components/generals/Button';
 import Input from '@/src-client/components/auth/Input';
 import { useAuth } from '@/src-client/hooks/use-auth';
 import Image from 'next/image';
