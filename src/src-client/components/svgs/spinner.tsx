@@ -3,22 +3,12 @@ import { SVGProps } from "react"
 const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={24}
-    height={24}
-    fill="none"
+    viewBox="0 0 32 32"
+    className="fill-current w-fit h-6 animate-spin"
     {...props}
   >
-    <path
-      fill="#000"
-      fillRule="evenodd"
-      d="M12 19a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm0 3c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"
-      clipRule="evenodd"
-      opacity={0.2}
-    />
-    <path
-      fill="#000"
-      d="M12 22c5.523 0 10-4.477 10-10h-3a7 7 0 0 1-7 7v3ZM2 12C2 6.477 6.477 2 12 2v3a7 7 0 0 0-7 7H2Z"
-    />
+    <title>{"spinner-one-third"}</title>
+    <path d="M16 .75a1.25 1.25 0 0 0 0 2.5c7.042.001 12.75 5.71 12.75 12.751 0 3.521-1.427 6.709-3.734 9.016a1.25 1.25 0 0 0 1.77 1.766 15.203 15.203 0 0 0 4.465-10.782C31.251 7.578 24.423.75 16.001.75z" />
   </svg>
 )
 export default SvgComponent
