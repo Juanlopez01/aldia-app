@@ -6,7 +6,7 @@ import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from "react"
 import Swal from "sweetalert2"
 
 interface AuthInitialState {
-  email: string
+  email?: string
   password?: string
   repeatPassword?: string
   name?: string
@@ -23,6 +23,7 @@ interface BaseAuth{
     timer?: number
   }
   validate?: boolean
+  onSuccess?: Function 
 }
 
 interface signInParams extends BaseAuth {
@@ -45,16 +46,16 @@ const validateAuth = ({email, password, name,lastname, repeatPassword}:AuthIniti
   const errors = {} as ErrorsValidate
   if(email === ''){
     errors.email = "Se requiere un email"
-  }else  if(!emailRegex.test(email)){
+  }else  if(email !== undefined && !emailRegex.test(email)){
     errors.email = "Email invalido"
   }
   if (password === '') {
     errors.password = 'Se requiere una contraseña'
   } else if (password !== undefined && !passRegex.test(password)) {
     errors.password =
-      'La contraseña debe contener almenos 8 caracteres, una letra y un número'
+    'La contraseña debe contener almenos 8 caracteres, una letra y un número'
   }
-
+  
   if(repeatPassword !== undefined && repeatPassword !== password){
     errors.repeatPassword = 'Las contraseñas deben ser iguales'
   }
@@ -86,17 +87,17 @@ export const useAuth = (authParams:AuthProps) => {
   const validateInputs = (inputsToValidate: AuthInitialState) => {
     const errors = validateAuth(inputsToValidate)
     setErrors(errors)
-    if (Object.keys(errors).length > 0) {
-      return
-    }
+    return Object.keys(errors).length > 0
   }
 
 
 const singInAction = async (params: signInParams)=>{
-  const { action, inputs, success, redirect, validate } = params
+  const { action, inputs, success, redirect, validate, onSuccess } = params
   const { email, password, name, lastname } = inputs
 
-  if (validate) validateInputs(inputs)
+  if (validate&& validateInputs(inputs) )return 
+  
+
   setLoading(true)
   const data = await signIn('credentials', {
     redirect: false,
@@ -116,6 +117,7 @@ const singInAction = async (params: signInParams)=>{
   const { error, ok, url } = data 
   // Redirect to the callback
   if (ok && url) {
+    if (onSuccess !== undefined) onSuccess()
     return Swal.fire({
       icon: 'success',
       ...success,
@@ -145,7 +147,7 @@ const singInAction = async (params: signInParams)=>{
   })
 }
 
-  const handlerFormSubmit = (e: FormEvent<HTMLFormElement>) =>() =>{
+  const handlerFormSubmit = (e: FormEvent<HTMLFormElement>) =>{
     e.preventDefault()
     singInAction({inputs, ...restParams})
   }

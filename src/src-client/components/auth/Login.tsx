@@ -21,7 +21,7 @@ const authProps = {
 
 
 export default function Login({showRegister}:{showRegister: MouseEventHandler}) {
-    const { handerInputsChange, inputs, handlerFormSubmit, errors } =
+    const { handerInputsChange, inputs, handlerFormSubmit, errors,isLoading } =
       useAuth(authProps)
       const {toggle,toggleHandler}= useToggle()
   return (
@@ -35,7 +35,7 @@ export default function Login({showRegister}:{showRegister: MouseEventHandler}) 
               name="email"
               label="Email"
               onChange={handerInputsChange}
-              value={inputs.email}
+              value={inputs.email || ''}
               error={errors.email}
             />
             <Input
@@ -47,7 +47,7 @@ export default function Login({showRegister}:{showRegister: MouseEventHandler}) 
               error={errors.password}
             />
           </fieldset>
-          <Button>Ingresar</Button>
+          <Button loading={isLoading}>Ingresar</Button>
         </form>
         <p className="text-sm m-0 hover:underline hover:text-medium-blue hover:cursor-pointer" onClick={toggleHandler}>
           Me olvidé mi constraseña
