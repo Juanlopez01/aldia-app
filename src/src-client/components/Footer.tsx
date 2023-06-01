@@ -2,11 +2,13 @@ import React from "react";
 import Logo from "../../../assets/ALDIA.png";
 import Image from "next/dist/client/image";
 import Link from "next/dist/client/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedinIn, faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
 	return (
 		<div
-			className="bg-light-blue w-full min-h-[200px]
+			className="bg-darkest-blue w-full min-h-[200px]
     grid lg:grid-cols-3 lg:place-content-center py-8 lg:py-12 leading-10"
 		>
 			<div className="flex justify-center pb-4 lg:pb-0">
@@ -29,10 +31,11 @@ const Footer = () => {
 			</ul>
 
       <div className="text-[#CBD5E1] text-[12px] flex justify-center gap-2 py-2 lg:py-0">
-        <p className="bg-[#1E293B] rounded-full w-[21px] h-[21px]"></p>
-        <p className="bg-[#1E293B] rounded-full w-[21px] h-[21px]"></p>
-        <p className="bg-[#1E293B] rounded-full w-[21px] h-[21px]"></p>
-        <p className="bg-[#1E293B] rounded-full w-[21px] h-[21px]"></p>
+        <Link href="" className="flex gap-3">
+					<FontAwesomeIcon icon={faLinkedinIn} className="bg-[#0a63bc] text-white p-[5px] text-[18px] rounded-full hover:scale-110"/>
+					<FontAwesomeIcon icon={faInstagram} className="bg-white text-red-500 p-[5px] text-[18px] rounded-full hover:scale-110"/>
+					<FontAwesomeIcon icon={faFacebook} className="bg-[#1773ea] text-white p-[5px] text-[18px] rounded-full hover:scale-110"/>
+				</Link>
       </div>
 
       <div className="text-[#CBD5E1] text-[12px] flex justify-center lg:col-start-1 lg:col-end-4">

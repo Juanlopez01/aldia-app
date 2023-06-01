@@ -125,6 +125,7 @@ const NavBarDesktop = () => {
 											className="w-[50px] h-[50px] rounded-full cursor-pointer"
 											width='50'
 											height='50'
+											className="w-[50px] h-[50px] cursor-pointer"
 											onClick={() => setIsOpenHeaderMenu((prev) => !prev)}
 										/>
 

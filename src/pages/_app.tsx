@@ -6,9 +6,10 @@ import { SessionProvider } from "next-auth/react";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "../redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from "@/src-client/components/Layout";
+import { useRouter } from "next/router";
+import NavBarNvo from "@/src-client/components/NavBarNvo";
 import "../styles/styles.css"
-
+import Footer from "@/src-client/components/Footer";
 
 export default function App({
   Component,
@@ -18,9 +19,11 @@ export default function App({
     <SessionProvider session={session}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <NavBarNvo/>
+          {/* <NavBar page="home" /> */}
+          <div className="pt-[75px]"></div>
+          <Component {...pageProps} />
+          <Footer/>
         </PersistGate>
       </Provider>
     </SessionProvider>
