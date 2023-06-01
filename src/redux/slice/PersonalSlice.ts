@@ -7,7 +7,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}api/personal`;
-
+const BASE_GOAL_URL = `${process.env.NEXT_PUBLIC_BASE_URL}api/goal`;
 interface PersonalFinance {
   user?: UserType;
   incomes: IncomeType[];
@@ -44,9 +44,11 @@ const personalSlice = createSlice({
     getUser: (state, action) => {
       const expenses = action.payload?.expenses;
       const incomes = action.payload?.incomes;
+      const goals = action.payload?.goals;
       state.user = action.payload;
       state.expenses = expenses;
       state.incomes = incomes;
+      state.goals = goals;
       state.totalExpenses = calculateTotal(action.payload?.expenses);
       state.totalIncomes = calculateTotal(action.payload?.incomes);
     },
@@ -97,7 +99,23 @@ const personalSlice = createSlice({
       if(state.user?.email === action.payload.email ){
         state.user?.status ?  state.user.status = action.payload.status : null
       }
-    }
+    },
+    addUserGoal: (state, action) => {
+      state.goals.push(action.payload)
+    },
+    updateUserGoal: (state, action) => {
+      let find = state.goals.map((elem) => {
+        if (elem._id === action.payload._id) {
+          return action.payload;
+        }
+        return elem;
+      });
+      state.goals = find;
+    },
+    deleteUserGoal: (state, action) => {
+      const filter = state.goals.filter((ele) => ele._id !== action.payload);
+      state.goals = filter;
+    },
   },
 });
 
@@ -189,14 +207,34 @@ interface createGoal extends GoalsTypes {
   email: string,
   expiresDate: string,
 }
-const createGoal = ({title, category, goalValue, currentValue = 0, expiresDate, email} : createGoal) => async (dispatch: Function) => {
+export const createGoal = ({title, category, goalValue, currentValue = 0, expiresDate, email} : createGoal) => async (dispatch: Function) => {
   try {
-    
+    const url = BASE_GOAL_URL + `?email=${email}`
+    const response = await axios.post(url, {title, category, goalValue, currentValue, expiresDate})
+    return dispatch(personalSlice.actions.addUserGoal(response.data.goal))
   } catch (error) {
-    
+    console.log(error)
   }
 }
-
-
+//Update goal
+export const updateGoal = ({currentValue, _id} : createGoal) => async (dispatch: Function) => {
+  try {
+    const url = BASE_GOAL_URL + `/${_id}`
+    const response = await axios.put(url, {currentValue,})
+    return dispatch(personalSlice.actions.updateUserGoal(response.data.goal))
+  } catch (error) {
+    console.log(error)
+  }
+}
+//Delete goal
+export const deleteGoal = ({_id} : createGoal) => async (dispatch: Function) => {
+  try {
+    const url = BASE_GOAL_URL + `/${_id}`
+    const response = await axios.delete(url)
+    return dispatch(personalSlice.actions.deleteUserGoal(response.data.result));
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 export default personalSlice.reducer;

@@ -10,13 +10,14 @@ export default async function goal(
     res: NextApiResponse
   ) {
     try {
-        const { email, id } = req.query;
+        const { email } = req.query;
         const {title, category, goalValue, currentValue, expiresDate} = req.body;
         switch (req.method) {
             case "GET":
                 const result = await User.findOne({ email: email})
-                .populate('Goal');
-                res.status(200).json(result)
+                .populate('goals')
+                .lean();
+                res.status(200).json({goals: result.goals});
                 break;
             case 'POST':
                 const date = await dateFormatter(expiresDate)
@@ -26,15 +27,8 @@ export default async function goal(
                 await user.save();
                 res.status(200).json({message: 'created ', goal: newGoal})
                 break;
-            case 'PUT':
-                const updatedGoal = await Goal.findOneAndUpdate({_id: id}, {
-                    currentValue,
-                },
-                {new: true})
-                res.status(200).json(updatedGoal)
-                break;
             default:
-                res.status(404).json({message: 'Not Found'});
+                res.status(404).json({message: 'Invalid Method'});
                 break;
         }
 
