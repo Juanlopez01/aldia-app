@@ -90,11 +90,8 @@ const Account = () => {
 										<FontAwesomeIcon icon={faEnvelope} />
 										<span className="ml-1">Email</span>
 									</div>
-									<div>
-										<FontAwesomeIcon icon={faPencil} className="text-white" />
-									</div>
 								</div>
-								<input type="text" className={`text-white mt-2 text-md bg-violet-blue-profile outline-0 outline-white py-1 pl-1 ${!edit ? "border-b-2 border-white" : "border-b-0"}`} value={inputs?.mail} maxLength={35} disabled={edit}
+								<input type="text" className={`text-white mt-2 text-md bg-violet-blue-profile outline-0 outline-white py-1 pl-1`} value={inputs?.mail} maxLength={35} disabled={edit}
                 name="email" onChange={(e)=>handleChange(e)}/>
 								<hr className="border-main-yellow border-2"></hr>
 							</div>
