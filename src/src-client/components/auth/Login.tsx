@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import Input from "./Input";
+import Input from "../generals/Input";
 import Button from "../generals/Button";
 import { useAuth } from "@/src-client/hooks/use-auth";
 import ForgotPass from "./ForgotPass";

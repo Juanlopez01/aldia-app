@@ -1,5 +1,5 @@
 import { useAuth } from "@/src-client/hooks/use-auth"
-import Input from "./Input"
+import Input from "../generals/Input"
 import Button from "../generals/Button"
 import { useToggle } from '@/src-client/hooks/use-toggle'
 import Modal from '@/src-client/components/generals/Modal'
