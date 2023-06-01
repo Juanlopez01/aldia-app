@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import LogButton from "@/src-client/components/LogIn/button";
 
 export default function Home() {
-  const {data: session} = useSession({required: true})
+  const { data: session } = useSession({ required: true })
   console.log(session)
-  if(session && session.user ){
+  if (session && session.user) {
     return (
       <>
         <Head>
@@ -23,11 +23,10 @@ export default function Home() {
         </main>
       </>
     );
-  } else  {
+  } else {
     return (
-    <div>
-        <h1>Landing</h1>
-    </div>
+      <div>
+      </div>
     )
   }
 }

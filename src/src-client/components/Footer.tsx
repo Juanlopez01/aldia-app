@@ -30,17 +30,17 @@ const Footer = () => {
 				</Link>
 			</ul>
 
-      <div className="text-[#CBD5E1] text-[12px] flex justify-center gap-2 py-2 lg:py-0">
-        <Link href="" className="flex gap-3">
-					<FontAwesomeIcon icon={faLinkedinIn} className="bg-[#0a63bc] text-white p-[5px] text-[18px] rounded-full hover:scale-110"/>
-					<FontAwesomeIcon icon={faInstagram} className="bg-white text-red-500 p-[5px] text-[18px] rounded-full hover:scale-110"/>
-					<FontAwesomeIcon icon={faFacebook} className="bg-[#1773ea] text-white p-[5px] text-[18px] rounded-full hover:scale-110"/>
+			<div className="text-[#CBD5E1] text-[12px] flex justify-center gap-2 py-2 lg:py-0">
+				<Link href="" className="flex gap-3">
+					<FontAwesomeIcon icon={faLinkedinIn} className="bg-[#0a63bc] text-white p-[5px] text-[18px] rounded-full hover:scale-110" />
+					<FontAwesomeIcon icon={faInstagram} className="bg-white text-red-500 p-[5px] text-[18px] rounded-full hover:scale-110" />
+					<FontAwesomeIcon icon={faFacebook} className="bg-[#1773ea] text-white p-[5px] text-[18px] rounded-full hover:scale-110" />
 				</Link>
-      </div>
+			</div>
 
-      <div className="text-[#CBD5E1] text-[12px] flex justify-center lg:col-start-1 lg:col-end-4">
-        <p>@ Copyright 2023. All rights Reserved by ALDIA</p>
-      </div>
+			<div className="text-[#CBD5E1] text-[12px] flex justify-center lg:col-start-1 lg:col-end-4">
+				<p>@ Copyright 2023. All rights Reserved by ALDIA</p>
+			</div>
 		</div>
 	);
 };
