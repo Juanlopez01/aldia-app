@@ -20,4 +20,40 @@ const links = {
 	],
 };
 
-export {links}
+const plans = [
+	{
+		name: "Gratuito",
+		color: {bg: "light-blue", text: "white"},
+		subtext: "Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
+		price: 0,
+		// tags: [
+		// 	/* check: tick in tag, cross: cruz in tag component */
+		// 	{check: []},
+		// 	{cross: []}
+		// ]
+	},
+	{
+		name: "Básico",
+		color: {bg: "[#e1c512]", text: "black"},
+		subtext: "Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
+		price: 1000,
+		// tags: [
+		// 	/* check: tick in tag, cross: cruz in tag component */
+		// 	{check: []},
+		// 	{cross: []}
+		// ]
+	},
+	{
+		name: "Premium",
+		color: {bg: "light-blue", text: "white"},
+		subtext: "Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
+		price: 2000,
+		// tags: [
+		// 	/* check: tick in tag, cross: cruz in tag component */
+		// 	{check: []},
+		// 	{cross: []}
+		// ]
+	}
+]
+
+export {links, plans}

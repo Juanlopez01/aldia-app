@@ -14,7 +14,8 @@ const NavbarDesktop = () => {
 	const router = useRouter();
 
 	return (
-		<div className="fixed z-[10000] w-full h-20 flex justify-between items-center bg-darkest-blue">
+		<div className="fixed z-[10000] w-full h-20 flex justify-between items-center bg-darkest-blue
+		border-b-2 border-gray-500">
 			<div className="w-full h-full flex justify-around items-center">
 				<div>
 					<Image src={Logo} alt="logo img" className="w-24" 
