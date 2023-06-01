@@ -2,6 +2,7 @@ import mongoose, { Model } from "mongoose";
 import { CompanType } from "./company.model";
 import { IncomeType } from "./income.model";
 import { ExpenseType } from "./expense.model";
+import { GoalsTypes } from "./goal.model";
 
 const Schema = mongoose.Schema;
 
@@ -16,6 +17,7 @@ export interface UserType {
   company?: CompanType[] | [];
   incomes?: IncomeType[] | [];
   expenses?: ExpenseType[] | [];
+  goals?: GoalsTypes[] | [];
   role: String;
   status: String;
 }
@@ -69,6 +71,7 @@ const userSchema = new Schema<UserType, Model<UserType>>(
     ],
     incomes: [{ type: Schema.Types.ObjectId, ref: 'Income', default: [] }],
     expenses: [{ type: Schema.Types.ObjectId, ref: 'Expense', default: [] }],
+    goals: [{ type: Schema.Types.ObjectId, ref: 'Goal', default: [] }],
   },
   { versionKey: false }
 )

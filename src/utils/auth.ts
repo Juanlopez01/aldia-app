@@ -35,7 +35,6 @@ interface CreateUserParams {
   })
   
   const userSaved = await newUser.save()
-  console.log(userSaved);
   return userSaved;
   
    }catch (error) {
