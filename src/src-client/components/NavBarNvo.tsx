@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Logo from "../../../assets/ALDIA.png";
-import Link from "next/dist/client/link";
-import Image from "next/dist/client/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { getRole } from "../utilities/getRole";
 import { ButtonSolid, ButtonTransparent } from "./Styles/Button";
 import { links } from "@/utils/data";
 import { useRouter } from 'next/navigation';
+import Image from "next/image";
+import Link from "next/link";
 
 //*renders the lists
 const GetNavLists = (props: { list: any }) => (
@@ -91,9 +91,11 @@ const NavBarDesktop = () => {
 										onMouseOver={() => setIsOpenHeaderMenu(() => true)}
 										onMouseLeave={() => setIsOpenHeaderMenu(() => false)}
 									>
-										<img
+										<Image
 											src={profile_image}
 											alt="profile img"
+											width='50'
+											height='50'
 											className="w-[50px] h-[50px] cursor-pointer"
 											onClick={() => setIsOpenHeaderMenu((prev) => !prev)}
 										/>
