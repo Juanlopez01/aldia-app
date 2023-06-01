@@ -1,9 +1,9 @@
-import { ButtonSolid, ButtonTransparent } from "../../Styles/Button"
+import { ButtonSolid, ButtonTransparent } from "../../../Styles/Button"
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import celular from "../../../../../assets/Celular.svg"
+import celular from "../../../../../../assets/Celular.svg"
 
-function Hero() {
+function HeroComponent() {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {/* Div 1 */}
@@ -38,4 +38,4 @@ function Hero() {
         </div>
     )
 }
-export default Hero
+export default HeroComponent

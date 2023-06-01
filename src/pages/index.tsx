@@ -3,7 +3,6 @@ import PersonalFinances from "./personal";
 import { useSession } from "next-auth/react";
 import { useSelector } from "react-redux";
 import LogButton from "@/src-client/components/LogIn/button";
-import LandignPage from "@/src-client/components/LandingPage/LandingPage";
 
 export default function Home() {
   const { data: session } = useSession({ required: true })
@@ -27,7 +26,6 @@ export default function Home() {
   } else {
     return (
       <div>
-        <LandignPage />
       </div>
     )
   }
