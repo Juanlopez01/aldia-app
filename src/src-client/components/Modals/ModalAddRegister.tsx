@@ -39,7 +39,7 @@ export function ModalAddRegister({
   const handleShow = () => setShow(true);
   const [form, setForm] = useState(initialStateForm);
   const { data: session } = useSession();
-  const id = useSelector((state : any) => state.CompanyReducer.selectedCompany._id)
+  const id = useSelector((state : any) => state.CompanyReducer.selectedCompany?._id)
   const dispatch: Function = useDispatch();
   const email = session?.user?.email;
 
