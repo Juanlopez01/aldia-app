@@ -41,6 +41,9 @@ export default function ForgotPass({
             />
             <Button loading={isLoading}>Recuper cuenta</Button>
           </form>
+          <footer className="mt-4">
+            <p className="text-sm text-gray-500">Se te enviará un email para que puedas cambiar tu contraseña y así recuperar tu cuenta</p>
+          </footer>
         </div>
       </section>
     </>
