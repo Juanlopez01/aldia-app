@@ -6,9 +6,7 @@ import React, {
 	useState,
 } from "react";
 import Logo from "../../../assets/ALDIA.png";
-import Link from "next/dist/client/link";
-import Image from "next/dist/client/image";
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { getRole } from "../utilities/getRole";
 import { ButtonTransparent } from "./Styles/Button";
 import { links } from "@/utils/data";
@@ -16,6 +14,9 @@ import { usePathname, useRouter} from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
+import { useRouter } from 'next/navigation';
+import Image from "next/image";
+import Link from "next/link";
 
 //*renders the lists
 const GetNavLists = (props: {
@@ -119,10 +120,13 @@ const NavBarDesktop = () => {
 									// onMouseOver={() => setIsOpenHeaderMenu(() => true)}
 									// onMouseLeave={() => setIsOpenHeaderMenu(() => false)}
 									>
-										<img
+										<Image
 											src={profile_image}
 											alt="profile img"
 											className="w-[50px] h-[50px] rounded-full cursor-pointer"
+											width='50'
+											height='50'
+											className="w-[50px] h-[50px] cursor-pointer"
 											onClick={() => setIsOpenHeaderMenu((prev) => !prev)}
 										/>
 
