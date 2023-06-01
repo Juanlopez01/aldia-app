@@ -17,7 +17,7 @@ try {
     const {id} = verify(token?.toString() , process.env.NEXTAUTH_JWT_SECRET || '') as decodedToken
     const user = await User.findByIdAndUpdate(id,{ emailVerified: true })
     if(!user)throw new Error('User not found')
-    return res.redirect('/email-validated')
+    return res.redirect('/auth/email-validated')
 } catch (err) {
     const error = err as Error
     return res.status(401).json({ success:false, message: error.message})

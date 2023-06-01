@@ -115,7 +115,7 @@ export const forgotPassword = async (email?: string)=> {
   const user = await User.findOne({ email })
   if (!user) throw new Error('EMAIL_NOT_REGISTERED')
   const token = sign({ id: user._id}, process.env.NEXTAUTH_JWT_SECRET || '' )  
-  const url = `${process.env.URL_BASE}/recover-account?token=${token}`
+  const url = `${process.env.URL_BASE}/auth/recover-account?token=${token}`
   await sendMailToChangePassword({ email, url })
 return true
 }
