@@ -9,6 +9,10 @@ const nextConfig = {
         port: '',
         pathname: '/images/generic-user-icon/generic-user-icon-18.jpg',
       },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
     ],
   },
   env:{

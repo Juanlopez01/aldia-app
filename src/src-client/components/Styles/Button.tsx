@@ -1,5 +1,6 @@
 const ButtonSolid = (props: any) => (
-  <button className={`bg-main-yellow text-black rounded-[12px] px-3 py-[6px]`}>
+  <button className={`bg-main-yellow text-black rounded-[12px] px-3 py-[6px] ${props?.classes}`}
+  onClick={()=>props?.onClick()}>
     {props?.children}
   </button>
 )

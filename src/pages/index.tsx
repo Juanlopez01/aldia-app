@@ -7,8 +7,12 @@ import LogButton from "@/src-client/components/LogIn/button";
 export default function Home() {
   const { data: session } = useSession({ required: true })
   console.log(session)
+<<<<<<< HEAD
   const user = useSelector((state: any) => state.PersonalReducer.user)
   if (session && session.user) {
+=======
+  if(session && session.user ){
+>>>>>>> 5ee239922af9a095b0b08b5f6f9ebb1b327b09ab
 
     return (
       <>
@@ -26,17 +30,20 @@ export default function Home() {
         </main>
       </>
     );
+<<<<<<< HEAD
   } else if (session && session.user && user.status === 'disabled') {
     return (
       <>
         {/* <h1>Tu cuenta aun no ha sido activada.</h1> */}
         {/* <h3>Para activarla podes enviar un correo a .........@gmail.com</h3> */}
       </>
+=======
+  } else  {
+    return (
+    <div>
+        <h1>Landing</h1>
+    </div>
+>>>>>>> 5ee239922af9a095b0b08b5f6f9ebb1b327b09ab
     )
-  } else {
-    <>
-      <h1>Aun no has iniciado sesion</h1>
-      <LogButton />
-    </>
   }
 }

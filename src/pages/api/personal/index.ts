@@ -21,7 +21,9 @@ export default async function personal(
         user = await User.findOne({ email: query.email })
           .select("-hashedPassword")
           .populate("incomes")
-          .populate("expenses");
+          .populate("expenses")
+          .populate("goals")
+          .lean();
       } catch (error) {
         console.log(error);
       }
