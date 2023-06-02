@@ -1,6 +1,7 @@
 import { UserType } from "@/models/user.model"
 import { ERRORS_AUTH } from "@/utils/constants"
 import { emailRegex,passRegex } from "@/utils/regexp"
+import { ObjectId } from "mongodb"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/router"
 import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from "react"
@@ -30,9 +31,16 @@ interface BaseAuth{
 interface signInParams extends BaseAuth {
    inputs: AuthInitialState
    update?:{
-    property: keyof UserType
+     /* Si se quiere actualizar varias propiedades
+     hay que mandar un array de propiedades 
+     y en las misma posiciones los valores
+     EJEMPLO:
+     property:['name', 'lastname']
+     value: ['Jhon', 'Doe']
+      */
+    property: keyof UserType | Array<keyof UserType> | string
     value: any
-    id: string
+    id: ObjectId
    }
 }
 
@@ -100,7 +108,10 @@ const singInAction = async (params: signInParams)=>{
   const { action, inputs, success, redirect, validate, onSuccess, update  } = params
   const { email, password, name, lastname } = inputs
   if (validate&& validateInputs(inputs) )return 
-
+if ( update && Array.isArray( update.property)  ){
+  update.property = update.property.join(' #&&# ')
+  update.value = update.value.join(' #&&# ')
+}
   setLoading(true)
   const data = await signIn('credentials', {
     redirect: false,

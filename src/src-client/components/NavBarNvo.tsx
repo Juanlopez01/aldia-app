@@ -6,7 +6,7 @@ import React, {
 	useState,
 } from "react";
 import Logo from "../../../assets/ALDIA.png";
-import { signIn, signOut, useSession } from "next-auth/react";
+import {  signOut, useSession } from "next-auth/react";
 import { getRole } from "../utilities/getRole";
 import { ButtonTransparent } from "./Styles/Button";
 import { links } from "@/utils/data";
@@ -83,93 +83,95 @@ const NavBarDesktop = () => {
 	const router = useRouter();
 
 	return (
-		<div className="fixed z-[10000] w-full h-20 flex justify-between items-center bg-darkest-blue">
-			<div className="w-full h-full flex justify-around items-center">
-				<div>
-					<Image src={Logo} alt="logo img" className="w-24" />
-				</div>
+    <div className="fixed z-[10000] w-full h-20 flex justify-between items-center bg-darkest-blue">
+      <div className="w-full h-full flex justify-around items-center">
+        <div>
+          <Image src={Logo} alt="logo img" className="w-24" width='96' height='50' />
+        </div>
 
-				{!session ? (
-					<>
-						{/* nosotros, contacto planes */}
-						<ul className="text-white flex md:gap-x-6 xl:gap-x-10 relative top-2">
-							<GetNavLists list={links?.notLoggedIn} />
-						</ul>
-					</>
-				) : (
-					<>
-						{/* General, metas */}
-						<ul className="flex md:gap-x-2 xl:gap-x-6 relative top-2">
-							<GetNavLists list={links?.loggedIn[0]} />
-						</ul>
+        {!session ? (
+          <>
+            {/* nosotros, contacto planes */}
+            <ul className="text-white flex md:gap-x-6 xl:gap-x-10 relative top-2">
+              <GetNavLists list={links?.notLoggedIn} />
+            </ul>
+          </>
+        ) : (
+          <>
+            {/* General, metas */}
+            <ul className="flex md:gap-x-2 xl:gap-x-6 relative top-2">
+              <GetNavLists list={links?.loggedIn[0]} />
+            </ul>
 
-						{/* Personal, admin, compañías */}
-						<ul className="flex md:gap-x-2 xl:gap-x-6 relative top-2">
-							<GetNavLists list={links?.loggedIn[1]} />
-						</ul>
-					</>
-				)}
+            {/* Personal, admin, compañías */}
+            <ul className="flex md:gap-x-2 xl:gap-x-6 relative top-2">
+              <GetNavLists list={links?.loggedIn[1]} />
+            </ul>
+          </>
+        )}
 
-				<div className="flex gap-2">
-					{session && session?.user?.image ? (
-						<>
-							{session && (
-								<>
-									<div
-									// onMouseOver={() => setIsOpenHeaderMenu(() => true)}
-									// onMouseLeave={() => setIsOpenHeaderMenu(() => false)}
-									>
-										<Image
-											src={profile_image}
-											alt="profile img"
-											className="w-[50px] h-[50px] rounded-full cursor-pointer"
-											width='50'
-											height='50'
-											onClick={() => setIsOpenHeaderMenu((prev) => !prev)}
-										/>
+        <div className="flex gap-2">
+          {session && session?.user?.image ? (
+            <>
+              {session && (
+                <>
+                  <div
+                  // onMouseOver={() => setIsOpenHeaderMenu(() => true)}
+                  // onMouseLeave={() => setIsOpenHeaderMenu(() => false)}
+                  >
+                    <Image
+                      src={profile_image}
+                      alt="profile img"
+                      className="w-[50px] h-[50px] rounded-full cursor-pointer"
+                      width="50"
+                      height="50"
+                      onClick={() => setIsOpenHeaderMenu((prev) => !prev)}
+                    />
 
-										{/* transition animation */}
-										{isOpenHeaderMenu && (
-											<div className={`absolute z-[10000] w-[400px] text-[16px]`}>
-												<ul
-													className={`bg-gray-600 shadow-lg shadow-gray-600 relative right-[177px] top-1 flex flex-col w-1/2 py-3 rounded-[5px] text-white`}
-												>
-													<li
-														className="hover:text-main-yellow cursor-pointer py-2"
-														onClick={() => {
-															setIsOpenHeaderMenu(false);
-															router.push("/account");
-														}}
-													>
-														Ver perfil
-													</li>
-													<li
-														className="hover:text-main-yellow cursor-pointer py-2"
-														onClick={() => signOutFunction()}
-													>
-														Cerrar Sesión
-													</li>
-												</ul>
-											</div>
-										)}
-									</div>
-								</>
-							)}
-						</>
-					) : (
-						<>
-							<ButtonTransparent
-								handleClick={() => router.push("/")}
-								color="main-yellow"
-							>
-								Iniciar sesión
-							</ButtonTransparent>
-						</>
-					)}
-				</div>
-			</div>
-		</div>
-	);
+                    {/* transition animation */}
+                    {isOpenHeaderMenu && (
+                      <div
+                        className={`absolute z-[10000] w-[400px] text-[16px]`}
+                      >
+                        <ul
+                          className={`bg-gray-600 shadow-lg shadow-gray-600 relative right-[177px] top-1 flex flex-col w-1/2 py-3 rounded-[5px] text-white`}
+                        >
+                          <li
+                            className="hover:text-main-yellow cursor-pointer py-2"
+                            onClick={() => {
+                              setIsOpenHeaderMenu(false)
+                              router.push('/account')
+                            }}
+                          >
+                            Ver perfil
+                          </li>
+                          <li
+                            className="hover:text-main-yellow cursor-pointer py-2"
+                            onClick={() => signOutFunction()}
+                          >
+                            Cerrar Sesión
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              <ButtonTransparent
+                handleClick={() => router.push('/')}
+                color="main-yellow"
+              >
+                Iniciar sesión
+              </ButtonTransparent>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  )
 };
 
 //*todo MOBILE NAV
@@ -200,7 +202,7 @@ const NavBarMobile = () => {
 			`}
 			>
 				<div className="w-[90vw] flex justify-between p-4">
-					<Image src={Logo} alt="logo img" className="w-24" />
+					<Image src={Logo} alt="logo img" className="w-24" width='96'height='50' />
 					<button
 						id="hamburger-menu"
 						className="text-3xl lg:hidden cursor-pointer relative w-8 h-8"
@@ -272,10 +274,12 @@ const NavBarMobile = () => {
 							) : (
 								<div className="w-full bg-darkest-blue shadow-lg rounded-full px-3 py-2 flex justify-center items-center gap-x-3">
 									<button className="">
-										<img
+										<Image
 											src={profile_image}
 											alt="profile img"
 											className="w-[60px] rounded-full"
+											width='60'
+											height='60'
 											onClick={() => {
 												handleAnimateHamburger();
 												router.push("/account");
@@ -314,7 +318,7 @@ function signOutFunction() {
 		cancelButtonText: "No",
 	}).then((result) => {
 		if (result.isConfirmed) {
-			signOut();
+			signOut({redirect: true, callbackUrl:'/'});
 		}
 	});
 }

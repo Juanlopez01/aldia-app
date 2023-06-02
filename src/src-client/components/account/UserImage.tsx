@@ -6,6 +6,7 @@ import Modal from '@components/generals/Modal'
 import {  useState } from 'react'
 import { UploadImage } from '@components/generals/UploadImage'
 import { useAuth } from '@hooks/use-auth'
+import { ObjectId } from 'mongodb'
 
 
 const authConfig={
@@ -18,7 +19,7 @@ initialState:{},
 inputs:{},
 }
 
-export default function UserImage({ image, userId }: { image: string; userId: string}) {
+export default function UserImage({ image, userId }: { image: string; userId: ObjectId}) {
   const { toggle, toggleHandler } = useToggle(false)
   const {singInAction}= useAuth({...authConfig})
   const onSuccess = (image:string) => {

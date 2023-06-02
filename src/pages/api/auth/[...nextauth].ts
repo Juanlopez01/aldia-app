@@ -72,7 +72,7 @@ export const authOptions: NextAuthOptions = {
       return {...session, user} // The return type will match the one returned in `useSession()`
     },
     async signIn({ account, profile ,credentials,email,user }) {
-      console.log({ account, profile,credentials,email,user});
+      // console.log({ account, profile,credentials,email,user});
 
       if (account?.provider === "google") {
         // @ts-ignore

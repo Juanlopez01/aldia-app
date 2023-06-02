@@ -1,4 +1,4 @@
-import { User,  isPropertyOfUser } from '@/models/user.model'
+import { User, isPropertyOfUser } from '@/models/user.model'
 import conn from '@/src-backend/db'
 import { compare, hash } from 'bcrypt'
 import { sendMailToChangePassword, sendVerificationRequest } from './nodemailer'
@@ -142,8 +142,20 @@ export const updateUser = async ({
   if (!property) throw new Error('PROPERTY_REQUIRED')
   if (!value) throw new Error('VALUE_REQUIRED')
   if (!id) throw new Error('ID_REQUIRED')
+  const updatePropetries = property.split(' #&&# ')
+  const updateValues = value.split(' #&&# ')
+  const updates: Promise<any>[] = []
+
   await conn()
-  if (!isPropertyOfUser(property)) throw new Error('PROPERTY_UNKNOWN')
-  const user = await User.findByIdAndUpdate(id, { [property]: value })
-  return user
+
+  
+
+  updatePropetries.forEach((prop, index) => {
+    if (!isPropertyOfUser(prop)) throw new Error('PROPERTY_UNKNOWN')
+    updates.push(User.findByIdAndUpdate(id, { [prop]: updateValues[index] }))
+  })
+
+const users =   await Promise.all(updates)
+
+  return users[updates.length - 1]
 }

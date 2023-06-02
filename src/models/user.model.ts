@@ -3,6 +3,7 @@ import { CompanType } from "./company.model";
 import { IncomeType } from "./income.model";
 import { ExpenseType } from "./expense.model";
 import { GoalsTypes } from "./goal.model";
+import { ObjectId } from "mongodb";
 
 const Schema = mongoose.Schema;
 
@@ -20,6 +21,9 @@ export interface UserType {
   goals?: GoalsTypes[] | [];
   role: String;
   status: String;
+}
+export interface UserWithId extends UserType{
+  _id: ObjectId
 }
 
 const userSchema = new Schema<UserType, Model<UserType>>(
