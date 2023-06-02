@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ReactElement } from "react"
+import { ChangeEventHandler, InputHTMLAttributes, ReactElement } from "react"
 
 interface Props {
   name: string
@@ -9,7 +9,7 @@ interface Props {
   type: string
   placeholder?: string
   className?: string
-  value: string
+  value: string | number | readonly string[] | undefined 
   onChange: ChangeEventHandler<HTMLInputElement>
 }
 
