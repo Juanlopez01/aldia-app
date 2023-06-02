@@ -1,33 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import LogoUser from "../../../assets/UserDefault.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faEnvelope,
-	faPencil,
-	faUser,
-} from "@fortawesome/free-solid-svg-icons";
-import { ButtonSolid } from "@/src-client/components/Styles/Button";
-import { useAppSelector } from "@/src-client/hooks/use-redux";
-import UserImage from "@/src-client/components/account/UserImage";
+import React, { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import LogoUser from '../../../assets/UserDefault.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faPencil, faUser } from '@fortawesome/free-solid-svg-icons'
+import { ButtonSolid } from '@/src-client/components/Styles/Button'
+import { useAppSelector } from '@/src-client/hooks/use-redux'
+import UserImage from '@/src-client/components/account/UserImage'
 
 const Account = () => {
-	const { data: session } = useSession();
+  const { data: session } = useSession()
+  const user = session?.user as { _id?: string }
+  const userId = user?._id || ''
 
-	const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useState({
     name: session?.user?.name,
-    mail: session?.user?.email
-  });
+    mail: session?.user?.email,
+  })
   const [edit, setEdit] = useState(true)
 
-  const selector = useAppSelector(s=>s)
+  const selector = useAppSelector((s) => s)
   const plan = selector?.PersonalReducer?.user?.status
 
-  useEffect(()=>{
-    if(session?.user?.name && session?.user?.email){
+  useEffect(() => {
+    if (session?.user?.name && session?.user?.email) {
       setInputs({
         name: session?.user?.name,
-        mail: session?.user?.email
+        mail: session?.user?.email,
       })
     }
   }, [session?.user])
@@ -36,11 +34,11 @@ const Account = () => {
     console.log(e)
     setInputs({
       ...inputs,
-      [e?.target?.name]: e?.target?.value
+      [e?.target?.name]: e?.target?.value,
     })
   }
 
-	return (
+  return (
     <div className="min-h-[90vh] bg-darkest-blue w-100 d-flex justify-content-center align-items-center">
       <aside className="bg-violet-blue-profile hadow-2xl min-h-[60vh] w-10/12 md:w-8/12 lg:w-1/2 xl:w-1/3 2xl:w-3/12 mx-auto rounded-[10px]">
         {session && (
@@ -50,7 +48,10 @@ const Account = () => {
                 className="bg-[#d6d4e4] bg-profile absolute h-[100px] md:h-[150px] w-10/12 md:w-8/12 lg:w-1/2 xl:w-1/3 2xl:w-3/12 mx-auto
               rounded-t-[10px]"
               ></div>
-              <UserImage image={session.user?.image ?? LogoUser.toString()} />
+              <UserImage
+                image={session.user?.image ?? LogoUser.toString()}
+                userId={userId}
+              />
             </div>
 
             {/* data */}
@@ -137,6 +138,6 @@ const Account = () => {
       </aside>
     </div>
   )
-};
+}
 
-export default Account;
+export default Account

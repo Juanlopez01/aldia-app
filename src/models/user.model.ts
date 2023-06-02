@@ -76,4 +76,9 @@ const userSchema = new Schema<UserType, Model<UserType>>(
   { versionKey: false }
 )
 
+export const isPropertyOfUser = (key: string): boolean => {
+  return !!userSchema.path(key);
+};
+
+
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

@@ -5,12 +5,29 @@ import Image from 'next/image'
 import Modal from '@components/generals/Modal'
 import {  useState } from 'react'
 import { UploadImage } from '@components/generals/UploadImage'
+import { useAuth } from '@hooks/use-auth'
 
 
-export default function UserImage({ image }: { image: string }) {
+const authConfig={
+action:'update',
+success:{
+    title: '¡Genial!',
+    text: 'Cambiaste tu foto de perfil correctamente'
+},
+initialState:{},
+inputs:{},
+}
+
+export default function UserImage({ image, userId }: { image: string; userId: string}) {
   const { toggle, toggleHandler } = useToggle(false)
-  const [imageInput, setImageInput] = useState<File | null>(null)
-  
+  const {singInAction}= useAuth({...authConfig})
+  const onSuccess = (image:string) => {
+    singInAction({
+      ...authConfig,
+      update: { property: 'image', value: image, id: userId },
+      onSuccess: toggleHandler,
+    })
+  }
 
   return (
     <>
@@ -32,9 +49,7 @@ export default function UserImage({ image }: { image: string }) {
           closeModal={toggleHandler}
           title="Cambia tu foto de perfil"
         >
-          <form>
-            <UploadImage />
-          </form>
+          <UploadImage onSuccess={onSuccess} />
         </Modal>
       </div>
     </>

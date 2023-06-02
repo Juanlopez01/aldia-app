@@ -1,3 +1,4 @@
+import { UserType } from "@/models/user.model"
 import { ERRORS_AUTH } from "@/utils/constants"
 import { emailRegex,passRegex } from "@/utils/regexp"
 import { signIn } from "next-auth/react"
@@ -28,6 +29,11 @@ interface BaseAuth{
 
 interface signInParams extends BaseAuth {
    inputs: AuthInitialState
+   update?:{
+    property: keyof UserType
+    value: any
+    id: string
+   }
 }
 
 interface AuthProps extends BaseAuth {
@@ -90,19 +96,17 @@ export const useAuth = (authParams:AuthProps) => {
     return Object.keys(errors).length > 0
   }
 
-
 const singInAction = async (params: signInParams)=>{
-  const { action, inputs, success, redirect, validate, onSuccess } = params
+  const { action, inputs, success, redirect, validate, onSuccess, update  } = params
   const { email, password, name, lastname } = inputs
-
   if (validate&& validateInputs(inputs) )return 
-  
 
   setLoading(true)
   const data = await signIn('credentials', {
     redirect: false,
     name,
     lastname,
+    ...update,
     email,
     password,
     action,
