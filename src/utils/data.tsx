@@ -5,7 +5,7 @@ const links = {
 	loggedIn: [
 		[
 			{ name: "General", url: "/", endpoint: "/general", icon: <FontAwesomeIcon icon={faUsers}/> },
-			{ name: "Metas", url: "/", endpoint: "/metas", icon: <FontAwesomeIcon icon={faBullseye}/>  },
+			{ name: "Metas", url: "/goals", endpoint: "/metas", icon: <FontAwesomeIcon icon={faBullseye}/>  },
 		],
 		[
 			{ name: "Personal", url: "/", endpoint: "/personal", icon: <FontAwesomeIcon icon={faUser}/>},

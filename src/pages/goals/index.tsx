@@ -1,15 +1,38 @@
+import { GoalsTypes } from '@/models/goal.model'
+import AddGoalForm from '@/src-client/components/goals/AddGoalForm'
 import { useSession } from 'next-auth/react'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Index = () => {
   const {data: session} = useSession()
+  const email = useSelector((state : any) => state.PersonalReducer.user.email)
+  const dispatch : Function = useDispatch()
+  const [form, setForm] = useState({
+    title: '',
+    category: '',
+    goalValue: 0,
+    currentValue: 0,
+    expiresDate: '',
+    email: email,
+    _id: '',
+  })
+  const incomes = useSelector((state : any) => state.PersonalReducer.totalIncomes)
+  const expenses = useSelector((state : any) => state.PersonalReducer.totalExpenses)
+  const [formType, setFormType] = useState('register')
   const goals = useSelector((state : any) => state.PersonalReducer.goals)
-  if(session){
+  if(session && session.user){
     return(
-      <>
-        <button>Agregar meta</button>
-      </>
+      <div className='flex flex-col'>
+        <AddGoalForm setForm={setForm} type={formType} form={form} excess={incomes-expenses} dispatch={dispatch}/>
+        <div>
+          <ul>
+            {goals.length > 0 && goals.map((goal : GoalsTypes) =>{
+              return <li key={goal._id?.toString()}>{goal.title}</li>
+            })}
+          </ul>
+        </div>
+      </div>
     )
   } else {
     return (
