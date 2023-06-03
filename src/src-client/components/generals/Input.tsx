@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ReactElement } from "react"
+import { ChangeEventHandler, InputHTMLAttributes, ReactElement } from "react"
 
 interface Props {
   name: string
@@ -8,11 +8,12 @@ interface Props {
   children?: React.ReactNode
   type: string
   placeholder?: string
-  value: string
+  className?: string
+  value: string | number | readonly string[] | undefined 
   onChange: ChangeEventHandler<HTMLInputElement>
 }
 
-export default function Input({ label, name,value , error, type,labelClassName, placeholder, children, onChange}: Props): ReactElement {
+export default function Input({ label, name,value , error, type,labelClassName, placeholder,className, children, onChange}: Props): ReactElement {
   return (
     <div>
       <label
@@ -27,7 +28,7 @@ export default function Input({ label, name,value , error, type,labelClassName, 
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        className={`
+        className={className ??`
         bg-trasparent border-2 
         text-sm rounded-lg placeholder-gray-400 
         focus:ring-darkest-blue focus:border-darkest-blue block w-full p-2.5 

@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images:{
-    remotePatterns:[
+  images: {
+    remotePatterns: [
       {
         protocol: 'https',
         hostname: 'icon-library.com',
@@ -13,11 +13,15 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
   },
-  env:{
+  env: {
     BASE_URL: process.env.BASE_URL,
-  }
+  },
 }
 
 module.exports = nextConfig

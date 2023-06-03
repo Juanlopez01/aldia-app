@@ -15,7 +15,10 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@components/*":["./src/src-client/components/*"],
+      "@client/*":["./src/src-client/*"],
+      "@hooks/*":["./src/src-client/hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/lib/mongodb.ts"],

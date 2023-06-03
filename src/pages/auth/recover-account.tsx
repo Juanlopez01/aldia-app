@@ -1,6 +1,6 @@
 import { UserType } from '@/models/user.model';
-import Button from '@/src-client/components/auth/Button';
-import Input from '@/src-client/components/auth/Input';
+import Button from '@/src-client/components/generals/Button';
+import Input from '@/src-client/components/generals/Input';
 import { useAuth } from '@/src-client/hooks/use-auth';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
