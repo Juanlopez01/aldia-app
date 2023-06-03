@@ -7,7 +7,7 @@ import UserImage from '@/src-client/components/account/UserImage'
 import { useRouter } from 'next/router'
 import { UserWithId } from '@/models/user.model'
 import UserName from '@components/account/UserName'
-import { useEffect } from 'react'
+import UserCurrency from '@components/account/UserCurrency'
 
 const Account = () => {
   const { data: session,status } = useSession()
@@ -15,16 +15,13 @@ const Account = () => {
 
   const selector = useAppSelector((s) => s)
   const plan = selector?.PersonalReducer?.user?.status
-useEffect(()=>{
-if(status === 'unauthenticated') router.push('/')
-},[])// eslint-disable-line
 
-
-// TODO: crear unos skeletons de carga para no tener que retornar null
+// TODO: crear un skeleton de carga para no tener que retornar null
   if (status === 'loading') return null
- else if(status === 'unauthenticated') return null
+ else if(status === 'unauthenticated') router.push('/')
   else{
-    const { _id: userId, email, image, name, lastname } = session?.user as unknown as UserWithId
+  // Una vez que se resetee la base de dato esto no es necesario ↓↓↓↓↓↓↓↓
+    const { _id: userId, email, image, name, lastname, currency = 'USD' } = session?.user as unknown as UserWithId
     return (
       <div className="min-h-[90vh] bg-darkest-blue w-100 d-flex justify-content-center align-items-center">
         <aside className="bg-violet-blue-profile hadow-2xl min-h-[60vh] w-10/12 md:w-8/12 lg:w-1/2 xl:w-1/3 2xl:w-3/12 mx-auto rounded-[10px]">
@@ -80,6 +77,10 @@ if(status === 'unauthenticated') router.push('/')
                     {plan !== 'disabled' ? 'Activo' : 'Inactivo'}
                   </p>
                   <hr className="border-main-yellow border-2"></hr>
+                </div>
+
+                <div>
+                  <UserCurrency currency={currency} userId={userId}/>
                 </div>
               </div>
             </div>

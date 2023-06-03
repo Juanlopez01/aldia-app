@@ -25,9 +25,8 @@ const authConfig = {
 }
 
 export default function UserName({ name, lastname, userId }: UserNameParams) {
-  const { toggle, toggleHandler } = useToggle()
-  const { toggle: toggleModal, toggleHandler: toggleModalHandler } = useToggle(false)
-  
+  const { toggle, toggleHandler } = useToggle(false)
+
   const { errors, isLoading, singInAction, inputs, handerInputsChange } =
     useAuth({ ...authConfig, initialState: { name, lastname } })
   const handlerSubmitHandler: FormEventHandler<HTMLFormElement> = (e) => {
@@ -40,37 +39,31 @@ export default function UserName({ name, lastname, userId }: UserNameParams) {
         value: [inputs.name, inputs.lastname],
         id: userId,
       },
-      
-
+      onSuccess:toggleHandler
     })
   }
   return (
     <>
-      <div
-        onMouseEnter={toggleHandler}
-        onMouseLeave={toggleHandler}
-      >
-        <div className="text-main-yellow flex items-center w-fit text-md gap-2 ">
+      <div>
+        <div className="text-main-yellow flex items-center w-fit text-md gap-2 hover:last:hidden">
           <FontAwesomeIcon icon={faUser} />
           <span className="">Usuario</span>
-          {toggle && (
-            <FontAwesomeIcon
-              icon={faPencil}
-              className="text-white"
-              onClick={toggleModalHandler}
-            />
-          )}
+          <FontAwesomeIcon
+            icon={faPencil}
+            className="text-white hover:cursor-pointer"
+            onClick={toggleHandler}
+          />
         </div>
         <p
           className={`text-white mt-2 text-md bg-violet-blue-profile outline-0 outline-white py-1 pl-1 border-b-0`}
         >{`${name} ${lastname}`}</p>
         <hr className="border-main-yellow border-2"></hr>
         <Modal
-          showModal={toggleModal}
+          showModal={toggle}
           title="Cambia tu nombre y/o apellido"
-          closeModal={toggleModalHandler}
+          closeModal={toggleHandler}
         >
-          <form onSubmit={handlerSubmitHandler} className='grid gap-4'>
+          <form onSubmit={handlerSubmitHandler} className="grid gap-4">
             <Input
               name="name"
               label="Nombre"

@@ -4,6 +4,7 @@ import { IncomeType } from "./income.model";
 import { ExpenseType } from "./expense.model";
 import { GoalsTypes } from "./goal.model";
 import { ObjectId } from "mongodb";
+import { Currency } from "@/types/auth.type";
 
 const Schema = mongoose.Schema;
 
@@ -15,6 +16,7 @@ export interface UserType {
   emailVerified: Boolean;
   hashedPassword?: String;
   image: String;
+  currency: Currency;
   company?: CompanType[] | [];
   incomes?: IncomeType[] | [];
   expenses?: ExpenseType[] | [];
@@ -64,6 +66,10 @@ const userSchema = new Schema<UserType, Model<UserType>>(
     status: {
       type: String,
       default: 'disabled',
+    },
+    currency:{
+      type: String,
+      default: 'USD'
     },
 
     company: [
