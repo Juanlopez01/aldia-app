@@ -207,23 +207,21 @@ interface createGoal extends GoalsTypes {
   email: string,
   expiresDate: string,
 }
-export const createGoal = ({title, category, goalValue, currentValue = 0, expiresDate, email} : createGoal) => async (dispatch: Function) => {
+export const createGoal = ({title, category, goalValue, status = 'Pending', expiresDate, email, plazo, priority} : createGoal) => async (dispatch: Function) => {
   try {
     const url = BASE_GOAL_URL + `?email=${email}`
-    const response = await axios.post(url, {title, category, goalValue, currentValue, expiresDate})
+    const response = await axios.post(url, {title, category, goalValue, status, expiresDate, plazo, priority})
     dispatch(personalSlice.actions.addUserGoal(response.data.goal))
-    dispatch(personalSlice.actions.addPersonalExpense(response.data.expense))
   } catch (error) {
     console.log(error)
   }
 }
 //Update goal
-export const updateGoal = ({currentValue, _id} : any) => async (dispatch: Function) => {
+export const updateGoal = ({status, goalValue, _id} : any) => async (dispatch: Function) => {
   try {
     const url = BASE_GOAL_URL + `/${_id}`
-    const response = await axios.put(url, {currentValue,})
+    const response = await axios.put(url, {status, goalValue,})
     dispatch(personalSlice.actions.updateUserGoal(response.data.goal))
-    dispatch(personalSlice.actions.updatePersonalExpense(response.data.expense))
   } catch (error) {
     console.log(error)
   }
@@ -234,7 +232,6 @@ export const deleteGoal = ({_id} : any) => async (dispatch: Function) => {
     const url = BASE_GOAL_URL + `/${_id}`
     const response = await axios.delete(url)
     dispatch(personalSlice.actions.deleteUserGoal(response.data.result._id));
-    dispatch(personalSlice.actions.deletePersonalExpense(response.data.expense));
   } catch (error) {
     console.log(error)
   }
