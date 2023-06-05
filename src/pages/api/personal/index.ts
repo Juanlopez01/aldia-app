@@ -1,4 +1,5 @@
 import { Expense } from "@/models/expense.model";
+import { Goal } from "@/models/goal.model";
 import { Income } from "@/models/income.model";
 import { User } from "@/models/user.model";
 import dbConnect from "@/src-backend/db";
@@ -22,7 +23,10 @@ export default async function personal(
           .select("-hashedPassword")
           .populate("incomes")
           .populate("expenses")
-          .populate("goals")
+          .populate({
+            path: 'goals',
+            model: Goal
+          })
           .lean();
       } catch (error) {
         console.log(error);
