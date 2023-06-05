@@ -1,7 +1,6 @@
 import { getNames } from "@/redux/slice/CompanySlice";
 import { Graphics } from "@/src-client/components/Graphics";
 import ModalRegister from "@/src-client/components/Modals/Company/ModalRegister";
-import NavBar from "@/src-client/components/NavBar";
 import { getCompany } from "@/src-client/utilities/getCompany";
 import { totalGenerate } from "@/src-client/utilities/totalGenerate";
 import verifyUserCompany from "@/src-client/utilities/verifyCompany";
@@ -25,7 +24,7 @@ const Company = () => {
     }
   };
   //Si aun no tengo companias cargadas en el estado
-  if (company === "loadingCompany" || companyNames.length === 0) {
+  if (company === "loadingCompany" || companyNames?.length === 0) {
     if (company === "loadingCompany") verification();
     if (company !== "loadingCompany" && company !== "Not found")
       dispatch(getNames(company));
@@ -42,10 +41,10 @@ const Company = () => {
 
   return (
     <div className="container-graphics w-50 gap-2">
-      {company === "loadingCompany" && companyData.name !== "" && (
+      {company === "loadingCompany" && companyData?.name !== "" && (
         <span className="loader"></span>
       )}
-      {company === "Not found" && companyData.name === "" && (
+      {company === "Not found" && companyData?.name === "" && (
         <>
           <h1>No hemos encontrado tu compañía</h1>
           <ModalRegister />
