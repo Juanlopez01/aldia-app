@@ -28,7 +28,7 @@ const AddGoalForm = ({setForm, type, form, excess, dispatch}: any) => {
         })
       }
       if(type === 'edit') {
-        if(form.currentValue === form.goalValue) Swal.fire('Felicitaciones!', 'Has completado correctamente tu meta!', 'success');
+        if(form.currentValue == form.goalValue) Swal.fire('Felicitaciones!', 'Has completado correctamente tu meta!', 'success');
         dispatch(updateGoal({currentValue: form.currentValue,_id: form._id}))
       }
     } else {

@@ -229,11 +229,11 @@ export const updateGoal = ({currentValue, _id} : any) => async (dispatch: Functi
   }
 }
 //Delete goal
-export const deleteGoal = ({_id} : createGoal) => async (dispatch: Function) => {
+export const deleteGoal = ({_id} : any) => async (dispatch: Function) => {
   try {
     const url = BASE_GOAL_URL + `/${_id}`
     const response = await axios.delete(url)
-    dispatch(personalSlice.actions.deleteUserGoal(response.data.result));
+    dispatch(personalSlice.actions.deleteUserGoal(response.data.result._id));
     dispatch(personalSlice.actions.deletePersonalExpense(response.data.expense));
   } catch (error) {
     console.log(error)
