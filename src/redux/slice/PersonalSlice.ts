@@ -27,7 +27,7 @@ const initialState: PersonalFinance = {
     image: "",
     role: "",
     status: "",
-
+    currency: 'USD',
   },
   incomes: [],
   expenses: [],
@@ -77,7 +77,7 @@ const personalSlice = createSlice({
     addPersonalExpense: (state, action) => {
       const oldState = state.expenses;
       oldState.push(action.payload);
-      state.totalIncomes = calculateTotal(oldState);
+      state.totalExpenses = calculateTotal(oldState);
       state.expenses = oldState;
     },
     updatePersonalExpense: (state, action) => {
@@ -87,12 +87,12 @@ const personalSlice = createSlice({
         }
         return elem;
       });
-      state.totalIncomes = calculateTotal(find);
+      state.totalExpenses = calculateTotal(find);
       state.expenses = find;
     },
     deletePersonalExpense: (state, action) => {
       const filter = state.expenses.filter((ele) => ele._id !== action.payload);
-      state.totalIncomes = calculateTotal(filter);
+      state.totalExpenses = calculateTotal(filter);
       state.expenses = filter;
     },
     updateUserStatus : (state, action) => {
@@ -211,27 +211,30 @@ export const createGoal = ({title, category, goalValue, currentValue = 0, expire
   try {
     const url = BASE_GOAL_URL + `?email=${email}`
     const response = await axios.post(url, {title, category, goalValue, currentValue, expiresDate})
-    return dispatch(personalSlice.actions.addUserGoal(response.data.goal))
+    dispatch(personalSlice.actions.addUserGoal(response.data.goal))
+    dispatch(personalSlice.actions.addPersonalExpense(response.data.expense))
   } catch (error) {
     console.log(error)
   }
 }
 //Update goal
-export const updateGoal = ({currentValue, _id} : createGoal) => async (dispatch: Function) => {
+export const updateGoal = ({currentValue, _id} : any) => async (dispatch: Function) => {
   try {
     const url = BASE_GOAL_URL + `/${_id}`
     const response = await axios.put(url, {currentValue,})
-    return dispatch(personalSlice.actions.updateUserGoal(response.data.goal))
+    dispatch(personalSlice.actions.updateUserGoal(response.data.goal))
+    dispatch(personalSlice.actions.updatePersonalExpense(response.data.expense))
   } catch (error) {
     console.log(error)
   }
 }
 //Delete goal
-export const deleteGoal = ({_id} : createGoal) => async (dispatch: Function) => {
+export const deleteGoal = ({_id} : any) => async (dispatch: Function) => {
   try {
     const url = BASE_GOAL_URL + `/${_id}`
     const response = await axios.delete(url)
-    return dispatch(personalSlice.actions.deleteUserGoal(response.data.result));
+    dispatch(personalSlice.actions.deleteUserGoal(response.data.result._id));
+    dispatch(personalSlice.actions.deletePersonalExpense(response.data.expense));
   } catch (error) {
     console.log(error)
   }

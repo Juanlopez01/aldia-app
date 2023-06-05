@@ -3,6 +3,8 @@ import { CompanType } from "./company.model";
 import { IncomeType } from "./income.model";
 import { ExpenseType } from "./expense.model";
 import { GoalsTypes } from "./goal.model";
+import { ObjectId } from "mongodb";
+import { Currency } from "@/types/auth.type";
 
 const Schema = mongoose.Schema;
 
@@ -14,12 +16,16 @@ export interface UserType {
   emailVerified: Boolean;
   hashedPassword?: String;
   image: String;
+  currency: Currency;
   company?: CompanType[] | [];
   incomes?: IncomeType[] | [];
   expenses?: ExpenseType[] | [];
   goals?: GoalsTypes[] | [];
   role: String;
   status: String;
+}
+export interface UserWithId extends UserType{
+  _id: ObjectId
 }
 
 const userSchema = new Schema<UserType, Model<UserType>>(
@@ -61,6 +67,10 @@ const userSchema = new Schema<UserType, Model<UserType>>(
       type: String,
       default: 'disabled',
     },
+    currency:{
+      type: String,
+      default: 'USD'
+    },
 
     company: [
       {
@@ -75,5 +85,10 @@ const userSchema = new Schema<UserType, Model<UserType>>(
   },
   { versionKey: false }
 )
+
+export const isPropertyOfUser = (key: string): boolean => {
+  return !!userSchema.path(key);
+};
+
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
