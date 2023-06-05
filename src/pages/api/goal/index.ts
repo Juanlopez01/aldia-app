@@ -12,7 +12,7 @@ export default async function goal(
   ) {
     try {
         const { email } = req.query;
-        const {title, category, goalValue, currentValue, expiresDate} = req.body;
+        const {title, category, goalValue, priority, plazo, expiresDate} = req.body;
         switch (req.method) {
             case "GET":
                 const result = await User.findOne({ email: email})
@@ -22,13 +22,11 @@ export default async function goal(
                 break;
             case 'POST':
                 const date = await dateFormatter(expiresDate)
-                const newGoal = await Goal.create({title, category, goalValue, currentValue, expires: date});
+                const newGoal = await Goal.create({title, category, goalValue, priority, plazo, expires: date});
                 const user = await User.findOne({email: email });
-                    const expense = await Expense.create({type: 'personales', value: currentValue, description: title, category: 'Metas'});
-                    await user.expenses.push(expense);
                 await user.goals.push(newGoal);
                 await user.save();
-                res.status(200).json({message: 'created ', goal: newGoal, expense: expense});
+                res.status(200).json({message: 'created ', goal: newGoal});
                 break;
             default:
                 res.status(404).json({message: 'Invalid Method'});

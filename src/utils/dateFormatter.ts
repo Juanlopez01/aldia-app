@@ -67,5 +67,11 @@ export const dateFormatter = async (expire : string) => {
             }
         case 'Un año':
             return `${day}/${monthsNames[month]}/${year + 1}`;
+        case 'Dos años':
+            return `${day}/${monthsNames[month]}/${year + 2}`;
+        case 'Tres años':
+            return `${day}/${monthsNames[month]}/${year + 3}`;
+        case 'Indefinido':
+            return `Indefinido`;
     }
 }

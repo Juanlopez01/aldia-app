@@ -1,7 +1,7 @@
 import { GoalsTypes } from '@/models/goal.model'
 import { deleteGoal } from '@/redux/slice/PersonalSlice'
 import AddGoalForm from '@/src-client/components/goals/AddGoalForm'
-import ProgressBar from '@/src-client/components/goals/ProgressBar'
+import GoalBar from '@/src-client/components/goals/GoalBar'
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,10 +15,12 @@ const Index = () => {
     title: '',
     category: '',
     goalValue: 0,
-    currentValue: 0,
     expiresDate: '',
     email: email,
     _id: '',
+    priority: 0,
+    plazo: 'Corto plazo',
+    status: 'Pending'
   })
   const incomes = useSelector((state : any) => state.PersonalReducer.totalIncomes)
   const expenses = useSelector((state : any) => state.PersonalReducer.totalExpenses)
@@ -49,15 +51,22 @@ const Index = () => {
         <div>
           <ul>
             {goals.length > 0 && goals.map((goal : GoalsTypes) =>{
-              const completed = goal.currentValue.valueOf() > 0 ? (goal.currentValue.valueOf() * 100) / goal.goalValue.valueOf() : 0
               return( 
-              <li key={goal._id?.toString()}><span>{`${goal.title} ---- ${completed} % --- vto: ${goal.expires}`}</span>
-                <ProgressBar completed={completed} />
-                {goal.currentValue !== goal.goalValue && <button onClick={() => {
-                  setForm({...form, _id: goal._id, currentValue: goal.currentValue, goalValue: goal.goalValue})
-                  setFormType('edit')
-                }}>Edit</button>}
-                <button onClick={() => handleDelete(goal._id)}>Eliminar meta</button>
+              <li key={goal._id?.toString()}>
+                <GoalBar 
+                  title={goal.title}
+                  excess={(incomes-expenses)}
+                  goalValue={goal.goalValue}
+                  priority={goal.priority}
+                  plazo={goal.plazo}
+                  expires={goal.expires}
+                  category={goal.category}
+                  status={goal.status}
+                  dispatch={dispatch}
+                  _id={goal._id}
+                  handleDelete={handleDelete}
+                  email={email}
+                />
               </li>
               )
             })}
@@ -67,10 +76,12 @@ const Index = () => {
           title: '',
           category: '',
           goalValue: 0,
-          currentValue: 0,
           expiresDate: '',
           email: email,
           _id: '',
+          priority: 0,
+          plazo: 'Corto plazo',
+          status: 'Pending'
         })}}>Register</button>}
         </div>
       </div>
