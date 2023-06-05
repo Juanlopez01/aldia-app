@@ -1,28 +1,39 @@
 import React from 'react'
 import { categories, expiresValues } from '@/utils/categoriesGoals'
 import Swal from 'sweetalert2'
-import { createGoal } from '@/redux/slice/PersonalSlice'
+import { createGoal, updateGoal } from '@/redux/slice/PersonalSlice'
 
 const AddGoalForm = ({setForm, type, form, excess, dispatch}: any) => {
   const handleChange = (e : any) => {
     setForm({...form, [e.target.id]: e.target.value})
   }
   const handleSubmit = (e : any) => {
+    console.log(excess)
     e.preventDefault()
-      if(form.currentValue > excess){
+      if(form.currentValue <= form.goalValue){
+        if(form.currentValue > excess){
         Swal.fire(
           'Cuidado!', 'El monto indicado supera tus excedentes!', 'warning'
         )
       }
-      dispatch(createGoal(form))
-      setForm({...form,
-        title: '',
-        category: '',
-        goalValue: 0,
-        currentValue: 0,
-        expiresDate: '',
-        _id: '',
-      })
+      if(type === 'register'){ 
+        dispatch(createGoal(form))
+        setForm({...form,
+          title: '',
+          category: '',
+          goalValue: 0,
+          currentValue: 0,
+          expiresDate: '',
+          _id: '',
+        })
+      }
+      if(type === 'edit') {
+        if(form.currentValue === form.goalValue) Swal.fire('Felicitaciones!', 'Has completado correctamente tu meta!', 'success');
+        dispatch(updateGoal({currentValue: form.currentValue,_id: form._id}))
+      }
+    } else {
+      Swal.fire('Cuidado!', 'Has sobrepasado el monto de tu meta', 'error')
+    }
   }
   return (
     <div>

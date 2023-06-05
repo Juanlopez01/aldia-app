@@ -24,11 +24,11 @@ export default async function goal(
                 const date = await dateFormatter(expiresDate)
                 const newGoal = await Goal.create({title, category, goalValue, currentValue, expires: date});
                 const user = await User.findOne({email: email });
-                const expense = await Expense.create({type: 'personales', value: currentValue, description: title, category: 'Metas'});
-                await user.expenses.push(expense);
+                    const expense = await Expense.create({type: 'personales', value: currentValue, description: title, category: 'Metas'});
+                    await user.expenses.push(expense);
                 await user.goals.push(newGoal);
                 await user.save();
-                res.status(200).json({message: 'created ', goal: newGoal})
+                res.status(200).json({message: 'created ', goal: newGoal, expense: expense});
                 break;
             default:
                 res.status(404).json({message: 'Invalid Method'});
