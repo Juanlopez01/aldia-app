@@ -1,7 +1,9 @@
 import { GoalsTypes } from '@/models/goal.model'
 import { deleteGoal } from '@/redux/slice/PersonalSlice'
 import AddGoalForm from '@/src-client/components/goals/AddGoalForm'
+import GoalBar from '@/src-client/components/goals/GoalBar'
 import ProgressBar from '@/src-client/components/goals/ProgressBar'
+import { dateDifference } from '@/utils/dateDiff'
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,11 +17,14 @@ const Index = () => {
     title: '',
     category: '',
     goalValue: 0,
-    currentValue: 0,
     expiresDate: '',
     email: email,
     _id: '',
+    priority: 0,
+    plazo: 'Corto plazo',
+    status: 'Pending'
   })
+  const [goalsExpirated, setGoalsExpirated] = useState(0)
   const incomes = useSelector((state : any) => state.PersonalReducer.totalIncomes)
   const expenses = useSelector((state : any) => state.PersonalReducer.totalExpenses)
   const [formType, setFormType] = useState('register')
@@ -40,24 +45,45 @@ const Index = () => {
     })
   }
   
-  
-  
+  const goalsCompleted = goals.filter((goal : GoalsTypes) => goal.status === 'Completed')
+  const completedGoals = Math.floor((goalsCompleted.length * 100) / goals.length)
   if(session && session.user){
     return(
       <div className='flex flex-col w-3/4'>
+        <ProgressBar completed={completedGoals} />
         <AddGoalForm setForm={setForm} type={formType} form={form} excess={(incomes-expenses)} dispatch={dispatch}/>
         <div>
           <ul>
             {goals.length > 0 && goals.map((goal : GoalsTypes) =>{
-              const completed = goal.currentValue.valueOf() > 0 ? (goal.currentValue.valueOf() * 100) / goal.goalValue.valueOf() : 0
+              if(goal.status === 'Pending') dateDifference(goal.expires, setGoalsExpirated, goalsExpirated)
+              if(goalsExpirated > 0) {
+                Swal.fire({
+                  title: 'Tienes metas que vencen pronto!',
+                  text: `Tienes ${goalsExpirated} que están por vencer`,
+                  showConfirmButton: true,
+                  confirmButtonText: 'Entendido',
+                  icon: 'warning'                  
+                })
+              }
               return( 
-              <li key={goal._id?.toString()}><span>{`${goal.title} ---- ${completed} % --- vto: ${goal.expires}`}</span>
-                <ProgressBar completed={completed} />
-                {goal.currentValue !== goal.goalValue && <button onClick={() => {
-                  setForm({...form, _id: goal._id, currentValue: goal.currentValue, goalValue: goal.goalValue})
-                  setFormType('edit')
-                }}>Edit</button>}
-                <button onClick={() => handleDelete(goal._id)}>Eliminar meta</button>
+              <li key={goal._id?.toString()}>
+                <GoalBar 
+                  title={goal.title}
+                  excess={(incomes-expenses)}
+                  goalValue={goal.goalValue}
+                  priority={goal.priority}
+                  plazo={goal.plazo}
+                  expires={goal.expires}
+                  category={goal.category}
+                  status={goal.status}
+                  dispatch={dispatch}
+                  _id={goal._id}
+                  handleDelete={handleDelete}
+                  email={email}
+                  setFormType={setFormType}
+                  setForm={setForm}
+                  form={form}
+                />
               </li>
               )
             })}
@@ -67,10 +93,12 @@ const Index = () => {
           title: '',
           category: '',
           goalValue: 0,
-          currentValue: 0,
           expiresDate: '',
           email: email,
           _id: '',
+          priority: 0,
+          plazo: 'Corto plazo',
+          status: 'Pending'
         })}}>Register</button>}
         </div>
       </div>
