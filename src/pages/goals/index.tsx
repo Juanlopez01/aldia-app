@@ -3,6 +3,7 @@ import { deleteGoal } from '@/redux/slice/PersonalSlice'
 import AddGoalForm from '@/src-client/components/goals/AddGoalForm'
 import GoalBar from '@/src-client/components/goals/GoalBar'
 import ProgressBar from '@/src-client/components/goals/ProgressBar'
+import { dateDifference } from '@/utils/dateDiff'
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -23,6 +24,7 @@ const Index = () => {
     plazo: 'Corto plazo',
     status: 'Pending'
   })
+  const [goalsExpirated, setGoalsExpirated] = useState(0)
   const incomes = useSelector((state : any) => state.PersonalReducer.totalIncomes)
   const expenses = useSelector((state : any) => state.PersonalReducer.totalExpenses)
   const [formType, setFormType] = useState('register')
@@ -53,6 +55,16 @@ const Index = () => {
         <div>
           <ul>
             {goals.length > 0 && goals.map((goal : GoalsTypes) =>{
+              if(goal.status === 'Pending') dateDifference(goal.expires, setGoalsExpirated, goalsExpirated)
+              if(goalsExpirated > 0) {
+                Swal.fire({
+                  title: 'Tienes metas que vencen pronto!',
+                  text: `Tienes ${goalsExpirated} que están por vencer`,
+                  showConfirmButton: true,
+                  confirmButtonText: 'Entendido',
+                  icon: 'warning'                  
+                })
+              }
               return( 
               <li key={goal._id?.toString()}>
                 <GoalBar 

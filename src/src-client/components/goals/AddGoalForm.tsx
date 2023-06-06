@@ -54,7 +54,7 @@ const AddGoalForm = ({setForm, type, form, excess, dispatch}: any) => {
               })}
             </select>}
             {form.plazo==='Largo plazo' && 
-            <select id='expiresDate' onChange={handleChange} required value={form.expiresValue} defaultValue={'Una semana'}>
+            <select id='expiresDate' onChange={handleChange} required value={form.expiresValue} defaultValue={'Dos años'}>
               {longExpiresValues.map((expires) => {
                 return <option value={expires} key={expires}>{expires}</option>
               })}
