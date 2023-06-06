@@ -155,7 +155,7 @@ export const deletePersonalIncome =
 //EXPENSES in personal finance
 //CREATE
 export const addPersonalExpense =
-  (expense: ExpenseType, email: string) => async (dispatch: Function) => {
+  (expense: ExpenseType, email: String) => async (dispatch: Function) => {
     const res = await axios.post(BASE_URL + "/expense?email=" + email, expense);
 
     dispatch(personalSlice.actions.addPersonalExpense(res.data.payload));
@@ -219,7 +219,9 @@ export const createGoal = ({title, category, goalValue, status = 'Pending', expi
 //Update goal
 export const updateGoal = ({status, goalValue, _id} : any) => async (dispatch: Function) => {
   try {
+
     const url = BASE_GOAL_URL + `/${_id}`
+    console.log(url)
     const response = await axios.put(url, {status, goalValue,})
     dispatch(personalSlice.actions.updateUserGoal(response.data.goal))
   } catch (error) {

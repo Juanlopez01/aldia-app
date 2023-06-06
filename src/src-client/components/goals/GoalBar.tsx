@@ -14,11 +14,14 @@ interface GoalBarTypes {
     dispatch: Function,
     _id: String | undefined,
     handleDelete: Function,
-    email: String;
+    email: String,
+    setFormType: Function,
+    setForm: Function,
+    form: any,
 }
 
-const GoalBar = ({title, goalValue, excess, status, priority, plazo, expires, category, dispatch, _id, handleDelete, email} : GoalBarTypes) => {
-  const porcentaje = (excess.valueOf() * 100) / goalValue.valueOf();
+const GoalBar = ({title, goalValue, excess, status, priority, plazo, expires, category, dispatch, _id, handleDelete, email,setFormType, setForm, form} : GoalBarTypes) => {
+  const porcentaje = Math.round((excess.valueOf() * 100) / goalValue.valueOf());
   return (
     <div className='bg-[var(--bs-Blue)] p-4'>
         <span>{title}</span>
@@ -29,7 +32,13 @@ const GoalBar = ({title, goalValue, excess, status, priority, plazo, expires, ca
         </>}
         <span>{category}</span>
         <span>{porcentaje > 100 ? `100%` : `${porcentaje}%`}</span>
-        {status === 'Pending' && <button onClick={() => handleDelete(_id)}>Delete</button>}
+        {status === 'Pending' && <>
+          <button onClick={() => handleDelete(_id)}>Delete</button>
+          <button onClick={() =>{ 
+            setFormType('edit')
+            setForm({...form, _id: _id})
+            }}>Editar valor</button>
+        </>}
         {status === 'Pending' && excess >= goalValue && <button onClick={() => {
           Swal.fire({
             title: 'Estas Seguro?',
@@ -48,6 +57,7 @@ const GoalBar = ({title, goalValue, excess, status, priority, plazo, expires, ca
             }
           })
           }}>Completado</button>}
+          
         {/* {status === 'Completed' && <button onClick={() => dispatch(updateGoal({status:'Pending', goalValue, _id,}))}>No completado</button>} */}
     </div>
   )

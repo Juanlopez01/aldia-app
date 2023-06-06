@@ -12,7 +12,6 @@ const AddGoalForm = ({setForm, type, form, excess, dispatch}: any) => {
   }
 
   const handleSubmit = (e : any) => {
-    console.log(excess)
     e.preventDefault()
       if(type === 'register'){ 
         dispatch(createGoal(form))
@@ -28,8 +27,7 @@ const AddGoalForm = ({setForm, type, form, excess, dispatch}: any) => {
         })
       }
       if(type === 'edit') {
-        if(form.currentValue == form.goalValue) Swal.fire('Felicitaciones!', 'Has completado correctamente tu meta!', 'success');
-        dispatch(updateGoal({currentValue: form.currentValue,_id: form._id}))
+        dispatch(updateGoal({status: form.status, goalValue: form.goalValue,_id: form._id}))
       }
   }
   return (
@@ -56,7 +54,7 @@ const AddGoalForm = ({setForm, type, form, excess, dispatch}: any) => {
               })}
             </select>}
             {form.plazo==='Largo plazo' && 
-            <select id='expiresDate' onChange={handleChange} required value={form.expiresValue} defaultValue={'Una semana'}>
+            <select id='expiresDate' onChange={handleChange} required value={form.expiresValue} defaultValue={'Dos años'}>
               {longExpiresValues.map((expires) => {
                 return <option value={expires} key={expires}>{expires}</option>
               })}
@@ -69,7 +67,24 @@ const AddGoalForm = ({setForm, type, form, excess, dispatch}: any) => {
             </>}
             {type === 'edit' && 
             <>
-            <input type='number' id='currentValue' placeholder='Selecciona el monto para tu meta' onChange={handleChange} value={form.currentValue}/>
+            <input type='number' id='goalValue' placeholder='Selecciona el monto de tu meta' onChange={handleChange} value={form.goalValue} required/>
+            {/* {form.plazo==='Corto plazo' &&
+            <select id='expiresDate' onChange={handleChange} required value={form.expiresValue} defaultValue={'Una semana'}>
+              {shortExpiresValues.map((expires) => {
+                return <option value={expires} key={expires}>{expires}</option>
+              })}
+            </select>}
+            {form.plazo==='Largo plazo' && 
+            <select id='expiresDate' onChange={handleChange} required value={form.expiresValue} defaultValue={'Una semana'}>
+              {longExpiresValues.map((expires) => {
+                return <option value={expires} key={expires}>{expires}</option>
+              })}
+            </select>}
+            <select id='priority' required defaultValue={1} value={form.priority} onChange={handleChange}>
+              <option key='1' value={1}>Alta</option>
+              <option key='2' value={2}>Media</option>
+              <option key='3' value={3}>Baja</option>
+              </select>        */}
             </>}
             <button type='submit'>{type === 'register' ? 'Crear nueva meta': 'Editar meta'}</button>
          </form>
