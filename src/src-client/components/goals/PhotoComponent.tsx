@@ -28,7 +28,7 @@ const photos: Photos = {
 const PhotoComponent: React.FC<Props> = ({ category }) => {
 	const photo = photos?.[category];
 
-	return <Image src={photo} alt="photo" width={60} height={60}/>;
+	return <Image src={photo} alt="photo" width={50} height={50}/>;
 };
 
 export default PhotoComponent;

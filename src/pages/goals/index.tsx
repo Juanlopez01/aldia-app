@@ -49,11 +49,11 @@ const Index = () => {
   const completedGoals = Math.floor((goalsCompleted.length * 100) / goals.length)
   if(session && session.user){
     return(
-      <div className='flex flex-col w-3/4'>
+      <div className='flex flex-col xl:w-3/4 2xl:w-7/12'>
         <ProgressBar completed={completedGoals} />
         <AddGoalForm setForm={setForm} type={formType} form={form} excess={(incomes-expenses)} dispatch={dispatch}/>
         <div>
-          <ul className='flex flex-col gap-y-4'>
+          <ul className='flex flex-col justify-center w-full gap-y-4'>
             {goals.length > 0 && goals.map((goal : GoalsTypes) =>{
               if(goal.status === 'Pending') dateDifference(goal.expires, setGoalsExpirated, goalsExpirated)
               if(goalsExpirated > 0) {
@@ -66,7 +66,7 @@ const Index = () => {
                 })
               }
               return( 
-              <li key={goal._id?.toString()}>
+              <li key={goal._id?.toString()} className='w-full flex justify-center'>
                 <GoalBar 
                   title={goal.title}
                   excess={(incomes-expenses)}

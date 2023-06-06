@@ -39,18 +39,27 @@ const GoalBar = ({
 	form,
 }: GoalBarTypes) => {
 	const porcentaje = Math.round((excess.valueOf() * 100) / goalValue.valueOf());
+
+	//*for debugging, we want the 'Comprar' goal to be full
+	let porcentajeFinal = porcentaje
+	let excessFinal = excess
+	if(title==='Comprar') {
+		porcentajeFinal=100
+		excessFinal = goalValue
+	}
+	const flagIsFilled = excessFinal===goalValue
 	return (
-		<div className="bg-white grid grid-cols-3 shadow-lg rounded-full p-4">
+		<div className="bg-white flex justify-between gap-x-4 w-full shadow-lg rounded-full px-4 py-3">
 			<div>
 				<PhotoComponent category={category?.toString()}/>
 			</div>
-			<div className="flex flex-col">
+			<div className="flex flex-col justify-center w-[80%]">
 				<span>{title}</span>
-				<span>{porcentaje > 100 ? `100%` : `${porcentaje}%`}</span>
+				<span>{porcentaje > 100 ? `100%` : `${porcentajeFinal}%`}</span>
 				{status === "Pending" && (
 					<>
 						{/* porcentaje */}
-						<span>{`$${excess} / $${goalValue}`}</span>
+						<span>{`$${excessFinal} / $${goalValue}`}</span>
 						{/*  <span>{expires}</span>
 						<span>{plazo}</span> */}
 					</>
