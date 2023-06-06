@@ -11,8 +11,6 @@ import {
 const links = {
 	loggedIn: [
 		[
-			{ name: "General", url: "/", endpoint: "/general", icon: <FontAwesomeIcon icon={faUsers}/> },
-			{ name: "Metas", url: "/", endpoint: "/metas", icon: <FontAwesomeIcon icon={faBullseye}/>  },
 			{
 				name: "General",
 				url: "/",
@@ -21,7 +19,7 @@ const links = {
 			},
 			{
 				name: "Metas",
-				url: "/",
+				url: "/goals",
 				endpoint: "/metas",
 				icon: <FontAwesomeIcon icon={faBullseye} />,
 			},

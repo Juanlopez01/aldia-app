@@ -33,7 +33,7 @@ const PlanCard = (props: plansProps) => {
 
 			<button
 				className={`bg-${bg_button} w-full rounded-[4px] px-2 py-2 mx-auto my-4
-				outline-2 ${color_border_button} ${color_text_button}`}
+				outline-2 hover:bg-opacity-90 ${color_border_button} ${color_text_button}`}
 			>
 				Empieza ahora!
 			</button>

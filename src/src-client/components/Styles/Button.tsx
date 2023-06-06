@@ -1,6 +1,6 @@
 const ButtonSolid = (props: any) => (
 	<button
-		className={`bg-main-yellow text-black rounded-[12px] ${props?.classes}`}
+		className={`bg-main-yellow hover:bg-secondary-yellow text-black rounded-[12px] ${props?.classes}`}
 		onClick={() => props?.onClick()}
 	>
 		{props?.children}
@@ -31,4 +31,6 @@ const InputTransparent = (props: any) => (
 	</input>
 );
 
-export { ButtonSolid, ButtonTransparent, InputTransparent };
+const stylesLandingContainers = "min-h-[75vh] flex flex-col items-center justify-center"
+
+export { ButtonSolid, ButtonTransparent, InputTransparent, stylesLandingContainers };

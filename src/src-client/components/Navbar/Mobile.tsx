@@ -37,7 +37,7 @@ const NavbarMobile = () => {
 			`}
 			>
 				<div className="w-[90vw] flex justify-between p-4">
-					<Image src={Logo} alt="logo img" className="w-24" />
+					<Image src={Logo} alt="logo img" className="w-24" onClick={()=>router.push("/landing")}/>
 					<button
 						id="hamburger-menu"
 						className="text-3xl lg:hidden cursor-pointer relative w-8 h-8"

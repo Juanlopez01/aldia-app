@@ -30,7 +30,7 @@ function CardSectionUno() {
 					<div key={index} className=" md:p-4 grid-rows-1 gap-3">
 						{/* desktop img */}
 						<div className="justify-center hidden md:flex pb-3">
-							<Image src={info.image} alt={info.title} width={247} height={407} />
+							<Image src={info.image} alt={info.title} width={270} height={450} />
 						</div>
 
 						{/* mobile img */}
@@ -44,8 +44,8 @@ function CardSectionUno() {
 						</div>
 
 						{/* description */}
-						<div className=" flex justify-center text-white">
-							<p className="">{info.description}</p>
+						<div className=" flex justify-center">
+							<p className="text-link">{info.description}</p>
 						</div>
 					</div>
 				</>

@@ -9,7 +9,7 @@ function HeroComponent() {
 			{/* Div 1 */}
 			<div className="col-span-2">
 				<div className="w-[90vw] lg:w-[80vw] xl:w-[60%] mx-auto my-20 md:my-32 grid gap-2">
-					<div className="text-5xl xl:text-6xl 2xl:text-6xl text-center font-bold">
+					<div className="text-5xl xl:text-6xl text-center font-bold">
 						Simplifica tu vida financiera con ALDíA
 					</div>
 					<div className="flex align-items-center justify-center py-6 md:py-12">
