@@ -5,7 +5,7 @@ export interface ExpenseType {
   type: String;
   description: String;
   category: string;
-  value: number;
+  value: Number;
 }
 
 const expenseSchema = new Schema<ExpenseType, Model<ExpenseType>>(

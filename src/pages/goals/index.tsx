@@ -2,6 +2,7 @@ import { GoalsTypes } from '@/models/goal.model'
 import { deleteGoal } from '@/redux/slice/PersonalSlice'
 import AddGoalForm from '@/src-client/components/goals/AddGoalForm'
 import GoalBar from '@/src-client/components/goals/GoalBar'
+import ProgressBar from '@/src-client/components/goals/ProgressBar'
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -42,11 +43,12 @@ const Index = () => {
     })
   }
   
-  
-  
+  const goalsCompleted = goals.filter((goal : GoalsTypes) => goal.status === 'Completed')
+  const completedGoals = Math.floor((goalsCompleted.length * 100) / goals.length)
   if(session && session.user){
     return(
       <div className='flex flex-col w-3/4'>
+        <ProgressBar completed={completedGoals} />
         <AddGoalForm setForm={setForm} type={formType} form={form} excess={(incomes-expenses)} dispatch={dispatch}/>
         <div>
           <ul>
@@ -66,6 +68,9 @@ const Index = () => {
                   _id={goal._id}
                   handleDelete={handleDelete}
                   email={email}
+                  setFormType={setFormType}
+                  setForm={setForm}
+                  form={form}
                 />
               </li>
               )
