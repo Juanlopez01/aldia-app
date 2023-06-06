@@ -53,7 +53,7 @@ const Index = () => {
         <ProgressBar completed={completedGoals} />
         <AddGoalForm setForm={setForm} type={formType} form={form} excess={(incomes-expenses)} dispatch={dispatch}/>
         <div>
-          <ul>
+          <ul className='flex flex-col gap-y-4'>
             {goals.length > 0 && goals.map((goal : GoalsTypes) =>{
               if(goal.status === 'Pending') dateDifference(goal.expires, setGoalsExpirated, goalsExpirated)
               if(goalsExpirated > 0) {
