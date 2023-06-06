@@ -6,6 +6,8 @@ import {
 } from "@/utils/categoriesGoals";
 import Swal from "sweetalert2";
 import { createGoal, updateGoal } from "@/redux/slice/PersonalSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 	const handleChange = (e: any) => {
@@ -39,12 +41,9 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 		}
 	};
 
-
-  
 	return (
 		<div>
-			<form className="flex flex-col" onSubmit={handleSubmit}>
-				
+			<form className="flex flex-col w-11/12 xl:w-10/12" onSubmit={handleSubmit}>
 				{type === "register" && (
 					<>
 						<input
@@ -176,9 +175,20 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
               </select>        */}
 					</>
 				)}
-        <button type="submit">
-					{type === "register" ? "Crear nueva meta" : "Editar meta"}
-				</button>
+				<div className="flex justify-center py-4">
+					<button
+						type="submit"
+						className="w-[220px] text-white px-3 py-2 bg-darkest-blue text-lg
+						rounded-full flex justify-center items-center gap-x-2"
+					>
+						{type === "register" ? 
+						<>
+							<FontAwesomeIcon icon={faPlus} className="text-white border-2 border-white rounded-full p-1"/>
+							<span>AGREGAR META</span>
+						</> : 
+						"EDITAR META"}
+					</button>
+				</div>
 			</form>
 		</div>
 	);

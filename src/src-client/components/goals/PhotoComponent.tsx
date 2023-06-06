@@ -15,6 +15,8 @@ interface Photos {
 
 interface Props {
 	category: string;
+	width: number;
+	height: number;
 }
 
 const photos: Photos = {
@@ -25,10 +27,12 @@ const photos: Photos = {
 	Banco: Banco,
 };
 
-const PhotoComponent: React.FC<Props> = ({ category }) => {
+const PhotoComponent: React.FC<Props> = ({ category, width, height }) => {
 	const photo = photos?.[category];
 
-	return <Image src={photo} alt="photo" width={50} height={50}/>;
+	return <div className="h-full flex items-center">
+		<Image src={photo} alt="photo" width={width} height={height}/>
+	</div>;
 };
 
 export default PhotoComponent;

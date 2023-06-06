@@ -5,11 +5,11 @@ interface Props {
 const ProgressBar = ({completed} : Props) => {
   
     const containerStyles = {
-      height: 20,
+      height: 23,
       width: '100%',
       backgroundColor: "#e0e0de",
       borderRadius: 50,
-      margin: 6
+      margin: 6,
     }
   
     const fillerStyles = {

@@ -2,6 +2,7 @@ import { addPersonalExpense, updateGoal } from "@/redux/slice/PersonalSlice";
 import React from "react";
 import Swal from "sweetalert2";
 import PhotoComponent from "./PhotoComponent";
+import ProgressBar from "./ProgressBar";
 
 interface GoalBarTypes {
 	title: String;
@@ -41,80 +42,109 @@ const GoalBar = ({
 	const porcentaje = Math.round((excess.valueOf() * 100) / goalValue.valueOf());
 
 	//*for debugging, we want the 'Comprar' goal to be full
-	let porcentajeFinal = porcentaje
-	let excessFinal = excess
-	if(title==='Comprar') {
-		porcentajeFinal=100
-		excessFinal = goalValue
+	let porcentajeFinal = porcentaje;
+	let excessFinal = excess;
+	if (title === "Comprar") {
+		porcentajeFinal = 100;
+		excessFinal = goalValue;
+	} else if (title === "Fútbol viaje") {
+		porcentajeFinal = 70;
+		excessFinal = Number(goalValue) * 0.7;
+	} else if (title === "Ahorros") {
+		porcentajeFinal = 40;
+		excessFinal = Number(goalValue) * 0.4;
 	}
-	const flagIsFilled = excessFinal===goalValue
-	return (
-		<div className="bg-white flex justify-between gap-x-4 w-full shadow-lg rounded-full px-4 py-3">
-			<div>
-				<PhotoComponent category={category?.toString()}/>
-			</div>
-			<div className="flex flex-col justify-center w-[80%]">
-				<span>{title}</span>
-				<span>{porcentaje > 100 ? `100%` : `${porcentajeFinal}%`}</span>
-				{status === "Pending" && (
-					<>
-						{/* porcentaje */}
-						<span>{`$${excessFinal} / $${goalValue}`}</span>
-						{/*  <span>{expires}</span>
-						<span>{plazo}</span> */}
-					</>
-				)}
-			</div>
+	const flagIsFilled = excessFinal === goalValue;
 
-			{status === "Pending" && (
-				<div className="flex flex-col">
-					<button onClick={() => handleDelete(_id)}>Delete</button>
+	return (
+		<div
+			className={`w-full
+			`}
+		>
+			<div
+				className={`${
+					flagIsFilled ? "bg-[#14f037]" : "bg-white"
+				} flex justify-between items-center gap-x-4 w-full xl:w-10/12 shadow-lg rounded-full px-4 py-2
+			`}
+			>
+				{/* category img desktop */}
+				<div className="items-center h-full hidden md:flex">
+					<PhotoComponent category={category?.toString()} width={45} height={45}/>
+				</div>
+
+				{/* category img mobile */}
+				<div className="items-center h-full flex md:hidden">
+					<PhotoComponent category={category?.toString()} width={30} height={30}/>
+				</div>
+
+				{/* second col: title, porcentage and goals value */}
+				<div
+					className={`w-[80%] flex justify-center text-sm md:text-lg
+			${flagIsFilled ? "items-center gap-x-2 font-bold md:text-xl" : "flex-col "}`}
+				>
+					<span>{title}</span>
+					{!flagIsFilled && <ProgressBar completed={porcentajeFinal} />}
+					{status === "Pending" && (
+						<>
+							{/* porcentaje */}
+							{flagIsFilled && " - "}
+							<span className="text-sm md:text-lg">{`$${excessFinal} / $${goalValue}`}</span>
+							{/*  <span>{expires}</span>
+						<span>{plazo}</span> */}
+						</>
+					)}
+				</div>
+
+				{status === "Pending" && (
+					<div className="flex flex-col text-sm md:text-lg">
+						<button onClick={() => handleDelete(_id)}>Delete</button>
+						<button
+							onClick={() => {
+								setFormType("edit");
+								setForm({ ...form, _id: _id });
+							}}
+						>
+							Editar valor
+						</button>
+					</div>
+				)}
+				{status === "Pending" && excess >= goalValue && (
 					<button
 						onClick={() => {
-							setFormType("edit");
-							setForm({ ...form, _id: _id });
+							Swal.fire({
+								title: "Estas Seguro?",
+								text:
+									"Presiona aceptar si has completado esta meta, luego no podras deshacer este cambio",
+								showConfirmButton: true,
+								showCancelButton: true,
+								confirmButtonText: "He completado esta meta",
+								cancelButtonText: "Cancelar",
+								icon: "warning",
+							}).then((result) => {
+								if (result.isConfirmed) {
+									dispatch(updateGoal({ status: "Completed", goalValue, _id }));
+									dispatch(
+										addPersonalExpense(
+											{
+												type: "personales",
+												value: goalValue,
+												description: title,
+												category: "Metas",
+											},
+											email
+										)
+									);
+								} else {
+								}
+							});
 						}}
 					>
-						Editar valor
+						Completado
 					</button>
-				</div>
-			)}
-			{status === "Pending" && excess >= goalValue && (
-				<button
-					onClick={() => {
-						Swal.fire({
-							title: "Estas Seguro?",
-							text:
-								"Presiona aceptar si has completado esta meta, luego no podras deshacer este cambio",
-							showConfirmButton: true,
-							showCancelButton: true,
-							confirmButtonText: "He completado esta meta",
-							cancelButtonText: "Cancelar",
-							icon: "warning",
-						}).then((result) => {
-							if (result.isConfirmed) {
-								dispatch(updateGoal({ status: "Completed", goalValue, _id }));
-								dispatch(
-									addPersonalExpense(
-										{
-											type: "personales",
-											value: goalValue,
-											description: title,
-											category: "Metas",
-										},
-										email
-									)
-								);
-							} else {
-							}
-						});
-					}}
-				>
-					Completado
-				</button>
-			)}
+				)}
 
-			{/* {status === 'Completed' && <button onClick={() => dispatch(updateGoal({status:'Pending', goalValue, _id,}))}>No completado</button>} */}
+				{/* {status === 'Completed' && <button onClick={() => dispatch(updateGoal({status:'Pending', goalValue, _id,}))}>No completado</button>} */}
+			</div>
 		</div>
 	);
 };
