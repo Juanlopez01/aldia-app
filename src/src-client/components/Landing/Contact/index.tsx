@@ -179,7 +179,7 @@ const Contact = () => {
 					</div>
 
 					<div className="flex justify-center mt-4">
-						<ButtonSolid classes="w-24" onClick={() => ""}>
+						<ButtonSolid classes="w-24 px-3 py-[6px]" onClick={() => ""}>
 							Enviar
 						</ButtonSolid>
 					</div>

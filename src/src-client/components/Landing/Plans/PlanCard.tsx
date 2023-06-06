@@ -11,7 +11,7 @@ const PlanCard = (props: plansProps) => {
 	return (
 		<div
 			className={`w-11/12 md:max-w-[380px] min-h-[60vh] rounded-[4px]
-			border-[1px] border-gray-500 shadow-xl ${bg}
+			border-[1px] border-gray-500 shadow-xl ${/* no anda sin validación */bg==='bg-secondary-yellow' ? 'bg-secondary-yellow' : bg} 
 			flex flex-col text-${text_color} px-3 py-2`}
 		>
 			{/* main info */}
