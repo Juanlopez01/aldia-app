@@ -13,6 +13,18 @@ const links = {
 		[
 			{ name: "General", url: "/", endpoint: "/general", icon: <FontAwesomeIcon icon={faUsers}/> },
 			{ name: "Metas", url: "/", endpoint: "/metas", icon: <FontAwesomeIcon icon={faBullseye}/>  },
+			{
+				name: "General",
+				url: "/",
+				endpoint: "/general",
+				icon: <FontAwesomeIcon icon={faUsers} />,
+			},
+			{
+				name: "Metas",
+				url: "/",
+				endpoint: "/metas",
+				icon: <FontAwesomeIcon icon={faBullseye} />,
+			},
 		],
 		[
 			{
