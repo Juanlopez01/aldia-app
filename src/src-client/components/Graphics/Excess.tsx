@@ -30,7 +30,7 @@ export function Excess({ options, data }: any) {
 
   return (
     <div
-      className="bg-Blue col-3 rounded-4  text-white containerGraphicosDivExc"
+      className="bg-dark-blue col-3 rounded-4  text-white containerGraphicosDivExc"
       style={{ width: "350px" }}
     >
       <h2>Excedentes</h2>
