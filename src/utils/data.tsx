@@ -19,8 +19,8 @@ const links = {
 			},
 			{
 				name: "Metas",
-				url: "/",
-				endpoint: "/metas",
+				url: "/goals",
+				endpoint: "/goals",
 				icon: <FontAwesomeIcon icon={faBullseye} />,
 			},
 		],

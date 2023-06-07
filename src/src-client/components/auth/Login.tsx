@@ -24,7 +24,7 @@ export default function Login({showRegister}:{showRegister: MouseEventHandler}) 
       useAuth(authProps)
   return (
     <>
-      <section className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2 w-full md:min-h-[55vh] p-4">
         <form onSubmit={handlerFormSubmit} className="flex flex-col gap-2">
           <h1 className="text-xl font-semibold mb-2">Ingresa a tu cuenta</h1>
           <fieldset className="flex flex-col text-start gap-2 justify-start">
@@ -35,6 +35,7 @@ export default function Login({showRegister}:{showRegister: MouseEventHandler}) 
               onChange={handerInputsChange}
               value={inputs.email || ''}
               error={errors.email}
+              classes="max-w-[600px]"
             />
             <Input
               type="password"
@@ -43,12 +44,15 @@ export default function Login({showRegister}:{showRegister: MouseEventHandler}) 
               onChange={handerInputsChange}
               value={inputs.password || ''}
               error={errors.password}
+              classes="max-w-[600px]"
             />
           </fieldset>
-          <Button loading={isLoading}>Ingresar</Button>
+          <div className="py-3">
+            <Button loading={isLoading} classes="w-full text-center flex justify-center max-w-[600px] my-2">Ingresar</Button>
+          </div>
         </form>
         <ForgotPass />
-        <p className="text-sm text-center m-0">
+        <p className="text-sm m-0">
           ¿No tienes una cuenta?{' '}
           <span
             onClick={showRegister}

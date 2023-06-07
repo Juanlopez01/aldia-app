@@ -9,7 +9,7 @@ const Footer = () => {
 	return (
 		<div
 			className="bg-darkest-blue w-full min-h-[200px] border-t-2 border-gray-500
-    grid lg:grid-cols-3 lg:place-content-center"
+    grid lg:grid-cols-3 lg:place-content-center pt-8 lg:pt-0 pb-8 lg:pb-0"
 		>
 			<div className="flex justify-center pb-4 lg:pb-0">
 				<Image src={Logo} alt="logo img" className="w-[120px]" />

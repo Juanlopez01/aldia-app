@@ -8,24 +8,28 @@ import { persistor } from "../redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useRouter } from "next/router";
 import NavBar from "@/src-client/components/Navbar/NavBar";
-import "../styles/styles.css"
+import "../styles/styles.css";
 import Footer from "@/src-client/components/Footer";
+import Head from "next/head";
 
 export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
+	Component,
+	pageProps: { session, ...pageProps },
 }: AppProps) {
-  return (
-    <SessionProvider session={session}>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <NavBar />
-          {/* <NavBar page="home" /> */}
-          <div className="pt-[75px]"></div>
-          <Component {...pageProps} />
-          <Footer />
-        </PersistGate>
-      </Provider>
-    </SessionProvider>
-  )
+	return (
+		<SessionProvider session={session}>
+			<Provider store={store}>
+				<PersistGate persistor={persistor}>
+          <Head>
+            <title>AlDia App</title>
+          </Head>
+					<NavBar />
+					{/* <NavBar page="home" /> */}
+					<div className="pt-[75px]"></div>
+					<Component {...pageProps} />
+					<Footer />
+				</PersistGate>
+			</Provider>
+		</SessionProvider>
+	);
 }

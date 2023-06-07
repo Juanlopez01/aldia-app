@@ -1,15 +1,16 @@
 import React from 'react'
 interface Props {
-  completed: any
+  completed: any,
+  children?: any
 }
-const ProgressBar = ({completed} : Props) => {
+const ProgressBar = ({completed, children} : Props) => {
   
     const containerStyles = {
-      height: 20,
+      // height: 23,
       width: '100%',
       backgroundColor: "#e0e0de",
       borderRadius: 50,
-      margin: 6
+      margin: 6,
     }
   
     const fillerStyles = {
@@ -28,7 +29,8 @@ const ProgressBar = ({completed} : Props) => {
     return (
       <div style={containerStyles}>
         <div style={fillerStyles}>
-          <span style={labelStyles}>{`${completed}%`}</span>
+          {/* {children} */}
+          <span style={labelStyles}>{completed ? `${completed}%` : '0%'}</span>
         </div>
       </div>
     );
