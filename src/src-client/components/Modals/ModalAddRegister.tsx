@@ -26,6 +26,7 @@ const initialStateForm = {
   description: "",
   category: "",
   value: 0,
+  date: new Date(),
 };
 
 export function ModalAddRegister({
@@ -119,7 +120,7 @@ export function ModalAddRegister({
             {props.title} {type}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="d-flex justify-content-center">
+        <Modal.Body className="d-flex justify-content-center align-items-center">
           <FormRegister setForm={setForm} form={form} />
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
