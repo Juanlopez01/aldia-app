@@ -20,22 +20,6 @@ export default function Auth() {
 							<Register showLogin={toggleHandler} />
 						)}
 						<hr />
-						<section className="flex flex-col gap-4 md:max-w-[230px] px-4">
-							<button
-								onClick={() =>
-									signIn("google", {
-										callbackUrl: `${window.location.origin}/company`,
-									})
-								}
-								className="flex items-center justify-center gap-2 py-2 border-2 border-main-green bg-white rounded "
-							>
-								<p className="m-0 ">Continuar con </p>
-								<Google className="h-4 w-4" />
-							</button>
-							{/* <button onClick={() => signIn('facebook')}>
-              Continuar con Facebook
-            </button> */}
-						</section>
 					</section>
 				</div>
 			</main>

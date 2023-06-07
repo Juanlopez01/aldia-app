@@ -7,7 +7,7 @@ const PROS_QUOTES: String[] = ['Unite a decenas de personas que confían en noso
 export default function Welcome({contentToShow}:{contentToShow: Boolean}) {
   return (
     <>
-      <section className={`w-full md:w-8/12 lg:w-1/2 xl:w-1/3 bg-darkest-blue text p-8 flex ${ contentToShow? 'justify-between' : '' } text-white flex-col overflow-hidden -z-10`}>
+      <section className={`w-full md:w-8/12 lg:w-1/2 xl:w-1/3 bg-darkest-blue text p-8 flex ${ contentToShow? 'justify-between' : '' } text-white flex-col overflow-hidden -z-10 md:py-16`}>
         <header className="grid gap-2">
           <h1 className="text-4xl md:text-5xl font-black ">Bienvendo a ALDIA</h1>
           <p>La aplicación de finanzas por excelencia</p>
