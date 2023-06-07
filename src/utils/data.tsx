@@ -20,7 +20,7 @@ const links = {
 			{
 				name: "Metas",
 				url: "/goals",
-				endpoint: "/metas",
+				endpoint: "/goals",
 				icon: <FontAwesomeIcon icon={faBullseye} />,
 			},
 		],

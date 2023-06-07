@@ -57,8 +57,8 @@ const Index = () => {
 	);
 	if (session && session.user) {
 		return (
-			<div className="bg-violet-blue-profile">
-				<div className="flex flex-col xl:w-3/4 2xl:w-7/12 mx-auto py-12">
+			<div className="bg-violet-blue-profile w-full ">
+				<div className="flex flex-col w-full xl:w-3/4 2xl:w-7/12 mx-auto py-12">
 					{/* <ProgressBar completed={completedGoals} /> */}
 					<AddGoalForm
 						setForm={setForm}
@@ -67,7 +67,7 @@ const Index = () => {
 						excess={incomes - expenses}
 						dispatch={dispatch}
 					/>
-					<div>
+					<div className="w-full">
 						<ul className="flex flex-col justify-center w-full gap-y-4">
 							{goals.length > 0 &&
 								goals.map((goal: GoalsTypes) => {

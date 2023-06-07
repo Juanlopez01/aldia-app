@@ -1,11 +1,12 @@
 import React from 'react'
 interface Props {
-  completed: any
+  completed: any,
+  children?: any
 }
-const ProgressBar = ({completed} : Props) => {
+const ProgressBar = ({completed, children} : Props) => {
   
     const containerStyles = {
-      height: 23,
+      // height: 23,
       width: '100%',
       backgroundColor: "#e0e0de",
       borderRadius: 50,
@@ -28,6 +29,7 @@ const ProgressBar = ({completed} : Props) => {
     return (
       <div style={containerStyles}>
         <div style={fillerStyles}>
+          {/* {children} */}
           <span style={labelStyles}>{completed ? `${completed}%` : '0%'}</span>
         </div>
       </div>

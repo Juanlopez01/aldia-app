@@ -54,6 +54,7 @@ const GoalBar = ({
 		porcentajeFinal = 40;
 		excessFinal = Number(goalValue) * 0.4;
 	}
+	if (porcentajeFinal > 100) porcentajeFinal = 100;
 	const flagIsFilled = excessFinal === goalValue;
 
 	return (
@@ -64,17 +65,17 @@ const GoalBar = ({
 			<div
 				className={`${
 					flagIsFilled ? "bg-[#14f037]" : "bg-white"
-				} flex justify-between items-center gap-x-4 w-full xl:w-10/12 shadow-lg rounded-full px-4 py-2
+				} flex jxustify-between items-center gap-x-4 w-full xl:w-10/12 shadow-lg rounded-full px-3 py-2
 			`}
 			>
 				{/* category img desktop */}
 				<div className="items-center h-full hidden md:flex">
-					<PhotoComponent category={category?.toString()} width={45} height={45}/>
+					<PhotoComponent category={category?.toString()} width={45} height={45} />
 				</div>
 
 				{/* category img mobile */}
 				<div className="items-center h-full flex md:hidden">
-					<PhotoComponent category={category?.toString()} width={30} height={30}/>
+					<PhotoComponent category={category?.toString()} width={30} height={30} />
 				</div>
 
 				{/* second col: title, porcentage and goals value */}
@@ -83,7 +84,7 @@ const GoalBar = ({
 			${flagIsFilled ? "items-center gap-x-2 font-bold md:text-xl" : "flex-col "}`}
 				>
 					<span>{title}</span>
-					{!flagIsFilled && <ProgressBar completed={porcentajeFinal} />}
+					{!flagIsFilled && <ProgressBar completed={porcentajeFinal}></ProgressBar>}
 					{status === "Pending" && (
 						<>
 							{/* porcentaje */}

@@ -5,6 +5,7 @@ import {
 	Mercaderia,
 	Negocio,
 	Banco,
+	Otros,
 } from "../../../../public/goals/index";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
@@ -22,9 +23,10 @@ interface Props {
 const photos: Photos = {
 	Mercaderia: Mercaderia,
 	Negocio: Negocio,
-	Entreteniminto: Entretenimiento,
+	Entretenimiento: Entretenimiento,
 	Hobbies: Hobbies,
 	Banco: Banco,
+	Otros: Otros
 };
 
 const PhotoComponent: React.FC<Props> = ({ category, width, height }) => {

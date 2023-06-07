@@ -11,23 +11,23 @@ export default function Auth() {
 
 return (
   <>
-    <main className="flex flex-row w-full self-center min-h-[70vh] ">
- <Welcome contentToShow={toggle} />
-      <section className="flex flex-col max-w-lg m-auto self-center py-4">
+    <main className="md:flex md:flex-row w-full self-center">
+      <Welcome contentToShow={toggle}/>
+      <section className="w-full h-full flex flex-col m-auto self-center py-4 bg-violet-blue-profile px-4">
         {toggle ? (
           <Login showRegister={toggleHandler} />
         ) : (
           <Register showLogin={toggleHandler} />
         )}
         <hr />
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4 md:max-w-[230px] px-4">
           <button
             onClick={() => signIn('google',{
               callbackUrl: `${window.location.origin}/company`
             })}
-            className="flex items-center justify-center gap-2 py-2 border-2 border-darknest-blue rounded"
+            className="flex items-center justify-center gap-2 py-2 border-2 border-main-green bg-white rounded "
           >
-            <p className="m-0">Continuar con </p><Google className="h-4 w-4" />
+            <p className="m-0 ">Continuar con </p><Google className="h-4 w-4" />
           </button>
           {/* <button onClick={() => signIn('facebook')}>
               Continuar con Facebook
