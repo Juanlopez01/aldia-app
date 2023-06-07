@@ -8,12 +8,13 @@ interface Props {
   children?: React.ReactNode
   type: string
   placeholder?: string
-  className?: string
+  className?: string,
+  classes?: string,
   value: string | number | readonly string[] | undefined 
   onChange: ChangeEventHandler<HTMLInputElement>
 }
 
-export default function Input({ label, name,value , error, type,labelClassName, placeholder,className, children, onChange}: Props): ReactElement {
+export default function Input({ label, name, value, classes , error, type,labelClassName, placeholder,className, children, onChange}: Props): ReactElement {
   return (
     <div>
       <label
@@ -34,6 +35,7 @@ export default function Input({ label, name,value , error, type,labelClassName, 
         focus:ring-darkest-blue focus:border-darkest-blue block w-full p-2.5 
          dark:focus:ring-darkest-blue dark:focus:border-darkest-blue
         ${error? "border-red-800" : "border-main-green dark:border-darkest-blue"}
+        ${classes}
         `}
         />
       {error ? <p className="text-xs text-red-700 m-0">{error}</p>: null}
