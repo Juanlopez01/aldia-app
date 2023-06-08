@@ -43,12 +43,12 @@ export function Expense({
 
   return (
     <div
-      className="bg-dark-blue col-3 rounded-4 text-white px-2 pt-2"
+      className="bg-dark-blue col-3 rounded-4 text-white px-4 py-2 flex flex-col justify-around"
       style={{ width: "370px" }}
     >
       <h5>Gastos</h5>
       <h3>${totalExpenses}</h3>
-      {data.labels.length ? (
+      {data?.labels?.length ? (
         <Pie
           options={optionsPlus}
           height="250"

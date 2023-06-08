@@ -28,18 +28,6 @@ interface IOptions {
 }
 
 export function LongExcess({ options, data }: any) {
-  const optionsBar = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "right" as const,
-      },
-      title: {
-        display: false,
-      },
-    },
-  };
-
   const { totalIncomes, totalExpenses } = useSelector(
     (s: any) => s.PersonalReducer
   );
@@ -55,10 +43,10 @@ export function LongExcess({ options, data }: any) {
         <h2>${excess}</h2>
       </div>
 
-      {data.datasets[0].data[0] !== 0 || data.datasets[0].data[1] !== 0 ? (
+      {data?.datasets[0]?.data[0] !== 0 || data?.datasets[0]?.data[1] !== 0 ? (
         <div className="w-full flex justify-center"> {/* Add a wrapper div */}
           <Bar
-            options={optionsBar}
+            options={options}
             height={250}
             data={data}
           />

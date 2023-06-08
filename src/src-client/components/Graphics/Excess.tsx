@@ -31,10 +31,15 @@ export function Excess({ options, data }: any) {
 		plugins: {
 			legend: {
 				position: "bottom" as const,
+				labels: {
+					color: "white", // Set the text color to white
+					fontColor: "white"
+				},
 			},
 			title: {
 				display: false,
 			},
+			
 		},
 	};
 
@@ -45,15 +50,16 @@ export function Excess({ options, data }: any) {
 
 	return (
 		<div
-			className="bg-dark-blue rounded-4 flex justify-center text-white containerGraphicosDivExc"
-			style={{ width: "350px" }}
+			className="bg-dark-blue rounded-4 flex flex-col justify-around text-white containerGraphicosDivExc px-4
+			w-[350px]"
+			
 		>
 			<div className="">
 				<h5>Excedentes</h5>
 				<h3>${excess}</h3>
 			</div>
 
-			{data.datasets[0].data[0] !== 0 || data.datasets[0].data[1] !== 0 ? (
+			{data?.datasets[0].data[0] !== 0 || data?.datasets[0].data[1] !== 0 ? (
 				<Bar
 					options={optionsBar}
 					height="250"
@@ -64,6 +70,8 @@ export function Excess({ options, data }: any) {
 			) : (
 				<h2 className="heandingExcedent">No hay registros</h2>
 			)}
+
+			<div></div>
 		</div>
 	);
 }

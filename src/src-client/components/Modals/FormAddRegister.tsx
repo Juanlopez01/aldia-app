@@ -74,7 +74,7 @@ export default function FormRegister({ form, setForm }: FormProps) {
 
       <div className="input-group mb-0 w-100">
         <label htmlFor="text" className="input-group-text ">Fecha</label>     
-        <input type='text' id='check' value={form.date.toDateString()} placeholder="Seleccione una fecha" onClick={()=>setDateShow(!dateShow)} className="form-control"/>   
+        <input type='text' id='check' value={form?.date?.toDateString()} placeholder="Seleccione una fecha" onClick={()=>setDateShow(!dateShow)} className="form-control"/>   
       </div>   
       <div className={`${ !dateShow ? '' : 'hidden'}`}>    
         <Calendar value={form.date} onChange={handleDateChange} className='bg-white [span:bg-white text-center important]'/>
