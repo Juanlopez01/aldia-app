@@ -131,6 +131,7 @@ const GoalBar = ({
 												value: goalValue,
 												description: title,
 												category: "Metas",
+												date: new Date()
 											},
 											email
 										)

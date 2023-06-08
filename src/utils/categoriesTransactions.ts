@@ -1,0 +1,1 @@
+export const catTransactions = ['Banco', 'Hogar', 'Entretenimiento', 'Hobbies', 'Mercadería', 'Otros']
