@@ -13,23 +13,23 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { method } = req
+  const { method, body} = req
 
-  if (method === 'GET') {
+  if (method === 'POST') {
     try {
-      const body = {
-        reason: 'sub de ejemplo xdd',
+      const bodyToSend = {
+        reason: `Suscripcion a AlDía ${body.plan}`,
         auto_recurring: {
           frequency: 1,
-          frequency_type: 'months',
+          frequency_type: 'days',
           transaction_amount: 10,
           currency_id: 'ARS',
         },
         back_url: 'https://google.com.ar/',
         // payer_email:'test_user_1719808280@testuser.com',
-        external_reference:'ASDASD-12345'
+        external_reference: body.userId
       }
-      const { data } = await axios.post(MP_SUBS_URL, body, {
+      const { data } = await axios.post(MP_SUBS_URL, bodyToSend, {
         headers
       })
 
@@ -37,7 +37,7 @@ export default async function handler(
     console.log(data )
     console.log('---------------------PAYMENT--------------------')
 
-      return res.status(200).redirect(data.init_point)
+      return res.status(200).json({success: true, redirection_url: data.init_point})
     } catch (error) {
       console.error(error)
       return res.status(400).json({
