@@ -107,7 +107,7 @@ export function ModalAddRegister({
   return (
     <>
       <Button
-        className="text-center m-3 text-white
+        className="text-center mx-3 mb-2 text-white
         btn-graphics"
         onClick={handleShow}
       >

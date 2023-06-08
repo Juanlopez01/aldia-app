@@ -27,8 +27,8 @@ export function Income({
 }: any) {
 
   const propsModal = {
-    title: "Agregar ingresos",
-    buttonText: "Agregar ingresos",
+    title: "Agregar",
+    buttonText: "Agregar",
     type: "income",
   };
 
@@ -49,12 +49,12 @@ export function Income({
 
   return (
     <div
-      className="bg-dark-blue rounded-4  text-white pt-2 px-2
-      w-[370px]"
+      className="bg-dark-blue rounded-4  text-white px-2
+      w-[370px] pt-2"
       
     >
-      <h4>Ingresos</h4>
-      <h2>${totalIncomes}</h2>
+      <h5>Ingresos</h5>
+      <h3>${totalIncomes}</h3>
 
       {data.labels.length ? (
         <Pie

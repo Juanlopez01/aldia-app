@@ -183,7 +183,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
           </div>
 
-          <div className="row mt-5">
+          <div className="row mt-2">
 
             <Modal
               className="custom-container"

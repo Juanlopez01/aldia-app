@@ -22,8 +22,8 @@ export function Expense({
   openModalTable,
 }: any) {
   const propsModal = {
-    title: "Agregar egreso",
-    buttonText: "Agregar egreso",
+    title: "Agregar",
+    buttonText: "Agregar",
     type: "expense",
   };
 
@@ -43,11 +43,11 @@ export function Expense({
 
   return (
     <div
-      className="bg-dark-blue col-3 rounded-4 text-white containerGraphicosDiv pt-2 px-2"
+      className="bg-dark-blue col-3 rounded-4 text-white px-2 pt-2"
       style={{ width: "370px" }}
     >
-      <h4>Gastos</h4>
-      <h2>${totalExpenses}</h2>
+      <h5>Gastos</h5>
+      <h3>${totalExpenses}</h3>
       {data.labels.length ? (
         <Pie
           options={optionsPlus}
