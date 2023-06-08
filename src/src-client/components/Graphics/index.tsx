@@ -133,11 +133,11 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 
   return (
-    <div className="container text-center mt-5">
+    <div className="container h-full text-center mt-5">
       {!incomes || (!expenses && <span className="loader" />)}
       {incomes && expenses && (
         <>
-          <div className="row d-flex justify-content-between">
+          <div className="row d-flex justify-between h-1/2">
 
 
             <Income
@@ -170,7 +170,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
             />
 
           </div>
-          <div>
+          <div className="h-1/2 w-full m-1">
 
             <LongExcess 
             options={options} 

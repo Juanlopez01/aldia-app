@@ -37,7 +37,7 @@ export function LongExcess({ options, data }: any) {
       {data.datasets[0].data[0] !== 0 || data.datasets[0].data[1] !== 0 ? (
         <Bar
           options={optionsBar}
-          height="50%"
+          height="100%"
           width="100%"
           id="in_canva"
           data={data}
