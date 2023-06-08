@@ -1,7 +1,8 @@
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { Doughnut } from "react-chartjs-2";
+import { Doughnut, Pie } from "react-chartjs-2";
 import { ModalAddRegister } from "../Modals/ModalAddRegister";
+import { useSelector } from "react-redux";
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
@@ -38,14 +39,17 @@ export function Expense({
     },
   };
 
+  const {totalExpenses} = useSelector((s: any)=>s.PersonalReducer)
+
   return (
     <div
-      className="bg-dark-blue col-3 rounded-4 text-white containerGraphicosDiv"
-      style={{ width: "350px" }}
+      className="bg-dark-blue col-3 rounded-4 text-white containerGraphicosDiv pt-2 px-2"
+      style={{ width: "370px" }}
     >
-      <h2>Gastos</h2>
+      <h4>Gastos</h4>
+      <h2>${totalExpenses}</h2>
       {data.labels.length ? (
-        <Doughnut
+        <Pie
           options={optionsPlus}
           height="250"
           width="250"

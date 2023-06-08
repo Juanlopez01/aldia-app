@@ -133,11 +133,12 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 
   return (
-    <div className="text-center bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col justify-center items-center">
+    <div className="text-center bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
+    md:items-center pl-[10vw] md:pl-0">
       {!incomes || (!expenses && <span className="loader" />)}
       {incomes && expenses && (
         <>
-          <div className="row d-flex justify-center gap-8">
+          <div className="flex flex-col justify-center flex-wrap md:grid md:grid-cols-2 xl:grid-cols-3 place-content-center gap-8">
             <Income
               type={type}
               options={options}
@@ -167,15 +168,18 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
               className="m-1"
             />
 
-          </div>
-          <div className="h-1/2 w-full m-1">
-
-            <LongExcess 
-            options={options} 
-            data={dataLongExcess} 
-            className="m-1" 
-            setTableContent={setTableContent} 
-            />
+            <div className="w-full justify-center row-start-3 row-end-4
+            col-start-1 md:col-end-3 xl:col-end-4
+            ">
+  
+              <LongExcess 
+              options={options} 
+              data={dataLongExcess} 
+              className="m-1" 
+              setTableContent={setTableContent} 
+              />
+  
+            </div>
 
           </div>
 

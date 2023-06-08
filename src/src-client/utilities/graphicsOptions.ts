@@ -4,6 +4,9 @@ export const options = {
   },
 
   plugins: {
+    legend: {
+        position: 'right' as const,
+      },
     datalabels: {
       formatter: (value: any, ctx: any) => {
         let sum = 0;

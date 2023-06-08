@@ -1,6 +1,7 @@
 import { ArcElement, Chart as ChartJS, Legend, Tooltip, CategoryScale, LinearScale, BarElement, Title } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 
 ChartJS.register(
   CategoryScale,
@@ -20,7 +21,7 @@ export function Excess({ options, data }: any) {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: 'bottom' as const,
       },
       title: {
         display: false,
@@ -28,12 +29,16 @@ export function Excess({ options, data }: any) {
     },
   };
 
+  const {totalIncomes, totalExpenses} = useSelector((s: any)=>s.PersonalReducer)
+  const excess = totalIncomes - totalExpenses
+
   return (
     <div
-      className="bg-dark-blue col-3 rounded-4  text-white containerGraphicosDivExc"
-      style={{ width: "350px" }}
+      className="bg-dark-blue rounded-4 flex justify-center text-white containerGraphicosDivExc"
+      style={{ width: "370px" }}
     >
-      <h2>Excedentes</h2>
+      <h4>Excedentes</h4>
+      <h2>${excess}</h2>
 
       {data.datasets[0].data[0] !== 0 || data.datasets[0].data[1] !== 0 ? (
         <Bar
