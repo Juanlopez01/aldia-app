@@ -5,7 +5,7 @@ export interface ExpenseType {
   type: String;
   description: String;
   category: string;
-  value: Number;
+  value: number;
   date: Date;
 }
 
