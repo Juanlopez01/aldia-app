@@ -42,7 +42,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
     slice: "",
   });
 
-
+  console.log(IncomesResult)
   const dataIncomes = {
     labels: IncomesResult.categories,
     datasets: [
@@ -147,6 +147,9 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
               className="m-1"
             />
 
+          </div>
+          <div>
+            
           </div>
 
           <div className="row mt-5">

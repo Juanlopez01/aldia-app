@@ -34,8 +34,9 @@ export default function FormRegister({ form, setForm }: FormProps) {
   };
 
   const handleDateChange = (e : any) => {
-    console.log(e)
+
     setForm({ ...form, date: e});
+    setDateShow(true);
   }
 
   return (

@@ -24,7 +24,7 @@ interface PropsModal {
 const initialStateForm = {
   type: "",
   description: "",
-  category: "",
+  category: "Banco",
   value: 0,
   date: new Date(),
 };
