@@ -133,13 +133,11 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 
   return (
-    <div className="container h-full text-center mt-5">
+    <div className="text-center bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col justify-center items-center">
       {!incomes || (!expenses && <span className="loader" />)}
       {incomes && expenses && (
         <>
-          <div className="row d-flex justify-between h-1/2">
-
-
+          <div className="row d-flex justify-center gap-8">
             <Income
               type={type}
               options={options}

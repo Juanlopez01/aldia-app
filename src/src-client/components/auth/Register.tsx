@@ -2,6 +2,7 @@ import {  MouseEventHandler } from "react";
 import Input from "../generals/Input";
 import Button from "../generals/Button";
 import { useAuth } from "@/src-client/hooks/use-auth";
+import GoogleButton from "./GoogleButton";
 
 const authProps = {
   action: 'register',
@@ -23,11 +24,11 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
     const {handerInputsChange,inputs,handlerFormSubmit, errors, isLoading} = useAuth(authProps)
   return (
     <>
-      <section className="flex flex-col">
+      <section className="flex flex-col px-4 pt-12">
         <h1 className="text-xl font-semibold mb-2">Registra tu cuenta</h1>
         <form onSubmit={handlerFormSubmit} className="flex flex-col gap-2">
-          <fieldset className="flex flex-row gap-2">
-            <div className="flex flex-col">
+          <fieldset className="flex flex-row gap-2 max-w-[620px]">
+            <div className="flex flex-col  w-full">
               <Input
                 type="text"
                 name="name"
@@ -36,9 +37,10 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
                 value={inputs.name || ''}
                 error={errors.name}
                 onChange={handerInputsChange}
+                classes="w-full"
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full">
               <Input
                 type="text"
                 name="lastname"
@@ -47,6 +49,7 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
                 value={inputs.lastname  || ''}
                 error={errors.lastname}
                 onChange={handerInputsChange}
+                classes="w-full"
               />
             </div>
           </fieldset>
@@ -58,6 +61,7 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
             value={inputs.email || ''}
             error={errors.email}
             onChange={handerInputsChange}
+            classes="max-w-[620px]"
           />
           <Input
             type="password"
@@ -67,10 +71,12 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
             value={inputs.password  || ''}
             error={errors.password}
             onChange={handerInputsChange}
+            classes="max-w-[620px]"
           />
-          <Button loading={isLoading} >Registrate</Button>
+          <Button loading={isLoading} classes="my-4">Registrate</Button>
         </form>
-      <p className="text-sm text-center mt-2">¿Tienes una cuenta? <span onClick={showLogin} className="hover:cursor-pointer font-semibold text-blue-600">Ingresá</span></p>
+        <p className="text-sm mt-2">¿Tienes una cuenta? <span onClick={showLogin} className="hover:cursor-pointer font-semibold text-blue-600">Ingresá</span></p>
+        <GoogleButton>Registrarse con</GoogleButton>
       </section>
     </>
   )
