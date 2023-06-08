@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal } from 'react-bootstrap'
 import { LongExcess } from "./LongExcess";
 import { catTransactions } from "@/utils/categoriesTransactions";
+import { datesRange } from "@/utils/dateRange";
+import { filterTransactions } from "@/utils/filterTransactions";
 
 
 interface ContentTable {
@@ -34,7 +36,10 @@ interface graphsProp {
 }
 
 export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
-  const { IncomesResult, ExpensesResult } = totalGenerate(incomes, expenses);
+  
+  const [dateRange, setDateRange] = useState('Este año')
+  const {filterIncomes, filterExpenses} = filterTransactions(incomes, expenses, dateRange)
+  const { IncomesResult, ExpensesResult } = totalGenerate(filterIncomes, filterExpenses);
 
   const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0)
   const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
@@ -43,8 +48,6 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
     type: "",
     slice: "",
   });
-
-  console.log(IncomesResult)
   const dataIncomes = {
     labels: IncomesResult.categories,
     datasets: [
@@ -96,7 +99,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
   };
 
 
-  const longExcessData = totalLongExcess(incomes, expenses)
+  const longExcessData = totalLongExcess(filterIncomes, filterExpenses)
   const dataLongExcess = {
     labels: catTransactions,
     datasets: [{
@@ -137,6 +140,13 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
       {!incomes || (!expenses && <span className="loader" />)}
       {incomes && expenses && (
         <>
+          <div>
+            <select name='dateRange' defaultValue={'All'} required onChange={(e) => setDateRange(e.target.value)}>
+              {datesRange.map((date : string) => {
+                return <option key={date} value={date}>{date}</option>
+              })}
+            </select>
+          </div>
           <div className="row d-flex justify-center gap-8">
             <Income
               type={type}

@@ -84,8 +84,6 @@ export const totalLongExcess = (incomes : any, expenses : any)=> {
     catTransactions.forEach((category) => {
         const auxIncomes = incomes.filter((income : IncomeType) => income.category === category)
         const auxExpenses = expenses.filter((expense : ExpenseType) => expense.category === category)
-        console.log(auxIncomes, 'incomes')
-        console.log(auxExpenses, 'expenses')
         auxIncomes.length > 0 ? 
         longTransactions.incomes.push(auxIncomes.reduce((acc : number, income : IncomeType) => acc + income.value, 0)) :
         longTransactions.incomes.push(0)
@@ -94,6 +92,6 @@ export const totalLongExcess = (incomes : any, expenses : any)=> {
         longTransactions.expenses.push(auxExpenses.reduce((acc : number, expense : ExpenseType) => acc + expense.value, 0)) :
         longTransactions.expenses.push(0)
     })
-
+    console.log(longTransactions)
     return longTransactions
 }

@@ -27,14 +27,14 @@ export function LongExcess({ options, data }: any) {
       },
     },
   };
-
+  console.log(data);
   return (
     <div
       className="bg-Blue col-3 rounded-4 w-full text-white containerGraphicosDivExc"
     >
       <h2>Excedentes</h2>
 
-      {data.datasets[0].data[0] !== 0 || data.datasets[0].data[1] !== 0 ? (
+      {data.datasets[0].data.length > 0 ? (
         <Bar
           options={optionsBar}
           height="100%"
