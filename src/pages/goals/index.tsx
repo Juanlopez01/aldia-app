@@ -1,5 +1,6 @@
 import { GoalsTypes } from "@/models/goal.model";
 import { deleteGoal } from "@/redux/slice/PersonalSlice";
+import Sidenav from "@/src-client/components/Sidenav/Sidenav";
 import AddGoalForm from "@/src-client/components/goals/AddGoalForm";
 import GoalBar from "@/src-client/components/goals/GoalBar";
 import ProgressBar from "@/src-client/components/goals/ProgressBar";
@@ -57,7 +58,8 @@ const Index = () => {
 	);
 	if (session && session.user) {
 		return (
-			<div className="bg-violet-blue-profile w-full ">
+			<div className="bg-violet-blue-profile w-full h-full flex">
+				<Sidenav/>
 				<div className="flex flex-col w-full xl:w-3/4 2xl:w-7/12 mx-auto py-12">
 					{/* <ProgressBar completed={completedGoals} /> */}
 					<AddGoalForm

@@ -46,7 +46,7 @@ export function Income({
 
   return (
     <div
-      className="bg-Blue col-3 rounded-4  text-white containerGraphicosDiv"
+      className="bg-dark-blue col-3 rounded-4  text-white containerGraphicosDiv"
       style={{ width: "350px" }}
     >
       <h2>Ingresos</h2>

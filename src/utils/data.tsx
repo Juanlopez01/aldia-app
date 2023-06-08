@@ -14,7 +14,7 @@ const links = {
 			{
 				name: "General",
 				url: "/",
-				endpoint: "/general",
+				endpoint: "/",
 				icon: <FontAwesomeIcon icon={faUsers} />,
 			},
 			{

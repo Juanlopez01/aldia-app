@@ -107,8 +107,8 @@ export function ModalAddRegister({
   return (
     <>
       <Button
-        className="colorBtnAgregar text-center m-3"
-        variant="outline-light"
+        className="text-center m-3 text-white
+        btn-graphics"
         onClick={handleShow}
       >
         {props.buttonText}
