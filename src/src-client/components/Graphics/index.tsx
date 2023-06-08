@@ -12,12 +12,14 @@ import {
 import { TotalRegisters } from "@/types/TotalRegister.type";
 import { Income } from "./Income";
 import { Expense } from "./Expense";
-import { totalGenerate } from "@/src-client/utilities/totalGenerate";
+import { totalGenerate, totalLongExcess } from "@/src-client/utilities/totalGenerate";
 import { Excess } from "./Excess";
 import { options } from "@/src-client/utilities/graphicsOptions";
 import capitalize from "@/utils/capitalize";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from 'react-bootstrap'
+import { LongExcess } from "./LongExcess";
+import { catTransactions } from "@/utils/categoriesTransactions";
 
 
 interface ContentTable {
@@ -93,6 +95,26 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
     ],
   };
 
+
+  const longExcessData = totalLongExcess(incomes, expenses)
+  const dataLongExcess = {
+    labels: catTransactions,
+    datasets: [{
+      label: 'Ingresos',
+      data: longExcessData.incomes,
+      backgroundColor: 'rgba(75, 192, 192, 0.8)',
+      hoverOffset: 4,
+    },
+    {
+      label: 'Gastos',
+      data: longExcessData.expenses,
+      backgroundColor: 'rgba(255, 99, 132, 0.8)',
+      hoverOffset: 4,
+    }
+    ]
+  }
+
+
   const [showModalIncome, setShowModalIncome] = useState(false);
   const [showModalChart, setShowModalChart] = useState(false);
 
@@ -146,8 +168,15 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
             />
 
           </div>
-          <div>
-            
+          <div className="h-1/2 w-full m-1">
+
+            <LongExcess 
+            options={options} 
+            data={dataLongExcess} 
+            className="m-1" 
+            setTableContent={setTableContent} 
+            />
+
           </div>
 
           <div className="row mt-5">
