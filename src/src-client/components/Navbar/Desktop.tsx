@@ -15,8 +15,6 @@ const NavbarDesktop = () => {
 	const [isOpenHeaderMenu, setIsOpenHeaderMenu] = useState(false);
 	const router = useRouter();
 
-	console.log
-
 	return (
 		<div className="fixed z-[10000] w-full h-20 flex justify-between items-center bg-darkest-blue
 		border-b-2 border-gray-500">

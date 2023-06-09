@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import NavbarDesktop from "./Desktop";
 import NavbarMobile from "./Mobile"
+import DesktopNvo from "./DesktopNvo";
 
 //*render the desktop or mobile nav
 const NavBar = () => {
@@ -19,7 +20,7 @@ const NavBar = () => {
 	return (
 		<>
 			<div className="hidden lg:block">
-				<NavbarDesktop />
+				<DesktopNvo />
 			</div>
 
 			<div className="block lg:hidden">

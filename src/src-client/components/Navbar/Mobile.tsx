@@ -67,6 +67,7 @@ const NavbarMobile = () => {
 									screen="mobile"
 									setIsOpen={setIsOpen}
 									handleAnimateHamburger={handleAnimateHamburger}
+									showIcons={true}
 								/>
 							</ul>
 						) : (
@@ -79,6 +80,7 @@ const NavbarMobile = () => {
 										screen="mobile"
 										setIsOpen={setIsOpen}
 										handleAnimateHamburger={handleAnimateHamburger}
+										showIcons={true}
 									/>
 								</ul>
 
@@ -89,6 +91,7 @@ const NavbarMobile = () => {
 										screen="mobile"
 										setIsOpen={setIsOpen}
 										handleAnimateHamburger={handleAnimateHamburger}
+										showIcons={true}
 									/>
 								</ul>
 							</>

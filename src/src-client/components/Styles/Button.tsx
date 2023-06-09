@@ -1,7 +1,7 @@
 const ButtonSolid = (props: any) => (
 	<button
 		className={`bg-main-yellow hover:bg-secondary-yellow text-black rounded-[12px] ${props?.classes}`}
-		onClick={() => props?.onClick()}
+		onClick={props?.onClick}
 	>
 		{props?.children}
 	</button>
