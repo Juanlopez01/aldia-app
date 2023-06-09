@@ -55,6 +55,9 @@ export default async function handler(
       const bodyToSend = {
         reason: `AlDía ${plan}`,
         auto_recurring: PLANS[plan],
+        /* una vez deployado hay que cambiar esta propiedad
+        por la de /pricing/finish-payment o cualquier otra que 
+        le diga al usuario que su pago esta siendo procesado */
         back_url: 'https://google.com.ar/',
         external_reference: body.userId,
       }

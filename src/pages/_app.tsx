@@ -17,19 +17,19 @@ export default function App({
 	pageProps: { session, ...pageProps },
 }: AppProps) {
 	return (
-		<SessionProvider session={session}>
-			<Provider store={store}>
-				<PersistGate persistor={persistor}>
+    <SessionProvider session={session}>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
           <Head>
             <title>AlDia App</title>
           </Head>
-					<NavBar />
-					{/* <NavBar page="home" /> */}
-					<div className="pt-[75px]"></div>
-					<Component {...pageProps} />
-					<Footer />
-				</PersistGate>
-			</Provider>
-		</SessionProvider>
-	);
+          <NavBar />
+          {/* <NavBar page="home" /> */}
+          <div className="pt-[75px]"></div>
+          <Component {...pageProps} />
+          <Footer />
+        </PersistGate>
+      </Provider>
+    </SessionProvider>
+  )
 }

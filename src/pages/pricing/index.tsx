@@ -1,32 +1,44 @@
 import { UserWithId } from '@/models/user.model'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { ButtonHTMLAttributes, MouseEvent } from 'react'
+import Swal from 'sweetalert2'
 
 export default function Page() {
-  const { data: session } = useSession()
-
+  const { data: session,status } = useSession()
+  const router = useRouter()
   const handlerClickPlan = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.target as HTMLButtonElement
-
+if(status !== 'authenticated' ){
+  router.push('/auth')
+  return
+}
     const {
       _id: userId,
       email,
-      currency = 'USD',
     } = session?.user as unknown as UserWithId
-
-    const res = await fetch('/api/payments/mercado-pago', {
-      method: 'POST',
-      headers: {
+try {
+  
+  const res = await fetch('/api/payments/mercado-pago', {
+    method: 'POST',
+    headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         plan: value,
         userId,
-        currency,
         email,
       }),
     }).then((data) => data.json())
-    window.location.href = res.redirection_url
+  router.push(res.redirection_url)  
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Hubo un error al internar realizar el pago, intentelo más tarde',
+    })
+      }
+    
   }
   return (
     <>

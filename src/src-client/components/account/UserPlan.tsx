@@ -29,7 +29,7 @@ export default function UserPlan() {
       </div>
       <p className="text-white mt-2 text-md">
         {plansDicctionary[plan]}{' '}
-        <span className="text-gray-950/40">{`vence ${timeToExpire}`}</span>
+        <span className="text-darkest-blue/40">{`vence ${timeToExpire}`}</span>
       </p>
       <hr className="border-main-yellow border-2"></hr>
     </>
