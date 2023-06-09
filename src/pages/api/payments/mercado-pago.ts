@@ -12,13 +12,13 @@ const headers= {
 interface PlansType{
   basic: {
     frequency: 1,
-    frequency_type: 'days',
+    frequency_type: 'months',
     transaction_amount: 10,
     currency_id: 'ARS',
   },
   premium: {
     frequency: 1,
-    frequency_type: 'days',
+    frequency_type: 'months',
     transaction_amount: 20,
     currency_id: 'ARS',
   },
@@ -28,13 +28,13 @@ interface PlansType{
 const PLANS:PlansType ={
   basic: {
     frequency: 1,
-    frequency_type: 'days',
+    frequency_type: 'months',
     transaction_amount: 10,
     currency_id: 'ARS',
   },
   premium: {
     frequency: 1,
-    frequency_type: 'days',
+    frequency_type: 'months',
     transaction_amount: 20,
     currency_id: 'ARS',
   },

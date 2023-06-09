@@ -48,7 +48,7 @@ try {
           <button value="basic" onClick={handlerClickPlan}>
             plan 1
           </button>
-          <button value="premium">plan 2</button>
+          <button value="premium" onClick={handlerClickPlan}>plan 2</button>
         </section>
       </main>
     </>
