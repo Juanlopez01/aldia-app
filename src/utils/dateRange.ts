@@ -1,0 +1,1 @@
+export const datesRange = ['Todo', 'Este mes', 'Este año', 'Año pasado', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
