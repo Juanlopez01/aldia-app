@@ -16,6 +16,8 @@ export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
 }: AppProps) {
+	const {pathname} = useRouter()
+	const flag = pathname!=="/auth"
 	return (
     <SessionProvider session={session}>
       <Provider store={store}>
@@ -23,13 +25,13 @@ export default function App({
           <Head>
             <title>AlDia App</title>
           </Head>
-          <NavBar />
-          {/* <NavBar page="home" /> */}
-          <div className="pt-[75px]"></div>
-          <Component {...pageProps} />
-          <Footer />
-        </PersistGate>
-      </Provider>
-    </SessionProvider>
-  )
+					{flag && <NavBar />}
+					{/* <NavBar page="home" /> */}
+					{flag && <div className="pt-[75px]"></div>}
+					<Component {...pageProps} />
+					{flag && <Footer />}
+				</PersistGate>
+			</Provider>
+		</SessionProvider>
+	);
 }
