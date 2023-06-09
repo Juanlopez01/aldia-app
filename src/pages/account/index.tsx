@@ -62,7 +62,7 @@ const Account = () => {
 
                 {/* plan actual */}
                 <div className="">
-                  <UserPlan payments={payments} createdAt={createdAt}/>
+                  <UserPlan />
                 </div>
 
                 <div>

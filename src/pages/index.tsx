@@ -1,11 +1,11 @@
 import Head from "next/head";
 import PersonalFinances from "./personal";
 import { useSession } from "next-auth/react";
-import { useSelector } from "react-redux";
-import LogButton from "@/src-client/components/LogIn/button";
+import { useValidatePlan } from "@hooks/use-validate-plan";
 
 export default function Home() {
   const { data: session } = useSession({ required: true })
+  useValidatePlan()
   if (session && session.user) {
     return (
       <>
