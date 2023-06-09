@@ -29,7 +29,11 @@ const Sidenav = () => {
 						!session ? (
 							""
 						) : (
-							<div className="w-full bg-main-yellow shadow-lg rounded-full px-3 py-2 flex justify-center items-center gap-x-3">
+							<div className="w-full bg-main-yellow shadow-lg rounded-full px-3 py-2 flex justify-center items-center gap-x-3
+							cursor-pointer"
+							onClick={() => {
+								router.push("/account");
+							}}>
 								<button className="">
 									<Image
 										src={profile_image}
@@ -37,9 +41,6 @@ const Sidenav = () => {
 										className="w-[60px] rounded-full"
 										width={60}
 										height={60}
-										onClick={() => {
-											router.push("/account");
-										}}
 									/>
 								</button>
 								<span className="w-full truncate drow-shadow-xl text-black font-bold">
@@ -64,12 +65,12 @@ const Sidenav = () => {
 
 				{/* */}
 				<div className="pl-4 pr-2">
-					<ButtonSolid classes="w-full p-2 flex justify-center items-center gap-2">
+					<ButtonSolid classes="w-full p-2 flex justify-center items-center gap-2"
+					onClick={() => signOutFunction()}>
 						Cerrar sesión
 						<FontAwesomeIcon
 							icon={faRightFromBracket}
 							className="text-mdcursor-pointer text-black"
-							onClick={() => signOutFunction()}
 						/>
 					</ButtonSolid>
 				</div>
