@@ -1,6 +1,7 @@
 import { ExpenseType } from "@/models/expense.model";
 import { GoalsTypes } from "@/models/goal.model";
 import { IncomeType } from "@/models/income.model";
+import { PaymentType } from "@/models/payment.model";
 import { UserType } from "@/models/user.model";
 import { calculateTotal } from "@/utils/calculateTotal";
 import { createSlice } from "@reduxjs/toolkit";
@@ -13,6 +14,7 @@ interface PersonalFinance {
   incomes: IncomeType[];
   expenses: ExpenseType[];
   goals: GoalsTypes[]; 
+  payments: PaymentType[];
   totalIncomes: number;
   totalExpenses: number;
 }
@@ -28,9 +30,12 @@ const initialState: PersonalFinance = {
     role: "",
     status: "",
     currency: 'USD',
+    createdAt:new Date(),
+    updatedAt: new Date()
   },
   incomes: [],
   expenses: [],
+  payments:[],
   goals: [],
   totalIncomes: 0,
   totalExpenses: 0,
@@ -45,10 +50,12 @@ const personalSlice = createSlice({
       const expenses = action.payload?.expenses;
       const incomes = action.payload?.incomes;
       const goals = action.payload?.goals;
+      const payments = action.payload?.payments;
       state.user = action.payload;
       state.expenses = expenses;
       state.incomes = incomes;
       state.goals = goals;
+      state.payments = payments;
       state.totalExpenses = calculateTotal(action.payload?.expenses);
       state.totalIncomes = calculateTotal(action.payload?.incomes);
     },

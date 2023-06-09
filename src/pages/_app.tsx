@@ -19,9 +19,9 @@ export default function App({
 	const {pathname} = useRouter()
 	const flag = pathname!=="/auth"
 	return (
-		<SessionProvider session={session}>
-			<Provider store={store}>
-				<PersistGate persistor={persistor}>
+    <SessionProvider session={session}>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
           <Head>
             <title>AlDia App</title>
           </Head>
