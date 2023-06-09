@@ -9,6 +9,38 @@ const headers= {
   Authorization: `Bearer ${MP_ACCESS_TOKEN}`,
 }
 
+interface PlansType{
+  basic: {
+    frequency: 1,
+    frequency_type: 'days',
+    transaction_amount: 10,
+    currency_id: 'ARS',
+  },
+  premium: {
+    frequency: 1,
+    frequency_type: 'days',
+    transaction_amount: 20,
+    currency_id: 'ARS',
+  },
+  
+}
+
+const PLANS:PlansType ={
+  basic: {
+    frequency: 1,
+    frequency_type: 'days',
+    transaction_amount: 10,
+    currency_id: 'ARS',
+  },
+  premium: {
+    frequency: 1,
+    frequency_type: 'days',
+    transaction_amount: 20,
+    currency_id: 'ARS',
+  },
+}
+
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -17,25 +49,18 @@ export default async function handler(
 
   if (method === 'POST') {
     try {
+      const plan = body.plan  as keyof PlansType
+      if(!(plan in PLANS))throw new  Error('Invalid plan type')
+      if(!body.userId)throw new  Error('UserId is required')
       const bodyToSend = {
-        reason: `Suscripcion a AlDía ${body.plan}`,
-        auto_recurring: {
-          frequency: 1,
-          frequency_type: 'days',
-          transaction_amount: 10,
-          currency_id: 'ARS',
-        },
+        reason: `AlDía ${plan}`,
+        auto_recurring: PLANS[plan],
         back_url: 'https://google.com.ar/',
-        // payer_email:'test_user_1719808280@testuser.com',
-        external_reference: body.userId
+        external_reference: body.userId,
       }
       const { data } = await axios.post(MP_SUBS_URL, bodyToSend, {
         headers
       })
-
-    console.log('---------------------PAYMENT--------------------')
-    console.log(data )
-    console.log('---------------------PAYMENT--------------------')
 
       return res.status(200).json({success: true, redirection_url: data.init_point})
     } catch (error) {

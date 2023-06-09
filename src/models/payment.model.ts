@@ -4,7 +4,8 @@ export interface PaymentType {
     init_date: Date;
     end_date: Date;
     plan_id: string;
-    plan: string;
+    plan: 'basic' | 'premium';
+    provider: 'mercadoPago'
 }
 
 const paymentSchema = new Schema<PaymentType, Model<PaymentType>>({
@@ -12,6 +13,7 @@ const paymentSchema = new Schema<PaymentType, Model<PaymentType>>({
   end_date: { type: Date },
   plan: { type: String },
   plan_id: { type: String },
+  provider:{type: String}
 })
 
 
