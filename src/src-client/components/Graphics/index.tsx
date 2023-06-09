@@ -5,38 +5,39 @@ import colors from "@/utils/colors";
 import { useEffect, useState } from "react";
 import { TableComponent } from "../Tables/TableComponent";
 import {
-  calculateExcess,
-  calculateTotal,
-  calculateTotalPerCategory,
+	calculateExcess,
+	calculateTotal,
+	calculateTotalPerCategory,
 } from "@/utils/calculateTotal";
 import { TotalRegisters } from "@/types/TotalRegister.type";
 import { Income } from "./Income";
 import { Expense } from "./Expense";
-import { totalGenerate, totalLongExcess } from "@/src-client/utilities/totalGenerate";
+import {
+	totalGenerate,
+	totalLongExcess,
+} from "@/src-client/utilities/totalGenerate";
 import { Excess } from "./Excess";
-import { options } from "@/src-client/utilities/graphicsOptions";
+import { options, optionsMobile } from "@/src-client/utilities/graphicsOptions";
 import capitalize from "@/utils/capitalize";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal } from 'react-bootstrap'
+import { Modal } from "react-bootstrap";
 import { LongExcess } from "./LongExcess";
 import { catTransactions } from "@/utils/categoriesTransactions";
 import { datesRange } from "@/utils/dateRange";
 import { filterTransactions } from "@/utils/filterTransactions";
 
-
-interface ContentTable {
-  type: string;
-  slice: string;
+export interface ContentTable {
+	type: string;
+	slice: string;
 }
 
-interface graphsProp {
-  type: string;
-  incomes: [];
-  expenses: [];
+export interface graphsProp {
+	type: string;
+	incomes: [];
+	expenses: [];
 }
 
 export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
-  
   const [dateRange, setDateRange] = useState('Este año')
   const {filterIncomes, filterExpenses} = filterTransactions(incomes, expenses, dateRange)
   const { IncomesResult, ExpensesResult } = totalGenerate(filterIncomes, filterExpenses);
@@ -136,11 +137,18 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 
   return (
-    <div className="text-center bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col justify-center items-center">
-      {!incomes || (!expenses && <span className="loader" />)}
-      {incomes && expenses && (
-        <>
-          <div>
+    <div
+			className="text-center bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
+    md:items-center pl-[10vw] md:pl-0"
+		>
+			{!incomes || (!expenses && <span className="loader" />)}
+			{incomes && expenses && (
+				<>
+					{/* desktop charts, options at left */}
+					<div
+						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-8
+          hidden md:grid"
+					>
             <select name='dateRange' defaultValue={'All'} required onChange={(e) => setDateRange(e.target.value)}>
               {datesRange.map((date : string) => {
                 return <option key={date} value={date}>{date}</option>
@@ -149,67 +157,109 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
           </div>
           <div className="row d-flex justify-center gap-8">
             <Income
-              type={type}
-              options={options}
-              data={dataIncomes}
-              setTableContent={setTableContent}
-              totalDataIncomes={IncomesResult.totals}
-              totalDataExpenses={ExpensesResult.totals}
-              openModalTable={handleIncomeClick}
-              className="m-1"
-            />
+							type={type}
+							options={options}
+							data={dataIncomes}
+							setTableContent={setTableContent}
+							totalDataIncomes={IncomesResult.totals}
+							totalDataExpenses={ExpensesResult.totals}
+							openModalTable={handleIncomeClick}
+							className="m-1"
+						/>
 
-            <Expense
-              type={type}
-              options={options}
-              data={dataExpenses}
-              setTableContent={setTableContent}
-              totalDataIncomes={IncomesResult.totals}
-              totalDataExpenses={ExpensesResult.totals}
-              openModalTable={handleIncomeClick}
-              className="m-1"
-            />
+						<Expense
+							type={type}
+							options={options}
+							data={dataExpenses}
+							setTableContent={setTableContent}
+							totalDataIncomes={IncomesResult.totals}
+							totalDataExpenses={ExpensesResult.totals}
+							openModalTable={handleIncomeClick}
+							className="m-1"
+						/>
 
-            <Excess
-              options={options}
-              data={dataExcess}
-              setTableContent={setTableContent}
-              className="m-1"
-            />
+						<Excess
+							options={options}
+							data={dataExcess}
+							setTableContent={setTableContent}
+							className="m-1"
+						/>
 
-          </div>
-          <div className="h-1/2 w-full m-1">
+						<div
+							className="w-full justify-center row-start-3 row-end-4
+            col-start-1 md:col-end-3 xl:col-end-4
+            "
+						>
+							<LongExcess
+								options={options}
+								data={dataLongExcess}
+								className="m-1"
+								setTableContent={setTableContent}
+							/>
+						</div>
+					</div>
 
-            <LongExcess 
-            options={options} 
-            data={dataLongExcess} 
-            className="m-1" 
-            setTableContent={setTableContent} 
-            />
+					{/* mobile options at bottom */}
+					<div className="flex flex-col md:hidden justify-center flex-wrap place-content-center gap-8">
+						<Income
+							type={type}
+							options={optionsMobile}
+							data={dataIncomes}
+							setTableContent={setTableContent}
+							totalDataIncomes={IncomesResult.totals}
+							totalDataExpenses={ExpensesResult.totals}
+							openModalTable={handleIncomeClick}
+							className="m-1"
+						/>
 
-          </div>
+						<Expense
+							type={type}
+							options={optionsMobile}
+							data={dataExpenses}
+							setTableContent={setTableContent}
+							totalDataIncomes={IncomesResult.totals}
+							totalDataExpenses={ExpensesResult.totals}
+							openModalTable={handleIncomeClick}
+							className="m-1"
+						/>
 
-          <div className="row mt-5">
+						<Excess
+							options={optionsMobile}
+							data={dataExcess}
+							setTableContent={setTableContent}
+							className="m-1"
+						/>
 
-            <Modal
-              className="custom-container"
-              size="xl"
-              // fullscreen={true}
-              show={showModalIncome}
-              onHide={handleCloseModal}
-            >
-              <TableComponent
-                content={tableContent.type === "ingresos" ? incomes : expenses}
-                filters={tableContent}
+						<div
+							className="w-full justify-center row-start-3 row-end-4
+            col-start-1 md:col-end-3 xl:col-end-4
+            "
+						>
+							<LongExcess
+								options={optionsMobile}
+								data={dataLongExcess}
+								className="m-1"
+								setTableContent={setTableContent}
+							/>
+						</div>
+					</div>
 
-              />
-
-            </Modal>
-
-
-          </div>
-        </>
-      )}
-    </div>
-  );
+					<div className="row mt-2">
+						<Modal
+							className="custom-container"
+							size="xl"
+							// fullscreen={true}
+							show={showModalIncome}
+							onHide={handleCloseModal}
+						>
+							<TableComponent
+								content={tableContent.type === "ingresos" ? incomes : expenses}
+								filters={tableContent}
+							/>
+						</Modal>
+					</div>
+				</>
+			)}
+		</div>
+	);
 };
