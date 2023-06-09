@@ -23,8 +23,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { LongExcess } from "./LongExcess";
 import { catTransactions } from "@/utils/categoriesTransactions";
-import { datesRange } from "@/utils/dateRange";
-import { filterTransactions } from "@/utils/filterTransactions";
 
 export interface ContentTable {
 	type: string;
@@ -38,108 +36,104 @@ export interface graphsProp {
 }
 
 export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
-  const [dateRange, setDateRange] = useState('Este año')
-  const {filterIncomes, filterExpenses} = filterTransactions(incomes, expenses, dateRange)
-  const { IncomesResult, ExpensesResult } = totalGenerate(filterIncomes, filterExpenses);
+	const { IncomesResult, ExpensesResult } = totalGenerate(incomes, expenses);
 
-  const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0)
-  const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
-  const totalExcess = [totalIncomes, totalExpenses]
-  const [tableContent, setTableContent] = useState({
-    type: "",
-    slice: "",
-  });
-  const dataIncomes = {
-    labels: IncomesResult.categories,
-    datasets: [
-      {
-        label: "",
-        data: IncomesResult.totals,
-        backgroundColor: IncomesResult.colors,
-        hoverOffset: 4,
-        borderColor: 'transparent',
-        datalabels: {
-          display: false,
-        },
-      },
-    ],
-  };
+	const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0);
+	const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
+	const totalExcess = [totalIncomes, totalExpenses];
+	const [tableContent, setTableContent] = useState({
+		type: "",
+		slice: "",
+	});
 
-  const dataExpenses = {
-    labels: ExpensesResult.categories,
-    datasets: [
-      {
-        label: "",
-        data: ExpensesResult.totals,
-        backgroundColor: ExpensesResult.colors,
-        hoverOffset: 4,
-        borderColor: 'transparent',
-        datalabels: {
-          display: false,
-        },
-      },
-    ],
-  };
+	const dataIncomes = {
+		labels: IncomesResult.categories,
+		datasets: [
+			{
+				label: "",
+				data: IncomesResult.totals,
+				backgroundColor: IncomesResult.colors,
+				hoverOffset: 4,
+				borderColor: "transparent",
+				datalabels: {
+					display: false,
+				},
+			},
+		],
+	};
 
-  const dataExcess = {
-    labels: ['Excess'],
-    datasets: [
-      {
-        label: "Income",
-        data: [totalExcess[0]],
-        backgroundColor: 'rgba(75, 192, 192, 0.8)',
-        hoverOffset: 4,
-      },
-      {
-        label: "Expense",
-        data: [totalExcess[1]],
-        backgroundColor: 'rgba(255, 99, 132, 0.8)',
-        hoverOffset: 4,
-      },
-    ],
-  };
+	const dataExpenses = {
+		labels: ExpensesResult.categories,
+		datasets: [
+			{
+				label: "",
+				data: ExpensesResult.totals,
+				backgroundColor: ExpensesResult.colors,
+				hoverOffset: 4,
+				borderColor: "transparent",
+				datalabels: {
+					display: false,
+				},
+			},
+		],
+	};
 
+	const dataExcess = {
+		labels: ["Excess"],
+		datasets: [
+			{
+				label: "Income",
+				data: [totalExcess[0]],
+				backgroundColor: "rgba(75, 192, 192, 0.8)",
+				hoverOffset: 4,
+			},
+			{
+				label: "Expense",
+				data: [totalExcess[1]],
+				backgroundColor: "rgba(255, 99, 132, 0.8)",
+				hoverOffset: 4,
+			},
+		],
+	};
 
-  const longExcessData = totalLongExcess(filterIncomes, filterExpenses)
-  const dataLongExcess = {
-    labels: catTransactions,
-    datasets: [{
-      label: 'Ingresos',
-      data: longExcessData.incomes,
-      backgroundColor: 'rgba(75, 192, 192, 0.8)',
-      hoverOffset: 4,
-    },
-    {
-      label: 'Gastos',
-      data: longExcessData.expenses,
-      backgroundColor: 'rgba(255, 99, 132, 0.8)',
-      hoverOffset: 4,
-    }
-    ]
-  }
+	const longExcessData = totalLongExcess(incomes, expenses);
+	const dataLongExcess = {
+		labels: catTransactions,
+		datasets: [
+			{
+				label: "Ingresos",
+				data: longExcessData.incomes,
+				backgroundColor: "rgba(75, 192, 192, 0.8)",
+				hoverOffset: 4,
+			},
+			{
+				label: "Gastos",
+				data: longExcessData.expenses,
+				backgroundColor: "rgba(255, 99, 132, 0.8)",
+				hoverOffset: 4,
+			},
+		],
+	};
 
+	const [showModalIncome, setShowModalIncome] = useState(false);
+	const [showModalChart, setShowModalChart] = useState(false);
 
-  const [showModalIncome, setShowModalIncome] = useState(false);
-  const [showModalChart, setShowModalChart] = useState(false);
+	const handleIncomeClick = () => {
+		setShowModalIncome(true);
+	};
 
-  const handleIncomeClick = () => {
-    setShowModalIncome(true);
-  };
+	const handleCloseModal = () => {
+		setShowModalIncome(false);
+	};
 
-  const handleCloseModal = () => {
-    setShowModalIncome(false);
-  };
+	const handleChartClick = () => {
+		setShowModalChart(true);
+	};
 
-  const handleChartClick = () => {
-    setShowModalChart(true);
-  };
-
-
-
-  return (
-    <div
+	return (
+		<div
 			className="text-center bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
-    md:items-center pl-[10vw] md:pl-0"
+    	md:items-center pl-[10vw] lg:pl-[21vw]"
 		>
 			{!incomes || (!expenses && <span className="loader" />)}
 			{incomes && expenses && (
@@ -149,13 +143,6 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-8
           hidden md:grid"
 					>
-            <select name='dateRange' defaultValue={'All'} required onChange={(e) => setDateRange(e.target.value)}>
-              {datesRange.map((date : string) => {
-                return <option key={date} value={date}>{date}</option>
-              })}
-            </select>
-          </div>
-          <div className="row d-flex justify-center gap-8">
             <Income
 							type={type}
 							options={options}

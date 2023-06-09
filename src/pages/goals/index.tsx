@@ -60,7 +60,8 @@ const Index = () => {
 		return (
 			<div className="bg-violet-blue-profile w-full h-full flex">
 				<Sidenav/>
-				<div className="flex flex-col w-full xl:w-3/4 2xl:w-7/12 mx-auto py-12">
+				<div className="flex flex-col w-full xl:w-3/4 2xl:w-7/12 mx-auto py-12
+				lg:pl-[22vw] xl:pl-[10vw]">
 					{/* <ProgressBar completed={completedGoals} /> */}
 					<AddGoalForm
 						setForm={setForm}
