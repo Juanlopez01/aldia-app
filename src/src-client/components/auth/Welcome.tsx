@@ -51,8 +51,8 @@ export default function Welcome({contentToShow}:{contentToShow: Boolean}) {
             </div>
           </>
         )}
-        {/* <div className=" absolute rounded-full border-4 border-white bottom-0 left-1/4 w-1/4 h-1/3 bg-transparent"></div> */}
-        <div className=" absolute rounded-full border-4 border-white/20 top-0 -left-[20%] w-1/4 h-1/4 bg-transparent"></div>
+        <div className=" absolute rounded-full border-4 border-white -bottom-1/3 left-2/3 w-3/4 h-1/2 bg-transparent"></div>
+        <div className=" absolute rounded-full border-4 border-white/20 -top-[20%] -left-1/2 w-2/3 h-1/3 bg-transparent"></div>
       </section>
     </>
   )

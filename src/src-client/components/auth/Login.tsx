@@ -30,7 +30,7 @@ export default function Login({
 		useAuth(authProps);
 	return (
 		<>
-			<section className="flex flex-col gap-2 w-full md:min-h-[90vh] md:pt-12">
+			<section className="flex flex-col gap-2 w-full md:pt-12">
 				<form onSubmit={handlerFormSubmit} className="flex flex-col gap-2">
 					<h1 className="text-xl font-semibold mb-2">Ingresa a tu cuenta</h1>
 					<div className="max-w-[600px]">
