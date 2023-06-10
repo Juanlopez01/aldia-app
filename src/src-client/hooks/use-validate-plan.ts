@@ -44,6 +44,7 @@ const DATE_UNITS: Record<string, number> = {
     return ''
   }
   
+export type PlansTypes = 'free' | 'basic' | 'premium'
 
 export const useValidatePlan = () => {
     const {data: session, status}= useSession({required: true})
@@ -51,9 +52,8 @@ export const useValidatePlan = () => {
     
     const {createdAt, payments}= session?.user as unknown as UserWithId
 
-    const [plan, setPlan] = useState<'free' | 'basic' | 'premium'>('free')
+    const [plan, setPlan] = useState<PlansTypes>('free')
     const [timeToExpire, setTimeToExpire] = useState<string>('')
-
     const redirectToPricing= (to?:string)=>{
         router.push('/pricing')
     }

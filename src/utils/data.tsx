@@ -75,20 +75,21 @@ const { blue, yellow, light_text, dark_text, hover_btn } = colors;
 const plans = [
 	{
 		name: "Gratuito",
+		value: 'free',
 		color: {
 			bg: `bg-${blue}`,
 			text: light_text,
 			text_check: dark_text,
 			bg_button: `bg-transparent hover:bg-[${hover_btn}] `,
 			color_border_button: `border-${yellow}`,
-			color_text_button: `text-${yellow} border-2`,
+			color_text_button: `text-${yellow} `,
 		},
 		subtext:
 			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
 		price: 0,
 		tags:
 			/* check: tick in tag, cross: cruz in tag component */
-			{
+			{ 
 				check: [
 					"20,000+ of PNG & SVG graphics",
 					"Access to 100 million stock images",
@@ -104,13 +105,14 @@ const plans = [
 	},
 	{
 		name: "Básico",
+			value: 'basic',
 		color: {
 			bg: `bg-${yellow}`,
 			text: dark_text,
 			text_check: light_text,
 			bg_button: `bg-${blue} hover:bg-[${hover_btn}] `,
 			color_border_button: `bg-${blue} border-${blue}`,
-			color_text_button: `text-${light_text} border-2`,
+			color_text_button: `text-${light_text} `,
 		},
 		subtext:
 			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
@@ -132,13 +134,14 @@ const plans = [
 	},
 	{
 		name: "Premium",
+		value: 'premium',
 		color: {
 			bg: `bg-${blue}`,
 			text: light_text,
 			text_check: dark_text,
 			bg_button: "bg-transparent",
 			color_border_button: `border-${yellow} hover:bg-[${hover_btn}] `,
-			color_text_button: `text-${yellow} border-2`,
+			color_text_button: `text-${yellow} `,
 		},
 		subtext:
 			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
