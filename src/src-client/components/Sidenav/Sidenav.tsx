@@ -64,12 +64,11 @@ const Sidenav = () => {
 
 				{/* */}
 				<div className="pl-4 pr-2">
-					<ButtonSolid classes="w-full p-2 flex justify-center items-center gap-2">
+					<ButtonSolid classes="w-full p-2 flex justify-center items-center gap-2" onClick={() => signOutFunction()}>
 						Cerrar sesión
 						<FontAwesomeIcon
 							icon={faRightFromBracket}
 							className="text-mdcursor-pointer text-black"
-							onClick={() => signOutFunction()}
 						/>
 					</ButtonSolid>
 				</div>

@@ -17,13 +17,13 @@ export default function Modal({
 }: ModalProps) {
   if (!showModal) return null
   const modalStyles =
-    className || 'bg-white w-96  rounded shadow-md shadow-black p-4'
+    className || 'bg-white w-96  rounded shadow-md shadow-black p-4 text-black'
   return (
     <>
       <section className="w-full h-screen fixed z-[9999999]  backdrop-blur-sm grid place-content-center top-0 left-0">
         <div className={modalStyles}>
-          <header className="flex justify-between">
-            <h1 className="text-xl font-semibold">{title}</h1>
+          <header className="flex justify-between mb-2">
+            <h1 className="text-xl font-semibold m-0">{title}</h1>
             {closeModal && (
               <button onClick={closeModal} className="font-extrabold text-xl ">
                 X
