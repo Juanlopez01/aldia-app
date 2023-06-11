@@ -30,7 +30,7 @@ export default function Input({ label, name, value, classes , error, type,labelC
         placeholder={placeholder}
         onChange={onChange}
         className={className ??`
-        bg-trasparent border-2 
+        bg-transparent border-2 
         text-sm rounded-lg placeholder-gray-400 
         focus:ring-darkest-blue focus:border-darkest-blue block w-full p-2.5 
          dark:focus:ring-darkest-blue dark:focus:border-darkest-blue

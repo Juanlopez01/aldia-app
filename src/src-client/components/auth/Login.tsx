@@ -30,16 +30,16 @@ export default function Login({
 		useAuth(authProps);
 	return (
 		<>
-			<section className="flex flex-col gap-2 w-full md:pt-12">
+			<section className="flex flex-col gap-2 w-full md:pt-12 p-4">
 				<form onSubmit={handlerFormSubmit} className="flex flex-col gap-2">
 					<h1 className="text-xl font-semibold mb-2">Ingresa a tu cuenta</h1>
-					<div className="max-w-[600px]">
-						<p>
+					<div className="max-w-[500px]">
+						<p >
 							ALDIA permite hacer un seguimiento de tus finanzas personales y
 							organizacionales para mejorar tu toma de decisiones.
 						</p>
 					</div>
-					<fieldset className="flex flex-col text-start gap-2 justify-start pr-4">
+					<fieldset className="flex flex-col text-start gap-2 justify-start ">
 						<Input
 							type="email"
 							name="email"
@@ -59,10 +59,10 @@ export default function Login({
 							classes="max-w-[600px]"
 						/>
 					</fieldset>
-					<div className="py-3 pr-4">
+					<div className="py-3 ">
 						<Button
 							loading={isLoading}
-							classes="w-full text-center flex justify-center max-w-[600px] my-2"
+							classes="w-full md:w-fit text-center flex justify-center max-w-[600px] my-2"
 						>
 							Ingresar
 						</Button>
