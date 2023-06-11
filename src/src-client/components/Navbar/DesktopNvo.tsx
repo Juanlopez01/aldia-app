@@ -6,6 +6,7 @@ import Logo from "../../../../assets/ALDIA.png";
 import Image from 'next/image';
 import { useSession } from "next-auth/react";
 import { ButtonTransparent } from "../Styles/Button";
+import Link from "next/link";
 
 const DesktopNvo = () => {
   const { data: session } = useSession();
@@ -29,15 +30,14 @@ const DesktopNvo = () => {
               classes="px-12 py-1 relative top-2"
 						/>
 					</ul> 
-          : <>
+          : <Link href='/auth'>
           <ButtonTransparent
-            handleClick={() => router.push("/")}
             color="main-yellow"
             classes="px-3 py-[4px]"
           >
             Iniciar sesión
           </ButtonTransparent>
-        </>}
+        </Link>}
 					{/* {<Image src={Logo} alt="logo img" className="w-24 cursor-pointer" 
 					onClick={()=>router.push("/landing")}/>} */}
 				</div>

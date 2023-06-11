@@ -80,15 +80,3 @@ const AdminTable = ({ list, type }: List) => {
 }
 
 export default AdminTable
-
-{/* <ul className='list-unstyled d-flex flex-row gap-4 flex-wrap'> */ }
-{/* <li key={ele._id} className="flex-row">
-        <div>
-           {ele.name}
-         </div>
-        <div>
-      <button onClick={() => showHandler(ele._id)}>Abrir detalles</button>
-    {type === 'usuarios' && <button onClick={() => deleteHandler(ele.status, ele._id)}>{ele.status === 'disabled' ? 'Habilitar' : 'Deshabilitar'}</button>}
-  </div>
- </li> */}
-{/* </ul> */ }
