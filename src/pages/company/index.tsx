@@ -1,5 +1,6 @@
 import { getNames } from "@/redux/slice/CompanySlice";
 import { Graphics } from "@/src-client/components/Graphics";
+import EnterModal from "@/src-client/components/Modals/Company/EnterModal";
 import ModalRegister from "@/src-client/components/Modals/Company/ModalRegister";
 import Sidenav from "@/src-client/components/Sidenav/Sidenav";
 import { getCompany } from "@/src-client/utilities/getCompany";
@@ -53,9 +54,10 @@ const Company = () => {
 					<>
 						<h1>No hemos encontrado tu compañía</h1>
 						<ModalRegister />
+						<EnterModal />
 					</>
 				)}
-				{companyNames && (
+				{companyNames && companyNames.length > 0 && (
 					<>
 						<h1 className="w-100  text-center">Seleccionar compañía</h1>
 						<div className="d-flex list-unstyled">

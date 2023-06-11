@@ -12,6 +12,7 @@ const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/company`;
 interface Company {
   selectedCompany: CompanType;
   names: string[];
+  allNames: string[];
 }
 interface formCompany {
   name: string;
@@ -24,8 +25,10 @@ const initialState: Company = {
     expenses: [],
     incomes: [],
     users: [],
+    notifications: [],
   },
   names: [],
+  allNames: [],
 };
 const companySlice = createSlice({
   name: "company",
