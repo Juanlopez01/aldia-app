@@ -103,7 +103,7 @@ const NavbarMobile = () => {
 						<div className="flex gap-2 pl-4 pt-4">
 							{!session ? (
 								<div className="flex flex-col gap-y-4 text-black">
-									<ButtonTransparent handleClick={() => router.push("/")}
+									<ButtonTransparent handleClick={() => router.push("/auth")}
 									classes="px-3 py-[4px]">
 										Iniciar sesión
 									</ButtonTransparent>

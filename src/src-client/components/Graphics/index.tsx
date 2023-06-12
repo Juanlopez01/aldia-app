@@ -222,7 +222,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 						</div>
 					</div>
 
-					<div className="row mt-2">
+					<div className="row mt-2 relative">
 						<Modal
 							className="custom-container"
 							size="xl"

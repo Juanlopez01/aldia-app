@@ -59,7 +59,7 @@ const DesktopNvo = () => {
 					) : (
 						<>
 							<ButtonTransparent
-								handleClick={() => router.push("/")}
+								handleClick={() => router.push("/auth")}
 								color="main-yellow"
 								classes="px-3 py-[4px]"
 							>
