@@ -68,7 +68,7 @@ const DesktopNvo = () => {
 						</>
 					)}
 				</div>
-				<div className="w-[80px] flex rounded-full border-2 border-gray-500">
+				<div className="w-[80px] flex items-center rounded-full border-2 border-gray-500">
 					<FontAwesomeIcon
 						icon={faSun}
 						className={`text-main-yellow text-xl cursor-pointer p-2 rounded-md duration-200 ${
@@ -83,23 +83,6 @@ const DesktopNvo = () => {
 						}`}
 						onClick={toggleTheme}
 					/>
-					{session 
-          ? <ul className="flex items-center gap-x-4">
-						<GetNavLinks
-							list={links?.loggedIn[0]}
-							showIcons={false}
-							section="sidenav"
-              classes="px-12 py-1 relative top-2"
-						/>
-					</ul> 
-          : <Link href='/auth'>
-          <ButtonTransparent
-            color="main-yellow"
-            classes="px-3 py-[4px]"
-          >
-            Iniciar sesión
-          </ButtonTransparent>
-        </Link>}
 					{/* {<Image src={Logo} alt="logo img" className="w-24 cursor-pointer" 
 					onClick={()=>router.push("/landing")}/>} */}
 				</div>
