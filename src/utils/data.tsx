@@ -64,7 +64,6 @@ const links = {
 
 const colors = {
 	lightGreen: "light-green",
-	darkGreen: "main-green",
 	blue: "light-blue",
 	yellow: "secondary-yellow",
 	light_text: "link",
@@ -72,19 +71,19 @@ const colors = {
 	hover_btn: "#4b58bd"
 };
 
-const { blue, yellow, light_text, dark_text, hover_btn, lightGreen, darkGreen } = colors;
+const { blue, yellow, light_text, dark_text, hover_btn, lightGreen } = colors;
 
 const plans = [
 	{
 		name: "Gratuito",
 		value: 'free',
 		color: {
-			bg: `dark:bg-${blue} bg-${darkGreen} `,
-			text: ` text-${light_text}`,
+			bg: `dark:bg-${blue} bg-${lightGreen} `,
+			text: ` text-${dark_text} dark:text-${light_text}`,
 			text_check: `${dark_text}`,
 			text_color: `${dark_text}`,
-			color_border_button: `border-${light_text} text-${light_text} dark:border-main-yellow`,
-			color_text_button: ` text-${light_text} `,
+			color_border_button: `border-${dark_text} text-${dark_text} dark:border-main-yellow`,
+			color_text_button: ` text-gray-900 dark:text-${light_text} `,
 		},
 		subtext:
 			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
@@ -138,12 +137,12 @@ const plans = [
 		name: "Premium",
 		value: 'premium',
 		color: {
-			bg: `dark:bg-${blue} bg-${darkGreen} `,
-			text: ` text-${light_text}`,
+			bg: `dark:bg-${blue} bg-${lightGreen} `,
+			text: ` text-${dark_text} dark:text-${light_text}`,
 			text_check: `${dark_text}`,
-			text_color: `${dark_text}`,
-			color_border_button: `border-${light_text} text-${light_text} dark:border-main-yellow`,
-			color_text_button: ` text-${light_text} `,
+			bg_button: `bg-transparent hover:bg-[${hover_btn}] `,
+			color_border_button: `border-${dark_text} text-${dark_text} dark:border-main-yellow`,
+			color_text_button: ` text-gray-900 dark:text-${light_text} `,
 		},
 		subtext:
 			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
