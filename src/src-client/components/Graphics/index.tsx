@@ -130,7 +130,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	return (
 		<div
 			className="text-center bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
-    	md:items-center lg:pl-[22vw]"
+    	md:items-center"
 		>
 			{!incomes || (!expenses && <span className="loader" />)}
 			{incomes && expenses && (

@@ -18,7 +18,7 @@ const Sidenav = () => {
 	const { user } = useSelector((s: any) => s.PersonalReducer);
 
 	return (
-			<div className={`w-[20vw] bg-darkest-blue text-white hidden lg:flex flex-col justify-around px-2 h-screen fixed ${session ? "" : "hidden"}`}>
+			<div className={`w-[20vw] bg-darkest-blue text-white hidden lg:flex flex-col justify-around px-2 min-h-screen ${session ? "" : "hidden"}`}>
 				{/* profile container and links */}
 				<div className="gap-2 pr-2 pt-4">
 					{
