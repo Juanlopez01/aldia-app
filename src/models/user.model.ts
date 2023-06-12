@@ -5,6 +5,7 @@ import { ExpenseType } from "./expense.model";
 import { GoalsTypes } from "./goal.model";
 import { ObjectId } from "mongodb";
 import { Currency } from "@/types/auth.type";
+import { Payment, PaymentType } from "./payment.model";
 
 const Schema = mongoose.Schema;
 
@@ -21,8 +22,11 @@ export interface UserType {
   incomes?: IncomeType[] | [];
   expenses?: ExpenseType[] | [];
   goals?: GoalsTypes[] | [];
+  payments?: PaymentType[] | [];
   role: String;
   status: String;
+  createdAt: Date;
+  updatedAt: Date;
 }
 export interface UserWithId extends UserType{
   _id: ObjectId
@@ -67,9 +71,9 @@ const userSchema = new Schema<UserType, Model<UserType>>(
       type: String,
       default: 'disabled',
     },
-    currency:{
+    currency: {
       type: String,
-      default: 'USD'
+      default: 'USD',
     },
 
     company: [
@@ -80,10 +84,11 @@ const userSchema = new Schema<UserType, Model<UserType>>(
       },
     ],
     incomes: [{ type: Schema.Types.ObjectId, ref: 'Income', default: [] }],
+    payments: [{ type: Schema.Types.ObjectId, ref: 'Payment', default: [] }],
     expenses: [{ type: Schema.Types.ObjectId, ref: 'Expense', default: [] }],
     goals: [{ type: Schema.Types.ObjectId, ref: 'Goal', default: [] }],
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 )
 
 export const isPropertyOfUser = (key: string): boolean => {

@@ -37,7 +37,7 @@ const NavbarMobile = () => {
 			`}
 			>
 				<div className="w-[90vw] flex justify-between p-4">
-					<Image src={Logo} alt="logo img" className="w-24" />
+					<Image src={Logo} alt="logo img" className="w-24" onClick={()=>router.push("/landing")}/>
 					<button
 						id="hamburger-menu"
 						className="text-3xl lg:hidden cursor-pointer relative w-8 h-8"
@@ -67,6 +67,7 @@ const NavbarMobile = () => {
 									screen="mobile"
 									setIsOpen={setIsOpen}
 									handleAnimateHamburger={handleAnimateHamburger}
+									showIcons={true}
 								/>
 							</ul>
 						) : (
@@ -79,6 +80,7 @@ const NavbarMobile = () => {
 										screen="mobile"
 										setIsOpen={setIsOpen}
 										handleAnimateHamburger={handleAnimateHamburger}
+										showIcons={true}
 									/>
 								</ul>
 
@@ -89,6 +91,7 @@ const NavbarMobile = () => {
 										screen="mobile"
 										setIsOpen={setIsOpen}
 										handleAnimateHamburger={handleAnimateHamburger}
+										showIcons={true}
 									/>
 								</ul>
 							</>
@@ -100,7 +103,8 @@ const NavbarMobile = () => {
 						<div className="flex gap-2 pl-4 pt-4">
 							{!session ? (
 								<div className="flex flex-col gap-y-4 text-black">
-									<ButtonTransparent handleClick={() => router.push("/")}>
+									<ButtonTransparent handleClick={() => router.push("/")}
+									classes="px-3 py-[4px]">
 										Iniciar sesión
 									</ButtonTransparent>
 

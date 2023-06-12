@@ -2,26 +2,24 @@ import { useSession } from 'next-auth/react'
 import LogoUser from '../../../assets/UserDefault.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, } from '@fortawesome/free-solid-svg-icons'
-import { useAppSelector } from '@/src-client/hooks/use-redux'
 import UserImage from '@/src-client/components/account/UserImage'
 import { useRouter } from 'next/router'
 import { UserWithId } from '@/models/user.model'
 import UserName from '@components/account/UserName'
 import UserCurrency from '@components/account/UserCurrency'
+import UserPlan from '@client/components/account/UserPlan'
 
 const Account = () => {
   const { data: session,status } = useSession()
   const router = useRouter()
 
-  const selector = useAppSelector((s) => s)
-  const plan = selector?.PersonalReducer?.user?.status
 
 // TODO: crear un skeleton de carga para no tener que retornar null
   if (status === 'loading') return null
  else if(status === 'unauthenticated') router.push('/')
   else{
   // Una vez que se resetee la base de dato esto no es necesario ↓↓↓↓↓↓↓↓
-    const { _id: userId, email, image, name, lastname, currency = 'USD' } = session?.user as unknown as UserWithId
+    const { _id: userId, email, image, name, lastname, currency = 'USD',payments,createdAt } = session?.user as unknown as UserWithId
     return (
       <div className="min-h-[90vh] bg-darkest-blue w-100 d-flex justify-content-center align-items-center">
         <aside className="bg-violet-blue-profile hadow-2xl min-h-[60vh] w-10/12 md:w-8/12 lg:w-1/2 xl:w-1/3 2xl:w-3/12 mx-auto rounded-[10px]">
@@ -64,19 +62,7 @@ const Account = () => {
 
                 {/* plan actual */}
                 <div className="">
-                  <div
-                    className="text-main-yellow flex items-center
-                justify-between w-full"
-                  >
-                    <div className="flex items-center gap-1 text-md">
-                      <FontAwesomeIcon icon={faEnvelope} />
-                      <span className="ml-1">Estado de plan</span>
-                    </div>
-                  </div>
-                  <p className="text-white mt-2 text-md">
-                    {plan !== 'disabled' ? 'Activo' : 'Inactivo'}
-                  </p>
-                  <hr className="border-main-yellow border-2"></hr>
+                  <UserPlan />
                 </div>
 
                 <div>

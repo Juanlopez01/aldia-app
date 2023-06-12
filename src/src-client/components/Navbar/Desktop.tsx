@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import Logo from "../../../../assets/ALDIA.png";
 import Image from 'next/image';
+const regexImg = /\.(jpeg|jpg|gif|png|webp)$/;
+import profileImgDefault from "../../../../assets/UserDefault.png"
 
 const NavbarDesktop = () => {
 	const { data: session } = useSession();
@@ -18,8 +20,8 @@ const NavbarDesktop = () => {
 		border-b-2 border-gray-500">
 			<div className="w-full h-full flex justify-around items-center">
 				<div>
-					<Image src={Logo} alt="logo img" className="w-24" 
-					onClick={()=>router.push("/")}/>
+					{<Image src={Logo} alt="logo img" className="w-24 cursor-pointer" 
+					onClick={()=>router.push("/landing")}/>}
 				</div>
 
 				{!session ? (
@@ -52,10 +54,13 @@ const NavbarDesktop = () => {
 									// onMouseOver={() => setIsOpenHeaderMenu(() => true)}
 									// onMouseLeave={() => setIsOpenHeaderMenu(() => false)}
 									>
-										<img
-											src={profile_image}
+										<Image
+											src={regexImg.test(profile_image) ? profile_image
+											: profileImgDefault}
 											alt="profile img"
 											className="w-[50px] h-[50px] rounded-full cursor-pointer"
+											width={50}
+											height={50}
 											onClick={() => setIsOpenHeaderMenu((prev) => !prev)}
 										/>
 
@@ -92,6 +97,7 @@ const NavbarDesktop = () => {
 							<ButtonTransparent
 								handleClick={() => router.push("/")}
 								color="main-yellow"
+								classes="px-3 py-[4px]"
 							>
 								Iniciar sesión
 							</ButtonTransparent>

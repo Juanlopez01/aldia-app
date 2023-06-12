@@ -7,10 +7,10 @@ const PROS_QUOTES: String[] = ['Unite a decenas de personas que confían en noso
 export default function Welcome({contentToShow}:{contentToShow: Boolean}) {
   return (
     <>
-      <section className={`w-1/3 bg-darkest-blue text p-8 flex ${ contentToShow? 'justify-between' : '' } text-white flex-col overflow-hidden -z-10`}>
+      <section className={`w-full md:w-8/12 lg:w-1/2 xl:w-1/3 bg-darkest-blue text p-8 ${ contentToShow? 'justify-between' : '' } text-white flex-col overflow-hidden md:py-16 relative z-[100] hidden md:flex`}>
         <header className="grid gap-2">
-          <h1 className="text-5xl font-black ">Bienvendo a ALDIA</h1>
-          <p>La aplicación de finanzas por exelencia</p>
+          <h1 className="text-4xl md:text-5xl font-black ">Bienvendo a ALDIA</h1>
+          <p>La aplicación de finanzas por excelencia</p>
         </header>
         {contentToShow ? (
           <>
@@ -51,8 +51,8 @@ export default function Welcome({contentToShow}:{contentToShow: Boolean}) {
             </div>
           </>
         )}
-        <div className=" absolute rounded-full border-4 border-white bottom-0 left-1/4 w-1/4 h-1/3 bg-transparent"></div>
-        <div className=" absolute rounded-full border-4 border-white/20 top-0 -left-[20%] w-1/4 h-1/4 bg-transparent"></div>
+        <div className=" absolute rounded-full border-4 border-white -bottom-1/3 left-2/3 w-3/4 h-1/2 bg-transparent"></div>
+        <div className=" absolute rounded-full border-4 border-white/20 -top-[20%] -left-1/2 w-2/3 h-1/3 bg-transparent"></div>
       </section>
     </>
   )

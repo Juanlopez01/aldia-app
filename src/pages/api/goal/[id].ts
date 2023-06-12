@@ -17,23 +17,19 @@ export default async function expenseID(
         res.status(200).json(result)
       break;
     case "PUT":
-        const {currentValue} = body;
+        const {status, goalValue} = body;
         const updatedGoal = await Goal.findOneAndUpdate({_id: query.id}, {
-            currentValue,
+            status,
+            goalValue,
         },
         {new: true})
-        const updateExpense = await Expense.findOneAndUpdate({description: updatedGoal.title, category: 'Metas'}, {
-          value: currentValue,
-        },
-        {new: true})
-        res.status(200).json({goal: updatedGoal, expense: updateExpense});
+        res.status(200).json({goal: updatedGoal});
       break;
     case "DELETE":
       const deletedGoal = await Goal.findOneAndDelete({ _id: query.id });
-      const deletedExpense = await Expense.findOneAndDelete({category: 'Metas', description: deletedGoal.title});
       res
         .status(200)
-        .json({ message: "delete a unique goal", result: deletedGoal, expense: deletedExpense._id});
+        .json({ message: "delete a unique goal", result: deletedGoal});
       break;
     default:
       res.status(400).json({ error: "Invalid Method" });

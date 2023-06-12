@@ -18,6 +18,7 @@
       "@/*": ["./src/*"],
       "@components/*":["./src/src-client/components/*"],
       "@client/*":["./src/src-client/*"],
+      "@backend/*":["./src/src-backend/*"],
       "@hooks/*":["./src/src-client/hooks/*"]
     }
   },
