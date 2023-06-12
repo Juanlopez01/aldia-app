@@ -78,7 +78,7 @@ const Sidenav = () => {
 						Cerrar sesión
 						<FontAwesomeIcon
 							icon={faRightFromBracket}
-							className="text-mdcursor-pointer text-black"
+							className="text-md cursor-pointer text-black"
 						/>
 					</ButtonSolid>
 				</div>

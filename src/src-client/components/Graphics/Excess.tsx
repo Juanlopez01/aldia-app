@@ -32,7 +32,7 @@ export function Excess({ options, data }: any) {
 			legend: {
 				position: "bottom" as const,
 				labels: {
-					color: "white", // Set the text color to white
+					color: "#747881", // Set the text color to white
 					fontColor: "white"
 				},
 			},
@@ -50,11 +50,11 @@ export function Excess({ options, data }: any) {
 
 	return (
 		<div
-			className="bg-dark-blue rounded-4 flex flex-col justify-around text-white containerGraphicosDivExc px-4
+			className="bg-link dark:bg-dark-blue rounded-4 flex flex-col justify-around text-white containerGraphicosDivExc px-4
 			w-[350px]"
 			
 		>
-			<div className="">
+			<div className="text-gray-900 dark:text-link">
 				<h5>Excedentes</h5>
 				<h3>${excess}</h3>
 			</div>

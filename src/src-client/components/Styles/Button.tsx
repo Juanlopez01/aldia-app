@@ -2,8 +2,7 @@ import { MouseEventHandler } from "react";
 
 const ButtonSolid = (props: any) => (
 	<button
-		className={`bg-main-green hover:bg-secondary-green text-link dark:bg-main-yellow dark:text-gray-900 dark:hover:bg-secondary-yellow rounded-[12px] ${props?.classes}`}
-		onClick={props?.onClick}
+		className={`bg-main-yellow text-gray-900 hover:bg-secondary-yellow rounded-[12px] ${props?.classes}`} onClick={props?.onClick}
 	>
 		{props?.children}
 	</button>
