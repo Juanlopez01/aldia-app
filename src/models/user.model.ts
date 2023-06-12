@@ -16,7 +16,7 @@ export interface UserType {
   email: String;
   emailVerified: Boolean;
   hashedPassword?: String;
-  image: String;
+  image: string;
   currency: Currency;
   company?: CompanType[] | [];
   incomes?: IncomeType[] | [];

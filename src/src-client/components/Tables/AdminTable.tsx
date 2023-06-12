@@ -1,19 +1,21 @@
-import { CompanType } from '@/models/company.model'
-import { UserType } from '@/models/user.model'
-import React, { useState } from 'react'
-import AdminModal from './AdminModal'
-import { useDispatch, useSelector } from 'react-redux'
-import { getDetails, updateUserStatus } from '@/redux/slice/AdminSlice'
-import Swal from 'sweetalert2'
+import SearchBar from "@components/generals/SeachBar";
 
-interface List {
-  list: CompanType[] | UserType[] | [],
-  type: string
-}
+
+const FILTER_TYPES = ['email', 'nombre']
+
 
 const AdminTable = () => {
-
-  return <></>
+  const onSubmit = (inputSearch:string, filterBy?:string )=>{
+    console.log('INPUT:', inputSearch);
+    console.log('FILTER:', filterBy);
+  }
+  return (
+    <>
+      <section className="w-full">
+        <SearchBar filterType={FILTER_TYPES} onSubmit={onSubmit} title="User List"/>
+      </section>
+    </>
+  )
 }
 
 export default AdminTable
