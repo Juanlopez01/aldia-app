@@ -1,9 +1,9 @@
 import { GoalsTypes } from "@/models/goal.model";
 import { deleteGoal } from "@/redux/slice/PersonalSlice";
-import Sidenav from "@/src-client/components/Sidenav/Sidenav";
 import AddGoalForm from "@/src-client/components/goals/AddGoalForm";
 import GoalBar from "@/src-client/components/goals/GoalBar";
 import ProgressBar from "@/src-client/components/goals/ProgressBar";
+import LayoutWithSideNav from "@/src-client/components/layouts/LayoutSideNav";
 import { dateDifference } from "@/utils/dateDiff";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
@@ -58,10 +58,9 @@ const Index = () => {
 	);
 	if (session && session.user) {
 		return (
-			<div className="bg-violet-blue-profile w-full h-full flex">
-				<Sidenav/>
-				<div className="flex flex-col w-full xl:w-3/4 2xl:w-7/12 mx-auto py-12
-				lg:pl-[22vw] xl:pl-[10vw]">
+			<LayoutWithSideNav>
+			<div className="bg-violet-blue-profile w-full h-auto flex">
+				<div className="flex flex-col w-full xl:w-3/4 2xl:w-7/12 mx-auto py-12 h-full">
 					{/* <ProgressBar completed={completedGoals} /> */}
 					<AddGoalForm
 						setForm={setForm}
@@ -131,6 +130,7 @@ const Index = () => {
 					</div>
 				</div>
 			</div>
+			</LayoutWithSideNav>
 		);
 	} else {
 		return <h2> No iniciaste sesion</h2>;
