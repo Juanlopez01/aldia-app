@@ -10,26 +10,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 const DesktopNvo = () => {
-	const [darkMode, setDarkMode] = useState(false)
+	const [darkMode, setDarkMode] = useState(false);
 
 	const { data: session } = useSession();
 	const router = useRouter();
 
-	useEffect(()=>{
-		const darkStore = localStorage.getItem("darkMode")
-		if(darkMode){
-			setDarkMode(darkStore==="false" ? true : false)
+	useEffect(() => {
+		const darkStore = localStorage.getItem("darkMode");
+		if (darkMode) {
+			setDarkMode(darkStore === "false" ? true : false);
 		}
-	}, [])
+	}, []);
 
 	const toggleTheme = () => {
-		setDarkMode(prev=>!prev)
-		if(!darkMode){
-			localStorage.setItem("darkMode", "true")
+		setDarkMode((prev) => !prev);
+		if (!darkMode) {
+			localStorage.setItem("darkMode", "true");
 		} else {
-			localStorage.setItem("darkMode", "false")
+			localStorage.setItem("darkMode", "false");
 		}
-	}
+	};
 
 	return (
 		<div
@@ -67,21 +67,22 @@ const DesktopNvo = () => {
 						</>
 					)}
 				</div>
-				<div className="w-[50px]">
-					<FontAwesomeIcon icon={darkMode ? faMoon : faSun} className="text-main-yellow text-xl cursor-pointer hover:text-white p-2 rounded-md duration-200"
-					onClick={()=>toggleTheme()}/>
-				</div>
-				{/* <form>
-					<input
-						id="dark-mode"
-						className="toggle text-darkest-blue "
-						type="checkbox"
-						name="Dark mode"
-						role="switch"
-						value="on"
+				<div className="w-[80px] flex rounded-full border-2 border-gray-500">
+					<FontAwesomeIcon
+						icon={faSun}
+						className={`text-main-yellow text-xl cursor-pointer p-2 rounded-md duration-200 ${
+							darkMode ? "opacity-0" : "opacity-1"
+						}`}
+						onClick={toggleTheme}
 					/>
-					<div className="curtain"></div>
-				</form> */}
+					<FontAwesomeIcon
+						icon={faMoon}
+						className={`text-white text-xl cursor-pointer p-2 rounded-md duration-200 ${
+							!darkMode ? "opacity-0" : "opacity-1"
+						}`}
+						onClick={toggleTheme}
+					/>
+				</div>
 			</div>
 		</div>
 	);
