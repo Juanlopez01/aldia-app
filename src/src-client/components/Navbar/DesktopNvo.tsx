@@ -33,8 +33,8 @@ const DesktopNvo = () => {
 
 	return (
 		<div
-			className="fixed z-[10000] w-full h-20 flex justify-between items-center 
-		border-b-2 border-gray-500 bg-main-green dark:bg-darkest-blue"
+			className="bg-main-green dark:bg-darkest-blue fixed z-[10000] w-full h-20 flex justify-between items-center 
+		border-b-2 border-gray-400 dark:border-gray-500 "
 		>
 			<div className="w-full h-full flex justify-between px-4 items-center">
 				<div>

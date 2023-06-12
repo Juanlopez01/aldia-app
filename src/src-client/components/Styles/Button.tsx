@@ -1,20 +1,24 @@
+import { MouseEventHandler } from "react";
+
 const ButtonSolid = (props: any) => (
 	<button
-		className={`bg-main-yellow hover:bg-secondary-yellow text-black rounded-[12px] ${props?.classes}`}
+		className={`bg-main-green hover:bg-secondary-green text-link dark:bg-main-yellow dark:text-gray-900 dark:hover:bg-secondary-yellow rounded-[12px] ${props?.classes}`}
 		onClick={props?.onClick}
 	>
 		{props?.children}
 	</button>
 );
 
-const ButtonTransparent = (props: any) => (
-	<button
-		className={`border-[1px] border-main-yellow text-main-yellow rounded-[12px] ${props?.classes}`}
-		onClick={props?.handleClick}
-	>
-		{props?.children}
-	</button>
-);
+const ButtonTransparent = (props: {handleClick: MouseEventHandler<HTMLButtonElement>, children: any, classes: string}) => {
+	return (
+		<button
+			className={`border-[1px] border-gray-900  text-gray-900 dark:border-main-yellow dark:text-main-yellow rounded-[12px] ${props?.classes}`}
+			onClick={props?.handleClick}
+		>
+			{props?.children}
+		</button>
+	)
+};
 
 const InputTransparent = (props: any) => (
 	<input

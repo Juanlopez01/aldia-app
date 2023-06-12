@@ -18,7 +18,7 @@ const Sidenav = () => {
 
 	return (
 		<div
-			className={`w-[20vw] bg-darkest-blue text-white hidden lg:flex flex-col px-2 min-h-screen ${
+			className={`w-[20vw] bg-main-green dark:bg-darkest-blue text-white hidden lg:flex flex-col px-2 min-h-screen ${
 				session ? "" : "hidden"
 			}`}
 		>
