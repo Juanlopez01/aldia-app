@@ -23,6 +23,12 @@ const initialState: state = {
         image: '',
         role: '',
         status: '',
+        lastname: '',
+        emailVerified: true,
+        provider: '',
+        currency: "ARS",
+        createdAt: new Date(),
+        updatedAt: new Date()
     },
     selectedCompany: {
         _id:'',
