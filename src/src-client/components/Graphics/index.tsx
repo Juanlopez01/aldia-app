@@ -11,6 +11,9 @@ import { options, optionsMobile } from "@/src-client/utilities/graphicsOptions";
 import { Modal } from "react-bootstrap";
 import { LongExcess } from "./LongExcess";
 import { catTransactions } from "@/utils/categoriesTransactions";
+import { filterTransactions } from "@/utils/filterTransactions";
+import { datesRange } from "@/utils/dateRange";
+import SelectRange from "./selectRange";
 
 export interface ContentTable {
 	type: string;
@@ -25,7 +28,10 @@ export interface graphsProp {
 
 
 export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
-	const { IncomesResult, ExpensesResult } = totalGenerate(incomes, expenses);
+	const [dateRange, setDateRange] = useState('Todo')
+	const {filterIncomes, filterExpenses} = filterTransactions(incomes, expenses, dateRange)
+
+	const { IncomesResult, ExpensesResult } = totalGenerate(filterIncomes, filterExpenses);
 
 	const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
@@ -87,7 +93,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		],
 	};
 
-	const longExcessData = totalLongExcess(incomes, expenses);
+	const longExcessData = totalLongExcess(filterIncomes, filterExpenses);
 	const dataLongExcess = {
 		labels: catTransactions,
 		datasets: [
@@ -129,6 +135,15 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 			{!incomes || (!expenses && <span className="loader" />)}
 			{incomes && expenses && (
 				<>
+
+					<div>
+						<select name="dateRange" id="dateRange" required defaultValue={'Todo'} onChange={(e) => setDateRange(e.target.value)} >
+							{datesRange.map((category) => {
+								return <option value={category} key={category}>{category}</option>
+							})}
+						</select>
+					</div>
+
 					{/* desktop charts, options at left */}
 					<div
 						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-8
