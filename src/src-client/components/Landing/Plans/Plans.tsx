@@ -6,7 +6,7 @@ import { stylesLandingContainers } from "../../Styles/Button";
 const Plans = ({ isPricingPage=false}) => {
 	return (
     <div
-      className={`py-16 w-full bg-darkest-blue ${stylesLandingContainers}`}
+      className={`py-16 w-full bg-main-green dark:bg-darkest-blue ${stylesLandingContainers}`}
       id="plans"
     >
       <h1 className="text-center text-3xl md:text-4xl font-bold text-white pb-3">
