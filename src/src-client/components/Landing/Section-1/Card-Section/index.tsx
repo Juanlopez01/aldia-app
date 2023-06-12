@@ -47,7 +47,7 @@ function CardSectionUno() {
 	return (
 		<>
 			{/* dark */}
-			<div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 py-4">
+			<div className="hidden dark:grid md:grid-cols-2 xl:grid-cols-3 gap-4 py-4">
 				{bdInfo.map((info, index) => (
 					<>
 						<div key={index} className=" md:p-4 grid-rows-1 gap-3">
@@ -74,38 +74,38 @@ function CardSectionUno() {
 					</>
 				))}
 			</div>
+
+			{/* light mode, changes color images */}
+			<div className="grid dark:hidden md:grid-cols-2 xl:grid-cols-3 gap-4 py-4">
+				{bdInfoLight.map((info, index) => (
+					<>
+						<div key={index} className=" md:p-4 grid-rows-1 gap-3">
+							{/* desktop img */}
+							<div className="justify-center hidden md:flex pb-3">
+								<Image src={info.image} alt={info.title} width={info.title==="Logra tus metas"
+								? 360 : 410} height={info.title==="Logra tus metas"
+								? 510 : 550}  />
+							</div>
+
+							{/* mobile img */}
+							<div className="justify-center flex md:hidden pb-3">
+								<Image src={info.image} alt={info.title} width={280} height={400} />
+							</div>
+
+							{/* title */}
+							<div className=" flex justify-center text-gray-900 dark:text-link">
+								<h3 className=" font-bold mb-2 text-2xl md:text-3xl">{info.title}</h3>
+							</div>
+
+							{/* description */}
+							<div className=" flex justify-center">
+								<p className="text-gray-900 dark:text-gray-400">{info.description}</p>
+							</div>
+						</div>
+					</>
+				))}
+			</div>
 		</>
 	);
 }
 export default CardSectionUno;
-
-
-
-// {/* light mode, changes color images */}
-// <div className="grid dark:hidden md:grid-cols-2 xl:grid-cols-3 gap-4 py-4">
-// 	{bdInfo.map((info, index) => (
-// 		<>
-// 			<div key={index} className=" md:p-4 grid-rows-1 gap-3">
-// 				{/* desktop img */}
-// 				<div className="justify-center hidden md:flex pb-3">
-// 					<Image src={info.image} alt={info.title} width={410} height={550} />
-// 				</div>
-
-// 				{/* mobile img */}
-// 				<div className="justify-center flex md:hidden pb-3">
-// 					<Image src={info.image} alt={info.title} width={280} height={400} />
-// 				</div>
-
-// 				{/* title */}
-// 				<div className=" flex justify-center text-gray-900 dark:text-link">
-// 					<h3 className=" font-bold mb-2 text-2xl md:text-3xl">{info.title}</h3>
-// 				</div>
-
-// 				{/* description */}
-// 				<div className=" flex justify-center">
-// 					<p className="text-gray-900 dark:text-gray-400">{info.description}</p>
-// 				</div>
-// 			</div>
-// 		</>
-// 	))}
-// </div>
