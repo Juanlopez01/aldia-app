@@ -13,7 +13,17 @@ interface List {
 
 const AdminTable = () => {
 
-  return <></>
+  return (
+    <>
+      <section className="w-full">
+        <header className="h-12 m-2 rounded shadow-md w-auto flex justify-center">
+          <nav>
+            
+          </nav>
+        </header>
+      </section>
+    </>
+  )
 }
 
 export default AdminTable
