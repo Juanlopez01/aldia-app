@@ -23,7 +23,7 @@ const ButtonTransparent = (props: {handleClick: MouseEventHandler<HTMLButtonElem
 const InputTransparent = (props: any) => (
 	<input
 		type={props?.type}
-		className={`border-[1px] border-main-yellow text-gray-800 text-sm rounded-[12px] px-3 py-2 bg-transparent placeholder:text-gray-500 focus:outline-blue-600
+		className={`border-[1px] border-gray-900 dark:border-main-yellow text-gray-800 text-sm rounded-[12px] px-3 py-2 bg-transparent placeholder:text-gray-500 focus:outline-blue-600
     ${props?.classes}`}
 		placeholder={props?.placeholder}
 		onChange={props?.handleChange}
