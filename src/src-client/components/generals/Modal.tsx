@@ -1,7 +1,7 @@
 interface ModalProps {
     children: React.ReactNode
     title: string 
-    footer?: string
+    footer?: string | React.ReactNode
     className?: string
     closeModal?: React.MouseEventHandler
     showModal: boolean
@@ -33,7 +33,8 @@ export default function Modal({
           {children}
           {footer && (
             <footer className="mt-4">
-              <p className="text-sm text-gray-500">{footer}</p>
+              {/* <p className="text-sm text-gray-500">{footer}</p> */}
+              {footer}
             </footer>
           )}
         </div>

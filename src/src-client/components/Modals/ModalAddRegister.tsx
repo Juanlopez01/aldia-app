@@ -8,9 +8,10 @@ import {
 } from "@/redux/slice/PersonalSlice";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormRegister from "./FormAddRegister";
+import Modal from "../generals/Modal";
 
 interface PropsModal {
 	props: {
@@ -118,24 +119,27 @@ export function ModalAddRegister({
 				</Button>
 			</div>
 
-			<Modal className="text-center" show={show} onHide={handleClose}>
-				<Modal.Header closeButton>
-					<Modal.Title className="d-flex justify-content-center">
-						{props.title} {type}
-					</Modal.Title>
-				</Modal.Header>
-				<Modal.Body className="d-flex justify-content-center align-items-center">
-					<FormRegister setForm={setForm} form={form} />
-				</Modal.Body>
-				<Modal.Footer className="d-flex justify-content-center">
-					<Button variant="secondary" onClick={handleClose}>
-						Cancelar
-					</Button>
-					<Button variant="primary" onClick={sendForm}>
-						{props.buttonText}
-					</Button>
-				</Modal.Footer>
-			</Modal>
+			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${type}`} children={<FormRegister setForm={setForm} form={form} />} footer={<button onClick={sendForm}>{props.buttonText}</button>} />
+
+
+			{/* // <Modal className="text-center" show={show} onHide={handleClose}> 
+			// 	<Modal.Header closeButton>
+			// 		<Modal.Title className="d-flex justify-content-center">
+			// 			{props.title} {type}
+			// 		</Modal.Title>
+			// 	</Modal.Header>
+			// 	<Modal.Body className="d-flex justify-content-center align-items-center">
+			// 		<FormRegister setForm={setForm} form={form} />
+			// 	</Modal.Body>
+			// 	<Modal.Footer className="d-flex justify-content-center">
+			// 		<Button variant="secondary" onClick={handleClose}>
+			// 			Cancelar
+			// 		</Button>
+			// 		<Button variant="primary" onClick={sendForm}>
+			// 			{props.buttonText}
+			// 		</Button>
+			// 	</Modal.Footer>
+			// </Modal> */}
 		</>
 	);
 }
