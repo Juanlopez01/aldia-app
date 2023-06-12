@@ -9,33 +9,32 @@ import { ButtonTransparent } from "../Styles/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useTheme } from 'next-themes'
 
 const DesktopNvo = () => {
-	const [darkMode, setDarkMode] = useState(false);
+	const { theme, setTheme } = useTheme()
 
 	const { data: session } = useSession();
 	const router = useRouter();
 
 	useEffect(() => {
-		const darkStore = localStorage.getItem("darkMode");
-		if (darkMode) {
-			setDarkMode(darkStore === "false" ? true : false);
+		const darkStore = localStorage.getItem("theme");
+		if (darkStore==='light') {
+			setTheme('light');
+		}
+		else if (darkStore==='dark') {
+			setTheme('dark');
 		}
 	}, []);
 
 	const toggleTheme = () => {
-		setDarkMode((prev) => !prev);
-		if (!darkMode) {
-			localStorage.setItem("darkMode", "true");
-		} else {
-			localStorage.setItem("darkMode", "false");
-		}
+		setTheme(theme === "dark" ? "light" : "dark");
 	};
 
 	return (
 		<div
-			className="fixed z-[10000] w-full h-20 flex justify-between items-center bg-darkest-blue
-		border-b-2 border-gray-500"
+			className="fixed z-[10000] w-full h-20 flex justify-between items-center 
+		border-b-2 border-gray-500 bg-main-green dark:bg-darkest-blue"
 		>
 			<div className="w-full h-full flex justify-between px-4 items-center">
 				<div>
@@ -68,18 +67,18 @@ const DesktopNvo = () => {
 						</>
 					)}
 				</div>
-				<div className="w-[80px] flex items-center rounded-full border-2 border-gray-500">
+				<div className="w-[80px] flex items-center rounded-full border-2 border-black dark:border-gray-500">
 					<FontAwesomeIcon
 						icon={faSun}
 						className={`text-main-yellow text-xl cursor-pointer p-2 rounded-md duration-200 ${
-							darkMode ? "opacity-0" : "opacity-1"
+							theme === "dark" ? "opacity-0" : "opacity-1"
 						}`}
 						onClick={toggleTheme}
 					/>
 					<FontAwesomeIcon
 						icon={faMoon}
 						className={`text-white text-xl cursor-pointer p-2 rounded-md duration-200 ${
-							!darkMode ? "opacity-0" : "opacity-1"
+							theme === "light" ? "opacity-0" : "opacity-1"
 						}`}
 						onClick={toggleTheme}
 					/>

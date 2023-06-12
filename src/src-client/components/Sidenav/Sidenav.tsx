@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 
-
 const Sidenav = () => {
 	const { data: session } = useSession();
 	const profile_image = session?.user?.image!;
@@ -18,7 +17,12 @@ const Sidenav = () => {
 	const { user } = useSelector((s: any) => s.PersonalReducer);
 
 	return (
-			<div className={`w-[20vw] bg-darkest-blue text-white hidden lg:flex flex-col justify-around px-2 min-h-screen ${session ? "" : "hidden"}`}>
+		<div
+			className={`w-[20vw] bg-darkest-blue text-white hidden lg:flex flex-col px-2 min-h-screen ${
+				session ? "" : "hidden"
+			}`}
+		>
+			<div className="h-screen flex flex-col justify-around">
 				{/* profile container and links */}
 				<div className="gap-2 pr-2 pt-4">
 					{
@@ -26,11 +30,13 @@ const Sidenav = () => {
 						!session ? (
 							""
 						) : (
-							<div className="w-full bg-main-yellow shadow-lg rounded-full px-3 py-2 flex justify-center items-center gap-x-3
+							<div
+								className="w-full bg-main-yellow shadow-lg rounded-full px-3 py-2 flex justify-center items-center gap-x-3
 							cursor-pointer"
-							onClick={() => {
-								router.push("/account");
-							}}>
+								onClick={() => {
+									router.push("/account");
+								}}
+							>
 								<button className="">
 									<Image
 										src={profile_image}
@@ -65,8 +71,10 @@ const Sidenav = () => {
 
 				{/* */}
 				<div className="pl-4 pr-2">
-					<ButtonSolid classes="w-full p-2 flex justify-center items-center gap-2"
-					onClick={() => signOutFunction()}>
+					<ButtonSolid
+						classes="w-full p-2 flex justify-center items-center gap-2"
+						onClick={() => signOutFunction()}
+					>
 						Cerrar sesión
 						<FontAwesomeIcon
 							icon={faRightFromBracket}
@@ -75,7 +83,7 @@ const Sidenav = () => {
 					</ButtonSolid>
 				</div>
 			</div>
-
+		</div>
 	);
 };
 
