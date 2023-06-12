@@ -41,6 +41,9 @@ const Sidenav = () => {
 										className="w-[60px] rounded-full"
 										width={60}
 										height={60}
+										onClick={() => {
+											router.push("/account");
+										}}
 									/>
 								</button>
 								<span className="w-full truncate drow-shadow-xl text-black font-bold">

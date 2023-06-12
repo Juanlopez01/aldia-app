@@ -46,6 +46,8 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		slice: "",
 	});
 
+	
+
 	const dataIncomes = {
 		labels: IncomesResult.categories,
 		datasets: [

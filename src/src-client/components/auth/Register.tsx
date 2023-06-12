@@ -73,7 +73,7 @@ export default function Register({showLogin}:{showLogin: MouseEventHandler}) {
             onChange={handerInputsChange}
             classes="max-w-[620px]"
           />
-          <Button loading={isLoading} classes="my-4">Registrate</Button>
+          <Button loading={isLoading} classes="w-full md:w-fit item text-center flex justify-center my-4">Registrate</Button>
         </form>
         <p className="text-sm mt-2">¿Tienes una cuenta? <span onClick={showLogin} className="hover:cursor-pointer font-semibold text-blue-600">Ingresá</span></p>
         <GoogleButton>Registrarse con</GoogleButton>
