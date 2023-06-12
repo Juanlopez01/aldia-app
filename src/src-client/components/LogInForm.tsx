@@ -1,8 +1,6 @@
-import { signIn } from "next-auth/react";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import { useToggle } from "../hooks/use-toggle";
-import Google from "./svgs/google";
 import Welcome from "./auth/Welcome";
 
 export default function Auth() {

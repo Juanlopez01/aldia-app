@@ -1,15 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { ExpenseType } from "@/models/expense.model";
-import { IncomeType } from "@/models/income.model";
-import colors from "@/utils/colors";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TableComponent } from "../Tables/TableComponent";
-import {
-	calculateExcess,
-	calculateTotal,
-	calculateTotalPerCategory,
-} from "@/utils/calculateTotal";
-import { TotalRegisters } from "@/types/TotalRegister.type";
 import { Income } from "./Income";
 import { Expense } from "./Expense";
 import {
@@ -18,8 +8,6 @@ import {
 } from "@/src-client/utilities/totalGenerate";
 import { Excess } from "./Excess";
 import { options, optionsMobile } from "@/src-client/utilities/graphicsOptions";
-import capitalize from "@/utils/capitalize";
-import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { LongExcess } from "./LongExcess";
 import { catTransactions } from "@/utils/categoriesTransactions";
@@ -34,6 +22,7 @@ export interface graphsProp {
 	incomes: [];
 	expenses: [];
 }
+
 
 export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	const { IncomesResult, ExpensesResult } = totalGenerate(incomes, expenses);
@@ -135,7 +124,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	return (
 		<div
 			className="text-center bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
-    	md:items-center pl-[10vw] lg:pl-[21vw]"
+    	md:items-center"
 		>
 			{!incomes || (!expenses && <span className="loader" />)}
 			{incomes && expenses && (

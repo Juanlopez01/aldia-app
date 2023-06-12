@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { ButtonTransparent } from "../Styles/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const DesktopNvo = () => {
 	const [darkMode, setDarkMode] = useState(false);
@@ -82,6 +83,25 @@ const DesktopNvo = () => {
 						}`}
 						onClick={toggleTheme}
 					/>
+					{session 
+          ? <ul className="flex items-center gap-x-4">
+						<GetNavLinks
+							list={links?.loggedIn[0]}
+							showIcons={false}
+							section="sidenav"
+              classes="px-12 py-1 relative top-2"
+						/>
+					</ul> 
+          : <Link href='/auth'>
+          <ButtonTransparent
+            color="main-yellow"
+            classes="px-3 py-[4px]"
+          >
+            Iniciar sesión
+          </ButtonTransparent>
+        </Link>}
+					{/* {<Image src={Logo} alt="logo img" className="w-24 cursor-pointer" 
+					onClick={()=>router.push("/landing")}/>} */}
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 import { getUserFinance } from "@/redux/slice/PersonalSlice";
 import { Graphics } from "@/src-client/components/Graphics";
-import Sidenav from "@/src-client/components/Sidenav/Sidenav";
+import LayoutWithSideNav  from "@components/layouts/LayoutSideNav";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,13 +27,12 @@ export default function PersonalFinances() {
   }, [dispatch, session?.user]);
 
   return (
-    <div className="flex">
-      <Sidenav/>
+    <LayoutWithSideNav>
       <Graphics
         type="personales"
         incomes={incomes ?? []}
         expenses={expenses ?? []}
       />
-    </div>
+    </LayoutWithSideNav>
   );
 }

@@ -13,7 +13,7 @@ const links = {
 		[
 			{
 				name: "General",
-				url: "/",
+				url: "/home",
 				endpoint: "/",
 				icon: <FontAwesomeIcon icon={faUsers} />,
 			},
