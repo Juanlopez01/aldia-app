@@ -12,7 +12,7 @@ const AdminTable = () => {
   return (
     <>
       <section className="w-full">
-        <SearchBar filterType={FILTER_TYPES} onSubmit={onSubmit} />
+        <SearchBar filterType={FILTER_TYPES} onSubmit={onSubmit} title="User List"/>
       </section>
     </>
   )

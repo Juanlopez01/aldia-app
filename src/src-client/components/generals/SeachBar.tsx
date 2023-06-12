@@ -5,10 +5,11 @@ import Image from 'next/image'
 
 interface searchBarProps {
   filterType?: string[]
+  title?: string
   onSubmit: (inputSearch: string, filterBy?: string) => void
 }
 
-export default function SearchBar({ onSubmit, filterType }: searchBarProps) {
+export default function SearchBar({ onSubmit, filterType, title }: searchBarProps) {
   const { image } = useAppSelector(
     (s) => s.PersonalReducer.user || { image: '/UserDeault.png' }
   )
@@ -26,7 +27,7 @@ export default function SearchBar({ onSubmit, filterType }: searchBarProps) {
     <>
       <header className="h-12 m-2 rounded shadow-md w-auto flex justify-center">
         <nav className="flex flex-row justify-between items-center w-full px-2 text-gray-800">
-          <h1 className="text-lg font-bold m-0">User List</h1>
+          <h1 className="text-lg font-bold m-0">{title}</h1>
           <form
             onSubmit={handlerSearchSubmit}
             className="flex flex-row gap-2 items-center"
