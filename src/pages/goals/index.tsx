@@ -3,6 +3,7 @@ import { deleteGoal } from "@/redux/slice/PersonalSlice";
 import Sidenav from "@/src-client/components/Sidenav/Sidenav";
 import AddGoalForm from "@/src-client/components/goals/AddGoalForm";
 import GoalBar from "@/src-client/components/goals/GoalBar";
+import GoalBarMobile from "@/src-client/components/goals/GoalBarMobile";
 import ProgressBar from "@/src-client/components/goals/ProgressBar";
 import { dateDifference } from "@/utils/dateDiff";
 import { useSession } from "next-auth/react";
@@ -104,6 +105,23 @@ const Index = () => {
 												setForm={setForm}
 												form={form}
 											/>
+											{/* <GoalBarMobile
+												title={goal.title}
+												excess={incomes - expenses}
+												goalValue={goal.goalValue}
+												priority={goal.priority}
+												plazo={goal.plazo}
+												expires={goal.expires}
+												category={goal.category}
+												status={goal.status}
+												dispatch={dispatch}
+												_id={goal._id}
+												handleDelete={handleDelete}
+												email={email}
+												setFormType={setFormType}
+												setForm={setForm}
+												form={form}
+											/> */}
 										</li>
 									);
 								})}
