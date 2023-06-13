@@ -119,7 +119,9 @@ export function ModalAddRegister({
 				</Button>
 			</div>
 
-			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${type}`} children={<FormRegister setForm={setForm} form={form} />} footer={<button onClick={sendForm}>{props.buttonText}</button>} />
+			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${type}`} footer={<button onClick={sendForm}>{props.buttonText}</button>}>
+				<FormRegister setForm={setForm} form={form} />
+			</Modal>
 
 
 			{/* // <Modal className="text-center" show={show} onHide={handleClose}> 
