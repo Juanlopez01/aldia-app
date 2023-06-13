@@ -16,11 +16,13 @@ export default async function companyID(
   switch (method) {
     case "POST":
       try {
+        const userObj = await User.findOne({email: user});
         const companyObj = await Company.findOne({ _id: company});
-        companyObj.notifications.push({
-            user: user,
-        })
+        companyObj.users.push(userObj._id);
         companyObj.save();
+        userObj.company.push(companyObj._id);
+        userObj.save();
+
         res.status(200).json({ status: "success" });
       } catch (error) {
         res.status(400).json({ status: "error", payload: 'error' });

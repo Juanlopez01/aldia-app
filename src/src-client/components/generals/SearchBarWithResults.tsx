@@ -3,26 +3,32 @@ import Swal from "sweetalert2";
 
 interface DataType {
     _id: string;
-    name: string;
+    name: string | null;
+    user: string | null;
 }
 interface SearchTypes {
     placeholder: string;
     data: any;
     closeModal: Function;
-    sendNotification: Function;
+    sendNotification: Function | null;
+    handleAcept : Function | null;
 }
 
-function SearchBar({ placeholder, data, closeModal, sendNotification} : SearchTypes) {
+function SearchBar({ placeholder, data, closeModal, sendNotification, handleAcept} : SearchTypes) {
   const [filteredData , setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
   const handleFilter = (event : any) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = data.filter((value : any) => {
-      return value.name.toLowerCase().includes(searchWord.toLowerCase());
-    });
+    let newFilter 
+    if(sendNotification) {
+      newFilter = data.filter((value : any) => {
+        return value.name.toLowerCase().includes(searchWord.toLowerCase());
+      });
+    } else {
 
+    }
     if (searchWord === "") {
       setFilteredData([]);
     } else {
@@ -36,6 +42,7 @@ function SearchBar({ placeholder, data, closeModal, sendNotification} : SearchTy
   };
 
   const handleClick = (value : DataType) => {
+    if(sendNotification) {
     Swal.fire({
         title: `Quieres unirte a ${value.name}?`,
         text: 'Envía la solicitud y espera que el dueño te acepte',
@@ -49,7 +56,10 @@ function SearchBar({ placeholder, data, closeModal, sendNotification} : SearchTy
             sendNotification(value._id);
             Swal.fire('Solicitud enviada correctamente', '', 'success')
         }
-    })
+    });} else {
+
+    }
+
   };
 
   return (
@@ -74,8 +84,8 @@ function SearchBar({ placeholder, data, closeModal, sendNotification} : SearchTy
             <ul>
                 {filteredData.slice(0, 15).map((value : DataType, key) => {
                 return (
-                <li key={value.name}>
-                    <button onClick={() => {handleClick(value); closeModal()}}>{value.name}</button>
+                <li key={sendNotification? value.name : value.user}>
+                    <button onClick={() => {handleClick(value); closeModal()}}>{sendNotification? value.name : value.user}</button>
                 </li>
                 );
                 })}

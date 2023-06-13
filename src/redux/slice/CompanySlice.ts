@@ -40,6 +40,7 @@ const companySlice = createSlice({
       state.selectedCompany.users = action.payload.users;
       state.selectedCompany.name = action.payload.name;
       state.selectedCompany._id = action.payload._id;
+      state.selectedCompany.notifications = action.payload.notifications;
     },
     addCompanyIncome: (state, action) => {
       state.selectedCompany.incomes.includes(action.payload)
@@ -198,13 +199,20 @@ export const getAllNames = () => async (dispatch: Function) => {
     })
     dispatch(companySlice.actions.getAllNames(companiesArray));
   } catch (error) {
-    console.log(error);
+    console.log();
   }
 }
 
 export const sendCompanyNotification = (user : string, company : string) => async (dispatch: Function) =>{
   const urlNotification = url + '/notification?company=' + company + '&user=' + user
-  console.log(urlNotification)
+  const notification = await axios.post(urlNotification)
+  return notification
+}
+
+export const aceptNotification = (user : string, company : string) => async (dispatch: Function) => {
+  const urlAcept = url + '/aceptUser?company=' + company + '&user=' + user
+  const notif = await axios.post(urlAcept);
+  return notif
 }
 
 
