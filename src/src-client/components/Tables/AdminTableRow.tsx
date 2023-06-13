@@ -10,7 +10,9 @@ export default function AdminTableRow({user}:Props) {
   return (
     <>
       <tr
-        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 [&>th]:hover:bg-gray-200 
+        [&>th]:px-2 
+        "
       >
         <th>
           <Image
