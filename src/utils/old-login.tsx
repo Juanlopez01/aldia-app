@@ -6,7 +6,6 @@ import Router from "next/router";
 import { Alert } from "react-bootstrap";
 import { log } from "console";
 import axios from 'axios'
-import { changePassword } from "@/redux/slice/PersonalSlice";
 
 
 const Auth: NextPage = ({ providers }: any) => {
@@ -87,9 +86,6 @@ const Auth: NextPage = ({ providers }: any) => {
     res.error ? setErrors(res.error) : redirectToHome()
   };
 
-  const handleChangePassword = async () => {
-    await changePassword(changeEmail)
-  }
 
   const formSubmit = () => {
     // authType === "Login" ? loginUser() : registerUser();
@@ -281,7 +277,6 @@ const Auth: NextPage = ({ providers }: any) => {
                   setChangeEmail(e.target.value)
                 }}
               ></input>
-              <button onClick={handleChangePassword}>Enviar</button>
             </div>
           )}
           <section className="">

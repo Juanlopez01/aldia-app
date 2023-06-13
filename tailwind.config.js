@@ -14,6 +14,8 @@ module.exports = {
 				"violet-blue-profile": "#877fa9",
 				"violet-blue-landing": "#9ba1ce",
 				"main-green": "#418154",
+				"secondary-green": "#1f5e39",
+				"light-green": "#D7F0E6",
 				"main-yellow": "#F3D40C",
 				"secondary-yellow": "#e1c512",
 				"darkest-blue": "#140E46",
@@ -25,4 +27,5 @@ module.exports = {
 		},
 	},
 	plugins: [require("daisyui")],
+	darkMode: "class",
 };

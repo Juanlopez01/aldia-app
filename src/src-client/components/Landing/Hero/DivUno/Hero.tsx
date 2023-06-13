@@ -2,8 +2,10 @@ import { ButtonSolid, ButtonTransparent } from "../../../Styles/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import celular from "../../../../../../assets/Celular.svg";
+import { useRouter } from "next/router";
 
 function HeroComponent() {
+	const router = useRouter()
 	return (
 		<div className="grid grid-cols-1 xl:grid-cols-3 gap-3">
 			{/* Div 1 */}
@@ -17,7 +19,7 @@ function HeroComponent() {
 					</div>
 					<div className="flex align-items-center justify-center gap-4">
 						<ButtonTransparent
-							handleClick={() => signIn("credentials")}
+							handleClick={() => router.push("/auth")}
 							color="main-yellow"
                             classes="px-4 py-2"
 						>

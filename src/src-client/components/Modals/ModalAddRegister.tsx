@@ -8,9 +8,10 @@ import {
 } from "@/redux/slice/PersonalSlice";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormRegister from "./FormAddRegister";
+import Modal from "../generals/Modal";
 
 interface PropsModal {
 	props: {
@@ -111,31 +112,34 @@ export function ModalAddRegister({
 			<div className="w-full flex justify-center py-2">
 				<Button
 					className="text-center mx-3 mb-2 text-white w-[180px]
-        btn-graphics px-8 rounded-full"
+        	btn-graphics  px-8 rounded-full"
 					onClick={handleShow}
 				>
 					{props.buttonText}
 				</Button>
 			</div>
 
-			<Modal className="text-center" show={show} onHide={handleClose}>
-				<Modal.Header closeButton>
-					<Modal.Title className="d-flex justify-content-center">
-						{props.title} {type}
-					</Modal.Title>
-				</Modal.Header>
-				<Modal.Body className="d-flex justify-content-center align-items-center">
-					<FormRegister setForm={setForm} form={form} />
-				</Modal.Body>
-				<Modal.Footer className="d-flex justify-content-center">
-					<Button variant="secondary" onClick={handleClose}>
-						Cancelar
-					</Button>
-					<Button variant="primary" onClick={sendForm}>
-						{props.buttonText}
-					</Button>
-				</Modal.Footer>
-			</Modal>
+			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${type}`} children={<FormRegister setForm={setForm} form={form} />} footer={<button onClick={sendForm}>{props.buttonText}</button>} />
+
+
+			{/* // <Modal className="text-center" show={show} onHide={handleClose}> 
+			// 	<Modal.Header closeButton>
+			// 		<Modal.Title className="d-flex justify-content-center">
+			// 			{props.title} {type}
+			// 		</Modal.Title>
+			// 	</Modal.Header>
+			// 	<Modal.Body className="d-flex justify-content-center align-items-center">
+			// 		<FormRegister setForm={setForm} form={form} />
+			// 	</Modal.Body>
+			// 	<Modal.Footer className="d-flex justify-content-center">
+			// 		<Button variant="secondary" onClick={handleClose}>
+			// 			Cancelar
+			// 		</Button>
+			// 		<Button variant="primary" onClick={sendForm}>
+			// 			{props.buttonText}
+			// 		</Button>
+			// 	</Modal.Footer>
+			// </Modal> */}
 		</>
 	);
 }

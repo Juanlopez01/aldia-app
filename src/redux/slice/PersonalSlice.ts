@@ -2,15 +2,16 @@ import { ExpenseType } from "@/models/expense.model";
 import { GoalsTypes } from "@/models/goal.model";
 import { IncomeType } from "@/models/income.model";
 import { PaymentType } from "@/models/payment.model";
-import { UserType } from "@/models/user.model";
+import { UserType, UserWithId } from "@/models/user.model";
 import { calculateTotal } from "@/utils/calculateTotal";
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { ObjectId } from "mongodb";
 
 const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL}api/personal`;
 const BASE_GOAL_URL = `${process.env.NEXT_PUBLIC_BASE_URL}api/goal`;
 interface PersonalFinance {
-  user?: UserType;
+  user?: UserWithId;
   incomes: IncomeType[];
   expenses: ExpenseType[];
   goals: GoalsTypes[]; 
@@ -18,9 +19,11 @@ interface PersonalFinance {
   totalIncomes: number;
   totalExpenses: number;
 }
+const initialId = '' as unknown as ObjectId;
 
 const initialState: PersonalFinance = {
   user: {
+    _id: initialId,
     name: "",
     lastname: "",
     provider: "",
@@ -191,21 +194,6 @@ export const updateUserStatusP = (user : UserType) => async (dispatch : Function
   dispatch(personalSlice.actions.updateUserStatus(user));
 }
 
-
-//CHANGE PASSWORD   ARREGLAR
-export const changePassword = async (email : string) => {
-  console.log(process.env.CLIENT_ID)
-  const clientId = process.env.CLIENT_ID
-  const response = await axios.post(`https://dev-xj1blxngfl10gkzm.us.auth0.com/passwordless/start`, {
-    client_id: 'zmxTqWf2ninaFFXgtB6SbVQy9mWoVoyg',
-    client_secret: 'DcLt7tC8WNzCxI42P7T2NBZ-hMQ8fKuv_TQ7n8sOoKVHV7JiH9g3JBXCErzAtcrA',
-    connection: 'email',
-    email: email,
-    send: 'code',
-  })
-
-  console.log(response)
-}
 
 //GOALS
 

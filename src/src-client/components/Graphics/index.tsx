@@ -1,15 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { ExpenseType } from "@/models/expense.model";
-import { IncomeType } from "@/models/income.model";
-import colors from "@/utils/colors";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TableComponent } from "../Tables/TableComponent";
-import {
-	calculateExcess,
-	calculateTotal,
-	calculateTotalPerCategory,
-} from "@/utils/calculateTotal";
-import { TotalRegisters } from "@/types/TotalRegister.type";
 import { Income } from "./Income";
 import { Expense } from "./Expense";
 import {
@@ -18,11 +8,12 @@ import {
 } from "@/src-client/utilities/totalGenerate";
 import { Excess } from "./Excess";
 import { options, optionsMobile } from "@/src-client/utilities/graphicsOptions";
-import capitalize from "@/utils/capitalize";
-import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { LongExcess } from "./LongExcess";
 import { catTransactions } from "@/utils/categoriesTransactions";
+import { filterTransactions } from "@/utils/filterTransactions";
+import { datesRange } from "@/utils/dateRange";
+import SelectRange from "./selectRange";
 
 export interface ContentTable {
 	type: string;
@@ -35,8 +26,12 @@ export interface graphsProp {
 	expenses: [];
 }
 
+
 export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
-	const { IncomesResult, ExpensesResult } = totalGenerate(incomes, expenses);
+	const [dateRange, setDateRange] = useState('Todo')
+	const {filterIncomes, filterExpenses} = filterTransactions(incomes, expenses, dateRange)
+
+	const { IncomesResult, ExpensesResult } = totalGenerate(filterIncomes, filterExpenses);
 
 	const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
@@ -98,7 +93,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		],
 	};
 
-	const longExcessData = totalLongExcess(incomes, expenses);
+	const longExcessData = totalLongExcess(filterIncomes, filterExpenses);
 	const dataLongExcess = {
 		labels: catTransactions,
 		datasets: [
@@ -134,12 +129,21 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 	return (
 		<div
-			className="text-center bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
-    	md:items-center pl-[10vw] lg:pl-[21vw]"
+			className="text-center bg-light-green dark:bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
+    	md:items-center"
 		>
 			{!incomes || (!expenses && <span className="loader" />)}
 			{incomes && expenses && (
 				<>
+
+					<div>
+						<select name="dateRange" id="dateRange" required defaultValue={'Todo'} onChange={(e) => setDateRange(e.target.value)} >
+							{datesRange.map((category) => {
+								return <option value={category} key={category}>{category}</option>
+							})}
+						</select>
+					</div>
+
 					{/* desktop charts, options at left */}
 					<div
 						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-8
@@ -233,7 +237,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 						</div>
 					</div>
 
-					<div className="row mt-2">
+					<div className="row mt-2 relative">
 						<Modal
 							className="custom-container"
 							size="xl"

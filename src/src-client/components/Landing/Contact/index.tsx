@@ -100,7 +100,7 @@ const Contact = () => {
 			<FontAwesomeIcon
 				icon={props?.item?.icon}
 				className={`
-					text-[25px] text-black bg-main-yellow rounded-full
+					text-[25px] bg-main-green text-link dark:text-gray-900 dark:bg-main-yellow rounded-full
 					${props?.item?.name==="Dirección" ? "py-2 px-[10px]" : "p-2"}
 				`}
 			/>
@@ -110,7 +110,7 @@ const Contact = () => {
 
 	return (
 		<div
-			className={`w-full bg-violet-blue-landing py-5 ${stylesLandingContainers}`}
+			className={`w-full bg-light-green dark:bg-violet-blue-landing py-5 ${stylesLandingContainers}`}
 		>
 			<h1 className="text-center text-3xl font-bold text-black pb-6">
 				Contáctate con nosotros
@@ -168,7 +168,7 @@ const Contact = () => {
 					<div className="flex flex-col items-center py-2">
 						<label className="text-black">Mensaje</label>
 						<textarea
-							className="w-full max-w-[350px] lg:max-w-[1000px] border-[1px] border-main-yellow text-gray-800 rounded-[12px] px-3 py-2 bg-transparent placeholder:text-gray-500
+							className="border-gray-900 dark:border-main-yellow w-full max-w-[350px] lg:max-w-[1000px] border-[1px] text-gray-800 rounded-[12px] px-3 py-2 bg-transparent placeholder:text-gray-500
 							focus:outline-blue-600 text-sm"
 							placeholder="Texto"
 							name="message"

@@ -5,13 +5,6 @@ import { JsonWebTokenError, verify } from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";
 
 
-class CustomError extends Error {
-    statusCode: number;
-    constructor(message:string, statusCode:number) {
-        super(message);
-        this.statusCode = statusCode;   
-    }
-}
 
 export default async function handler(req: NextApiRequest,res: NextApiResponse){
     const { method, query, body } = req
