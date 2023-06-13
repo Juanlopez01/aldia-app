@@ -45,7 +45,7 @@ const Company = () => {
   return (
     <LayoutWithSideNav>
       <div className="container-graphics w-50 gap-2">
-        <div className="lg:pl-[22vw] min-h-screen">
+        <div className="min-h-screen">
           {company === 'loadingCompany' && companyData?.name !== '' && (
             <span className="loader"></span>
           )}

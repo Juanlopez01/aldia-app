@@ -178,7 +178,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 				<div className="flex justify-center py-4">
 					<button
 						type="submit"
-						className="w-[220px] text-white px-3 py-2 bg-darkest-blue text-lg
+						className="w-[220px] text-white px-3 py-2 bg-main-green dark:bg-darkest-blue text-lg
 						rounded-full flex justify-center items-center gap-x-2"
 					>
 						{type === "register" ? 
