@@ -5,10 +5,10 @@ import { ExpenseType } from "./expense.model";
 import { GoalsTypes } from "./goal.model";
 import { ObjectId } from "mongodb";
 import { Currency } from "@/types/auth.type";
-import { Payment, PaymentType } from "./payment.model";
+import { PaymentType } from "./payment.model";
 
 const Schema = mongoose.Schema;
-
+type StatusType = `${string} - ${string} - ${string}`
 export interface UserType {
   name: String;
   lastname: String;
@@ -25,7 +25,7 @@ export interface UserType {
   goals?: GoalsTypes[] | [];
   payments?: PaymentType[] | [];
   role: String;
-  status: String;
+  status: StatusType;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -73,7 +73,7 @@ const userSchema = new Schema<UserType, Model<UserType>>(
     },
     status: {
       type: String,
-      default: 'disabled',
+      default: 'active - initial - free',
     },
     currency: {
       type: String,

@@ -1,23 +1,47 @@
-import React from 'react'
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import { useSelector } from 'react-redux';
-import { ModalEdit } from '../Modals/ModalEditRegister';
+import { UserWithId } from "@/models/user.model"
+import { useToggle } from "@/src-client/hooks/use-toggle"
+import Modal from "@components/generals/Modal"
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Image from "next/image"
+import { ReactNode } from "react"
 
+type Props = {
+  user: UserWithId
+}
 
-const AdminModal = ({props}: any) => {
-    const companyDetail = useSelector((state : any) => state.AdminSlice.selectedCompany)
-    const userDetail = useSelector((state : any) => state.AdminSlice.selectedUser)
-
-
+export default function AdminModal({ user }: Props) {
+  const { toggle, toggleHandler } = useToggle(false)
   return (
-    <Modal
-        show={props.show}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-    >
-      <Modal.Header>
+    <>
+      <button onClick={toggleHandler}>
+        <FontAwesomeIcon icon={faCircleInfo} />
+      </button>
+      <Modal
+        title={`Detalles de ${user.name}`}
+        showModal={toggle}
+        closeModal={toggleHandler}
+      >
+        <header className="flex flex-row w-full gap-2">
+        <Image src={user.image} alt='imagen del usuario' width='40' height='40' className='rounded-full' />
+        <div className="flex flex-col gap-1">
+          <h3 className="m-0 text-black font-bold text-lg">{user.fullName}</h3>
+          <h4 className="m-0 text-gray-700 text-xs">{user.email}</h4>
+        </div>
+        </header>
+        <section>
+          <span>id:{user._id as unknown as ReactNode}</span>
+        </section>
+      </Modal>
+    </>
+  )
+}
+
+
+
+
+
+      {/* <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
           Detalles {props.type === 'negocio' ? 'del negocio' : 'del usuario'}
         </Modal.Title>
@@ -132,9 +156,4 @@ const AdminModal = ({props}: any) => {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={() => {props.setShow(false)}}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  )
-}
-
-export default AdminModal
+      </Modal.Footer> */}
