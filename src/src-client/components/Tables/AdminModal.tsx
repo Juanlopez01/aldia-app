@@ -1,54 +1,55 @@
-import { UserWithId } from "@/models/user.model"
-import { useToggle } from "@/src-client/hooks/use-toggle"
-import { requestAdminUsers } from "@/utils/request"
-import Modal from "@components/generals/Modal"
-import { faCircleInfo } from "@fortawesome/free-solid-svg-icons"
+import { UserWithId } from '@/models/user.model'
+import { useToggle } from '@/src-client/hooks/use-toggle'
+import { requestAdminUsers } from '@/utils/request'
+import Modal from '@components/generals/Modal'
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ObjectId } from "mongodb"
-import Image from "next/image"
-import Swal from "sweetalert2"
+import { ObjectId } from 'mongodb'
+import Image from 'next/image'
+import Swal from 'sweetalert2'
 
 type Props = {
   user: UserWithId
 }
 interface ResponseValidate {
-success: boolean,
-message: string
+  success: boolean
+  message: string
 }
 
-const validatePaymentUserManually = async (userId: ObjectId, planType:  'basic' | 'premium')=>{
-const response = await requestAdminUsers<ResponseValidate>(`/${userId}`, {
-  method: 'PATCH',
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
-  body: JSON.stringify({ plan: planType }),
-})
-return response
+const validatePaymentUserManually = async (
+  userId: ObjectId,
+  planType: 'basic' | 'premium'
+) => {
+  const response = await requestAdminUsers<ResponseValidate>(`/${userId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({ plan: planType }),
+  })
+  return response
 }
-
 
 export default function AdminModal({ user }: Props) {
   const { toggle, toggleHandler } = useToggle(false)
-  const handlerValidateUser = async (planType: 'basic' | 'premium')=>{
+  const handlerValidateUser = async (planType: 'basic' | 'premium') => {
     try {
       const res = await validatePaymentUserManually(user._id, planType)
       toggleHandler()
       Swal.fire({
-        icon:'success',
+        icon: 'success',
         text: res.message,
-        timer: 3000
+        timer: 3000,
       })
-      
     } catch (error) {
       toggleHandler()
       Swal.fire({
         icon: 'error',
         text: 'Ocurrió un error al intentar validar el usuario',
         customClass: {
-          container: 'z-[1000000000]'
-        }
+          container: 'z-[1000000000]',
+        },
       })
     }
   }
@@ -89,8 +90,9 @@ export default function AdminModal({ user }: Props) {
               >
                 plan básico
               </button>
-              <button onClick={() => handlerValidateUser('premium')} 
-              className="p-2 rounded text-white bg-darkest-blue capitalize"
+              <button
+                onClick={() => handlerValidateUser('premium')}
+                className="p-2 rounded text-white bg-darkest-blue capitalize"
               >
                 plan premium
               </button>
@@ -101,124 +103,3 @@ export default function AdminModal({ user }: Props) {
     </>
   )
 }
-
-
-
-
-
-      {/* <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Detalles {props.type === 'negocio' ? 'del negocio' : 'del usuario'}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h3>Incomes</h3>
-        <ul>
-            {props.type === 'negocio' &&  companyDetail.incomes.map((ele : any) => {
-                return(
-                  <li key={ele._id}>
-                  <div>
-                    {ele.category}
-                  </div>
-                  <div>
-                    <p>{ele.value}</p>
-                    <ModalEdit props={{
-                      category: ele.category,
-                      value: ele.value,
-                      description: ele.description,
-                      type: props.type,
-                      id: ele._id,
-                      table: 'admin incomes',
-                    }}/>
-                  </div>
-                </li>
-                )
-            })}
-            {props.type === 'usuarios' &&  userDetail.incomes.map((ele : any) => {
-                return(
-                  <li key={ele._id}>
-                  <div>
-                    {ele.category}
-                  </div>
-                  <div>
-                    <p>{ele.value}</p>
-                    <ModalEdit props={{
-                      category: ele.category,
-                      value: ele.value,
-                      description: ele.description,
-                      type: props.type,
-                      id: ele._id,
-                      table: 'admin incomes',
-                    }}/>
-                  </div>
-                </li>
-                )
-            })}
-        </ul>
-        <h3>Expenses</h3>
-        <ul>
-            {props.type === 'negocio' &&  companyDetail.expenses.map((ele : any) => {
-                return(
-                  <li key={ele._id}>
-                    <div>
-                      {ele.category}
-                    </div>
-                    <div>
-                      <p>{ele.value}</p>
-                      <ModalEdit props={{
-                      category: ele.category,
-                      value: ele.value,
-                      description: ele.description,
-                      type: props.type,
-                      id: ele._id,
-                      table: 'admin expenses',
-                    }}/>
-                    </div>
-                  </li>
-                )
-            })}
-            {props.type === 'usuarios' &&  userDetail.expenses.map((ele : any) => {
-                return(
-                  <li key={ele._id}>
-                  <div>
-                    {ele.category}
-                  </div>
-                  <div>
-                    <p>{ele.value}</p>
-                    <ModalEdit props={{
-                      category: ele.category,
-                      value: ele.value,
-                      description: ele.description,
-                      type: props.type,
-                      id: ele._id,
-                      table: 'admin expenses',
-                    }}/>
-                  </div>
-                </li>
-                )
-            })}
-        </ul>
-        {props.type === 'negocio' && <>
-        <h3>Usuarios</h3>
-        <ul>
-            {companyDetail.users.map((ele : any) => {
-                return(
-                    <li key={`${ele.name}1`}>{ele.name}</li>
-                )
-            })}
-        </ul>
-        </>}
-        {props.type === 'usuarios' && <>
-        <h3>Companias</h3>
-        <ul>
-            {userDetail.company.map((ele : any) => {
-                return(
-                    <li key={`${ele.name}2`}>{ele.name}</li>
-                )
-            })}
-        </ul>
-        </>}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={() => {props.setShow(false)}}>Close</Button>
-      </Modal.Footer> */}
