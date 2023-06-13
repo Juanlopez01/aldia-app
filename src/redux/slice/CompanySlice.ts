@@ -87,9 +87,14 @@ const companySlice = createSlice({
       if(state.names.length > 0 && action.payload.name){
         state.names.push(action.payload);
       } else {
-      state.names = action.payload;
+        Array.isArray(action.payload) ?
+      state.names = action.payload :
+      state.names.push(action.payload);
       }
     },
+    getAllNames: (state, action) => {
+      state.allNames = action.payload
+    }
   },
 });
 
@@ -180,5 +185,27 @@ export const deleteCompanyIncome =
       console.log(e);
     }
   };
+
+export const getAllNames = () => async (dispatch: Function) => {
+  try {
+    const urlAllNames = url + '/all';
+    const companies = await axios.get(urlAllNames);
+    const companiesArray = companies.data.payload.map((company : CompanType) => {
+      return {
+        name: company.name,
+        _id: company._id,
+      }
+    })
+    dispatch(companySlice.actions.getAllNames(companiesArray));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const sendCompanyNotification = (user : string, company : string) => async (dispatch: Function) =>{
+  const urlNotification = url + '/notification?company=' + company + '&user=' + user
+  console.log(urlNotification)
+}
+
 
 export default companySlice.reducer;

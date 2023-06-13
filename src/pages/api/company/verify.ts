@@ -14,7 +14,7 @@ export default async function verifyCompany(
       const emailTransformed = email.split("%40").join("@");
       const verification = await User.findOne({ email: emailTransformed });
       if (verification.company.length !== 0) {
-        res.status(200).json({ msg: verification[0].company });
+        res.status(200).json({ msg: verification.company });
       } else {
         res.status(200).json({ msg: "Not found" });
       }

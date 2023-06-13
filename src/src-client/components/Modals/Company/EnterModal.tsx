@@ -1,22 +1,30 @@
 import React, {useState} from 'react'
 import Modal from '../../generals/Modal';
+import SearchBar from '../../generals/SearchBarWithResults';
+import { CompanType } from '@/models/company.model';
+import { useSession } from 'next-auth/react';
+import { useDispatch } from 'react-redux';
+import { sendCompanyNotification } from "@/redux/slice/CompanySlice";
 
-const EnterModal = () => {
+interface EnterProps {
+    data : [any],
+}
+const EnterModal = ({data} : EnterProps) => {
     const [showModal, setShowModal] = useState(false);
-    const [filter, setFilter] = useState('');
+    const {data : session} = useSession();
+    const dispatch : Function = useDispatch()
     const closeModal = () => {
         setShowModal(false);
     }
-
-    const handleChange = (e : any) => {
-        setFilter(e.target.value)
-    };
-
+    const sendNotification = (company : string) => {
+        if(session && session.user && session.user.email) {
+           dispatch(sendCompanyNotification(session.user.email, company))
+        }
+      }
 
     const modalContent = (
         <>
-            <label>Buscar</label>
-            <input type='text' placeholder='Escribe el nombre de la compañía' value={filter} onChange={handleChange}/>
+            <SearchBar placeholder='Ingresa el nombre de la compañía' data={data} closeModal={closeModal} sendNotification={sendNotification}/>
             
         </>
     )
