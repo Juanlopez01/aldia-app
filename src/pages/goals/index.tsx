@@ -2,6 +2,7 @@ import { GoalsTypes } from "@/models/goal.model";
 import { deleteGoal } from "@/redux/slice/PersonalSlice";
 import AddGoalForm from "@/src-client/components/goals/AddGoalForm";
 import GoalBar from "@/src-client/components/goals/GoalBar";
+import GoalBarMobile from "@/src-client/components/goals/GoalBarMobile";
 import ProgressBar from "@/src-client/components/goals/ProgressBar";
 import LayoutWithSideNav from "@/src-client/components/layouts/LayoutSideNav";
 import { dateDifference } from "@/utils/dateDiff";
@@ -59,34 +60,54 @@ const Index = () => {
 	if (session && session.user) {
 		return (
 			<LayoutWithSideNav>
-			<div className="bg-violet-blue-profile w-full h-auto flex">
-				<div className="flex flex-col w-full xl:w-3/4 2xl:w-7/12 mx-auto py-12 h-full">
-					{/* <ProgressBar completed={completedGoals} /> */}
-					<AddGoalForm
-						setForm={setForm}
-						type={formType}
-						form={form}
-						excess={incomes - expenses}
-						dispatch={dispatch}
-					/>
-					<div className="w-full">
-						<ul className="flex flex-col justify-center w-full gap-y-4">
-							{goals.length > 0 &&
-								goals.map((goal: GoalsTypes) => {
-									if (goal.status === "Pending")
-										dateDifference(goal.expires, setGoalsExpirated, goalsExpirated);
-									if (goalsExpirated > 0) {
-										Swal.fire({
-											title: "Tienes metas que vencen pronto!",
-											text: `Tienes ${goalsExpirated} que están por vencer`,
-											showConfirmButton: true,
-											confirmButtonText: "Entendido",
-											icon: "warning",
-										});
-									}
-									return (
-										<li key={goal._id?.toString()} className="w-full flex justify-center items-center">
-											<GoalBar
+				<div className="bg-violet-blue-profile w-full h-auto flex">
+					<div className="flex flex-col w-full xl:w-3/4 2xl:w-9/12 mx-auto py-12 h-full">
+						{/* <ProgressBar completed={completedGoals} /> */}
+						<AddGoalForm
+							setForm={setForm}
+							type={formType}
+							form={form}
+							excess={incomes - expenses}
+							dispatch={dispatch}
+						/>
+						<div className="w-full">
+							<ul className="flex flex-col justify-center w-full gap-y-4">
+								{goals.length > 0 &&
+									goals.map((goal: GoalsTypes) => {
+										if (goal.status === "Pending")
+											dateDifference(goal.expires, setGoalsExpirated, goalsExpirated);
+										if (goalsExpirated > 0) {
+											Swal.fire({
+												title: "Tienes metas que vencen pronto!",
+												text: `Tienes ${goalsExpirated} que están por vencer`,
+												showConfirmButton: true,
+												confirmButtonText: "Entendido",
+												icon: "warning",
+											});
+										}
+										return (
+											<li
+												key={goal._id?.toString()}
+												className="w-full flex justify-center items-center"
+											>
+												<GoalBar
+													title={goal.title}
+													excess={incomes - expenses}
+													goalValue={goal.goalValue}
+													priority={goal.priority}
+													plazo={goal.plazo}
+													expires={goal.expires}
+													category={goal.category}
+													status={goal.status}
+													dispatch={dispatch}
+													_id={goal._id}
+													handleDelete={handleDelete}
+													email={email}
+													setFormType={setFormType}
+													setForm={setForm}
+													form={form}
+												/>
+												{/* <GoalBarMobile
 												title={goal.title}
 												excess={incomes - expenses}
 												goalValue={goal.goalValue}
@@ -102,34 +123,34 @@ const Index = () => {
 												setFormType={setFormType}
 												setForm={setForm}
 												form={form}
-											/>
-										</li>
-									);
-								})}
-						</ul>
-						{formType === "edit" && (
-							<button
-								onClick={() => {
-									setFormType("register");
-									setForm({
-										title: "",
-										category: "",
-										goalValue: 0,
-										expiresDate: "",
-										email: email,
-										_id: "",
-										priority: 0,
-										plazo: "Corto plazo",
-										status: "Pending",
-									});
-								}}
-							>
-								Register
-							</button>
-						)}
+											/> */}
+											</li>
+										);
+									})}
+							</ul>
+							{formType === "edit" && (
+								<button
+									onClick={() => {
+										setFormType("register");
+										setForm({
+											title: "",
+											category: "",
+											goalValue: 0,
+											expiresDate: "",
+											email: email,
+											_id: "",
+											priority: 0,
+											plazo: "Corto plazo",
+											status: "Pending",
+										});
+									}}
+								>
+									Register
+								</button>
+							)}
+						</div>
 					</div>
 				</div>
-			</div>
 			</LayoutWithSideNav>
 		);
 	} else {

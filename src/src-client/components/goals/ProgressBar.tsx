@@ -29,8 +29,8 @@ const ProgressBar = ({completed, children} : Props) => {
     return (
       <div style={containerStyles}>
         <div style={fillerStyles}>
-          {/* {children} */}
-          <span style={labelStyles}>{completed ? `${completed}%` : '0%'}</span>
+          {/* {children && <div className='absolute'>{children}</div>} */}
+          {!children && <span style={labelStyles}>{completed ? `${completed}%` : '0%'}</span>}
         </div>
       </div>
     );

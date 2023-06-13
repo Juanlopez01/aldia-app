@@ -112,7 +112,7 @@ export function ModalAddRegister({
 			<div className="w-full flex justify-center py-2">
 				<Button
 					className="text-center mx-3 mb-2 text-white w-[180px]
-        btn-graphics px-8 rounded-full"
+        	btn-graphics  px-8 rounded-full"
 					onClick={handleShow}
 				>
 					{props.buttonText}

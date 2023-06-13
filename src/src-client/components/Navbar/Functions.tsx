@@ -48,7 +48,7 @@ const GetNavLinks = (props: {
 								href={link?.url}
 								className={`${
 									pathname !== link?.endpoint
-										? "text-white bg-light-blue"
+										? "dark:text-link dark:bg-light-blue text-gray-900 bg-link"
 										: "bg-main-yellow text-black"
 								}  no-underline rounded-full text-center w-full 
 								relative right-3 ${props?.classes} ${props?.classes} 
