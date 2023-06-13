@@ -11,6 +11,9 @@ $theme-colors: (
 @tailwind utilities;
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
+.swal2-container {
+  @apply z-[1000000];
+}
 
 // #income_canva {
 //   width: 150px;
