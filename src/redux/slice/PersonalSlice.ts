@@ -195,21 +195,6 @@ export const updateUserStatusP = (user : UserType) => async (dispatch : Function
 }
 
 
-//CHANGE PASSWORD   ARREGLAR
-export const changePassword = async (email : string) => {
-  console.log(process.env.CLIENT_ID)
-  const clientId = process.env.CLIENT_ID
-  const response = await axios.post(`https://dev-xj1blxngfl10gkzm.us.auth0.com/passwordless/start`, {
-    client_id: 'zmxTqWf2ninaFFXgtB6SbVQy9mWoVoyg',
-    client_secret: 'DcLt7tC8WNzCxI42P7T2NBZ-hMQ8fKuv_TQ7n8sOoKVHV7JiH9g3JBXCErzAtcrA',
-    connection: 'email',
-    email: email,
-    send: 'code',
-  })
-
-  console.log(response)
-}
-
 //GOALS
 
 //Create goal

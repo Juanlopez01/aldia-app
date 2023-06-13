@@ -12,6 +12,7 @@ const Schema = mongoose.Schema;
 export interface UserType {
   name: String;
   lastname: String;
+  fullName: String;
   provider: String;
   email: String;
   emailVerified: Boolean;
@@ -39,6 +40,9 @@ const userSchema = new Schema<UserType, Model<UserType>>(
       requeired: true,
     },
     lastname: {
+      type: String,
+    },
+    fullName: {
       type: String,
     },
     provider: {
@@ -90,7 +94,10 @@ const userSchema = new Schema<UserType, Model<UserType>>(
   },
   { versionKey: false, timestamps: true }
 )
-
+userSchema.pre('save', function(next){
+  this.fullName = `${this.name} ${this.lastname}`;
+  next()
+})
 export const isPropertyOfUser = (key: string): boolean => {
   return !!userSchema.path(key);
 };
