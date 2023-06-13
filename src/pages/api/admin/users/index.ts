@@ -1,4 +1,6 @@
+import conn from '@backend/db'
 import { User } from '@/models/user.model'
+import { CustomError } from '@/utils/custom-error'
 import { NextApiRequest, NextApiResponse } from 'next'
 type queryInput = {
   name?: string | string[]
@@ -24,7 +26,7 @@ export default async function handler(
   const currentPage = Number(page)
   const query = setQuery({ name, email })
   try {
-
+    await conn()
     if (method === 'GET') {
       const [users, count] = await Promise.all([
         User.find(query)
