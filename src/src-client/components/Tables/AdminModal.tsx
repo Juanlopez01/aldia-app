@@ -34,7 +34,7 @@ export default function AdminModal({ user }: Props) {
   const handlerValidateUser = async (planType: 'basic' | 'premium')=>{
     try {
       const res = await validatePaymentUserManually(user._id, planType)
-      // toggleHandler()
+      toggleHandler()
       Swal.fire({
         icon:'success',
         text: res.message,
@@ -42,7 +42,7 @@ export default function AdminModal({ user }: Props) {
       })
       
     } catch (error) {
-      // toggleHandler()
+      toggleHandler()
       Swal.fire({
         icon: 'error',
         text: 'Ocurrió un error al intentar validar el usuario',

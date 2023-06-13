@@ -1,9 +1,8 @@
 import { UserWithId } from '@/models/user.model'
 import SearchBar from '@components/generals/SeachBar'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import AdminModal from './AdminModal'
 import { requestAdminUsers } from '@/utils/request'
+import AdminTableRow from './AdminTableRow'
 
 
 const FILTER_TYPES = ['email', 'nombre']
@@ -54,26 +53,7 @@ export default function AdminTable() {
             <tbody>
               {users.map((user, i) => (
                 <>
-                  <tr
-                    key={i}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                  >
-                    <th>
-                      <Image
-                        src={user.image}
-                        alt="imagen del usuario"
-                        width="40"
-                        height="40"
-                        className="rounded-full m-auto"
-                      />
-                    </th>
-                    <th>{user.fullName}</th>
-                    <th>{user.email}</th>
-                    <th>{user.status.split(' - ')[0]}</th>
-                    <th>
-                      <AdminModal user={user} />
-                    </th>
-                  </tr>
+                  <AdminTableRow user={user} key={i}/>
                 </>
               ))}
             </tbody>
