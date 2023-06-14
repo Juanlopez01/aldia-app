@@ -6,15 +6,15 @@ type Props = {
     user: UserWithId
 }
 export default function AdminTableRow({user}:Props) {
-    const [status, provider, plan]=user.status.split(' - ')
+  const [status, provider, plan]=user.status.split(' - ')
   return (
     <>
       <tr
         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 [&>th]:hover:bg-gray-200 
-        [&>th]:px-2 
+        [&>th]:px-2
         "
       >
-        <th>
+        <th className="py-1">
           <Image
             src={user.image}
             alt="imagen del usuario"
@@ -23,12 +23,12 @@ export default function AdminTableRow({user}:Props) {
             className="rounded-full m-auto"
           />
         </th>
-        <th>{user.fullName}</th>
+        <th>{user.fullName ? user.fullName : "Sin nombre"}</th>
         <th>{user.email}</th>
         <th>
           <span className={`${status==="active" ? "bg-[#28a745]" : "bg-[#dc3545]"} py-2 px-3 rounded-full text-white w-full`}>{status==="active" ? "Activo" : "Inactivo"}</span>
         </th>
-        <th className="capitalize">{plan}</th>
+        <th className="capitalize">{!plan ? "Ninguno" : plan}</th>
         <th>
           <AdminModal user={user} />
         </th>
