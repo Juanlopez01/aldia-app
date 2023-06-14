@@ -32,7 +32,9 @@ const EnterModal = ({data} : EnterProps) => {
   return (
     <div>
         <button onClick={() => {setShowModal(true); dispatch(getAllNames())}}>Ingresar a una compañía</button>
-        <Modal title='Ingresar a una compañía' footer='footer' showModal={showModal} closeModal={closeModal} children={modalContent}  />
+        <Modal title='Ingresar a una compañía' footer='footer' showModal={showModal} closeModal={closeModal} >
+          {modalContent}
+        </Modal>
     </div>
   )
 }
