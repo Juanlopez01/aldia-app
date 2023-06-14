@@ -26,6 +26,7 @@ const initialState: PersonalFinance = {
     _id: initialId,
     name: "",
     lastname: "",
+    fullName: "",
     provider: "",
     emailVerified: false,
     email: "",

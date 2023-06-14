@@ -23,6 +23,7 @@ const initialState: state = {
         image: '',
         role: '',
         status: '',
+        fullName: '',
         lastname: '',
         emailVerified: true,
         provider: '',
@@ -36,6 +37,7 @@ const initialState: state = {
         incomes: [],
         expenses: [],
         users: [],
+        notifications: [],
     },
 }
 

@@ -4,7 +4,7 @@ export interface GoalsTypes {
   _id?: String;
   title: String;
   category: string;
-  goalValue: Number;
+  goalValue: number;
   expires: string;
   priority: Number;
   plazo: String;

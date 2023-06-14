@@ -119,6 +119,7 @@ const NavbarMobile = () => {
 									<ButtonTransparent
 										handleClick={() => router.push("/auth")}
 										classes="px-3 py-[4px]"
+										color={null}
 									>
 										Iniciar sesión
 									</ButtonTransparent>
