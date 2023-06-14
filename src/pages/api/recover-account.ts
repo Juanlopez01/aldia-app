@@ -1,5 +1,6 @@
 import { User } from "@/models/user.model";
 import conn from "@/src-backend/db";
+import { CustomError } from "@/utils/custom-error";
 import { hash } from "bcrypt";
 import { JsonWebTokenError, verify } from "jsonwebtoken";
 import { NextApiRequest, NextApiResponse } from "next";

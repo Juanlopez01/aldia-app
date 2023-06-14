@@ -10,6 +10,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.swal2-container {
+  @apply z-[1000000];
+}
+
 @layer components {
 animate-open-menu	.toggle-btn {
     @layer [&>div::before]:translate-y-0 [&>div::before]
