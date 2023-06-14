@@ -1,4 +1,3 @@
-import "@/styles/styles.scss";
 import type { AppProps } from "next/app";
 import { store } from "../redux/store";
 import { Provider } from "react-redux";
@@ -7,7 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "../redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/styles.css";
-import Layout from "@/src-client/components/layouts/Layout";
+import Layout from "@components/layouts/Layout";
 
 export default function App({
   Component,

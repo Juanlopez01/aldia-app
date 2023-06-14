@@ -32,7 +32,7 @@ export const useValidatePlan = () => {
           setPlan(pay.plan)
 
           // Verifico que el plan haya expirado
-          if (isAvaliablePlan(pay.end_date)) return redirectToPricing(pay.plan)
+          if (!isAvaliablePlan(pay.end_date)) return redirectToPricing(pay.plan)
 
           setTimeToExpire(getRelativeTime(pay.end_date))
         })
@@ -43,7 +43,7 @@ export const useValidatePlan = () => {
       setPlan('free')
       const dateToExpireFreePlan = calculateNextMonth(createdAt)
       // si la diferencia es negativa es por que su plan ya venció
-      if (isAvaliablePlan(dateToExpireFreePlan)) redirectToPricing('free')
+      if (!isAvaliablePlan(dateToExpireFreePlan)) redirectToPricing('free')
 
       setTimeToExpire(getRelativeTime(dateToExpireFreePlan))
     }
