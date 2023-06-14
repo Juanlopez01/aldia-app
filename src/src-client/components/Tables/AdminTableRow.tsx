@@ -27,6 +27,7 @@ export default function AdminTableRow({user}:Props) {
         <th>{user.email}</th>
         <th>{status}</th>
         <th>{plan}</th>
+        <th>{provider}</th>
         <th>
           <AdminModal user={user} />
         </th>

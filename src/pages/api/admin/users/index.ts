@@ -35,10 +35,12 @@ export default async function handler(
           .exec(),
         User.estimatedDocumentCount(query),
       ])
+
       return res.status(200).json({
         success: true,
         currentPage,
         count,
+        totalPages: Math.ceil(count / 10),
         users,
       })
     } else throw new CustomError('Invalid Method', 400)
