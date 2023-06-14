@@ -44,16 +44,6 @@ const GoalBar = ({
 	//*for debugging, we want the 'Comprar' goal to be full
 	let porcentajeFinal = porcentaje;
 	let excessFinal = excess;
-	if (title === "Comprar") {
-		porcentajeFinal = 100;
-		excessFinal = goalValue;
-	} else if (title === "Fútbol viaje") {
-		porcentajeFinal = 70;
-		excessFinal = Number(goalValue) * 0.7;
-	} else if (title === "Ahorros") {
-		porcentajeFinal = 40;
-		excessFinal = Number(goalValue) * 0.4;
-	}
 	if (porcentajeFinal > 100) porcentajeFinal = 100;
 	const flagIsFilled = excessFinal === goalValue;
 

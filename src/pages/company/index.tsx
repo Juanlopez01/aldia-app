@@ -13,7 +13,7 @@ import Notifications from "@/src-client/components/Modals/Company/Notifications"
 
 const Company = () => {
   const dispatch: Function = useDispatch()
-  const { data: session } = useSession()
+  const { data: session } : any = useSession()
   const [company, setCompany] = useState('loadingCompany')
   const [companySelect, setCompanySelect] = useState('')
   const companyData = useSelector(
@@ -46,22 +46,22 @@ const Company = () => {
 
 	return (
     <LayoutWithSideNav>
-		<div className="container-graphics w-50 gap-2">
-			<div className="lg:pl-[22vw] min-h-screen">
-				{company === "loadingCompany" && companyData?.name !== "" && (
-					<span className="loader"></span>
-				)}
-				{company === "Not found" && companyData?.name === "" && (
-					<>
-						<h1>No hemos encontrado tu compañía</h1>
-						<ModalRegister />
-            <EnterModal data={companyAllNames}/>
-					</>
-				)}
-				{companyNames && companyNames.length > 0 && (
-					<>
-						<h1 className="w-100  text-center">Seleccionar compañía</h1>
-						<div className="d-flex list-unstyled">
+      <div className="container-graphics w-50 gap-2">
+        <div className="min-h-screen">
+          {company === 'loadingCompany' && companyData?.name !== '' && (
+            <span className="loader"></span>
+          )}
+          {company === 'Not found' && companyData?.name === '' && (
+            <>
+              <h1>No hemos encontrado tu compañía</h1>
+              <ModalRegister />
+              <EnterModal data={companyAllNames}/>
+            </>
+          )}
+          {companyNames && (
+            <>
+              <h1 className="w-100  text-center">Seleccionar compañía</h1>
+              <div className="d-flex list-unstyled">
                 <ul className="list-unstyled d-flex flex-row gap-4 w-100 overflow-scroll ">
                   {companyNames?.map((company: any) => {
                     return (
@@ -84,7 +84,7 @@ const Company = () => {
           {companySelect && companyData && (
             <>
               <h2 className="mt-5">{companyData.name}</h2> 
-              {session?.user._id === companyData.users[0] && 
+              { session?.user && session.user._id === companyData.users[0] && 
               <>
               <Notifications data={companyData} dispatch={dispatch}/>
               </>}

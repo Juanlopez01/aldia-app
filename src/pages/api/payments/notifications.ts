@@ -51,6 +51,7 @@ export default async function handler(
             provider: 'mercadoPago'
           })
           await user.payments.push(payment)
+          user.status = `active - MP - ${plan}`
           await user.save()
         }
       }

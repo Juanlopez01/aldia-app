@@ -10,6 +10,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.swal2-container {
+  @apply z-[1000000];
+}
+
 @layer components {
 animate-open-menu	.toggle-btn {
     @layer [&>div::before]:translate-y-0 [&>div::before]
@@ -10795,18 +10800,21 @@ background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox=
 }
 
 .btn-graphics {
-  background-color: #4F5EC7 ;
+  background-color: #418154 !important;  
   border-radius: 100px !important;
 }
 
-.btn-graphics-dark {
-  background-color: #418154 !important;
-  border-radius: 100px !important;
+:is(.dark .dark\:btn-graphics){
+  background-color: #4F5EC7 !important;
 }
-
 
 .btn-graphics:hover {
   opacity: 0.8 !important;
+}
+
+
+:is(.dark .dark\:bg-btn-light-blue) {
+  background-color: #4F5EC7 !important;
 }
 
 .bg-landing-blue{
