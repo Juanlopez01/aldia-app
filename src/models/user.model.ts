@@ -25,7 +25,7 @@ export interface UserType {
   goals?: GoalsTypes[] | [];
   payments?: PaymentType[] | [];
   role: String;
-  status: StatusType;
+  status: StatusType | string;
   createdAt: Date;
   updatedAt: Date;
 }

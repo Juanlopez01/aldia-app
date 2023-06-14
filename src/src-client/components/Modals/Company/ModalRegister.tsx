@@ -38,12 +38,12 @@ const ModalRegister = () => {
             closeModal={handleClose} 
             title='Registrar una compañía' 
             footer={<button onClick={sendForm}>Registrar</button>} 
-            children={<form>
-                        <label>Nombre</label>
-                        <input type="text" name="name" placeholder='Escribe el nombre' onChange={(e) => handleChange(e)} value={form.name} />
-                    </form>}
-             
-            />
+            >
+                {<form>
+                    <label>Nombre</label>
+                    <input type="text" name="name" placeholder='Escribe el nombre' onChange={(e) => handleChange(e)} value={form.name} />
+                </form>}
+            </Modal>
         </div>
     )
 }
