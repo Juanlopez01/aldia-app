@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import QrSvg from '@public/svgs/qr.svg'
 import { useRouter } from 'next/router'
+import NotifyBtn from '@components/checkout/NotifyBtn'
 
 const PLANS = {
   basic: {
@@ -17,6 +18,11 @@ const PLANS = {
 export default function Checkout() {
   const router = useRouter()
   const { plan } = router.query as { plan: keyof typeof PLANS }
+  if(PLANS[plan] === undefined) {
+    router.push('/pricing')
+    return null
+  }
+  
   return (
     <>
       <main className="flex justify-center">
@@ -86,8 +92,8 @@ export default function Checkout() {
                 Dale click al siguiente boton 1 vez para notificar al
                 administrador que realizaste el pago
               </p>
-              <footer>
-                <button>Notificar al administrador</button>
+              <footer className='grid place-content-center'>
+                <NotifyBtn plan={plan} />
               </footer>
             </article>
             <figure className="flex justify-center items-center m-auto">
