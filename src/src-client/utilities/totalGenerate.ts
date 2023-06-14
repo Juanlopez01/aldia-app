@@ -1,4 +1,7 @@
+import { ExpenseType } from "@/models/expense.model";
+import { IncomeType } from "@/models/income.model";
 import { colores } from "@/utilities/colors";
+import {catTransactions} from '@/utils/categoriesTransactions';
 interface Result {
     categories: string[];
     totals: number[];
@@ -65,4 +68,30 @@ export const totalGenerate = (Incomes: any, Expenses : any) => {
 
 
     return {IncomesResult, ExpensesResult,}
+}
+
+interface LongResultType {
+    incomes: number[];
+    expenses: number[];
+}
+
+export const totalLongExcess = (incomes : any, expenses : any)=> {
+    const longTransactions : LongResultType= {
+        incomes: [],
+        expenses: [],
+    }
+    
+    catTransactions.forEach((category) => {
+        const auxIncomes = incomes.filter((income : IncomeType) => income.category === category)
+        const auxExpenses = expenses.filter((expense : ExpenseType) => expense.category === category)
+        auxIncomes.length > 0 ? 
+        longTransactions.incomes.push(auxIncomes.reduce((acc : number, income : IncomeType) => acc + income.value, 0)) :
+        longTransactions.incomes.push(0)
+
+        auxExpenses.length > 0 ? 
+        longTransactions.expenses.push(auxExpenses.reduce((acc : number, expense : ExpenseType) => acc + expense.value, 0)) :
+        longTransactions.expenses.push(0)
+    })
+    console.log(longTransactions)
+    return longTransactions
 }

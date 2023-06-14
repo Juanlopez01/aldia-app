@@ -12,10 +12,9 @@ export default async function verifyCompany(
     const email = req.query.email;
     if (typeof email === "string") {
       const emailTransformed = email.split("%40").join("@");
-
-      const verification = await User.find({ email: emailTransformed });
-      if (verification[0].company.length !== 0) {
-        res.status(200).json({ msg: verification[0].company });
+      const verification = await User.findOne({ email: emailTransformed });
+      if (verification.company.length !== 0) {
+        res.status(200).json({ msg: verification.company });
       } else {
         res.status(200).json({ msg: "Not found" });
       }

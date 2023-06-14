@@ -6,7 +6,7 @@ import CompanyReducer from "./slice/CompanySlice";
 import PersonalReducer from "./slice/PersonalSlice";
 import AdminSlice from "./slice/AdminSlice";
 const persistConfig = {
-  key: "stdssssssrrssse",
+  key: "store11111",
   storage,
 };
 
@@ -24,3 +24,8 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch

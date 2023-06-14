@@ -24,7 +24,8 @@ interface PropsModal {
     category: String;
     value: number;
     id: String;
-    table: String;
+    table: String,
+    date: Date;
   };
 }
 
@@ -33,6 +34,7 @@ const initialStateForm = {
   description: "",
   category: "",
   value: 0,
+  date: new Date()
 };
 
 export function ModalEdit({ props }: PropsModal) {
@@ -47,6 +49,7 @@ export function ModalEdit({ props }: PropsModal) {
       category: props.category.toString(),
       description: props.description.toString(),
       type: props.type.toString(),
+      date: props.date
     });
     setShow(true);
   };

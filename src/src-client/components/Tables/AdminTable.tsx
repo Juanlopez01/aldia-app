@@ -1,94 +1,65 @@
-import { CompanType } from '@/models/company.model'
-import { UserType } from '@/models/user.model'
-import React, { useState } from 'react'
-import AdminModal from './AdminModal'
-import { useDispatch, useSelector } from 'react-redux'
-import { getDetails, updateUserStatus } from '@/redux/slice/AdminSlice'
-import Swal from 'sweetalert2'
+import { UserWithId } from '@/models/user.model'
+import SearchBar from '@components/generals/SeachBar'
+import { useEffect, useState } from 'react'
+import { requestAdminUsers } from '@/utils/request'
+import AdminTableRow from './AdminTableRow'
 
-interface List {
-  list: CompanType[] | UserType[] | [],
-  type: string
+
+const FILTER_TYPES = ['email', 'nombre']
+interface RequestUser {
+  success: boolean
+  currentPage: number
+  count: number
+  users: UserWithId[]
 }
 
-const AdminTable = ({ list, type }: List) => {
-  const dispatch: Function = useDispatch()
 
-  const [show, setShow] = useState(false)
+export default function AdminTable() {
+  const [users, setUSers] = useState<UserWithId[]>([])
 
-  const showHandler = async (id: string) => {
-    await dispatch(getDetails(type, id))
-    setShow(true)
+  useEffect(() => {
+    if (!users.length) {
+      console.log('requested users')
+      requestAdminUsers<RequestUser>().then((users) => {
+        setUSers(users.users)
+      })
+    }
+  }, []) // eslint-disable-line
+
+  const onSubmit = (inputSearch: string, filterBy?: string) => {
+    console.log('INPUT:', inputSearch)
+    console.log('FILTER:', filterBy)
   }
-
-  const deleteHandler = async (status: string, id: string) => {
-
-    Swal.fire({
-      title: 'Estas seguro?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: `${status === 'disabled' ? 'Habilitar' : 'Deshabilitar'} usuario`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        status === 'disabled'
-          ? dispatch(updateUserStatus('enabled', id))
-          : dispatch(updateUserStatus('disabled', id))
-      }
-    })
-  }
-
   return (
-    <div className='' style={{ height: "90vh" }}>
-      {!list && <span className='loader'></span>}
-      <div className=' d-flex flex-row flex-wrap gap-3 mt-5'>
-        {list[0] && list.map((ele: any) => {
-          return (
-            <>
-              <div className='card containerCuentas'>
-                <div className=' card-header text-center'>
-                  {ele.name}
-                </div>
-                <div className='d-flex card-footer gap-3 justify-content-center'>
-                  <button
-                    onClick={() => showHandler(ele._id)}
-                    className="btn-general">
-                    <span className="text-light">Abrir detalles</span>
-                  </button>
-                  {
-                    type === 'usuarios' && <button
-                      onClick={() => deleteHandler(ele.status, ele._id)}
-                      className="btn-general">
-                      <span className='text-light'>
-                        {
-                          ele.status === 'disabled' ? 'Habilitar' : 'Deshabilitar'
-                        }
-                      </span>
-
-                    </button>
-                  }
-                </div>
-              </div>
-            </>
-          )
-        })}
-      </div>
-      {
-        show && <AdminModal props={{ show, setShow, type, }} />
-      }
-    </div>
+    <>
+      <section className="w-full">
+        <SearchBar
+          filterType={FILTER_TYPES}
+          onSubmit={onSubmit}
+          title="User List"
+        />
+        <section className="mx-2 rounded-md shadow overflow-hidden">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr className="[&>th]:p-2">
+                <th className="w-10">Imagen</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Plan</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, i) => (
+                <>
+                  <AdminTableRow user={user} key={i}/>
+                </>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </>
   )
 }
-
-export default AdminTable
-
-{/* <ul className='list-unstyled d-flex flex-row gap-4 flex-wrap'> */ }
-{/* <li key={ele._id} className="flex-row">
-        <div>
-           {ele.name}
-         </div>
-        <div>
-      <button onClick={() => showHandler(ele._id)}>Abrir detalles</button>
-    {type === 'usuarios' && <button onClick={() => deleteHandler(ele.status, ele._id)}>{ele.status === 'disabled' ? 'Habilitar' : 'Deshabilitar'}</button>}
-  </div>
- </li> */}
-{/* </ul> */ }

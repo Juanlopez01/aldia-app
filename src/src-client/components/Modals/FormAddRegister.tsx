@@ -1,8 +1,12 @@
+import { catTransactions } from "@/utils/categoriesTransactions";
+import Calendar from "react-calendar";
+import React from "react"
 export interface FormType {
   type: string;
   description: string;
   category: string;
   value: number;
+  date: Date;
 }
 
 interface FormProps {
@@ -11,6 +15,9 @@ interface FormProps {
 }
 
 export default function FormRegister({ form, setForm }: FormProps) {
+
+  const [dateShow, setDateShow] = React.useState(true)
+
   const handleChange = (
     evt: React.FormEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -26,8 +33,14 @@ export default function FormRegister({ form, setForm }: FormProps) {
     }
   };
 
+  const handleDateChange = (e : any) => {
+
+    setForm({ ...form, date: e});
+    setDateShow(true);
+  }
+
   return (
-    <form action="" className="d-flex flex-column">
+    <form  className="d-flex flex-column z-50">
       {/* <div className="input-group mb-3 w-100">
         <label htmlFor="type" className="input-group-text">
           Tipo de ingreso
@@ -52,18 +65,22 @@ export default function FormRegister({ form, setForm }: FormProps) {
         <label htmlFor="text" className="input-group-text">
           Categoria
         </label>
-        <input
-          type="category"
-          value={form.category}
-          onChange={handleChange}
-          name="category"
-          className="form-control"
-          aria-describedby="Categoria"
-          placeholder="Ingresa aca la categoria"
-        />
+        <select name="category" className='form-control' defaultValue={form.category} onChange={handleChange} required>
+          {catTransactions.map((category) => {
+            return <option key={category} value={category}>{category}</option>
+          })}
+        </select>
       </div>
 
-      <div className="input-group mb-3 w-100">
+      <div className="input-group mb-0 w-100">
+        <label htmlFor="text" className="input-group-text ">Fecha</label>     
+        <input type='text' id='check' value={form?.date?.toDateString()} placeholder="Seleccione una fecha" onClick={()=>setDateShow(!dateShow)} className="form-control"/>   
+      </div>   
+      <div className={`${ !dateShow ? '' : 'hidden'}`}>    
+        <Calendar value={form.date} onChange={handleDateChange} className='bg-white [span:bg-white text-center important]'/>
+      </div>
+      
+      <div className="input-group mb-3 mt-3 w-100">
         <label htmlFor="value" className="input-group-text">
           Valor
         </label>

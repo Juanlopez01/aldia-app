@@ -31,7 +31,8 @@ export default async function companyID(
       }
       break;
 
-    default:
-      break;
+      default:
+        res.status(400).json({ error: "Invalid Method" });
+        break;
   }
 }
