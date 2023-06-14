@@ -27,7 +27,9 @@ function SearchBar({ placeholder, data, closeModal, sendNotification, handleAcep
         return value.name.toLowerCase().includes(searchWord.toLowerCase());
       });
     } else {
-
+      newFilter = data.filter((value : any) => {
+        return value.user.toLowerCase().includes(searchWord.toLowerCase());
+      });
     }
     if (searchWord === "") {
       setFilteredData([]);
@@ -56,8 +58,8 @@ function SearchBar({ placeholder, data, closeModal, sendNotification, handleAcep
             sendNotification(value._id);
             Swal.fire('Solicitud enviada correctamente', '', 'success')
         }
-    });} else {
-
+    });} else if (handleAcept) {
+      handleAcept(value.user);
     }
 
   };
