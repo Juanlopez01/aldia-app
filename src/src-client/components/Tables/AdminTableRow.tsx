@@ -25,8 +25,10 @@ export default function AdminTableRow({user}:Props) {
         </th>
         <th>{user.fullName}</th>
         <th>{user.email}</th>
-        <th>{status}</th>
-        <th>{plan}</th>
+        <th>
+          <span className={`${status==="active" ? "bg-[#28a745]" : "bg-[#dc3545]"} py-2 px-4 rounded-full text-white w-full`}>{status==="active" ? "Activo" : "Inactivo"}</span>
+        </th>
+        <th className="capitalize">{plan}</th>
         <th>
           <AdminModal user={user} />
         </th>

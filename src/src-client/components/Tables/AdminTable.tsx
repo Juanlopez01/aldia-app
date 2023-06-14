@@ -32,22 +32,22 @@ export default function AdminTable() {
   }
   return (
     <>
-      <section className="w-full">
+      <section className="w-full bg-light-green dark:bg-violet-blue-landing px-2 pt-8">
         <SearchBar
           filterType={FILTER_TYPES}
           onSubmit={onSubmit}
-          title="User List"
+          title="Lista de usuarios"
         />
-        <section className="mx-2 rounded-md shadow overflow-hidden">
+        <section className="mx-2 rounded-md shadow overflow-hidden pt-4">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr className="[&>th]:p-2">
                 <th className="w-10">Imagen</th>
                 <th>Nombre</th>
                 <th>Email</th>
-                <th>Status</th>
+                <th>Estado</th>
                 <th>Plan</th>
-                <th>Actions</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
