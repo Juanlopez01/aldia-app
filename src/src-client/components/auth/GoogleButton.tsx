@@ -12,7 +12,7 @@ const GoogleButton = (props: {children: string}) => {
           callbackUrl: `${window.location.origin}/company`,
         })
       }
-      className="flex items-center justify-center gap-2 py-2 border-2 border-main-green bg-white rounded "
+      className="flex items-center justify-center gap-2 py-2 border-2 border-main-green dark:border-darkest-blue bg-white rounded "
     >
       <p className="m-0 ">{props?.children}</p>
       <Google className="h-4 w-4" />

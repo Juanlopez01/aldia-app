@@ -60,7 +60,7 @@ const Index = () => {
 	if (session && session.user) {
 		return (
 			<LayoutWithSideNav>
-				<div className="bg-violet-blue-profile w-full h-auto flex">
+				<div className="bg-light-green dark:bg-violet-blue-profile w-full h-auto flex">
 					<div className="flex flex-col w-full xl:w-3/4 2xl:w-9/12 mx-auto py-12 h-full">
 						{/* <ProgressBar completed={completedGoals} /> */}
 						<AddGoalForm
