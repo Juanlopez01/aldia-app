@@ -80,7 +80,7 @@ const PlanCard = ({plan, isPricingPage}: plansProps) => {
 interface color {
 	bg: string;
 	text: string;
-	bg_button: string;
+	bg_button?: string;
 	color_border_button: string;
 	color_text_button: string;
 	text_check: string;

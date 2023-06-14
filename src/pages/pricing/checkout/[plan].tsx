@@ -30,7 +30,7 @@ export default function Checkout() {
                 </h1>
               </header>
               <p>
-                Realiza tu pago escaneando el codigo qr o haciendo un deposito
+                Realiza tu pago escaneando el codigo QR o haciendo un deposito
                 al siguiente CVU con el motivo &quot;Suscripción a AlDía nivel{' '}
                 {PLANS[plan].name}&quot; con un monto de {PLANS[plan].price}{' '}
                 soles

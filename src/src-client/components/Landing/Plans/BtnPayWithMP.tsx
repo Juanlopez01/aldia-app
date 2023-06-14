@@ -37,8 +37,8 @@ export default function BtnPaywithMP ({value }: {value: PlansTypes; children?: R
     }
   }
     return (
-      <button value={value} onClick={handlerClickPlan} className="text-white bottom-2 rounded p-2 bg-medium-blue flex gap-2">
-        Mercado Pago<MercadoPagoLogo className="w-8 h-8 "/>
+      <button value={value} onClick={handlerClickPlan} className="text-white bottom-2 rounded p-2 bg-medium-blue  gap-2 font-bold flex flex-row items-center">
+        Mercado Pago<MercadoPagoLogo className="w-8 h-8 fill-white"/>
       </button>
     )
   }
