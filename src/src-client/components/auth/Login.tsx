@@ -3,8 +3,6 @@ import Input from "../generals/Input";
 import Button from "../generals/Button";
 import { useAuth } from "@/src-client/hooks/use-auth";
 import ForgotPass from "./ForgotPass";
-import Google from "../svgs/google";
-import { signIn } from "next-auth/react";
 import GoogleButton from "./GoogleButton";
 
 const authProps = {
@@ -76,7 +74,7 @@ export default function Login({
 						¿No tienes una cuenta?{" "}
 						<span
 							onClick={showRegister}
-							className="hover:cursor-pointer font-semibold text-medium-blue"
+							className="hover:cursor-pointer font-semibold text-main-green dark:text-medium-blue"
 						>
 							Registrate
 						</span>
