@@ -28,7 +28,7 @@ export default function Checkout() {
       <main className="flex justify-center bg-light-green dark:bg-violet-blue-landing">
         <ul className="flex flex-wrap gap-4 justify-center m-0 p-0 flex-grow px-4 my-4">
           {/* 1. pay your subscription */}
-          <li className="max-w-[500px] flex flex-col items-start justify-around shadow-md px-4 rounded-lg">
+          <li className="max-w-[500px] flex flex-col items-start justify-between shadow-md px-4 rounded-lg">
             <article className="[&>p]:m-0 mt-2 flex flex-col justify-around">
               <header className="">
                 <h1 className="text-4xl font-bold my-4 ">
@@ -42,8 +42,8 @@ export default function Checkout() {
                 {PLANS[plan].name}&quot; con un monto de {PLANS[plan].price}{' '}
                 soles.
               </p>
-              <p>CVU: alskdnoalds-asidnoasld-asd1901292os</p>
             </article>
+            <p className='font-bold'>CVU: alskdnoalds-asidnoasld-asd1901292os</p>
             <figure className="mt-3">
               <Image
                 src={QrSvg}
@@ -55,7 +55,7 @@ export default function Checkout() {
           </li>
 
           {/* 2. notification */}
-          <li className="max-w-[500px] flex flex-col items-start justify-around shadow-md px-4 rounded-lg">
+          <li className="max-w-[500px] flex flex-col items-start justify-between shadow-md px-4 rounded-lg">
             <article className="[&>p]:m-0 mt-2 flex flex-col justify-around">
               <header className="">
                 <h1 className="text-4xl font-bold m-0 my-4 ">
@@ -67,8 +67,12 @@ export default function Checkout() {
                 Envia el comprobante de pago al siguiente Whatsapp con tu email
                 de la cuenta que tienes del aldía.
               </p>
-              <footer>Whatsapp: +69 1313 040613.</footer>
             </article>
+
+            <footer>
+              <p className='font-bold mt-3'>Whatsapp: +69 1313 040613.</p>
+            </footer>
+
             <figure className="flex pt-4">
               <Image
                 src="/wpp-image.png"
@@ -80,7 +84,7 @@ export default function Checkout() {
           </li>
 
           {/* 3. espera */}
-          <li className="max-w-[500px] flex flex-col items-start justify-around shadow-md px-4 rounded-lg">
+          <li className="max-w-[500px] flex flex-col items-start justify-between shadow-md px-4 rounded-lg">
             <article className="mt-2 [&>p]:m-0 flex flex-col justify-around">
               <header className="">
                 <h1 className="text-4xl font-bold m-0 my-4 ">
