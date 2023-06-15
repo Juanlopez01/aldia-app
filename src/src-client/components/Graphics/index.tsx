@@ -8,12 +8,12 @@ import {
 } from "@/src-client/utilities/totalGenerate";
 import { Excess } from "./Excess";
 import { options, optionsMobile } from "@/src-client/utilities/graphicsOptions";
-import { Modal } from "react-bootstrap";
 import { LongExcess } from "./LongExcess";
 import { catTransactions } from "@/utils/categoriesTransactions";
 import { filterTransactions } from "@/utils/filterTransactions";
 import { datesRange } from "@/utils/dateRange";
 import SelectRange from "./selectRange";
+import Modal from "@components/generals/Modal";
 
 export interface ContentTable {
 	type: string;
@@ -239,11 +239,10 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 					<div className="row mt-2 relative">
 						<Modal
-							className="custom-container"
-							size="xl"
-							// fullscreen={true}
-							show={showModalIncome}
-							onHide={handleCloseModal}
+							showModal={showModalIncome}
+							className="bg-white w-fit  rounded shadow-md shadow-black p-4 text-black"
+							closeModal={handleCloseModal}
+							title="Buscar registro"
 						>
 							<TableComponent
 								content={tableContent.type === "ingresos" ? incomes : expenses}

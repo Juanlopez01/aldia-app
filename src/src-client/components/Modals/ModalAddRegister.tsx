@@ -50,39 +50,6 @@ export function ModalAddRegister({
 	const sendForm = async () => {
 		if (email && email !== null && email !== undefined) {
 			if (props.type === "expense") {
-				// const validExpense = isValidExpense(
-				//   totalIncomes,
-				//   totalExpenses,
-				//   form,
-				//   type
-				// );
-
-				// if (validExpense) {
-				//   Swal.fire({
-				//     title: validExpense,
-				//     text: "Estas seguro?",
-				//     showDenyButton: true,
-				//     confirmButtonText: "Aceptar",
-				//     denyButtonText: `Cancelar`,
-				//     reverseButtons: true,
-				//   }).then((result) => {
-				//     /* Read more about isConfirmed, isDenied below */
-				//     if (result.isConfirmed) {
-				//       if (type === "negocio") {
-				//         dispatch(addCompanyExpense({ ...form, type: type! }, email));
-				//         setForm(initialStateForm);
-				//         handleClose();
-				//       } else {
-				//         dispatch(addExpense({ ...form, type: type! }, email));
-				//         setForm(initialStateForm);
-				//         handleClose();
-				//       }
-				//     } else if (result.isDenied) {
-				//       setForm(initialStateForm);
-				//       handleClose();
-				//     }
-				//   });
-				// } else {
 				if (type === "negocio") {
 					dispatch(addCompanyExpense({ ...form, type: type! }, id));
 					setForm(initialStateForm);
@@ -124,25 +91,6 @@ export function ModalAddRegister({
 				<FormRegister setForm={setForm} form={form} />
 			</Modal>
 
-
-			{/* // <Modal className="text-center" show={show} onHide={handleClose}> 
-			// 	<Modal.Header closeButton>
-			// 		<Modal.Title className="d-flex justify-content-center">
-			// 			{props.title} {type}
-			// 		</Modal.Title>
-			// 	</Modal.Header>
-			// 	<Modal.Body className="d-flex justify-content-center align-items-center">
-			// 		<FormRegister setForm={setForm} form={form} />
-			// 	</Modal.Body>
-			// 	<Modal.Footer className="d-flex justify-content-center">
-			// 		<Button variant="secondary" onClick={handleClose}>
-			// 			Cancelar
-			// 		</Button>
-			// 		<Button variant="primary" onClick={sendForm}>
-			// 			{props.buttonText}
-			// 		</Button>
-			// 	</Modal.Footer>
-			// </Modal> */}
 		</>
 	);
 }
