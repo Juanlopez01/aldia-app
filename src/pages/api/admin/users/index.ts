@@ -17,6 +17,8 @@ const setQuery = ({ name, email }: queryInput): queryOutput => {
   return query
 }
 
+const LIMIT_USERS = 10
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -30,17 +32,17 @@ export default async function handler(
     if (method === 'GET') {
       const [users, count] = await Promise.all([
         User.find(query)
-          .limit(10)
-          .skip((currentPage - 1) * 10)
+          .limit(LIMIT_USERS)
+          .skip((currentPage - 1) * LIMIT_USERS)
           .exec(),
-        User.estimatedDocumentCount(query),
+        User.countDocuments(query),
       ])
 
       return res.status(200).json({
         success: true,
         currentPage,
         count,
-        totalPages: Math.ceil(count / 10),
+        totalPages: Math.ceil(count / LIMIT_USERS),
         users,
       })
     } else throw new CustomError('Invalid Method', 400)

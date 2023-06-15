@@ -1,11 +1,16 @@
 import { UserWithId } from "@/models/user.model"
 import Image from 'next/image'
 import AdminModal from "./AdminModal"
+import { useState } from "react"
 
 type Props = {
     user: UserWithId
 }
-export default function AdminTableRow({user}:Props) {
+export default function AdminTableRow({user:userProp}:Props) {
+  const [user, setUser]=useState<UserWithId>(userProp)
+  const handlerChangeUser = (user:UserWithId)=>{
+setUser(user)
+  }
     const [status, provider, plan]=user.status.split(' - ')
   return (
     <>
@@ -29,7 +34,7 @@ export default function AdminTableRow({user}:Props) {
         <th>{plan}</th>
         <th>{provider}</th>
         <th>
-          <AdminModal user={user} />
+          <AdminModal user={user} onSuccess={handlerChangeUser} />
         </th>
       </tr>
     </>

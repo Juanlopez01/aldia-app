@@ -10,10 +10,12 @@ import Swal from 'sweetalert2'
 
 type Props = {
   user: UserWithId
+  onSuccess: (user: UserWithId) => void
 }
 interface ResponseValidate {
   success: boolean
   message: string
+  user: UserWithId
 }
 
 const validatePaymentUserManually = async (
@@ -31,11 +33,12 @@ const validatePaymentUserManually = async (
   return response
 }
 
-export default function AdminModal({ user }: Props) {
+export default function AdminModal({ user, onSuccess }: Props) {
   const { toggle, toggleHandler } = useToggle(false)
   const handlerValidateUser = async (planType: 'basic' | 'premium') => {
     try {
       const res = await validatePaymentUserManually(user._id, planType)
+      onSuccess(res.user)
       toggleHandler()
       Swal.fire({
         icon: 'success',
