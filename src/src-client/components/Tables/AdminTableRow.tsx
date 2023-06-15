@@ -22,7 +22,6 @@ const PROVIDERS_DIC = {
 
 type Props = {
   user: UserWithId
-  flag: number
 }
 
 export default function AdminTableRow({ user: userProp }: Props) {
