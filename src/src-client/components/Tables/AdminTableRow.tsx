@@ -1,34 +1,44 @@
-import { UserWithId } from "@/models/user.model"
+import { UserWithId } from '@/models/user.model'
 import Image from 'next/image'
-import AdminModal from "./AdminModal"
-import { useState } from "react"
-import { PlansTypes } from "@hooks/use-validate-plan"
+import AdminModal from './AdminModal'
+import { useEffect, useState } from 'react'
+import { PlansTypes } from '@hooks/use-validate-plan'
 
 const STATUS_DIC = {
   pending: 'Pendiente',
-  active: 'Activo'
+  active: 'Activo',
 }
 
 const PLANS_DIC = {
   free: 'Gratis',
   basic: 'Básico',
-  premium: 'Premium'
+  premium: 'Premium',
 }
-const PROVIDERS_DIC ={
+const PROVIDERS_DIC = {
   manual: 'Manual',
   MP: 'Mercado Pago',
-  initial: 'Inicial'
+  initial: 'Inicial',
 }
 
 type Props = {
-    user: UserWithId
+  user: UserWithId
+  flag: number
 }
-export default function AdminTableRow({user:userProp}:Props) {
-  const [user, setUser]=useState<UserWithId>(userProp)
-  const handlerChangeUser = (user:UserWithId)=>{
-setUser(user)
+export default function AdminTableRow({ user: userProp }: Props) {
+  const [user, setUser] = useState<UserWithId>(userProp)
+  const handlerChangeUser = (user: UserWithId) => {
+    setUser(user)
   }
-    const [status, provider, plan]=user.status.split(' - ')as ['pending' | 'active' , 'MP' | 'manual' | 'initial',PlansTypes]
+
+  useEffect(() => {
+    setUser(userProp)
+  }, [userProp])
+
+  const [status, provider, plan] = user.status.split(' - ') as [
+    'pending' | 'active',
+    'MP' | 'manual' | 'initial',
+    PlansTypes
+  ]
   return (
     <>
       <tr
@@ -47,12 +57,12 @@ setUser(user)
         </th>
         <th>{user.fullName}</th>
         <th>{user.email}</th>
-        <th className='text-center'>{STATUS_DIC[status]}</th>
-        <th className='text-center'>{PLANS_DIC[plan]}</th>
-        <th className='text-center'>{PROVIDERS_DIC[provider]}</th>
+        <th className="text-center">{STATUS_DIC[status]}</th>
+        <th className="text-center">{PLANS_DIC[plan]}</th>
+        <th className="text-center">{PROVIDERS_DIC[provider]}</th>
         {/* <th className='text-center'>{PROVIDERS_DIC.MP}</th> */}
-        <th >
-          <AdminModal user={user} onSuccess={handlerChangeUser}/>
+        <th>
+          <AdminModal user={user} onSuccess={handlerChangeUser} />
         </th>
       </tr>
     </>

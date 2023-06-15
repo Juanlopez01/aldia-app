@@ -1,6 +1,6 @@
 import { UserWithId } from '@/models/user.model'
 import SearchBar from '@components/generals/SeachBar'
-import { useEffect,  useState } from 'react'
+import { useEffect, useState } from 'react'
 import { requestAdminUsers } from '@/utils/request'
 import AdminTableRow from './AdminTableRow'
 import { PendingIcon } from '@components/svgs/pending'
@@ -17,16 +17,16 @@ interface RequestUser {
   users: UserWithId[]
 }
 const filtersInitalState = {
-  search:'',
-  by:'',
+  search: '',
+  by: '',
   pending: false,
-  page:1
+  page: 1,
 }
 
 export default function AdminTable() {
   const [users, setUSers] = useState<UserWithId[]>([])
   const [totalPages, setTotalPages] = useState<number>(0)
-  const [filters , setFilters] = useState(filtersInitalState)
+  const [filters, setFilters] = useState(filtersInitalState)
   const handlerUsers = (path = '', config: RequestInit = {}) => {
     requestAdminUsers<RequestUser>(path, config).then((data) => {
       setUSers(data.users)
@@ -34,8 +34,7 @@ export default function AdminTable() {
     })
   }
 
-
-  const resetUsers = ()=>{
+  const resetUsers = () => {
     handlerUsers()
   }
   useEffect(() => {
@@ -43,17 +42,27 @@ export default function AdminTable() {
       handlerUsers()
     }
   }, []) // eslint-disable-line
-  const handlerClickPage =(page:number)=>{
-    const {search, by}= filters
-    const setQuery = search && by ? `&${by}=${search}`: '' 
-    handlerUsers(`?page=${page}${setQuery}`)
+  const handlerClickPage = (page: number) => {
+    const { search, by, pending } = filters
+    const setQuery = search && by ? `&${by}=${search}` : ''
+    const setPend = pending ? `&pending=${pending}` : ''
+    handlerUsers(`?page=${page}${setQuery}${setPend}`)
   }
 
-  const handlerClickPending = ()=>{
-    setFilters({...filters, pending: !filters.pending})
+  const handlerClickPending = () => {
+    setFilters({ ...filters, pending: !filters.pending, page: 1 })
+    const { search, by, pending } = filters
+    const setQuery = search && by ? `&${by}=${search}` : ''
+    handlerUsers(`?pending=${!pending}${setQuery}`)
   }
-  const onSubmit = (inputSearch: string, filterBy?: string  ) => {
-    setFilters({...filters, search: inputSearch, by: filterBy || 'name', page:1})
+
+  const onSubmit = (inputSearch: string, filterBy?: string) => {
+    setFilters({
+      ...filters,
+      search: inputSearch,
+      by: filterBy || 'name',
+      page: 1,
+    })
     handlerUsers(`?${filterBy}=${inputSearch}`)
   }
   return (
@@ -65,21 +74,19 @@ export default function AdminTable() {
           title="User List"
         >
           <button
-          type='button'
-          title='Usuarios pendientes de activar'
-          onClick={handlerClickPending}
+            type="button"
+            title="Usuarios pendientes de activar"
+            onClick={handlerClickPending}
           >
-            <PendingIcon className={`w-5 h-5 ${filters.pending && 'fill-medium-blue'}`} />
+            <PendingIcon
+              className={`w-5 h-5 ${filters.pending && 'fill-medium-blue'}`}
+            />
           </button>
-          <button
-          type='reset'
-          title='Limpiar filtros'
-          onClick={resetUsers}
-          >
-            <FontAwesomeIcon icon={faRepeat} className=''/>
+          <button type="reset" title="Limpiar filtros" onClick={resetUsers}>
+            <FontAwesomeIcon icon={faRepeat} className="" />
           </button>
         </SearchBar>
-        <Pagination pages={totalPages} handleClick={handlerClickPage}/>
+        <Pagination pages={totalPages} handleClick={handlerClickPage} />
         <section className="mx-2 rounded-md shadow overflow-hidden">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -87,16 +94,16 @@ export default function AdminTable() {
                 <th className="w-10">Imagen</th>
                 <th>Nombre</th>
                 <th>Email</th>
-                <th className='text-center'>Status</th>
-                <th className='text-center'>Plan</th>
-                <th className='text-center'>Provider</th>
-                <th className='text-center'>Actions</th>
+                <th className="text-center">Status</th>
+                <th className="text-center">Plan</th>
+                <th className="text-center">Provider</th>
+                <th className="text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {users.map((user, i) => (
                 <>
-                  <AdminTableRow user={user} key={i} />
+                  <AdminTableRow user={user} key={i} flag={totalPages} />
                 </>
               ))}
             </tbody>

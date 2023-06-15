@@ -5,15 +5,18 @@ import { NextApiRequest, NextApiResponse } from 'next'
 type queryInput = {
   name?: string | string[]
   email?: string | string[]
+  pending?: string | string[]
 }
 type queryOutput = {
   fullName?: RegExp
   email?: RegExp
+  status?: RegExp
 }
-const setQuery = ({ name, email }: queryInput): queryOutput => {
+const setQuery = ({ name, email,pending }: queryInput): queryOutput => {
   const query: queryOutput = {}
   if (email && typeof email === 'string') query.email = new RegExp(email, 'i')
   if (name && typeof name === 'string') query.fullName = new RegExp(name, 'i')
+  if (pending === 'true') query.status = new RegExp('pending', 'i')
   return query
 }
 
@@ -24,9 +27,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { method } = req
-  const { page = 1, name, email } = req.query
+  const { page = 1, name, email, pending } = req.query
   const currentPage = Number(page)
-  const query = setQuery({ name, email })
+  const query = setQuery({ name, email,pending })
   try {
     await conn()
     if (method === 'GET') {
