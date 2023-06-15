@@ -46,7 +46,7 @@ export default function NotifyBtn({ plan }: { plan: PayPlanes }) {
   return (
     <button
       onClick={handlerClick}
-      className="py-1 px-4 bg-main-yellow text-black rounded font-semibold"
+      className="py-1 px-4 bg-main-yellow dark:bg-light-blue dark:text-gray-300 text-gray-900 rounded font-semibold"
     >
       Notificar al administrador
     </button>

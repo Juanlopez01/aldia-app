@@ -25,16 +25,16 @@ export default function Checkout() {
   
   return (
     <>
-      <main className="flex justify-center bg-light-green dark:bg-violet-blue-landing">
-        <ul className="flex flex-wrap gap-4 justify-center m-0 p-0 flex-grow px-4 my-4">
+      <main className="flex justify-center bg-light-green dark:bg-violet-blue-landing py-16">
+        <ul className="flex flex-wrap gap-8 justify-center m-0 p-0 flex-grow px-4 my-4">
           {/* 1. pay your subscription */}
-          <li className="max-w-[500px] flex flex-col items-start justify-between shadow-md px-4 rounded-lg">
+          <li className="max-w-[500px] flex flex-col items-start justify-between shadow-plan px-4 rounded-lg">
             <article className="[&>p]:m-0 mt-2 flex flex-col justify-around">
               <header className="">
-                <h1 className="text-4xl font-bold my-4 ">
-                  <span className="text-medium-blue mr-2">1.</span> Paga tu
+                <h2 className="text-3xl font-bold my-4 drop-shadow-xl">
+                  <span className="text-main-green dark:text-medium-blue mr-2">01.</span> Paga tu
                   subscripción
-                </h1>
+                </h2>
               </header>
               <p>
                 Realiza tu pago escaneando el codigo QR o haciendo un deposito
@@ -55,13 +55,13 @@ export default function Checkout() {
           </li>
 
           {/* 2. notification */}
-          <li className="max-w-[500px] flex flex-col items-start justify-between shadow-md px-4 rounded-lg">
+          <li className="max-w-[500px] flex flex-col items-start justify-between shadow-plan px-4 rounded-lg">
             <article className="[&>p]:m-0 mt-2 flex flex-col justify-around">
               <header className="">
-                <h1 className="text-4xl font-bold m-0 my-4 ">
-                  <span className="text-medium-blue mr-2">2.</span>
-                  Envía un notificación
-                </h1>
+                <h2 className="text-3xl font-bold m-0 my-4 drop-shadow-xl">
+                  <span className="text-main-green dark:text-medium-blue mr-2">02.</span>
+                  Envía una notificación
+                </h2>
               </header>
               <p>
                 Envia el comprobante de pago al siguiente Whatsapp con tu email
@@ -84,13 +84,13 @@ export default function Checkout() {
           </li>
 
           {/* 3. espera */}
-          <li className="max-w-[500px] flex flex-col items-start justify-between shadow-md px-4 rounded-lg">
+          <li className="max-w-[700px] flex flex-col items-start justify-between shadow-plan px-4 rounded-lg">
             <article className="mt-2 [&>p]:m-0 flex flex-col justify-around">
               <header className="">
-                <h1 className="text-4xl font-bold m-0 my-4 ">
-                  <span className="text-medium-blue mr-2 mb-2">3.</span>
+                <h2 className="text-3xl font-bold m-0 my-4 ">
+                  <span className="text-main-green dark:text-medium-blue mr-2 mb-2 drop-shadow-xl">03.</span>
                   Espera
-                </h1>
+                </h2>
               </header>
               <p>
                 Un vez realizado los pasos anteriores, tu pago será procesado,
