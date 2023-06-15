@@ -2,14 +2,14 @@ import { useAppSelector } from '@hooks/use-redux'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
-
 interface searchBarProps {
   filterType?: string[]
   title?: string
   onSubmit: (inputSearch: string, filterBy?: string) => void
+  children?: React.ReactNode
 }
 
-export default function SearchBar({ onSubmit, filterType, title }: searchBarProps) {
+export default function SearchBar({ onSubmit, filterType, title , children}: searchBarProps) {
   const { image } = useAppSelector(
     (s) => s.PersonalReducer.user || { image: '/UserDeault.png' }
   )
@@ -53,6 +53,7 @@ export default function SearchBar({ onSubmit, filterType, title }: searchBarProp
             <button>
               <FontAwesomeIcon icon={faMagnifyingGlass} className="m-auto" />
             </button>
+            {children}
           </form>
           <Image
             src={image}
