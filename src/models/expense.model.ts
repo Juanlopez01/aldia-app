@@ -7,6 +7,7 @@ export interface ExpenseType {
   category: string;
   value: number;
   date: Date;
+  credit: string;
 }
 
 const expenseSchema = new Schema<ExpenseType, Model<ExpenseType>>(
@@ -15,7 +16,8 @@ const expenseSchema = new Schema<ExpenseType, Model<ExpenseType>>(
     value: { type: Number, required: true },
     description: { type: String, required: false },
     category: { type: String, required: true },
-    date: {type: Date, required: true}
+    date: {type: Date, required: true},
+    credit: { type: String, required: true, default: 'Un pago'}
   },
   {
     timestamps: false,

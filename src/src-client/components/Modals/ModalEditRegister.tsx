@@ -1,7 +1,7 @@
 import capitalize from "@/utils/capitalize";
 import Image from "next/image";
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import icoEditar from "../../../../assets/pencil-svgrepo-com.svg";
 import FormRegister from "./FormAddRegister";
@@ -16,6 +16,7 @@ import {
   updatePersonalIncome,
 } from "@/redux/slice/PersonalSlice";
 import { updateAdminCompanyExpense, updateAdminCompanyIncome, updateAdminUserExpense, updateAdminUserIncome } from "@/redux/slice/AdminSlice";
+import Modal from "../generals/Modal";
 
 interface PropsModal {
   props: {
@@ -26,6 +27,7 @@ interface PropsModal {
     id: String;
     table: String,
     date: Date;
+    credit: string;
   };
 }
 
@@ -34,7 +36,8 @@ const initialStateForm = {
   description: "",
   category: "",
   value: 0,
-  date: new Date()
+  date: new Date(),
+  credit: 'Un pago',
 };
 
 export function ModalEdit({ props }: PropsModal) {
@@ -49,7 +52,8 @@ export function ModalEdit({ props }: PropsModal) {
       category: props.category.toString(),
       description: props.description.toString(),
       type: props.type.toString(),
-      date: props.date
+      date: props.date,
+      credit: props.credit
     });
     setShow(true);
   };
@@ -98,22 +102,9 @@ export function ModalEdit({ props }: PropsModal) {
       >
         <Image src={icoEditar} alt="Editar" width={30} height={30} />
       </button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Editar Registro - {capitalize(props.table)}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <FormRegister setForm={setForm} form={form} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant="primary" onClick={sendForm}>
-            Editar registro
-          </Button>
-        </Modal.Footer>
+      
+      <Modal title={`Editar Registro - ${capitalize(props.table)}`} showModal={show} closeModal={handleClose} footer={<button onClick={sendForm}>Editar registro</button>} >
+        <FormRegister setForm={setForm} form={form} />
       </Modal>
     </>
   );
