@@ -87,10 +87,10 @@ export default function AdminTable() {
                 <th className="w-10">Imagen</th>
                 <th>Nombre</th>
                 <th>Email</th>
-                <th>Status</th>
-                <th>Plan</th>
-                <th>Provider</th>
-                <th>Actions</th>
+                <th className='text-center'>Status</th>
+                <th className='text-center'>Plan</th>
+                <th className='text-center'>Provider</th>
+                <th className='text-center'>Actions</th>
               </tr>
             </thead>
             <tbody>

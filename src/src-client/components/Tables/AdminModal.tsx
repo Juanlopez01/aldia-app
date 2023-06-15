@@ -58,8 +58,8 @@ export default function AdminModal({ user, onSuccess }: Props) {
   }
   return (
     <>
-      <button onClick={toggleHandler}>
-        <FontAwesomeIcon icon={faCircleInfo} />
+      <button onClick={toggleHandler} className='flex h-full w-full justify-center items-center' >
+        <FontAwesomeIcon icon={faCircleInfo} className='h-6 w-6 text-black' />
       </button>
       <Modal
         title={`Detalles de ${user.name}`}
