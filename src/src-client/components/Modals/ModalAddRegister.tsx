@@ -120,7 +120,7 @@ export function ModalAddRegister({
 			</div>
 
 			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${type}`} footer={<button onClick={sendForm} className="bg-main-yellow px-4 py-2 text-black rounded-md shadow-md">{props.buttonText}</button>}
-			className="bg-light-green px-8 py-4 shadow-sm rounded-xl">
+			className="bg-light-green px-10 py-4 shadow-sm rounded-xl">
 				<FormRegister setForm={setForm} form={form} />
 			</Modal>
 
