@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react'
 import { requestAdminUsers } from '@/utils/request'
 import AdminTableRow from './AdminTableRow'
 import { PendingIcon } from '@components/svgs/pending'
-import Pagination from '@components/generals/Pagination'
+import Pagination, {
+  PageHanlderPropType,
+} from '@components/generals/Pagination'
 import { faRepeat } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -31,9 +33,13 @@ export default function AdminTable() {
     requestAdminUsers<RequestUser>(path, config).then((data) => {
       setUSers(data.users)
       setTotalPages(data.totalPages)
+      setFilters({
+        ...filters,
+        page: Number(data.currentPage),
+      })
     })
   }
-
+  console.log({ filters })
   const resetUsers = () => {
     handlerUsers()
   }
@@ -42,11 +48,16 @@ export default function AdminTable() {
       handlerUsers()
     }
   }, []) // eslint-disable-line
-  const handlerClickPage = (page: number) => {
-    const { search, by, pending } = filters
+  const handlerClickPage = (pageEvent: PageHanlderPropType) => {
+    const { search, by, pending, page } = filters
     const setQuery = search && by ? `&${by}=${search}` : ''
     const setPend = pending ? `&pending=${pending}` : ''
-    handlerUsers(`?page=${page}${setQuery}${setPend}`)
+
+    if (pageEvent === 'next')
+      handlerUsers(`?page=${page + 1}${setQuery}${setPend}`)
+    else if (pageEvent === 'prev')
+      handlerUsers(`?page=${page - 1}${setQuery}${setPend}`)
+    else handlerUsers(`?page=${pageEvent}${setQuery}${setPend}`)
   }
 
   const handlerClickPending = () => {
@@ -66,7 +77,8 @@ export default function AdminTable() {
     handlerUsers(`?${filterBy}=${inputSearch}`)
   }
 
-  const stylesTH= "font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70 dark:text-black"
+  const stylesTH =
+    'font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70 dark:text-black'
 
   return (
     <>
@@ -75,8 +87,8 @@ export default function AdminTable() {
           filterType={FILTER_TYPES}
           onSubmit={onSubmit}
           title="Lista de usuarios"
-        />
-                <button
+        >
+          <button
             type="button"
             title="Usuarios pendientes de activar"
             onClick={handlerClickPending}
@@ -89,20 +101,31 @@ export default function AdminTable() {
             <FontAwesomeIcon icon={faRepeat} className="" />
           </button>
         </SearchBar>
-        <Pagination pages={totalPages} handleClick={handlerClickPage} />
+        <Pagination pages={totalPages} currentPage={filters.page} handleClick={handlerClickPage} />
         <section className="mx-2 rounded-md shadow overflow-x-auto mt-4">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-            <thead className="text-xs text-gray-700 uppercase 
-            dark:text-gray-400 border-b-[1px] border-b-gray-300 dark:border-b-gray-100 bg-white">
+            <thead
+              className="text-xs text-gray-700 uppercase 
+            dark:text-gray-400 border-b-[1px] border-b-gray-300 dark:border-b-gray-100 bg-white"
+            >
               <tr className="[&>th]:px-2">
-                <th className={`w-[60px] py-2 px-6 pl-2 ${stylesTH}`}>Imagen</th>
+                <th className={`w-[60px] py-2 px-6 pl-2 ${stylesTH}`}>
+                  Imagen
+                </th>
                 <th className={`py-3 px-6 pl-2 ${stylesTH}`}>Nombre</th>
                 <th className={`py-3 px-6 pl-2 ${stylesTH}`}>Email</th>
-                <th className={`py-3 px-6 pl-2 ${stylesTH}`}>Estado</th>
-                <th className={`py-3 px-6 pl-2 ${stylesTH}`}>Plan</th>
-                <th className={`py-3 px-6 pl-2 ${stylesTH}`}>Provider</th>
-                <th className={`py-3 px-6 pl-2 ${stylesTH}`}>Acciones</th>
-
+                <th className={`text-center py-3 px-6 pl-2 ${stylesTH}`}>
+                  Estado
+                </th>
+                <th className={`text-center py-3 px-6 pl-2 ${stylesTH}`}>
+                  Plan
+                </th>
+                <th className={`text-center py-3 px-6 pl-2 ${stylesTH}`}>
+                  Provider
+                </th>
+                <th className={`text-center py-3 px-6 pl-2 ${stylesTH}`}>
+                  Acciones
+                </th>
               </tr>
             </thead>
             <tbody>

@@ -61,7 +61,7 @@ export default function AdminTableRow({ user: userProp }: Props) {
         <th>{user.email}</th>
 
         <th className="text-center"><span className={`${status==="active" ? "bg-[#28a745]" : "bg-[#dc3545]"} py-2 px-3 rounded-full text-white w-full`}>{STATUS_DIC[status]}</span></th>
-        <th className="capitalize">{PLANS_DIC[plan]}</th>
+        <th className="text-center">{PLANS_DIC[plan]}</th>
         <th className="text-center">{PROVIDERS_DIC[provider]}</th>
         {/* <th className='text-center'>{PROVIDERS_DIC.MP}</th> */}
 
