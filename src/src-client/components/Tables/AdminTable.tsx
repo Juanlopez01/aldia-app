@@ -42,8 +42,8 @@ export default function AdminTable() {
       setPages({totalPages, currentPage})
     })
   }
-console.log({users})
   const resetUsers = () => {
+    setFilters(filtersInitalState)
     handlerUsers()
   }
   useEffect(() => {
@@ -51,6 +51,8 @@ console.log({users})
       handlerUsers()
     }
   }, []) // eslint-disable-line
+
+
   const handlerClickPage = (pageEvent: PageHanlderPropType) => {
     const { search, by, pending } = filters
     const {currentPage,totalPages}= pages
