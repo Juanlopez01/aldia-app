@@ -35,7 +35,7 @@ export default function Pagination({
           <button
             className={`w-8 h-8 bg-white font-semibold border-[1px] rounded-sm text-center ${
               page === currentPage
-                ? 'border-medium-blue text-medium-blue'
+                ? ' border-main-green text-main-green dark:border-medium-blue dark:text-medium-blue'
                 : 'border-gray-200'
             }`}
             onClick={() => handleClick(page)}
