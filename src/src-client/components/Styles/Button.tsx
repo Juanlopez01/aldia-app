@@ -8,7 +8,7 @@ const ButtonSolid = (props: any) => (
 	</button>
 );
 
-const ButtonTransparent = (props: {handleClick: MouseEventHandler<HTMLButtonElement>, children: any, classes: string}) => {
+const ButtonTransparent = (props: {handleClick: MouseEventHandler<HTMLButtonElement>, children: any, classes: string, color: string | null}) => {
 	return (
 		<button
 			className={`border-[1px] border-gray-900  text-gray-900 dark:border-main-yellow dark:text-main-yellow rounded-[12px] ${props?.classes}`}

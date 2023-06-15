@@ -6,8 +6,8 @@ import ProgressBar from "./ProgressBar";
 
 interface GoalBarTypes {
 	title: String;
-	goalValue: Number;
-	excess: Number;
+	goalValue: number;
+	excess: number;
 	status: String;
 	priority: Number;
 	plazo: String;

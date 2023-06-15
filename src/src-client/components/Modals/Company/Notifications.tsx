@@ -39,7 +39,9 @@ const Notifications = ({data, dispatch} : any) => {
   return (
     <>
       <button onClick={() => {setShow(true)}}>Notificaciones</button>
-      <Modal showModal={show} closeModal={closeModal} title='Notificaciones' footer={<></>} children={list} />
+      <Modal showModal={show} closeModal={closeModal} title='Notificaciones' footer={<></>} >
+        {list}
+      </Modal>
     </>
   )
 }

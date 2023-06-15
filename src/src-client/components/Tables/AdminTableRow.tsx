@@ -24,6 +24,7 @@ type Props = {
   user: UserWithId
   flag: number
 }
+
 export default function AdminTableRow({ user: userProp }: Props) {
   const [user, setUser] = useState<UserWithId>(userProp)
   const handlerChangeUser = (user: UserWithId) => {
@@ -39,14 +40,15 @@ export default function AdminTableRow({ user: userProp }: Props) {
     'MP' | 'manual' | 'initial',
     PlansTypes
   ]
+
   return (
     <>
       <tr
         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 [&>th]:hover:bg-gray-200 
-        [&>th]:px-2 
+        [&>th]:px-2
         "
       >
-        <th>
+        <th className="py-1">
           <Image
             src={user.image}
             alt="imagen del usuario"
@@ -55,12 +57,14 @@ export default function AdminTableRow({ user: userProp }: Props) {
             className="rounded-full m-auto"
           />
         </th>
-        <th>{user.fullName}</th>
+        <th>{user.fullName ? user.fullName : "Sin nombre"}</th>
         <th>{user.email}</th>
-        <th className="text-center">{STATUS_DIC[status]}</th>
-        <th className="text-center">{PLANS_DIC[plan]}</th>
+
+        <th className="text-center"><span className={`${status==="active" ? "bg-[#28a745]" : "bg-[#dc3545]"} py-2 px-3 rounded-full text-white w-full`}>{STATUS_DIC[status]}</span></th>
+        <th className="capitalize">{PLANS_DIC[plan]}</th>
         <th className="text-center">{PROVIDERS_DIC[provider]}</th>
         {/* <th className='text-center'>{PROVIDERS_DIC.MP}</th> */}
+
         <th>
           <AdminModal user={user} onSuccess={handlerChangeUser} />
         </th>

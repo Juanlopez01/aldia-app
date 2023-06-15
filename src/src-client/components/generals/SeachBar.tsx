@@ -25,7 +25,7 @@ export default function SearchBar({ onSubmit, filterType, title , children}: sea
 
   return (
     <>
-      <header className="h-12 m-2 rounded shadow-md w-auto flex justify-center">
+      <header className="h-12 m-2 rounded shadow-md w-auto flex justify-center bg-white">
         <nav className="flex flex-row justify-between items-center w-full px-2 text-gray-800">
           <h1 className="text-lg font-bold m-0">{title}</h1>
           <form

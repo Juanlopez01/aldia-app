@@ -118,7 +118,7 @@ const GoalBar = ({
 										addPersonalExpense(
 											{
 												type: "personales",
-												value: goalValue,
+												value: goalValue.valueOf(),
 												description: title,
 												category: "Metas",
 												date: new Date()
