@@ -103,13 +103,13 @@ interface LongResultType {
     expenses: number[];
 }
 
-export const totalLongExcess = (incomes : any, expenses : any)=> {
+export const totalLongExcess = (incomes : any, expenses : any, categories : string[])=> {
     const longTransactions : LongResultType= {
         incomes: [],
         expenses: [],
     }
     
-    catTransactions.forEach((category) => {
+    categories.forEach((category) => {
         const auxIncomes = incomes.filter((income : IncomeType) => income.category === category)
         const auxExpenses = expenses.filter((expense : ExpenseType) => expense.category === category)
         auxIncomes.length > 0 ? 

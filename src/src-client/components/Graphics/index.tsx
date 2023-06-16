@@ -91,7 +91,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		],
 	};
 
-	const longExcessData = totalLongExcess(filterIncomes, filterExpenses);
+	const longExcessData = totalLongExcess(filterIncomes, filterExpenses, IncomesResult.categories.slice(0, 6));
 	const dataLongExcess = {
 		labels: catTransactions,
 		datasets: [
