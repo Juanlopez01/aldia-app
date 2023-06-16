@@ -110,6 +110,7 @@ export const TableComponent = ({ content, filters }: any) => {
                       id: ele._id!,
                       table: filters.type,
                       date: ele.date,
+                      credit: ele.credit,
                     }}
                   />
                   <DeleteRegister id={ele._id} filters={filters} />

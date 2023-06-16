@@ -8,12 +8,12 @@ import {
 } from "@/src-client/utilities/totalGenerate";
 import { Excess } from "./Excess";
 import { options, optionsMobile } from "@/src-client/utilities/graphicsOptions";
-import { Modal } from "react-bootstrap";
 import { LongExcess } from "./LongExcess";
 import { catTransactions } from "@/utils/categoriesTransactions";
 import { filterTransactions } from "@/utils/filterTransactions";
 import { datesRange } from "@/utils/dateRange";
 import SelectRange from "./selectRange";
+import Modal from "@components/generals/Modal";
 
 export interface ContentTable {
 	type: string;
@@ -32,7 +32,6 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	const {filterIncomes, filterExpenses} = filterTransactions(incomes, expenses, dateRange)
 
 	const { IncomesResult, ExpensesResult } = totalGenerate(filterIncomes, filterExpenses);
-
 	const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExcess = [totalIncomes, totalExpenses];
@@ -41,15 +40,14 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		slice: "",
 	});
 
-	
 
 	const dataIncomes = {
-		labels: IncomesResult.categories,
+		labels: IncomesResult.categories.slice(0, 5),
 		datasets: [
 			{
 				label: "",
-				data: IncomesResult.totals,
-				backgroundColor: IncomesResult.colors,
+				data: IncomesResult.totals.slice(0, 5),
+				backgroundColor: IncomesResult.colors.slice(0, 5),
 				hoverOffset: 4,
 				borderColor: "transparent",
 				datalabels: {
@@ -60,12 +58,12 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	};
 
 	const dataExpenses = {
-		labels: ExpensesResult.categories,
+		labels: ExpensesResult.categories.slice(0, 5),
 		datasets: [
 			{
 				label: "",
-				data: ExpensesResult.totals,
-				backgroundColor: ExpensesResult.colors,
+				data: ExpensesResult.totals.slice(0, 5),
+				backgroundColor: ExpensesResult.colors.slice(0, 5),
 				hoverOffset: 4,
 				borderColor: "transparent",
 				datalabels: {
@@ -93,7 +91,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		],
 	};
 
-	const longExcessData = totalLongExcess(filterIncomes, filterExpenses);
+	const longExcessData = totalLongExcess(filterIncomes, filterExpenses, IncomesResult.categories.slice(0, 6));
 	const dataLongExcess = {
 		labels: catTransactions,
 		datasets: [
@@ -239,11 +237,10 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 					<div className="row mt-2 relative">
 						<Modal
-							className="custom-container"
-							size="xl"
-							// fullscreen={true}
-							show={showModalIncome}
-							onHide={handleCloseModal}
+							showModal={showModalIncome}
+							className="bg-white w-fit  rounded shadow-md shadow-black p-4 text-black"
+							closeModal={handleCloseModal}
+							title="Buscar registro"
 						>
 							<TableComponent
 								content={tableContent.type === "ingresos" ? incomes : expenses}
