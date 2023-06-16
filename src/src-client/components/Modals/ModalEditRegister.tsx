@@ -1,8 +1,6 @@
 import capitalize from "@/utils/capitalize";
 import Image from "next/image";
 import { useState } from "react";
-// import { Button, Modal } from "react-bootstrap";
-
 import { useDispatch } from "react-redux";
 import icoEditar from "../../../../assets/pencil-svgrepo-com.svg";
 import FormRegister from "./FormAddRegister";
@@ -44,7 +42,7 @@ export function ModalEdit({ props }: PropsModal) {
   const [show, setShow] = useState(false);
   const dispatch: Function = useDispatch();
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false);}
   const handleShow = () => {
     setForm({
       value: props.value,
@@ -97,7 +95,7 @@ export function ModalEdit({ props }: PropsModal) {
     <>
       <button
         onClick={handleShow}
-        className="border-0 rounded-1 m-1 text-white"
+        className="border-0 rounded-1 m-1 text-white "
       >
         <Image src={icoEditar} alt="Editar" width={30} height={30} />
       </button>
@@ -106,30 +104,14 @@ title={`Editar Registro - ${capitalize(props.table)}`}
 showModal={show}
 closeModal={handleClose}
 footer={(
-  <>
-  <button onClick={handleClose}>Cancelar</button>
-  <button onClick={sendForm}>Editar registro</button>
-  </>)}
+  <div className="flex  flex-row justify-around">
+  <button className="py-2 px-4 rounded bg-red-600 text-white w-fit " onClick={handleClose}>Cancelar</button>
+  <button className="py-2 px-4 rounded bg-dark-blue text-white w-fit " onClick={sendForm}>Editar registro</button>
+  </div>
+  )}
 >
 <FormRegister setForm={setForm} form={form} />
 </Modal>
-
-      {/* <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Editar Registro - {capitalize(props.table)}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <FormRegister setForm={setForm} form={form} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant="primary" onClick={sendForm}>
-            Editar registro
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
     </>
   );
 }
