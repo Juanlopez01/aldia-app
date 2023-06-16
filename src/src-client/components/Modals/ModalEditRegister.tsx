@@ -1,95 +1,100 @@
-import capitalize from "@/utils/capitalize";
-import Image from "next/image";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import icoEditar from "../../../../assets/pencil-svgrepo-com.svg";
-import FormRegister from "./FormAddRegister";
+import capitalize from '@/utils/capitalize'
+import Image from 'next/image'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import icoEditar from '../../../../assets/pencil-svgrepo-com.svg'
+import FormRegister from './FormAddRegister'
 
 import {
   updateCompanyExpense,
   updateCompanyIncome,
-} from "@/redux/slice/CompanySlice";
+} from '@/redux/slice/CompanySlice'
 
 import {
   updatePersonalExpense,
   updatePersonalIncome,
-} from "@/redux/slice/PersonalSlice";
-import { updateAdminCompanyExpense, updateAdminCompanyIncome, updateAdminUserExpense, updateAdminUserIncome } from "@/redux/slice/AdminSlice";
-import Modal from "@components/generals/Modal";
+} from '@/redux/slice/PersonalSlice'
+import {
+  updateAdminCompanyExpense,
+  updateAdminCompanyIncome,
+  updateAdminUserExpense,
+  updateAdminUserIncome,
+} from '@/redux/slice/AdminSlice'
+import Modal from '@components/generals/Modal'
 
 interface PropsModal {
   props: {
-    type: String;
-    description: String;
-    category: String;
-    value: number;
-    id: String;
-    table: String,
-    date: Date;
-  };
+    type: String
+    description: String
+    category: String
+    value: number
+    id: String
+    table: String
+    date: Date
+  }
 }
 
 const initialStateForm = {
-  type: "",
-  description: "",
-  category: "",
+  type: '',
+  description: '',
+  category: '',
   value: 0,
-  date: new Date()
-};
+  date: new Date(),
+}
 
 export function ModalEdit({ props }: PropsModal) {
-  const [form, setForm] = useState(initialStateForm);
-  const [show, setShow] = useState(false);
-  const dispatch: Function = useDispatch();
+  const [form, setForm] = useState(initialStateForm)
+  const [show, setShow] = useState(false)
+  const dispatch: Function = useDispatch()
 
-  const handleClose = () => {setShow(false);}
+  const handleClose = () => {
+    setShow(false)
+  }
   const handleShow = () => {
     setForm({
       value: props.value,
       category: props.category.toString(),
       description: props.description.toString(),
       type: props.type.toString(),
-      date: props.date
-    });
-    setShow(true);
-  };
+      date: props.date,
+    })
+    setShow(true)
+  }
 
-  console.log({form, props})
+  console.log({ form, props })
   const sendForm = () => {
     switch (props.table) {
       case 'ingresos':
-      props.type.toString() === "negocio"
-        ? dispatch(updateCompanyIncome(form, props.id))
-        : dispatch(updatePersonalIncome(form, props.id));
-      setForm(initialStateForm);
-      handleClose();
-      break;
+        props.type.toString() === 'negocio'
+          ? dispatch(updateCompanyIncome(form, props.id))
+          : dispatch(updatePersonalIncome(form, props.id))
+        setForm(initialStateForm)
+        handleClose()
+        break
       case 'gastos':
-      // const validExpense = isValidExpense(totalIncomes, totalExpenses, form);
-      //TODO: cambiar esta logica para que te deje
-      props.type.toString() === "negocio"
-        ? dispatch(updateCompanyExpense(form, props.id))
-        : dispatch(updatePersonalExpense(form, props.id));
+        props.type.toString() === 'negocio'
+          ? dispatch(updateCompanyExpense(form, props.id))
+          : dispatch(updatePersonalExpense(form, props.id))
 
-      setForm(initialStateForm);
-      handleClose();
-      break;
+        setForm(initialStateForm)
+        handleClose()
+        break
       case 'admin expenses':
-      props.type.toString() === 'negocio'
-        ? dispatch(updateAdminCompanyExpense(form, props.id))
-        : dispatch(updateAdminUserExpense(form, props.id))
-      setForm(initialStateForm);
-      handleClose();
-      break;
+        props.type.toString() === 'negocio'
+          ? dispatch(updateAdminCompanyExpense(form, props.id))
+          : dispatch(updateAdminUserExpense(form, props.id))
+        setForm(initialStateForm)
+        handleClose()
+        break
       case 'admin incomes':
-      props.type.toString() === 'negocio'
-        ? dispatch(updateAdminCompanyIncome(form, props.id))
-        : dispatch(updateAdminUserIncome(form, props.id))
-        setForm(initialStateForm);
-      handleClose();
-      break;
+        props.type.toString() === 'negocio'
+          ? dispatch(updateAdminCompanyIncome(form, props.id))
+          : dispatch(updateAdminUserIncome(form, props.id))
+        setForm(initialStateForm)
+        handleClose()
+        break
     }
-  };
+  }
 
   return (
     <>
@@ -99,19 +104,29 @@ export function ModalEdit({ props }: PropsModal) {
       >
         <Image src={icoEditar} alt="Editar" width={30} height={30} />
       </button>
-<Modal 
-title={`Editar Registro - ${capitalize(props.table)}`} 
-showModal={show}
-closeModal={handleClose}
-footer={(
-  <div className="flex  flex-row justify-around">
-  <button className="py-2 px-4 rounded bg-red-600 text-white w-fit " onClick={handleClose}>Cancelar</button>
-  <button className="py-2 px-4 rounded bg-dark-blue text-white w-fit " onClick={sendForm}>Editar registro</button>
-  </div>
-  )}
->
-<FormRegister setForm={setForm} form={form} />
-</Modal>
+      <Modal
+        title={`Editar Registro - ${capitalize(props.table)}`}
+        showModal={show}
+        closeModal={handleClose}
+        footer={
+          <div className="flex  flex-row justify-around">
+            <button
+              className="py-2 px-4 rounded bg-red-600 text-white w-fit "
+              onClick={handleClose}
+            >
+              Cancelar
+            </button>
+            <button
+              className="py-2 px-4 rounded bg-dark-blue text-white w-fit "
+              onClick={sendForm}
+            >
+              Editar registro
+            </button>
+          </div>
+        }
+      >
+        <FormRegister setForm={setForm} form={form} />
+      </Modal>
     </>
-  );
+  )
 }
