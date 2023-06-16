@@ -1,7 +1,8 @@
 import capitalize from "@/utils/capitalize";
 import Image from "next/image";
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+// import { Button, Modal } from "react-bootstrap";
+
 import { useDispatch } from "react-redux";
 import icoEditar from "../../../../assets/pencil-svgrepo-com.svg";
 import FormRegister from "./FormAddRegister";
@@ -16,6 +17,7 @@ import {
   updatePersonalIncome,
 } from "@/redux/slice/PersonalSlice";
 import { updateAdminCompanyExpense, updateAdminCompanyIncome, updateAdminUserExpense, updateAdminUserIncome } from "@/redux/slice/AdminSlice";
+import Modal from "@components/generals/Modal";
 
 interface PropsModal {
   props: {
@@ -54,6 +56,7 @@ export function ModalEdit({ props }: PropsModal) {
     setShow(true);
   };
 
+  console.log({form, props})
   const sendForm = () => {
     switch (props.table) {
       case 'ingresos':
@@ -63,7 +66,7 @@ export function ModalEdit({ props }: PropsModal) {
       setForm(initialStateForm);
       handleClose();
       break;
-      case 'expenses':
+      case 'gastos':
       // const validExpense = isValidExpense(totalIncomes, totalExpenses, form);
       //TODO: cambiar esta logica para que te deje
       props.type.toString() === "negocio"
@@ -98,8 +101,20 @@ export function ModalEdit({ props }: PropsModal) {
       >
         <Image src={icoEditar} alt="Editar" width={30} height={30} />
       </button>
+<Modal 
+title={`Editar Registro - ${capitalize(props.table)}`} 
+showModal={show}
+closeModal={handleClose}
+footer={(
+  <>
+  <button onClick={handleClose}>Cancelar</button>
+  <button onClick={sendForm}>Editar registro</button>
+  </>)}
+>
+<FormRegister setForm={setForm} form={form} />
+</Modal>
 
-      <Modal show={show} onHide={handleClose}>
+      {/* <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Registro - {capitalize(props.table)}</Modal.Title>
         </Modal.Header>
@@ -114,7 +129,7 @@ export function ModalEdit({ props }: PropsModal) {
             Editar registro
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </>
   );
 }
