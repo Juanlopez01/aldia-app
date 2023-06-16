@@ -75,7 +75,7 @@ export default function AdminTable() {
           filterType={FILTER_TYPES}
           onSubmit={onSubmit}
           title="Lista de usuarios"
-        />
+        >
                 <button
             type="button"
             title="Usuarios pendientes de activar"
