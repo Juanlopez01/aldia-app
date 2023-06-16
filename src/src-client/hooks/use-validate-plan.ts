@@ -20,7 +20,7 @@ export const useValidatePlan = () => {
   const [timeToExpire, setTimeToExpire] = useState<string>('')
 
   const redirectToPricing = (to?: string) => {
-    router.push(`/pricing${to ? '?to=' + to : ''}`)
+    router.push(`/pricing${to ? `?to=${to}` : ''}`)
   }
 
   useEffect(() => {
