@@ -33,7 +33,7 @@ export default function Checkout() {
               <header className="">
                 <h2 className="text-3xl font-bold my-4 drop-shadow-xl text-center">
                   <span className="text-main-green dark:text-medium-blue mr-2">01.</span> Paga tu
-                  subscripción
+                  suscripción
                 </h2>
               </header>
               <p>
