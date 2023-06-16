@@ -238,7 +238,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 					<div className="row mt-2 relative">
 						<Modal
 							showModal={showModalIncome}
-							className="bg-white w-fit  rounded shadow-md shadow-black p-4 text-black"
+							className="bg-light-green w-fit  rounded shadow-md shadow-black p-4 text-black"
 							closeModal={handleCloseModal}
 							title="Buscar registro"
 						>

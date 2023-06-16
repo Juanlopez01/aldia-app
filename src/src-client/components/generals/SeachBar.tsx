@@ -46,7 +46,7 @@ export default function SearchBar({ onSubmit, filterType, title , children}: sea
               <input
                 type="text"
                 name="search"
-                className="bg-transparent "
+                className="bg-transparent py-1"
                 placeholder="Buscar..."
               />
             </fieldset>
