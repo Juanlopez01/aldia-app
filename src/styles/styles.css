@@ -10,9 +10,18 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.swal2-overlay {
+  z-index: 1000000000005;
+}
 .swal2-container {
-  @apply z-[1000000];
+  z-index: 1000000000005;
+}
+.swal2-modal {
+  z-index: 999999999;
+}
+.swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
+  
+  z-index: 1000000000005;
 }
 
 @layer components {

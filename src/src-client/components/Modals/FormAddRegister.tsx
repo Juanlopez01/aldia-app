@@ -1,12 +1,14 @@
 import { catTransactions } from "@/utils/categoriesTransactions";
 import Calendar from "react-calendar";
 import React from "react"
+import { creditList } from "@/utils/listCredits";
 export interface FormType {
   type: string;
   description: string;
   category: string;
   value: number;
   date: Date;
+  credit: string;
 }
 
 interface FormProps {
@@ -40,7 +42,7 @@ export default function FormRegister({ form, setForm }: FormProps) {
   }
 
   return (
-    <form  className="d-flex flex-column z-50">
+    <form  className="d-flex flex-column z-50 text-black">
       {/* <div className="input-group mb-3 w-100">
         <label htmlFor="type" className="input-group-text">
           Tipo de ingreso
@@ -61,7 +63,7 @@ export default function FormRegister({ form, setForm }: FormProps) {
         </select>
       </div> */}
 
-      <div className="input-group mb-3 w-100">
+      <div className="input-group mb-3 w-100 mt-3">
         <label htmlFor="text" className="input-group-text">
           Categoria
         </label>
@@ -74,7 +76,7 @@ export default function FormRegister({ form, setForm }: FormProps) {
 
       <div className="input-group mb-0 w-100">
         <label htmlFor="text" className="input-group-text ">Fecha</label>     
-        <input type='text' id='check' value={form?.date?.toDateString()} placeholder="Seleccione una fecha" onClick={()=>setDateShow(!dateShow)} className="form-control"/>   
+        <input type='text' id='check' value={form?.date?.toString()} placeholder="Seleccione una fecha" onClick={()=>setDateShow(!dateShow)} className="form-control"/>   
       </div>   
       <div className={`${ !dateShow ? '' : 'hidden'}`}>    
         <Calendar value={form.date} onChange={handleDateChange} className='bg-white [span:bg-white text-center important]'/>
@@ -93,6 +95,17 @@ export default function FormRegister({ form, setForm }: FormProps) {
           aria-describedby="Valor"
           placeholder="Ingresa aca el valor"
         />
+      </div>
+
+      <div className="input-group mb-3 w-100 mt-0">
+        <label htmlFor="text" className="input-group-text">
+          Crédito
+        </label>
+        <select name="credit" className='form-control' defaultValue={form.credit} onChange={handleChange} required>
+          {creditList.map((credit) => {
+            return <option key={credit} value={credit}>{credit}</option>
+          })}
+        </select>
       </div>
 
       <div className="form-floating">

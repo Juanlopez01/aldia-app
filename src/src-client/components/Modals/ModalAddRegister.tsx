@@ -28,6 +28,7 @@ const initialStateForm = {
 	category: "Banco",
 	value: 0,
 	date: new Date(),
+	credit: 'Un pago',
 };
 
 export function ModalAddRegister({
@@ -50,39 +51,6 @@ export function ModalAddRegister({
 	const sendForm = async () => {
 		if (email && email !== null && email !== undefined) {
 			if (props.type === "expense") {
-				// const validExpense = isValidExpense(
-				//   totalIncomes,
-				//   totalExpenses,
-				//   form,
-				//   type
-				// );
-
-				// if (validExpense) {
-				//   Swal.fire({
-				//     title: validExpense,
-				//     text: "Estas seguro?",
-				//     showDenyButton: true,
-				//     confirmButtonText: "Aceptar",
-				//     denyButtonText: `Cancelar`,
-				//     reverseButtons: true,
-				//   }).then((result) => {
-				//     /* Read more about isConfirmed, isDenied below */
-				//     if (result.isConfirmed) {
-				//       if (type === "negocio") {
-				//         dispatch(addCompanyExpense({ ...form, type: type! }, email));
-				//         setForm(initialStateForm);
-				//         handleClose();
-				//       } else {
-				//         dispatch(addExpense({ ...form, type: type! }, email));
-				//         setForm(initialStateForm);
-				//         handleClose();
-				//       }
-				//     } else if (result.isDenied) {
-				//       setForm(initialStateForm);
-				//       handleClose();
-				//     }
-				//   });
-				// } else {
 				if (type === "negocio") {
 					dispatch(addCompanyExpense({ ...form, type: type! }, id));
 					setForm(initialStateForm);
@@ -119,29 +87,11 @@ export function ModalAddRegister({
 				</Button>
 			</div>
 
-			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${type}`} footer={<button onClick={sendForm}>{props.buttonText}</button>}>
+			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${props.type === 'expense'? 'gasto' : 'ingreso'}`} footer={<button onClick={sendForm} className="bg-main-yellow px-4 py-2 text-black rounded-md shadow-md">{props.buttonText}</button>}
+			className="bg-light-green px-10 py-4 shadow-sm rounded-xl">
 				<FormRegister setForm={setForm} form={form} />
 			</Modal>
 
-
-			{/* // <Modal className="text-center" show={show} onHide={handleClose}> 
-			// 	<Modal.Header closeButton>
-			// 		<Modal.Title className="d-flex justify-content-center">
-			// 			{props.title} {type}
-			// 		</Modal.Title>
-			// 	</Modal.Header>
-			// 	<Modal.Body className="d-flex justify-content-center align-items-center">
-			// 		<FormRegister setForm={setForm} form={form} />
-			// 	</Modal.Body>
-			// 	<Modal.Footer className="d-flex justify-content-center">
-			// 		<Button variant="secondary" onClick={handleClose}>
-			// 			Cancelar
-			// 		</Button>
-			// 		<Button variant="primary" onClick={sendForm}>
-			// 			{props.buttonText}
-			// 		</Button>
-			// 	</Modal.Footer>
-			// </Modal> */}
 		</>
 	);
 }

@@ -12,7 +12,6 @@ if(method === 'GET'){
   try {
     const { id } = query
     const payment = await Payment.findById(id)
-    console.log(payment);
     return res.status(200).json({success: true, payment })
   } catch (error) {
     console.log(error);

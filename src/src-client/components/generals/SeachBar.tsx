@@ -2,14 +2,14 @@ import { useAppSelector } from '@hooks/use-redux'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
-
 interface searchBarProps {
   filterType?: string[]
   title?: string
   onSubmit: (inputSearch: string, filterBy?: string) => void
+  children?: React.ReactNode
 }
 
-export default function SearchBar({ onSubmit, filterType, title }: searchBarProps) {
+export default function SearchBar({ onSubmit, filterType, title , children}: searchBarProps) {
   const { image } = useAppSelector(
     (s) => s.PersonalReducer.user || { image: '/UserDeault.png' }
   )
@@ -25,9 +25,9 @@ export default function SearchBar({ onSubmit, filterType, title }: searchBarProp
 
   return (
     <>
-      <header className="h-12 m-2 rounded shadow-md w-auto flex justify-center">
+      <header className="h-12 m-2 rounded shadow-md w-auto flex justify-center bg-white">
         <nav className="flex flex-row justify-between items-center w-full px-2 text-gray-800">
-          <h1 className="text-lg font-bold m-0">{title}</h1>
+          <h1 className="text-lg font-bold m-0 flex-grow basis-0">{title}</h1>
           <form
             onSubmit={handlerSearchSubmit}
             className="flex flex-row gap-2 items-center"
@@ -38,7 +38,7 @@ export default function SearchBar({ onSubmit, filterType, title }: searchBarProp
                 <select className="bg-transparent capitalize" name="filter">
                   {filterType.map((type, i) => (
                     <option key={i} value={type}>
-                      {type}
+                      {type === 'name'? 'nombre' : type}
                     </option>
                   ))}
                 </select>
@@ -53,14 +53,17 @@ export default function SearchBar({ onSubmit, filterType, title }: searchBarProp
             <button>
               <FontAwesomeIcon icon={faMagnifyingGlass} className="m-auto" />
             </button>
+            {children}
           </form>
+          <div className='flex-grow basis-0 flex justify-end'>
           <Image
             src={image}
             width="40"
             height="40"
             alt="imagen del usuario"
-            className="rounded-full"
+            className="rounded-full "
           />
+            </div>
         </nav>
       </header>
     </>
