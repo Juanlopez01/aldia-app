@@ -121,7 +121,8 @@ const GoalBar = ({
 												value: goalValue.valueOf(),
 												description: title,
 												category: "Metas",
-												date: new Date()
+												date: new Date(),
+												credit: 'Un pago',
 											},
 											email
 										)
