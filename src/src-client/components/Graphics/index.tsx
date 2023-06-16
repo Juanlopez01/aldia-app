@@ -32,7 +32,6 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	const {filterIncomes, filterExpenses} = filterTransactions(incomes, expenses, dateRange)
 
 	const { IncomesResult, ExpensesResult } = totalGenerate(filterIncomes, filterExpenses);
-
 	const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExcess = [totalIncomes, totalExpenses];
@@ -41,15 +40,14 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		slice: "",
 	});
 
-	
 
 	const dataIncomes = {
-		labels: IncomesResult.categories,
+		labels: IncomesResult.categories.slice(0, 5),
 		datasets: [
 			{
 				label: "",
-				data: IncomesResult.totals,
-				backgroundColor: IncomesResult.colors,
+				data: IncomesResult.totals.slice(0, 5),
+				backgroundColor: IncomesResult.colors.slice(0, 5),
 				hoverOffset: 4,
 				borderColor: "transparent",
 				datalabels: {
@@ -60,12 +58,12 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	};
 
 	const dataExpenses = {
-		labels: ExpensesResult.categories,
+		labels: ExpensesResult.categories.slice(0, 5),
 		datasets: [
 			{
 				label: "",
-				data: ExpensesResult.totals,
-				backgroundColor: ExpensesResult.colors,
+				data: ExpensesResult.totals.slice(0, 5),
+				backgroundColor: ExpensesResult.colors.slice(0, 5),
 				hoverOffset: 4,
 				borderColor: "transparent",
 				datalabels: {
@@ -93,7 +91,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		],
 	};
 
-	const longExcessData = totalLongExcess(filterIncomes, filterExpenses);
+	const longExcessData = totalLongExcess(filterIncomes, filterExpenses, IncomesResult.categories.slice(0, 6));
 	const dataLongExcess = {
 		labels: catTransactions,
 		datasets: [

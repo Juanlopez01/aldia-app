@@ -1,12 +1,14 @@
 import { catTransactions } from "@/utils/categoriesTransactions";
 import Calendar from "react-calendar";
 import React from "react"
+import { creditList } from "@/utils/listCredits";
 export interface FormType {
   type: string;
   description: string;
   category: string;
   value: number;
   date: Date;
+  credit: string;
 }
 
 interface FormProps {
@@ -93,6 +95,17 @@ export default function FormRegister({ form, setForm }: FormProps) {
           aria-describedby="Valor"
           placeholder="Ingresa aca el valor"
         />
+      </div>
+
+      <div className="input-group mb-3 w-100 mt-0">
+        <label htmlFor="text" className="input-group-text">
+          Crédito
+        </label>
+        <select name="credit" className='form-control' defaultValue={form.credit} onChange={handleChange} required>
+          {creditList.map((credit) => {
+            return <option key={credit} value={credit}>{credit}</option>
+          })}
+        </select>
       </div>
 
       <div className="form-floating">

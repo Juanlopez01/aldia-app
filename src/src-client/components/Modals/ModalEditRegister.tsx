@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import icoEditar from '../../../../assets/pencil-svgrepo-com.svg'
 import FormRegister from './FormAddRegister'
 
+
 import {
   updateCompanyExpense,
   updateCompanyIncome,
@@ -30,8 +31,10 @@ interface PropsModal {
     value: number
     id: String
     table: String
-    date: Date
+    date: Date;
+    credit: string;
   }
+
 }
 
 const initialStateForm = {
@@ -40,7 +43,9 @@ const initialStateForm = {
   category: '',
   value: 0,
   date: new Date(),
-}
+  credit: 'Un pago',
+};
+
 
 export function ModalEdit({ props }: PropsModal) {
   const [form, setForm] = useState(initialStateForm)
@@ -57,9 +62,11 @@ export function ModalEdit({ props }: PropsModal) {
       description: props.description.toString(),
       type: props.type.toString(),
       date: props.date,
-    })
-    setShow(true)
-  }
+      credit: props.credit
+    });
+    setShow(true);
+  };
+
 
   console.log({ form, props })
   const sendForm = () => {
