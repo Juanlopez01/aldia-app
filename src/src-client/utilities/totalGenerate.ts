@@ -5,18 +5,24 @@ import {catTransactions} from '@/utils/categoriesTransactions';
 interface Result {
     categories: string[];
     totals: number[];
-    colors: string[]
+    colors: string[];
+    numbers: number[];
+    totalsReduced: number[];
 }
 export const totalGenerate = (Incomes: any, Expenses : any) => {
     let IncomesResult : Result = {
         categories: [],
         totals: [], 
         colors: [],
+        numbers: [],
+        totalsReduced: [],
     };
     let ExpensesResult : Result = {
         categories: [],
         totals: [], 
         colors: [],
+        numbers: [],
+        totalsReduced: [],
     };
     // Normalizamos las categorias de incomes
     const categoriesIncArray = Incomes.map((ele : any) => ele.category)
@@ -34,6 +40,7 @@ export const totalGenerate = (Incomes: any, Expenses : any) => {
             if(ele.category === category) transPerCat.push(ele)
         })
         const total = transPerCat.reduce((acc : number, ele : any) => acc + ele.value, 0)
+        IncomesResult.numbers.push(transPerCat.length)
         IncomesResult.totals.push(total)
     })
     //Guardamos el total por categoria de expenses
@@ -43,6 +50,7 @@ export const totalGenerate = (Incomes: any, Expenses : any) => {
             if(ele.category === category) transPerCat.push(ele)
         })
         const total = transPerCat.reduce((acc : number, ele : any) => acc + ele.value, 0)
+        ExpensesResult.numbers.push(transPerCat.length)
         ExpensesResult.totals.push(total)
     })
 
@@ -67,6 +75,26 @@ export const totalGenerate = (Incomes: any, Expenses : any) => {
     })
 
 
+    //Agrupar las categorias con mas transacciones
+    IncomesResult.numbers.sort((a, b) => {
+        const indexA = IncomesResult.numbers.indexOf(a);
+        const indexB = IncomesResult.numbers.indexOf(b);
+
+        [IncomesResult.categories[indexB], IncomesResult.categories[indexA]] = [IncomesResult.categories[indexA], IncomesResult.categories[indexB]];
+        [IncomesResult.colors[indexB], IncomesResult.colors[indexA]] = [IncomesResult.colors[indexA], IncomesResult.colors[indexB]];
+        [IncomesResult.totals[indexB], IncomesResult.totals[indexA]] = [IncomesResult.totals[indexA], IncomesResult.totals[indexB]]
+        return b - a
+    });
+    ExpensesResult.numbers.sort((a, b) => {
+        const indexA = ExpensesResult.numbers.indexOf(a);
+        const indexB = ExpensesResult.numbers.indexOf(b);
+
+        [ExpensesResult.categories[indexB], ExpensesResult.categories[indexA]] = [ExpensesResult.categories[indexA], ExpensesResult.categories[indexB]];
+        [ExpensesResult.colors[indexB], ExpensesResult.colors[indexA]] = [ExpensesResult.colors[indexA], ExpensesResult.colors[indexB]];
+        [ExpensesResult.totals[indexB], ExpensesResult.totals[indexA]] = [ExpensesResult.totals[indexA], ExpensesResult.totals[indexB]]
+        return b - a
+    });
+
     return {IncomesResult, ExpensesResult,}
 }
 
@@ -75,13 +103,13 @@ interface LongResultType {
     expenses: number[];
 }
 
-export const totalLongExcess = (incomes : any, expenses : any)=> {
+export const totalLongExcess = (incomes : any, expenses : any, categories : string[])=> {
     const longTransactions : LongResultType= {
         incomes: [],
         expenses: [],
     }
     
-    catTransactions.forEach((category) => {
+    categories.forEach((category) => {
         const auxIncomes = incomes.filter((income : IncomeType) => income.category === category)
         const auxExpenses = expenses.filter((expense : ExpenseType) => expense.category === category)
         auxIncomes.length > 0 ? 
@@ -92,6 +120,5 @@ export const totalLongExcess = (incomes : any, expenses : any)=> {
         longTransactions.expenses.push(auxExpenses.reduce((acc : number, expense : ExpenseType) => acc + expense.value, 0)) :
         longTransactions.expenses.push(0)
     })
-    console.log(longTransactions)
     return longTransactions
 }

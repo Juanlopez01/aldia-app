@@ -28,6 +28,7 @@ const initialStateForm = {
 	category: "Banco",
 	value: 0,
 	date: new Date(),
+	credit: 'Un pago',
 };
 
 export function ModalAddRegister({
@@ -119,7 +120,7 @@ export function ModalAddRegister({
 				</Button>
 			</div>
 
-			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${type}`} footer={<button onClick={sendForm} className="bg-main-yellow px-4 py-2 text-black rounded-md shadow-md">{props.buttonText}</button>}
+			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${props.type === 'expense'? 'gasto' : 'ingreso'}`} footer={<button onClick={sendForm} className="bg-main-yellow px-4 py-2 text-black rounded-md shadow-md">{props.buttonText}</button>}
 			className="bg-light-green px-10 py-4 shadow-sm rounded-xl">
 				<FormRegister setForm={setForm} form={form} />
 			</Modal>
