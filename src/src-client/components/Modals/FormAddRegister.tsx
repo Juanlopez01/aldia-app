@@ -40,7 +40,7 @@ export default function FormRegister({ form, setForm }: FormProps) {
   }
 
   return (
-    <form  className="d-flex flex-column z-50">
+    <form  className="d-flex flex-column z-50 text-black">
       {/* <div className="input-group mb-3 w-100">
         <label htmlFor="type" className="input-group-text">
           Tipo de ingreso
@@ -61,7 +61,7 @@ export default function FormRegister({ form, setForm }: FormProps) {
         </select>
       </div> */}
 
-      <div className="input-group mb-3 w-100">
+      <div className="input-group mb-3 w-100 mt-3">
         <label htmlFor="text" className="input-group-text">
           Categoria
         </label>

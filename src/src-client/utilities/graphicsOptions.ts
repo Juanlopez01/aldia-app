@@ -7,8 +7,8 @@ export const options = {
     legend: {
         position: 'right' as const,
 				labels: {
-					color: "white", // Set the text color to white
-					fontColor: "white"
+          color: "#747881",
+					fontColor: "#747881"
 				},
       },
     datalabels: {

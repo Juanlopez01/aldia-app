@@ -5,18 +5,19 @@ import { ExpenseType } from "./expense.model";
 import { GoalsTypes } from "./goal.model";
 import { ObjectId } from "mongodb";
 import { Currency } from "@/types/auth.type";
-import { Payment, PaymentType } from "./payment.model";
+import { PaymentType } from "./payment.model";
 
 const Schema = mongoose.Schema;
-
+type StatusType = `${string} - ${string} - ${string}`
 export interface UserType {
   name: String;
   lastname: String;
+  fullName: String;
   provider: String;
   email: String;
   emailVerified: Boolean;
   hashedPassword?: String;
-  image: String;
+  image: string;
   currency: Currency;
   company?: CompanType[] | [];
   incomes?: IncomeType[] | [];
@@ -24,7 +25,7 @@ export interface UserType {
   goals?: GoalsTypes[] | [];
   payments?: PaymentType[] | [];
   role: String;
-  status: String;
+  status: StatusType | string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -39,6 +40,9 @@ const userSchema = new Schema<UserType, Model<UserType>>(
       requeired: true,
     },
     lastname: {
+      type: String,
+    },
+    fullName: {
       type: String,
     },
     provider: {
@@ -69,7 +73,7 @@ const userSchema = new Schema<UserType, Model<UserType>>(
     },
     status: {
       type: String,
-      default: 'disabled',
+      default: 'active - initial - free',
     },
     currency: {
       type: String,
@@ -90,7 +94,10 @@ const userSchema = new Schema<UserType, Model<UserType>>(
   },
   { versionKey: false, timestamps: true }
 )
-
+userSchema.pre('save', function(next){
+  this.fullName = `${this.name} ${this.lastname}`;
+  next()
+})
 export const isPropertyOfUser = (key: string): boolean => {
   return !!userSchema.path(key);
 };

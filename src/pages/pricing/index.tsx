@@ -1,4 +1,4 @@
-import Plans from '@/src-client/components/Landing/Plans/Plans'
+import Plans from '@components/Landing/Plans/Plans'
 
 export default function Page() {
 

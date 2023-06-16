@@ -14,7 +14,7 @@ const links = {
 			{
 				name: "General",
 				url: "/home",
-				endpoint: "/",
+				endpoint: "/home",
 				icon: <FontAwesomeIcon icon={faUsers} />,
 			},
 			{
@@ -28,7 +28,7 @@ const links = {
 			{
 				name: "Personal",
 				url: "/",
-				endpoint: "/personal",
+				endpoint: "/",
 				icon: <FontAwesomeIcon icon={faUser} />,
 			},
 			{
@@ -63,26 +63,27 @@ const links = {
 };
 
 const colors = {
+	lightGreen: "light-green",
 	blue: "light-blue",
 	yellow: "secondary-yellow",
-	light_text: "white",
-	dark_text: "black",
+	light_text: "link",
+	dark_text: "gray-900",
 	hover_btn: "#4b58bd"
 };
 
-const { blue, yellow, light_text, dark_text, hover_btn } = colors;
+const { blue, yellow, light_text, dark_text, hover_btn, lightGreen } = colors;
 
 const plans = [
 	{
 		name: "Gratuito",
 		value: 'free',
 		color: {
-			bg: `bg-${blue}`,
-			text: light_text,
-			text_check: dark_text,
-			bg_button: `bg-transparent hover:bg-[${hover_btn}] `,
-			color_border_button: `border-${yellow}`,
-			color_text_button: `text-${yellow} `,
+			bg: `dark:bg-${blue} bg-${lightGreen} `,
+			text: ` text-${dark_text} dark:text-${light_text}`,
+			text_check: `${dark_text}`,
+			text_color: `${dark_text}`,
+			color_border_button: `border-${dark_text} text-${dark_text} dark:border-main-yellow`,
+			color_text_button: ` text-gray-900 dark:text-${light_text} `,
 		},
 		subtext:
 			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
@@ -111,8 +112,8 @@ const plans = [
 			text: dark_text,
 			text_check: light_text,
 			bg_button: `bg-${blue} hover:bg-[${hover_btn}] `,
-			color_border_button: `bg-${blue} border-${blue}`,
-			color_text_button: `text-${light_text} `,
+			color_border_button: `border-${dark_text} text-${dark_text}`,
+			color_text_button: ` text-gray-900 dark:bg-light-blue dark:text-${light_text}`,
 		},
 		subtext:
 			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
@@ -136,12 +137,12 @@ const plans = [
 		name: "Premium",
 		value: 'premium',
 		color: {
-			bg: `bg-${blue}`,
-			text: light_text,
-			text_check: dark_text,
-			bg_button: "bg-transparent",
-			color_border_button: `border-${yellow} hover:bg-[${hover_btn}] `,
-			color_text_button: `text-${yellow} `,
+			bg: `dark:bg-${blue} bg-${lightGreen} `,
+			text: ` text-${dark_text} dark:text-${light_text}`,
+			text_check: `${dark_text}`,
+			bg_button: `bg-transparent hover:bg-[${hover_btn}] `,
+			color_border_button: `border-${dark_text} text-${dark_text} dark:border-main-yellow`,
+			color_text_button: ` text-gray-900 dark:text-${light_text} `,
 		},
 		subtext:
 			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",

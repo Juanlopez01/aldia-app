@@ -23,6 +23,13 @@ const initialState: state = {
         image: '',
         role: '',
         status: '',
+        fullName: '',
+        lastname: '',
+        emailVerified: true,
+        provider: '',
+        currency: "ARS",
+        createdAt: new Date(),
+        updatedAt: new Date()
     },
     selectedCompany: {
         _id:'',
@@ -30,6 +37,7 @@ const initialState: state = {
         incomes: [],
         expenses: [],
         users: [],
+        notifications: [],
     },
 }
 

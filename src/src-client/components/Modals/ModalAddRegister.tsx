@@ -112,14 +112,17 @@ export function ModalAddRegister({
 			<div className="w-full flex justify-center py-2">
 				<Button
 					className="text-center mx-3 mb-2 text-white w-[180px]
-        btn-graphics px-8 rounded-full"
+        	btn-graphics dark:btn-graphics px-8 rounded-full"
 					onClick={handleShow}
 				>
 					{props.buttonText}
 				</Button>
 			</div>
 
-			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${type}`} children={<FormRegister setForm={setForm} form={form} />} footer={<button onClick={sendForm}>{props.buttonText}</button>} />
+			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${type}`} footer={<button onClick={sendForm} className="bg-main-yellow px-4 py-2 text-black rounded-md shadow-md">{props.buttonText}</button>}
+			className="bg-light-green px-10 py-4 shadow-sm rounded-xl">
+				<FormRegister setForm={setForm} form={form} />
+			</Modal>
 
 
 			{/* // <Modal className="text-center" show={show} onHide={handleClose}> 

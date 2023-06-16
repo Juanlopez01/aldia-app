@@ -1,16 +1,18 @@
 import Image from 'next/image'
 import Star from '../svgs/star'
 import Check from '../svgs/check'
+import DarkMode from '../Navbar/DarkMode'
 
 const PROS_QUOTES: String[] = ['Unite a decenas de personas que confían en nosotros','Unite a decenas de personas que confían en nosotros','Te ayuda a tomar mejores decisiones financieras']
 
 export default function Welcome({contentToShow}:{contentToShow: Boolean}) {
   return (
     <>
-      <section className={`w-full md:w-8/12 lg:w-1/2 xl:w-1/3 bg-darkest-blue text p-8 ${ contentToShow? 'justify-between' : '' } text-white flex-col overflow-hidden md:py-16 relative z-[100] hidden md:flex`}>
-        <header className="grid gap-2">
+      <section className={`w-full md:w-8/12 lg:w-1/2 xl:w-1/3 bg-main-green dark:bg-darkest-blue text p-8 ${ contentToShow? 'justify-between' : '' } text-white flex-col overflow-hidden md:py-16 relative z-[100] hidden md:flex`}>
+        <header className="grid gap-2 pb-4">
           <h1 className="text-4xl md:text-5xl font-black ">Bienvendo a ALDIA</h1>
           <p>La aplicación de finanzas por excelencia</p>
+          <DarkMode/>
         </header>
         {contentToShow ? (
           <>

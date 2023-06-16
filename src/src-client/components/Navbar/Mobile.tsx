@@ -1,13 +1,14 @@
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState } from 'react'
-import { ButtonTransparent } from '../Styles/Button';
-import { GetNavLinks, signOutFunction } from './Functions';
-import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useRef, useState } from "react";
+import { ButtonTransparent } from "../Styles/Button";
+import { GetNavLinks, signOutFunction } from "./Functions";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import Logo from "../../../../assets/ALDIA.png";
-import { links } from '@/utils/data';
-import Image from 'next/image';
+import { links } from "@/utils/data";
+import Image from "next/image";
+import DarkMode from "./DarkMode";
 
 //*todo MOBILE NAV
 const NavbarMobile = () => {
@@ -33,11 +34,23 @@ const NavbarMobile = () => {
 		<div className="fixed z-[1000000] w-full">
 			<div
 				className={`top-0 w-full
-				${isOpen ? "bg-light-blue" : "bg-darkest-blue"}
+				${
+					isOpen
+						? "bg-main-green dark:bg-light-blue"
+						: "bg-main-green dark:bg-darkest-blue"
+				}
 			`}
 			>
 				<div className="w-[90vw] flex justify-between p-4">
-					<Image src={Logo} alt="logo img" className="w-24" onClick={()=>router.push("/landing")}/>
+					<Image
+						src={Logo}
+						alt="logo img"
+						className="w-24"
+						onClick={() => {
+							router.push("/");
+							handleAnimateHamburger();
+						}}
+					/>
 					<button
 						id="hamburger-menu"
 						className="text-3xl lg:hidden cursor-pointer relative w-8 h-8"
@@ -54,7 +67,7 @@ const NavbarMobile = () => {
 				</div>
 			</div>
 			<div
-				className={`bg-light-blue max-w-[300px] p-2 min-h-screen translateNav border-t-2 border-white
+				className={`bg-main-green dark:bg-light-blue max-w-[300px] p-2 min-h-screen translateNav border-t-2 border-white
 			${isOpen ? "block" : "hidden"}`}
 			>
 				{/* lists of links */}
@@ -103,17 +116,20 @@ const NavbarMobile = () => {
 						<div className="flex gap-2 pl-4 pt-4">
 							{!session ? (
 								<div className="flex flex-col gap-y-4 text-black">
-									<ButtonTransparent handleClick={() => router.push("/")}
-									classes="px-3 py-[4px]">
+									<ButtonTransparent
+										handleClick={() => router.push("/auth")}
+										classes="px-3 py-[4px]"
+										color={null}
+									>
 										Iniciar sesión
 									</ButtonTransparent>
 
 									{/* <ButtonSolid>Registrarse</ButtonSolid> */}
 								</div>
 							) : (
-								<div className="w-full bg-darkest-blue shadow-lg rounded-full px-3 py-2 flex justify-center items-center gap-x-3">
+								<div className="w-full bg-main-yellow dark:bg-darkest-blue shadow-lg rounded-full px-3 py-2 flex justify-center items-center gap-x-3">
 									<button className="">
-										<img
+										<Image
 											src={profile_image}
 											alt="profile img"
 											className="w-[60px] rounded-full"
@@ -121,15 +137,19 @@ const NavbarMobile = () => {
 												handleAnimateHamburger();
 												router.push("/account");
 											}}
+											width={10}
+											height={10}
 										/>
 									</button>
-									<span className="w-full truncate drow-shadow-xl">{session?.user?.name}</span>
+									<span className="w-full truncate drow-shadow-xl text-gray-900 dark:text-link">
+										{session?.user?.name}
+									</span>
 
 									{/* log out */}
 									<FontAwesomeIcon
 										icon={faRightFromBracket}
-										className="text-xl cursor-pointer"
-										onClick={()=>{
+										className="text-xl cursor-pointer text-gray-900 dark:text-link"
+										onClick={() => {
 											handleAnimateHamburger();
 											signOutFunction();
 										}}
@@ -139,9 +159,12 @@ const NavbarMobile = () => {
 						</div>
 					</>
 				</div>
+				<div className="pt-4 flex justify-end">
+					<DarkMode />
+				</div>
 			</div>
 		</div>
 	);
 };
 
-export default NavbarMobile
+export default NavbarMobile;

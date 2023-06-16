@@ -15,7 +15,7 @@ const NavBar = () => {
 	}, [email, admin, session]);
 
 	return (
-    <div className="h-20">
+    <nav className="h-20">
       <div className="hidden lg:block">
         <DesktopNvo />
       </div>
@@ -23,7 +23,7 @@ const NavBar = () => {
       <div className="block lg:hidden">
         <NavbarMobile />
       </div>
-    </div>
+    </nav>
   )
 };
 

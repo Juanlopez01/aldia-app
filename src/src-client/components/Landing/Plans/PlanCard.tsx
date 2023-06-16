@@ -10,9 +10,10 @@ const PlanCard = ({plan, isPricingPage}: plansProps) => {
 	const { bg, text, text_check, bg_button, color_border_button, color_text_button } = color;
 	const text_color = text;
 	const plan_bg_color = bg;
-const btnStyles= `bg-${bg_button} w-full rounded-[4px] px-2 py-2 mx-auto my-4
-text-center no-underline border-2 text-white
-outline-2 hover:bg-opacity-90 ${color_border_button} ${color_text_button}`
+
+  const btnStyles= `bg-${bg_button} w-full rounded-[4px] px-2 py-2 mx-auto my-4
+  text-center no-underline border-2
+  outline-2 hover:bg-opacity-90 ${color_border_button} ${color_text_button}`
 	return (
     <div
       className={`w-11/12 md:max-w-[380px] min-h-[60vh] rounded-[4px]
@@ -20,12 +21,11 @@ outline-2 hover:bg-opacity-90 ${color_border_button} ${color_text_button}`
         /* no anda sin validación */ bg === 'bg-secondary-yellow'
           ? 'bg-secondary-yellow'
           : bg
-      } 
-			flex flex-col text-${text_color} px-3 py-2`}
+      } flex flex-col text-${text_color} px-3 py-2`}
     >
       {/* main info */}
       <div
-        className={`w-full rounded-t-[4px] p-2 bg-${plan_bg_color} flex flex-col gap-y-2 ]`}
+        className={`w-full rounded-t-[4px] p-2 flex flex-col gap-y-2 ]`}
       >
         <span className="text-xl font-bold">{name}</span>
         <span>{subtext}</span>
@@ -57,7 +57,7 @@ outline-2 hover:bg-opacity-90 ${color_border_button} ${color_text_button}`
           <div key={index} className="flex">
             <FontAwesomeIcon
               icon={faCheck}
-              className={`mr-3 py-1 px-[6px] text-xl bg-${text_color} text-${text_check} rounded-full`}
+              className={`mr-3 py-1 px-[6px] text-xl bg-gray-900 dark:bg-link text-link dark:text-gray-900 rounded-full`}
             />
             <p className="py-1 text-sm">{tag}</p>
           </div>
@@ -66,7 +66,7 @@ outline-2 hover:bg-opacity-90 ${color_border_button} ${color_text_button}`
           <div key={index} className="flex">
             <FontAwesomeIcon
               icon={faClose}
-              className={`mr-3 py-1 px-[6px] text-xl bg-${text_color} text-${text_check} rounded-full`}
+              className={`mr-3 py-1 px-[6px] text-xl bg-gray-900 dark:bg-link text-link dark:text-gray-900 rounded-full`}
             />
             <p className="py-1 text-sm">{tag}</p>
           </div>
@@ -80,7 +80,7 @@ outline-2 hover:bg-opacity-90 ${color_border_button} ${color_text_button}`
 interface color {
 	bg: string;
 	text: string;
-	bg_button: string;
+	bg_button?: string;
 	color_border_button: string;
 	color_text_button: string;
 	text_check: string;

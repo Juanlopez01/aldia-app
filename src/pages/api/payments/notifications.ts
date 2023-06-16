@@ -51,9 +51,11 @@ export default async function handler(
             provider: 'mercadoPago'
           })
           await user.payments.push(payment)
+          user.status = `active - MP - ${plan}`
           await user.save()
         }
-      }
+       }
+
 
       return res.status(200).json({ success: true })
     } catch (error) {
@@ -63,6 +65,14 @@ export default async function handler(
         message: 'Algo paso mal :c',
       })
     }
+  } else if (method === 'PUT'){
+    const {userId , plan}=body
+    await conn()
+    const user = await User.findById(userId)
+    user.status = `pending - manual - ${plan}`
+    await user.save()
+    
+    return res.status(200).json({ success: true , message: 'Notificación enviada correctamente'})
   }
   res.status(501).json({ message: 'Method Not Implemented' })
 }

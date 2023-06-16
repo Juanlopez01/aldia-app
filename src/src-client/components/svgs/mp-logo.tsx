@@ -8,7 +8,7 @@ const MercadoPagoLogo = (props: SVGProps<SVGSVGElement>) => (
   >
     <defs>
       <style>
-        {".a{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round}"}
+        {".a{fill:none;stroke:white;stroke-linecap:round;stroke-linejoin:round}"}
       </style>
     </defs>
     <ellipse cx={24} cy={24} className="a" rx={19.5} ry={12.978} />

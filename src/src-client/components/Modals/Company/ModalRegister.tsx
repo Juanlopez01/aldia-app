@@ -1,9 +1,10 @@
 import { useSession } from 'next-auth/react';
 import React, { useState } from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import { createCompany } from '@/redux/slice/CompanySlice';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
+import Modal from '../../generals/Modal';
 
 
 const ModalRegister = () => {
@@ -32,24 +33,16 @@ const ModalRegister = () => {
             <button className='btn-general w-25' onClick={handleShow}>
                 <span className="text-light">Registrar una compañia</span>
             </button>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Register a company</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form>
-                        <label>Company Name</label>
-                        <input type="text" name="name" placeholder='Escribe el nombre' onChange={(e) => handleChange(e)} value={form.name} />
-                    </form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button>
-                        Cancel
-                    </Button>
-                    <Button onClick={sendForm}>
-                        Registrar
-                    </Button>
-                </Modal.Footer>
+            <Modal 
+            showModal={show} 
+            closeModal={handleClose} 
+            title='Registrar una compañía' 
+            footer={<button onClick={sendForm}>Registrar</button>} 
+            >
+                {<form>
+                    <label>Nombre</label>
+                    <input type="text" name="name" placeholder='Escribe el nombre' onChange={(e) => handleChange(e)} value={form.name} />
+                </form>}
             </Modal>
         </div>
     )
