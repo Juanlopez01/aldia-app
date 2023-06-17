@@ -2,7 +2,7 @@ import { dbConnect } from "@/src-backend/db";
 import { Company } from "@/models/company.model";
 import { Expense } from "@/models/expense.model";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { User } from "@/models/user.model";
+import { User, UserWithId } from "@/models/user.model";
 
 dbConnect();
 
@@ -19,7 +19,7 @@ export default async function income(
         .populate("expenses")
         .lean();
 
-      res.status(200).json({ status: "success", payload: account.expenses });
+      res.status(200).json({ status: "success", payload: (account as UserWithId).expenses });
 
       break;
     case "POST":
