@@ -19,7 +19,7 @@ const SearchBarCredit = ({filters, setFilters} : any) => {
             <label>Crédito</label>
             <select name='credit' id='credit' defaultValue={'Un pago'} onChange={onChange}>
                 {creditList.map((credit : string) => {
-                    return <option value={credit}>{credit}</option>
+                    return <option value={credit} key={credit}>{credit}</option>
                 })}
             </select>
         </div>

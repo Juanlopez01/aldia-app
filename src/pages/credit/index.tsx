@@ -7,7 +7,7 @@ import { creditFilter } from '@/utils/creditFilter'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-const index = () => {
+const Index = () => {
     const incomes : IncomeType[] = useSelector((state: any) => state.PersonalReducer.incomes)
     const expenses : ExpenseType []= useSelector((state: any) => state.PersonalReducer.expenses)
     const [filters, setFilters] = useState({
@@ -23,4 +23,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

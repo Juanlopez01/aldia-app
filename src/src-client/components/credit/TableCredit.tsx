@@ -20,7 +20,7 @@ const TableCredit = ({transactions} : Props) => {
                 </tr>
             </thead>
             <tbody>
-                {transactions.map((transaction) => { return <TableCreditRow transaction={transaction}/>})}
+                {transactions.map((transaction) => { return <TableCreditRow key={transaction._id?.toString()} transaction={transaction}/>})}
             </tbody>
         </table>
     </section>
