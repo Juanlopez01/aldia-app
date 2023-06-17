@@ -1,5 +1,5 @@
 import { UserWithId } from '@/models/user.model'
-import SearchBar from '@components/generals/SeachBar'
+import SearchBar from '@/src-client/components/generals/SearchBar'
 import { useEffect, useState } from 'react'
 import { requestAdminUsers } from '@/utils/request'
 import AdminTableRow from './AdminTableRow'

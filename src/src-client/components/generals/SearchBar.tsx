@@ -27,7 +27,7 @@ export default function SearchBar({ onSubmit, filterType, title , children}: sea
     <>
       <header className="h-12 m-2 rounded shadow-md w-auto flex justify-center bg-white">
         <nav className="flex flex-row justify-between items-center w-full px-2 text-gray-800">
-          <h1 className="text-lg font-bold m-0 flex-grow basis-0">{title}</h1>
+          <h1 className="text-lg font-bold m-0 flex-grow basis-0 hidden md:block">{title}</h1>
           <form
             onSubmit={handlerSearchSubmit}
             className="flex flex-row gap-2 items-center"
@@ -46,7 +46,7 @@ export default function SearchBar({ onSubmit, filterType, title , children}: sea
               <input
                 type="text"
                 name="search"
-                className="bg-transparent "
+                className="bg-transparent w-full "
                 placeholder="Buscar..."
               />
             </fieldset>
@@ -55,7 +55,7 @@ export default function SearchBar({ onSubmit, filterType, title , children}: sea
             </button>
             {children}
           </form>
-          <div className='flex-grow basis-0 flex justify-end'>
+          <div className='flex-grow basis-0 md:flex justify-end hidden'>
           <Image
             src={image}
             width="40"
