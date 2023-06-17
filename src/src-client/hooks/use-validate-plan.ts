@@ -1,14 +1,15 @@
-import { PaymentType } from '@/models/payment.model'
 import { UserWithId } from '@/models/user.model'
+import { fetchPayment } from '@/utils/request'
 import {
   getRelativeTime,
   calculateNextMonth,
-  isAvaliablePlan
+  isAvaliablePlan,
 } from '@/utils/time-helpers'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 export type PlansTypes = 'free' | 'basic' | 'premium'
+
 
 export const useValidatePlan = () => {
   const { data: session, status } = useSession({ required: true })
@@ -24,11 +25,11 @@ export const useValidatePlan = () => {
   }
 
   useEffect(() => {
-    if (payments?.length && status === 'authenticated') {
-      fetch(`api/personal/payments/${payments.at(-1)}`)
-        .then((res) => res.json())
-        .then(({ payment }) => {
-          const pay = payment as PaymentType
+    if (payments?.length && status === 'authenticated' && payments.length) {
+      const lastPayId =payments.at(-1) 
+      if (!lastPayId)return
+      fetchPayment(lastPayId)
+        .then(({ payment: pay }) => {
           setPlan(pay.plan)
 
           // Verifico que el plan haya expirado
@@ -47,7 +48,6 @@ export const useValidatePlan = () => {
 
       setTimeToExpire(getRelativeTime(dateToExpireFreePlan))
     }
-    
   }, [createdAt, payments]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
