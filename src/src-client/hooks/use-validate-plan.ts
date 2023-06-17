@@ -53,6 +53,8 @@ export const useValidatePlan = () => {
   return {
     timeToExpire,
     plan,
+    session,
+    status,
     redirectToPricing,
   }
 }
