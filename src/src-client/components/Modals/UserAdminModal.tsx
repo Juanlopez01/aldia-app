@@ -1,7 +1,7 @@
 import { PaymentType } from '@/models/payment.model'
 import { UserWithId } from '@/models/user.model'
-import { requestAdminUsers, fetchPayment } from '@/utils/request'
-import { ObjectId } from 'mongodb'
+import { validatePaymentUserManually, fetchPayment } from '@/utils/request'
+import { getRelativeTime } from '@/utils/time-helpers'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
@@ -9,27 +9,6 @@ import Swal from 'sweetalert2'
 type Props = {
   user: UserWithId
   onSuccess: (user: UserWithId) => void
-}
-
-interface ResponseValidate {
-  success: boolean
-  message: string
-  user: UserWithId
-}
-
-const validatePaymentUserManually = async (
-  userId: ObjectId,
-  planType: 'basic' | 'premium'
-) => {
-  const response = await requestAdminUsers<ResponseValidate>(`/${userId}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({ plan: planType }),
-  })
-  return response
 }
 
 export default function UserAdminModal({ onSuccess, user }: Props) {
@@ -78,18 +57,40 @@ export default function UserAdminModal({ onSuccess, user }: Props) {
           <h4 className="m-0 text-gray-700 text-xs">{user.email}</h4>
         </div>
       </header>
-      <section>
-        <h2 className="m-0 text-sm text-center">Vencimiento de ultimo pago</h2>
+      <section className="my-4">
+        {user?.status?.split(' - ')[1] === 'initial' ? (
+          <>
+            <p className="m-0 text-center">El usuario tiene el plan inical</p>
+          </>
+        ) : (
+          <>
+            <p className="m-0 text-center">
+              Vencimiento de ultimo pago{' '}
+              <span className='text-medium-blue'>
+                {lastPayment?.end_date &&
+                  getRelativeTime(lastPayment?.end_date)}
+              </span>
+            </p>
+            <p className="m-0 text-center">
+              Pago realizado el{' '}
+              {lastPayment?.end_date && (
+                <span className='text-medium-blue'>
+                  {new Date(lastPayment?.end_date).toLocaleDateString()}
+                </span>
+              )}
+            </p>
+          </>
+        )}
       </section>
       <footer>
-        <div className="flex flex-col gap-2 mt-4">
+        <div className="flex flex-col gap-2 ">
           <h2 className="text-xl font-bold text-center m-0">
             Validar Usuario con
           </h2>
           <div className="flex flex-row justify-around capitalize">
             <button
               onClick={() => handlerValidateUser('basic')}
-              className="p-2 rounded text-white bg-main-yellow capitalize "
+              className="p-2 rounded text-white bg-main-yellow capitalize"
             >
               plan básico
             </button>

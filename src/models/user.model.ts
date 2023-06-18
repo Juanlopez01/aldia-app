@@ -6,9 +6,11 @@ import { GoalsTypes } from "./goal.model";
 import { ObjectId } from "mongodb";
 import { Currency } from "@/types/auth.type";
 import { PaymentType } from "./payment.model";
+import { PlansTypes } from "@/types/models.type";
 
 const Schema = mongoose.Schema;
-type StatusType = `${string} - ${string} - ${string}`
+
+export type StatusType = `${'pending' | 'active'} - ${'MP' | 'manual' | 'initial'} - ${PlansTypes}`
 export interface UserType {
   name: String;
   lastname: String;

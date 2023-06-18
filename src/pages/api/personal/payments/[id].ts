@@ -17,7 +17,6 @@ if(method === 'GET'){
     return res.status(200).json({success: true, payment })
   } catch (error) {
     if(error instanceof CustomError) res.status(error.statusCode).json({success:false, message: error.message})
-    console.log(error);
     return res.status(400).json({success:false, message: ''})
   }
 }

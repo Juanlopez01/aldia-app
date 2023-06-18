@@ -1,4 +1,5 @@
 import { UserWithId } from '@/models/user.model'
+import { PlansTypes } from '@/types/models.type'
 import { fetchPayment } from '@/utils/request'
 import {
   getRelativeTime,
@@ -8,7 +9,6 @@ import {
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-export type PlansTypes = 'free' | 'basic' | 'premium'
 
 
 export const useValidatePlan = () => {
