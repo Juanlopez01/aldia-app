@@ -24,6 +24,9 @@ module.exports = {
 				"light-blue": "#4F5EC7",
 				link: "#F4F4F5",
 			},
+			screens: {
+				mob: "0px",
+			},
 		},
 	},
 	plugins: [require("daisyui")],

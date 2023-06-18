@@ -72,10 +72,11 @@ function SearchBar({ placeholder, data, closeModal, sendNotification, handleAcep
           placeholder={placeholder}
           value={wordEntered}
           onChange={handleFilter}
+          className="w-full my-2 py-2 px-2 rounded-md"
         />
         <div className="searchIcon">
           {filteredData.length === 0 ? (
-            <button>Search</button>
+            <button className="bg-main-green text-white px-4 py-1 rounded-md mt-2">Search</button>
           ) : (
             <button id="clearBtn" onClick={clearInput}>Clear</button>
           )}
