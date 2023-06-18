@@ -30,6 +30,9 @@ const Footer = () => {
           <Link href="/" className="text-link link no-underline">
             Resources
           </Link>
+          <Link href="/fqas" className="text-link link no-underline">
+            FQAs
+          </Link>
         </ul>
 
         <div className="text-[#CBD5E1] text-[12px] flex justify-center gap-2 py-2 lg:py-0">
