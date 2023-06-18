@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React from "react";
 import CheckoutModal from "./Checkout.modal";
-import { PlansTypes } from "@/src-client/hooks/use-validate-plan";
+import { PlansTypes } from "@/types/models.type";
 
 const PlanCard = ({plan, isPricingPage}: plansProps) => {
 	const { name, color, price, subtext, tags, value} = plan;

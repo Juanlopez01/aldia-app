@@ -1,4 +1,4 @@
-import { PlansTypes } from '@hooks/use-validate-plan'
+import { PlansTypes } from '@/types/models.type'
 import Plans from '@components/Landing/Plans/Plans'
 import { useSearchParams } from 'next/navigation'
 import Swal from 'sweetalert2'

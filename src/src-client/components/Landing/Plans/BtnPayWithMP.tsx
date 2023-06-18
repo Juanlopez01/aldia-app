@@ -1,9 +1,9 @@
 import { UserWithId } from "@/models/user.model"
-import { PlansTypes } from "@hooks/use-validate-plan"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 import Swal from "sweetalert2"
 import MercadoPagoLogo from "@components/svgs/mp-logo"
+import { PlansTypes } from "@/types/models.type"
 
 export default function BtnPaywithMP ({value }: {value: PlansTypes; children?: React.ReactNode; }){
     const { data: session, status } = useSession()
