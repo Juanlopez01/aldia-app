@@ -9,11 +9,11 @@ interface Props {
 const TableCreditRow = ({transaction} : Props) => {
   return (
     <>
-        <tr key={transaction._id?.toString()} className='border-[1px] border-gray-400'>
-            <th className='px-4 py-2'>{transaction.category}</th>
-            {/* <th>{transaction.description}</th> */}
-            <th className='px-4 py-2'>{transaction.credit}</th>
-            <th className='px-4 py-2'>${transaction.value}</th>
+        <tr key={transaction._id?.toString()} className='border-[1px] border-gray-400 bg-white'>
+            <td className='mob:px-2 md:px-8 py-2 text-sm md:text-md'>{transaction.category}</td>
+            <td className='mob:px-2 md:px-8 py-2 text-sm md:text-md'>{transaction.description ? transaction.description : "No hay descripción"}</td>
+            <td className='mob:px-2 md:px-8 py-2 text-sm md:text-md'>{transaction.credit}</td>
+            <td className='mob:px-2 md:px-8 py-2 text-sm md:text-md'>${transaction.value}</td>
         </tr>
     </>
   )

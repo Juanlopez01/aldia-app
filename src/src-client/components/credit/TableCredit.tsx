@@ -9,15 +9,15 @@ interface Props {
 
 const TableCredit = ({transactions} : Props) => {
   return (
-    <section className='pt-4'>
+    <section className='pt-4 overflow-x-auto'>
         {transactions.length>0 
-        ? <table className='bg-white rounded-md shadow-plan'>
-            <thead className=''>
-                <tr className='border-[1px] border-gray-400'>
-                    <th className='px-4 py-2'>Categoría</th>
-                    {/* <th>Descripción</th> */}
-                    <th className='px-4 py-2'>Crédito</th>
-                    <th className='px-4 py-2'>Valor</th>
+        ? <table className='rounded-md shadow-plan'>
+            <thead className='bg-white border-[1px] border-gray-400'>
+                <tr className=''>
+                    <th className='mob:px-2 md:px-8 py-2 text-sm md:text-md'>Categoría</th>
+                    <th className='mob:px-2 md:px-8 py-2 text-sm md:text-md'>Descripción</th>
+                    <th className='mob:px-2 md:px-8 py-2 text-sm md:text-md'>Crédito</th>
+                    <th className='mob:px-2 md:px-8 py-2 text-sm md:text-md'>Valor</th>
                 </tr>
             </thead>
             <tbody>
