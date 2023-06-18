@@ -9,20 +9,21 @@ interface Props {
 
 const TableCredit = ({transactions} : Props) => {
   return (
-    <section>
-        <table>
-            <thead>
-                <tr>
-                    <th>Categoría</th>
-                    <th>Descripción</th>
-                    <th>Crédito</th>
-                    <th>Valor</th>
+    <section className='pt-4'>
+        {transactions.length>0 
+        ? <table className='bg-white rounded-md shadow-plan'>
+            <thead className=''>
+                <tr className='border-[1px] border-black'>
+                    <th className='px-3 border-r-[1px] border-r-black'>Categoría</th>
+                    {/* <th>Descripción</th> */}
+                    <th className='px-3 border-r-[1px] border-r-black'>Crédito</th>
+                    <th className='px-3 border-r-[1px] border-r-black'>Valor</th>
                 </tr>
             </thead>
             <tbody>
                 {transactions.map((transaction) => { return <TableCreditRow key={transaction._id?.toString()} transaction={transaction}/>})}
             </tbody>
-        </table>
+        </table> : <p>No hay transacciones que coincidan</p>}
     </section>
   )
 }
