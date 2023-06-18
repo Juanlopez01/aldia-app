@@ -13,11 +13,11 @@ const TableCredit = ({transactions} : Props) => {
         {transactions.length>0 
         ? <table className='bg-white rounded-md shadow-plan'>
             <thead className=''>
-                <tr className='border-[1px] border-black'>
-                    <th className='px-3 border-r-[1px] border-r-black'>Categoría</th>
+                <tr className='border-[1px] border-gray-400'>
+                    <th className='px-4 py-2'>Categoría</th>
                     {/* <th>Descripción</th> */}
-                    <th className='px-3 border-r-[1px] border-r-black'>Crédito</th>
-                    <th className='px-3 border-r-[1px] border-r-black'>Valor</th>
+                    <th className='px-4 py-2'>Crédito</th>
+                    <th className='px-4 py-2'>Valor</th>
                 </tr>
             </thead>
             <tbody>

@@ -21,7 +21,7 @@ const Index = () => {
 	const transactions = creditFilter(incomes, expenses, filters);
 	return (
 		<LayoutWithSideNav>
-			<div className="py-2 px-3 bg-light-green dark:bg-violet-blue-landing w-full">
+			<div className="py-8 px-8 bg-light-green dark:bg-violet-blue-landing w-full min-h-[60vh]">
 				<SearchBarCredit filters={filters} setFilters={setFilters} />
 				<TableCredit transactions={transactions} />
 			</div>
