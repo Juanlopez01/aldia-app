@@ -1,35 +1,10 @@
 import Contact from '@/src-client/components/Landing/Contact'
 import {
   FAQuestion,
-  QuestionType,
 } from '@/src-client/components/faqs/FAQuestions'
+import { questions } from '@/utils/data'
 
-const questions: QuestionType[] = [
-  {
-    question: '¿Has realizado un pago y no tienes el plan que pagaste?',
-    solution:
-      'La verificación del pago puede demorar alguno minutos o hasta horas, pero si ha pasado mas de 1 día comumnicate via email o whatsapp para agilizar la activación de tu plan',
-    extra: 'Whatsapp: +53 123 345 1231235',
-  },
-  {
-    question: '¿No puedes acceder a tu cuenta?',
-    solution:
-      'Si no puedes acceder a tu cuenta, no te procuepes, ve a la pagina de autenticación y preciona la opción de "Me olvidé mi constraseña", pon el email con el cual te registaste, esto te enviará un email en el cual te redigira a una pagina donde podras recuperar tu cuenta y elegir una nueva contraseña',
-    extra: 'Si lo aterior no funciona enviar un email con el asunto "RECOVER-ACCOUNT" en el cual expliques tu probelma en cuestion y sera soluciona en brevedad',
-  },
-  {
-    question: '¿Tienes un error de redirección o de datos erroneos?',
-    solution:
-      'Cuando quieres ir a una pagina te redirecciona a otra o la infomación que se muesta es errornea. Envia una email o un mesaje de whatsapp con el asunto de "ISSUE" con una descripción del error en cuestión y sera resuelto a la brevedad ',
-    extra: 'Whatsapp: +53 123 345 1231235',
-  },
-  {
-    question: '¿Quieres que se agregue una funcionalidad?',
-    solution:
-      'Envia una email o un mesaje de whatsapp con el asunto de "FEATURE" para que la funcionalidad sea agregada proximamente y ayudes a la aplicación a ser mas efieciente y util para los demás usuarios',
-    extra: 'Whatsapp: +53 123 345 1231235',
-  },
-]
+
 
 export default function PageFQAs() {
   return (

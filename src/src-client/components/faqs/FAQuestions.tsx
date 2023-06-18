@@ -1,10 +1,5 @@
 import { useToggle } from '@/src-client/hooks/use-toggle'
-
-export type QuestionType = {
-  question: string
-  solution: string
-  extra?: string
-}
+import { QuestionType } from '@/types/general.types'
 
 export const FAQuestion = ({ question, solution, extra }: QuestionType) => {
   const { toggle, toggleHandler } = useToggle(false)
