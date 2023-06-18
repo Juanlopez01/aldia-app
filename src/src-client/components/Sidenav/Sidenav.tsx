@@ -7,14 +7,14 @@ import Image from "next/image";
 // const regexImg = /\.(jpeg|jpg|gif|png|webp)$/;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/src-client/hooks/use-redux";
 
 const Sidenav = () => {
 	const { data: session } = useSession();
 	const profile_image = session?.user?.image!;
 	const router = useRouter();
 
-	const { user } = useSelector((s: any) => s.PersonalReducer);
+	const { user } = useAppSelector((s) => s.PersonalReducer);
 
 	return (
 		<div
@@ -65,6 +65,7 @@ const Sidenav = () => {
 							showIcons={false}
 							section="sidenav"
 							classes="px-6 py-2 "
+							isAdmin={user?.role === 'admin'}
 						/>
 					</ul>
 				</div>

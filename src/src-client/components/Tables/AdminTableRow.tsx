@@ -1,8 +1,8 @@
-import { UserWithId } from '@/models/user.model'
+import { StatusType, UserWithId } from '@/models/user.model'
 import Image from 'next/image'
 import AdminModal from './AdminModal'
 import { useEffect, useState } from 'react'
-import { PlansTypes } from '@hooks/use-validate-plan'
+import { PlansTypes } from '@/types/models.type'
 
 const STATUS_DIC = {
   pending: 'Pendiente',
@@ -68,9 +68,8 @@ export default function AdminTableRow({ user: userProp }: Props) {
             {STATUS_DIC[status]}
           </span>
         </th>
-        <th className="capitalize">{PLANS_DIC[plan]}</th>
+        <th className="capitalize text-center">{PLANS_DIC[plan]}</th>
         <th className="text-center">{PROVIDERS_DIC[provider]}</th>
-        {/* <th className='text-center'>{PROVIDERS_DIC.MP}</th> */}
 
         <th>
           <AdminModal user={user} onSuccess={handlerChangeUser} />

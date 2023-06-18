@@ -33,7 +33,7 @@ const links = {
 		[
 			{
 				name: "Personal",
-				url: "/",
+				url: "/home",
 				endpoint: "/",
 				icon: <FontAwesomeIcon icon={faUser} />,
 			},

@@ -1,6 +1,7 @@
 import { Payment } from "@/models/payment.model";
 import { User } from "@/models/user.model";
 import dbConnect from "@/src-backend/db";
+import { CustomError } from "@/utils/custom-error";
 import { NextApiRequest, NextApiResponse } from "next";
 
 
@@ -11,10 +12,11 @@ if(method === 'GET'){
   await dbConnect()
   try {
     const { id } = query
+    if(!id) throw new CustomError('Payments Id is required',400)
     const payment = await Payment.findById(id)
     return res.status(200).json({success: true, payment })
   } catch (error) {
-    console.log(error);
+    if(error instanceof CustomError) res.status(error.statusCode).json({success:false, message: error.message})
     return res.status(400).json({success:false, message: ''})
   }
 }

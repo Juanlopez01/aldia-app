@@ -22,7 +22,7 @@ const NavbarDesktop = () => {
 		border-b-2 border-gray-500"
     >
       <div className="w-full h-full flex justify-around items-center">
-        <Link href="/landing">
+        <Link href="/">
           <Image src={Logo} alt="logo img" className="w-24 cursor-pointer" />
         </Link>
 
