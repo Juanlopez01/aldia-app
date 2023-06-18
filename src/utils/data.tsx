@@ -23,11 +23,17 @@ const links = {
 				endpoint: "/goals",
 				icon: <FontAwesomeIcon icon={faBullseye} />,
 			},
+			{
+				name: "Créditos",
+				url: "/credit",
+				endpoint: "/credit",
+				icon: <FontAwesomeIcon icon={faBullseye} />,
+			},
 		],
 		[
 			{
 				name: "Personal",
-				url: "/",
+				url: "/home",
 				endpoint: "/",
 				icon: <FontAwesomeIcon icon={faUser} />,
 			},

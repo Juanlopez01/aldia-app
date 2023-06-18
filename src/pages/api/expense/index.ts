@@ -1,4 +1,4 @@
-import { Company } from "@/models/company.model";
+import { CompanType, Company } from "@/models/company.model";
 import { Expense } from "@/models/expense.model";
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../src-backend/db";
@@ -21,7 +21,7 @@ export default async function income(
           .populate("expenses")
           .lean();
 
-        res.status(200).json({ message: "get", payload: company.expenses });
+        res.status(200).json({ message: "get", payload: (company as CompanType).expenses });
       } else {
       }
       break;

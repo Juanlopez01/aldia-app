@@ -16,7 +16,7 @@ const DarkMode = () => {
 		} else if (darkStore === "dark") {
 			setTheme("dark");
 		}
-	}, []);
+	}, []);// eslint-disable-line 
 
 	const toggleTheme = () => {
 		setTheme(theme === "dark" ? "light" : "dark");

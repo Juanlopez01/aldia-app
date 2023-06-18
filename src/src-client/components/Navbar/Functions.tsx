@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 import Swal from "sweetalert2";
 
 const GetNavLinks = (props: {
-	list: any;
+	list: Array<any>;
 	screen?: string;
 	setIsOpen?: Dispatch<SetStateAction<boolean>>;
 	handleAnimateHamburger?: () => void;
@@ -13,11 +13,13 @@ const GetNavLinks = (props: {
 	showIcons?: boolean;
 	section?: string;
 	classes?: string;
+	isAdmin?: boolean;
 }) => {
-	const pathname = usePathname();
+	const pathname = usePathname()
 	return (
 		<>
 			{props?.list?.map((link: any) => {
+				if(!props.isAdmin && link.name === 'Administrador') return null
 				return (
 					<div className="flex items-center" key={link?.name}>
 						{props?.section !== "sidenav" 
