@@ -18,7 +18,7 @@ const DesktopNvo = () => {
 		border-b-2 border-gray-400 dark:border-gray-500 "
     >
       <div className="w-full h-full flex justify-between px-4 items-center">
-        <Link href="/landing">
+        <Link href="/">
           <Image src={Logo} alt="logo img" className="w-24" />
         </Link>
         <div>
