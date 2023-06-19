@@ -26,9 +26,9 @@ export default function UserPlan() {
           </Link>
         </div>
       </div>
-      <p className="text-darkest-blue/40 dark:text-gray-100 mt-2 text-md">
+      <p className="bg-main-green dark:bg-transparent text-gray-100 mt-2 text-md">
         {plansDicctionary[plan]}{' '}
-        <span className="text-darkest-blue/40 dark:text-gray-100">{`vence ${timeToExpire}`}</span>
+        <span className="text-gray-300 ">{`vence ${timeToExpire}`}</span>
       </p>
       <hr className="border-gray-900 dark:border-main-yellow border-2"></hr>
     </>
