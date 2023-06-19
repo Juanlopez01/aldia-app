@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import { createCompany } from '@/redux/slice/CompanySlice';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
 import Modal from '../../generals/Modal';
 
 
@@ -30,7 +29,7 @@ const ModalRegister = () => {
     }
     return (
         <div className='mt-5 text-center'>
-            <button className='btn-general w-25' onClick={handleShow}>
+            <button className='px-3 py-2 bg-slate-900' onClick={handleShow}>
                 <span className="text-light">Registrar una compañia</span>
             </button>
             <Modal 
