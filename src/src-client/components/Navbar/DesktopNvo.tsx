@@ -36,7 +36,7 @@ const DesktopNvo = () => {
               <ButtonTransparent
                 handleClick={() => router.push('/auth')}
                 color="main-yellow"
-                classes="px-3 py-[4px]"
+                classes="px-3 py-[4px] border-main-yellow text-main-yellow hover:bg-transparent"
               >
                 Iniciar sesión
               </ButtonTransparent>
