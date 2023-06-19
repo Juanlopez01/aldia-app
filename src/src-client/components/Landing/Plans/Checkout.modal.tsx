@@ -1,5 +1,4 @@
 import { useToggle } from '@/src-client/hooks/use-toggle'
-import { PlansTypes } from '@/src-client/hooks/use-validate-plan'
 import Modal from '@client/components/generals/Modal'
 import BtnPaywithMP from './BtnPayWithMP'
 import Swal from 'sweetalert2'
@@ -7,6 +6,7 @@ import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faQrcode } from "@fortawesome/free-solid-svg-icons"
 import Link from 'next/link'
+import { PlansTypes } from '@/types/models.type'
 
 type Props = {
   name: string

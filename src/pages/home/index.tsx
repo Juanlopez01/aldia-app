@@ -1,10 +1,11 @@
 import Head from "next/head";
 import PersonalFinances from "../personal";
-import { useSession } from "next-auth/react";
+import { useValidatePlan } from "@hooks/use-validate-plan";
 
 export default function Home() {
-  const { data: session } = useSession({ required: true })
-  if (session && session.user) {
+  const { status } = useValidatePlan()
+  if(status==='loading')return null
+
     return (
       <>
         <Head>
@@ -20,10 +21,4 @@ export default function Home() {
         </main>
       </>
     );
-  } else {
-    return (
-      <div>
-      </div>
-    )
-  }
 }

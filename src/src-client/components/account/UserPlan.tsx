@@ -1,6 +1,5 @@
 import { faEnvelope, faPencil } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { PaymentType } from '@/models/payment.model'
 import Link from 'next/link'
 import { useValidatePlan } from '@hooks/use-validate-plan'
 
@@ -22,7 +21,7 @@ export default function UserPlan() {
             <FontAwesomeIcon
               icon={faPencil}
               className="text-white hover:cursor-pointer"
-              onClick={()=>redirectToPricing()}
+              onClick={()=>redirectToPricing('edit')}
             />
           </Link>
         </div>

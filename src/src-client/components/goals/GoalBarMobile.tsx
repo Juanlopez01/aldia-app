@@ -97,6 +97,7 @@ const GoalBarMobile = ({
 													description: title,
 													category: "Metas",
 													date: new Date(),
+													credit: 'Un pago',
 												},
 												email
 											)

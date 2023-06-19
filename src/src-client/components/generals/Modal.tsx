@@ -17,7 +17,7 @@ export default function Modal({
 }: ModalProps) {
   if (!showModal) return null
   const modalStyles =
-    className || 'bg-white w-96  rounded shadow-md shadow-black p-4 text-black'
+    className || 'bg-light-green w-96  rounded shadow-md shadow-black p-4 text-black'
   return (
     <>
       <section className="w-full h-screen fixed z-[9999999]  backdrop-blur-sm grid place-content-center top-0 left-0">

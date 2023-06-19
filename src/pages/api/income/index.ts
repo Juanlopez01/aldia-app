@@ -1,8 +1,8 @@
-import { Company } from "@/models/company.model";
+import { CompanType, Company } from "@/models/company.model";
 import { Income } from "@/models/income.model";
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../src-backend/db";
-import { User } from "@/models/user.model";
+import { User, UserWithId } from "@/models/user.model";
 
 dbConnect();
 
@@ -22,13 +22,13 @@ export default async function income(
           .populate("incomes")
           .lean();
 
-        res.status(200).json({ message: "get", payload: company.incomes });
+        res.status(200).json({ message: "get", payload: (company as CompanType).incomes });
       } else {
         const account = await User.findOne({ email: query.Id })
           .populate("incomes")
           .lean();
 
-        res.status(200).json({ message: "get", payload: account.incomes });
+        res.status(200).json({ message: "get", payload: (account as UserWithId).incomes });
       }
       break;
     case "POST":

@@ -1,8 +1,8 @@
-import { UserWithId } from '@/models/user.model'
+import { StatusType, UserWithId } from '@/models/user.model'
 import Image from 'next/image'
 import AdminModal from './AdminModal'
 import { useEffect, useState } from 'react'
-import { PlansTypes } from '@hooks/use-validate-plan'
+import { PlansTypes } from '@/types/models.type'
 
 const STATUS_DIC = {
   pending: 'Pendiente',
@@ -22,7 +22,6 @@ const PROVIDERS_DIC = {
 
 type Props = {
   user: UserWithId
-  flag: number
 }
 
 export default function AdminTableRow({ user: userProp }: Props) {
@@ -57,13 +56,20 @@ export default function AdminTableRow({ user: userProp }: Props) {
             className="rounded-full m-auto"
           />
         </th>
-        <th>{user.fullName ? user.fullName : "Sin nombre"}</th>
+        <th>{user.fullName ? user.fullName : 'Sin nombre'}</th>
         <th>{user.email}</th>
 
-        <th className="text-center"><span className={`${status==="active" ? "bg-[#28a745]" : "bg-[#dc3545]"} py-2 px-3 rounded-full text-white w-full`}>{STATUS_DIC[status]}</span></th>
-        <th className="capitalize">{PLANS_DIC[plan]}</th>
+        <th className="text-center">
+          <span
+            className={`${
+              status === 'active' ? 'bg-[#28a745]' : 'bg-[#dc3545]'
+            } py-2 px-3 rounded-full text-white w-full`}
+          >
+            {STATUS_DIC[status]}
+          </span>
+        </th>
+        <th className="capitalize text-center">{PLANS_DIC[plan]}</th>
         <th className="text-center">{PROVIDERS_DIC[provider]}</th>
-        {/* <th className='text-center'>{PROVIDERS_DIC.MP}</th> */}
 
         <th>
           <AdminModal user={user} onSuccess={handlerChangeUser} />

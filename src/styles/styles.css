@@ -10,9 +10,18 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.swal2-overlay {
+  z-index: 1000000000005;
+}
 .swal2-container {
-  @apply z-[1000000];
+  z-index: 1000000000005;
+}
+.swal2-modal {
+  z-index: 999999999;
+}
+.swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
+  
+  z-index: 1000000000005;
 }
 
 @layer components {
@@ -10823,4 +10832,10 @@ background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox=
 
 #income_canva{
   color: #111827 !important;
+}
+
+.shadow-plan{
+  box-shadow: -5px 2px 22px -12px rgba(0,0,0,0.52);
+  /* -webkit-box-shadow: 2px 15px 24px -14px rgba(0,0,0,0.52);
+  -moz-box-shadow: 2px 15px 24px -14px rgba(0,0,0,0.52); */
 }

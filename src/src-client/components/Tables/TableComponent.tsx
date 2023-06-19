@@ -63,7 +63,7 @@ export const TableComponent = ({ content, filters }: any) => {
 
   return (
     <div className="col-12 text-white">
-      <h1>Tablas {filters.type}</h1>
+      <h3 className="text-black pt-2">Tablas {filters.type}</h3>
       <div className="row">
         <div className="col-lg-12">
           <form>
@@ -77,7 +77,7 @@ export const TableComponent = ({ content, filters }: any) => {
               ></input>
             </div>
           </form>
-          <button onClick={downloadExcel}>Descargar excel</button>
+          <button onClick={downloadExcel} className="text-black pt-2">Descargar excel</button>
         </div>
       </div>
 
@@ -110,6 +110,7 @@ export const TableComponent = ({ content, filters }: any) => {
                       id: ele._id!,
                       table: filters.type,
                       date: ele.date,
+                      credit: ele.credit,
                     }}
                   />
                   <DeleteRegister id={ele._id} filters={filters} />
