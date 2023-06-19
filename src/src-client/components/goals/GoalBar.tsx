@@ -20,6 +20,7 @@ interface GoalBarTypes {
 	setFormType: Function;
 	setForm: Function;
 	form: any;
+	setShow: Function;
 }
 
 const GoalBar = ({
@@ -38,6 +39,7 @@ const GoalBar = ({
 	setFormType,
 	setForm,
 	form,
+	setShow
 }: GoalBarTypes) => {
 	const porcentaje = Math.round((excess.valueOf() * 100) / goalValue.valueOf());
 
@@ -93,6 +95,7 @@ const GoalBar = ({
 							onClick={() => {
 								setFormType("edit");
 								setForm({ ...form, _id: _id });
+								setShow(true);
 							}}
 						>
 							Editar valor
