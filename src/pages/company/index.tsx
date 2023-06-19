@@ -67,7 +67,7 @@ const Company = () => {
                     return (
                       <li key={company.id} className="flex-row">
                         <button
-                          className="btn-general"
+                          className="px-3 py-2 bg-gray-800"
                           onClick={() => handleSelect(company.id)}
                         >
                           <span className="text-light">{company.name}</span>
