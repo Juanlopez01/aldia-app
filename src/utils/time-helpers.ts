@@ -37,7 +37,7 @@ export const isAvaliablePlan = (endDate: Date) => {
 export const getMonthTimeDifference = (time: Date) => {
   const date = new Date(time)
   const started = new Date(date).getTime()
-  const toExpire = new Date(date.setMonth(date.getMonth() + 1)).getTime()
+  const toExpire = new Date(date.setDate(date.getMonth() + 1)).getTime()
 
   const difference = toExpire - started
   return {
@@ -46,8 +46,9 @@ export const getMonthTimeDifference = (time: Date) => {
     difference,
   }
 }
-export const calculateNextMonth = (initDate: Date) => {
+export const calculate2Weeks = (initDate: Date) => {
+  const weekMiliseconds = DATE_UNITS.day * 7 * 1000
   const date = new Date(initDate)
-  const nextMonth = new Date(date.setMonth(date.getMonth() + 1))
+  const nextMonth = new Date(date.getTime() + (weekMiliseconds * 2))
   return nextMonth
 }
