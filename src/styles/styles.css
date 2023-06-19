@@ -10839,3 +10839,7 @@ background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox=
   /* -webkit-box-shadow: 2px 15px 24px -14px rgba(0,0,0,0.52);
   -moz-box-shadow: 2px 15px 24px -14px rgba(0,0,0,0.52); */
 }
+
+.bg-landing-hero{
+  background: linear-gradient(90deg, rgba(215,217,235,1) 0%, rgba(192,186,221,1) 100%);
+}
