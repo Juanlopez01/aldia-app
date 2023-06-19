@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../src-backend/db";
-import { User } from "@/models/user.model";
+import { User, UserWithId } from "@/models/user.model";
 import { Goal } from "@/models/goal.model";
 import { dateFormatter } from "@/utils/dateFormatter";
 import { Expense } from "@/models/expense.model";
@@ -18,7 +18,7 @@ export default async function goal(
                 const result = await User.findOne({ email: email})
                 .populate('goals')
                 .lean();
-                res.status(200).json({goals: result.goals});
+                res.status(200).json({goals: (result as UserWithId).goals});
                 break;
             case 'POST':
                 const date = await dateFormatter(expiresDate)

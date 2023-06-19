@@ -12,7 +12,7 @@ module.exports = {
 		extend: {
 			colors: {
 				"violet-blue-profile": "#877fa9",
-				"violet-blue-landing": "#9ba1ce",
+				"violet-blue-landing": "hsla(234, 43%, 90%, 1)",
 				"main-green": "#418154",
 				"secondary-green": "#1f5e39",
 				"light-green": "#D7F0E6",
@@ -23,6 +23,9 @@ module.exports = {
 				"medium-blue": "#313BAB",
 				"light-blue": "#4F5EC7",
 				link: "#F4F4F5",
+			},
+			screens: {
+				mob: "0px",
 			},
 		},
 	},

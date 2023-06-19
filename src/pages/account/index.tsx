@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react'
 import LogoUser from '../../../assets/UserDefault.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import UserImage from '@/src-client/components/account/UserImage'
 import { useRouter } from 'next/router'
 import { UserWithId } from '@/models/user.model'
@@ -10,16 +10,20 @@ import UserCurrency from '@components/account/UserCurrency'
 import UserPlan from '@client/components/account/UserPlan'
 
 const Account = () => {
-  const { data: session,status } = useSession()
+  const { data: session, status } = useSession()
   const router = useRouter()
 
-
-// TODO: crear un skeleton de carga para no tener que retornar null
   if (status === 'loading') return null
- else if(status === 'unauthenticated') router.push('/')
-  else{
-  // Una vez que se resetee la base de dato esto no es necesario ↓↓↓↓↓↓↓↓
-    const { _id: userId, email, image, name, lastname, currency = 'USD',payments,createdAt } = session?.user as unknown as UserWithId
+  else if (status === 'unauthenticated') router.push('/')
+  else {
+    const {
+      _id: userId,
+      email,
+      image,
+      name,
+      lastname,
+      currency,
+    } = session?.user as unknown as UserWithId
     return (
       <div className="min-h-[90vh] bg-darkest-blue w-100 d-flex justify-content-center align-items-center">
         <aside className="bg-violet-blue-profile hadow-2xl min-h-[60vh] w-10/12 md:w-8/12 lg:w-1/2 xl:w-1/3 2xl:w-3/12 mx-auto rounded-[10px]">
@@ -39,7 +43,11 @@ const Account = () => {
               {/* data */}
               <div className="w-3/5 md:w-7/10">
                 {/* user */}
-                <UserName name={name.toString()} userId={userId} lastname={lastname.toString()}/>
+                <UserName
+                  name={name.toString()}
+                  userId={userId}
+                  lastname={lastname.toString()}
+                />
 
                 {/* email */}
                 <div className="">
@@ -66,7 +74,7 @@ const Account = () => {
                 </div>
 
                 <div>
-                  <UserCurrency currency={currency} userId={userId}/>
+                  <UserCurrency currency={currency} userId={userId} />
                 </div>
               </div>
             </div>

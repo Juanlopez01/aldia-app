@@ -1,5 +1,5 @@
 import { UserWithId } from '@/models/user.model'
-import SearchBar from '@components/generals/SeachBar'
+import SearchBar from '@/src-client/components/generals/SearchBar'
 import { useEffect, useState } from 'react'
 import { requestAdminUsers } from '@/utils/request'
 import AdminTableRow from './AdminTableRow'
@@ -30,7 +30,7 @@ const initalPages = {
 
 const stylesTH =
 'px-6 pl-2  font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none border-b-solid tracking-none whitespace-nowrap text-sm text-slate-400 opacity-70 dark:text-black'
-
+//
 
 export default function AdminTable() {
   const [users, setUSers] = useState<UserWithId[]>([])

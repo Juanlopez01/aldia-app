@@ -168,7 +168,7 @@ const Contact = () => {
 					<div className="flex flex-col items-center py-2">
 						<label className="text-black">Mensaje</label>
 						<textarea
-							className="border-gray-900 dark:border-main-yellow w-full max-w-[350px] lg:max-w-[1000px] border-[1px] text-gray-800 rounded-[12px] px-3 py-2 bg-transparent placeholder:text-gray-500
+							className="border-gray-900 w-full max-w-[350px] lg:max-w-[1000px] border-[1px] text-gray-800 rounded-[12px] px-3 py-2 bg-transparent placeholder:text-gray-500
 							focus:outline-blue-600 text-sm"
 							placeholder="Texto"
 							name="message"
