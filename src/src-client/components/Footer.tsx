@@ -30,7 +30,7 @@ const Footer = () => {
           <Link href="/" className="text-link link no-underline">
             Resources
           </Link>
-          <Link href="/fqas" className="text-link link no-underline">
+          <Link href="/faqs" className="text-link link no-underline">
             FQAs
           </Link>
         </ul>
