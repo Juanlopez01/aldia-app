@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/src-client/hooks/use-redux";
+import { useAppSelector } from '@/src-client/hooks/use-redux'
 import {
   Chart as ChartJS,
   Legend,
@@ -7,33 +7,22 @@ import {
   LinearScale,
   BarElement,
   Title,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
+} from 'chart.js'
+import { Bar } from 'react-chartjs-2'
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 interface IOptions {
-  type: string;
-  data: any;
-  options: any;
+  type: string
+  data: any
+  options: any
 }
 
-export function LongExcess({ options, data }: any) {
-  // const { totalIncomes, totalExpenses } = useAppSelector(
-  //   (s) => s.PersonalReducer
-  // );
-  const { totalIncomes, totalExpenses } = useAppSelector(
-    (s) => s.CompanyReducer
-  );
-  const excess = totalIncomes - totalExpenses;
-
+export function LongExcess({ options, data, type }: any) {
+  const { totalIncomes, totalExpenses } = useAppSelector((s) =>
+    type === 'negocio' ? s.CompanyReducer : s.PersonalReducer
+  )
+  const excess = totalIncomes - totalExpenses
   const optionsBar = {
     responsive: true,
     plugins: {
@@ -44,17 +33,17 @@ export function LongExcess({ options, data }: any) {
         display: false,
       },
     },
-  };
+  }
   return (
     <div
       className="bg-link dark:bg-dark-blue rounded-4 flex flex-col md:flex-row justify-center gap-5 w-full text-white h-[500px] py-8"
-      style={{ width: "100%", maxWidth: "100%" }} // Add maxWidth property
+      style={{ width: '100%', maxWidth: '100%' }} // Add maxWidth property
     >
       <div className="pl-8 text-gray-900 dark:text-link">
         <h4>Excedentes</h4>
         <h2>${excess}</h2>
       </div>
-      
+
       {data.datasets[0].data.length > 0 ? (
         <Bar
           options={optionsBar}
@@ -67,5 +56,5 @@ export function LongExcess({ options, data }: any) {
         <h2 className="heandingExcedent">No hay registros</h2>
       )}
     </div>
-  );
+  )
 }
