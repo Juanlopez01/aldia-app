@@ -62,7 +62,7 @@ export const TableComponent = ({ content, filters }: any) => {
   }
 
   return (
-    <div className="col-12 text-white">
+    <div className="col-12 text-white h-3/4">
       <h3 className="text-black pt-2">Tablas {filters.type}</h3>
       <div className="row">
         <div className="col-lg-12">
@@ -82,8 +82,8 @@ export const TableComponent = ({ content, filters }: any) => {
       </div>
 
       <Table className="table table-hover table-active mt-3" id="tableRegister">
-        <thead className="table-head table-dark">
-          <tr className="table-head-row">
+        <thead className="table-head ">
+          <tr className="table-head-row ">
             <th>Tipo</th>
             <th>Categoria</th>
             <th>Value</th>
@@ -92,7 +92,7 @@ export const TableComponent = ({ content, filters }: any) => {
           </tr>
         </thead>
         <tbody className=" table-body">
-          {tableContent.map((ele: IncomeType | ExpenseType) => {
+          {tableContent.slice(0, 10).map((ele: IncomeType | ExpenseType) => {
             return (
               //TODO:Aqui no deja agregar el id como key
               <tr key={Math.random()}>

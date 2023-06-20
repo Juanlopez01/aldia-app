@@ -12,6 +12,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormRegister from "./FormAddRegister";
 import Modal from "../generals/Modal";
+import { traductDate } from "@/utils/traductDate";
 
 interface PropsModal {
 	props: {
@@ -21,16 +22,16 @@ interface PropsModal {
 	};
 	type?: string;
 }
-
+const newDate = new Date()
+const date = traductDate(newDate)
 const initialStateForm = {
 	type: "",
 	description: "",
 	category: "Banco",
 	value: 0,
-	date: new Date(),
-	credit: 'Un pago',
+	date: date,
+	credit: 'No',
 };
-
 export function ModalAddRegister({
 	props,
 	type,
