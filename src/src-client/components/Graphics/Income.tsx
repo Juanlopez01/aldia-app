@@ -43,6 +43,8 @@ export function Income({
     type === 'negocio' ? s.CompanyReducer : s.PersonalReducer
   )
 
+  const reduce = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
+
 	return (
 		<div
 			className="bg-link rounded-4 px-4
@@ -50,7 +52,7 @@ export function Income({
 		>
 			<div className="text-gray-900">
 				<h5>Ingresos</h5>
-				<h3>${totalIncomes}</h3>
+				<h3>${reduce}</h3>
 			</div>
 
       {data?.labels?.length ? (
