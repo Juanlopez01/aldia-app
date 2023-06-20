@@ -19,6 +19,8 @@ const Company = () => {
   const companyData = useSelector(
     (state: any) => state.CompanyReducer.selectedCompany
   )
+
+  console.log({companyData})
   const companyNames = useSelector((state: any) => state.CompanyReducer.names)
   const companyAllNames = useSelector((state : any) => state.CompanyReducer.allNames)
   const email = session?.user?.email
@@ -46,7 +48,7 @@ const Company = () => {
 
 	return (
     <LayoutWithSideNav>
-      <div className="container-graphics w-50 gap-2">
+      <div className="container-graphics w-full gap-2">
         <div className="min-h-screen">
           {company === 'loadingCompany' && companyData?.name !== '' && (
             <span className="loader"></span>

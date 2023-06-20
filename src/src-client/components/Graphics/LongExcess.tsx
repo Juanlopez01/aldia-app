@@ -1,5 +1,5 @@
+import { useAppSelector } from "@/src-client/hooks/use-redux";
 import {
-  ArcElement,
   Chart as ChartJS,
   Legend,
   Tooltip,
@@ -8,9 +8,7 @@ import {
   BarElement,
   Title,
 } from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import { Bar, Chart } from "react-chartjs-2";
-import { useSelector } from "react-redux";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -28,8 +26,11 @@ interface IOptions {
 }
 
 export function LongExcess({ options, data }: any) {
-  const { totalIncomes, totalExpenses } = useSelector(
-    (s: any) => s.PersonalReducer
+  // const { totalIncomes, totalExpenses } = useAppSelector(
+  //   (s) => s.PersonalReducer
+  // );
+  const { totalIncomes, totalExpenses } = useAppSelector(
+    (s) => s.CompanyReducer
   );
   const excess = totalIncomes - totalExpenses;
 
