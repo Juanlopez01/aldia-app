@@ -4,8 +4,7 @@ import { CustomError } from '@/utils/custom-error'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { Payment } from '@/models/payment.model'
 
-const getInitialDates = () => {
-  const date = new Date()
+const getInitialDates = (date = new Date ) => {
   const init_date = new Date()
   const end_date = new Date(date.setMonth(date.getMonth() + 1))
   return {
@@ -31,10 +30,15 @@ export default async function handler(
       if (!plan) throw new CustomError('Plan required', 400)
 
       const user = await User.findById(id)
-
       if (!user) throw new CustomError('User not found', 404)
 
-      const { init_date, end_date } = getInitialDates()
+      let dates;
+      if(user.payments.length) {
+        const lastPay = await Payment.findById(user.payments.at(-1))
+        dates = getInitialDates(lastPay.end_date)
+      }else dates = getInitialDates()
+
+      const { init_date, end_date } = dates
 
       const payment = await Payment.create({
         plan,

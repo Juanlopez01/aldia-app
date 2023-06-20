@@ -11,17 +11,23 @@ export const bdInfo = [
 	{
 		image: Imac,
 		title: "En tus dispositivos",
-		description: "Gestiona tus ingresos y egresos de manera intuitiva: Con ALDIA, llevar un registro de tus transacciones nunca ha sido tan fácil. Categoriza tus ingresos y gastos en segundos y mantén un seguimiento completo de tus finanzas personales de manera automática. ¡Diles adiós a las complicaciones y disfruta de la tranquilidad financiera!",
+
+		description: "Categoriza tus ingresos y gastos en segundos y mantén un seguimiento completo de tus finanzas personales de manera automática. ¡Diles adiós a las complicaciones y disfruta de la tranquilidad financiera!",
+
 	},
 	{
 		image: CajaFuerte,
 		title: "Toma decisiones inteligentes",
-		description: "Visualiza tu progreso con gráficos y reportes claros: Con ALDIA, obtén una visión clara y detallada de tus finanzas a través de gráficos y reportes personalizados. Analiza tus hábitos de gasto, identifica áreas de mejora y toma decisiones informadas para alcanzar tus metas financieras. ¡Con ALDIA, tendrás el control de tu dinero al alcance de tus manos!",
+
+		description: "Con ALDIA, obtén una visión clara y detallada de tus finanzas a través de gráficos y reportes personalizados. Analiza tus hábitos de gasto, identifica áreas de mejora y toma decisiones informadas para alcanzar tus metas financieras. ¡Con ALDIA, tendrás el control de tu dinero al alcance de tus manos!",
+
 	},
 	{
 		image: Locacion,
 		title: "Logra tus metas",
-		description: "Establece metas de ahorro y haz un seguimiento de tus progresos: ¿Sueñas con un nuevo auto, unas vacaciones o la casa de tus sueños? Con ALDIA, podrás establecer metas de ahorro realistas y monitorear tu progreso en tiempo real. Mantén la motivación alta mientras ves cómo tus excedentes se acercan cada vez más a tus sueños. ¡Haz que tus metas financieras se hagan realidad con ALDIA!",
+
+		description: "¿Sueñas con un nuevo auto, unas vacaciones o la casa de tus sueños? Con ALDIA, podrás establecer metas de ahorro realistas y monitorear tu progreso en tiempo real. Mantén la motivación alta mientras ves cómo tus excedentes se acercan cada vez más a tus sueños. ¡Haz que tus metas financieras se hagan realidad con ALDIA!",
+
 	},
 ];
 
