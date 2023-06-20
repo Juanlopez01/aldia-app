@@ -41,11 +41,6 @@ export function Excess({ options, data , type, totalDataIncomes, totalDataExpens
 		},
 	};
 
-	const { totalIncomes, totalExpenses } = useAppSelector(
-		(s) => type === 'negocio' ?s.CompanyReducer: s.PersonalReducer
-	);
-	const excess = totalIncomes - totalExpenses;
-
 	const reduceIncomes = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
 	const reduceExpenses = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
 	const excessResult = reduceIncomes - reduceExpenses

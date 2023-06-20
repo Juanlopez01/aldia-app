@@ -39,10 +39,6 @@ export function Income({
     },
   }
 
-  const { totalIncomes } = useAppSelector((s) =>
-    type === 'negocio' ? s.CompanyReducer : s.PersonalReducer
-  )
-
   const reduce = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
 
 	return (

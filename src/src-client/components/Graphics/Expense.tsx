@@ -39,7 +39,6 @@ export function Expense({
 		},
 	};
 
-	const { totalExpenses } = useAppSelector((s) => type === 'negocio' ?s.CompanyReducer: s.PersonalReducer);
 
 	const reduce = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
 
