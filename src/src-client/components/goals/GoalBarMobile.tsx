@@ -3,6 +3,7 @@ import React from "react";
 import Swal from "sweetalert2";
 import PhotoComponent from "./PhotoComponent";
 import ProgressBar from "./ProgressBar";
+import { traductDate } from "@/utils/traductDate";
 
 interface GoalBarTypes {
 	title: String;
@@ -96,7 +97,7 @@ const GoalBarMobile = ({
 													value: goalValue,
 													description: title,
 													category: "Metas",
-													date: new Date(),
+													date: traductDate(new Date()),
 													credit: 'Un pago',
 												},
 												email
