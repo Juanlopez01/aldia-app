@@ -2,12 +2,13 @@ import { catTransactions } from "@/utils/categoriesTransactions";
 import Calendar from "react-calendar";
 import React from "react"
 import { creditList } from "@/utils/listCredits";
+import { traductDate } from "@/utils/traductDate";
 export interface FormType {
   type: string;
   description: string;
   category: string;
   value: number;
-  date: Date;
+  date: string;
   credit: string;
 }
 
@@ -38,8 +39,8 @@ export default function FormRegister({ form, setForm }: FormProps) {
   };
 
   const handleDateChange = (e : any) => {
-
-    setForm({ ...form, date: e});
+    const formatDate = traductDate(e)
+    setForm({ ...form, date: formatDate});
     setDateShow(true);
   }
 

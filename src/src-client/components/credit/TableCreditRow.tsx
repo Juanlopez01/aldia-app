@@ -14,7 +14,6 @@ const TableCreditRow = ({transaction, type} : Props) => {
   const dispatch : Function = useDispatch()
   const cat= transaction?.category?.toString()
   const check = transaction.credit.split(' ')[2]
-  console.log(transaction)
   const handleChange = (e : any) => {
     if(type === 'incomes'){
       transaction._id &&

@@ -67,8 +67,6 @@ export function ModalEdit({ props }: PropsModal) {
     setShow(true);
   };
 
-
-  console.log({ form, props })
   const sendForm = () => {
     switch (props.table) {
       case 'ingresos':
