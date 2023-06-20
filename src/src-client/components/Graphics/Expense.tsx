@@ -2,7 +2,7 @@ import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Doughnut, Pie } from "react-chartjs-2";
 import { ModalAddRegister } from "../Modals/ModalAddRegister";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/src-client/hooks/use-redux";
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
@@ -39,7 +39,7 @@ export function Expense({
 		},
 	};
 
-	const { totalExpenses } = useSelector((s: any) => s.PersonalReducer);
+	const { totalExpenses } = useAppSelector((s) => type === 'negocio' ?s.CompanyReducer: s.PersonalReducer);
 
 	return (
 		<div
