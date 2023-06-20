@@ -22,6 +22,7 @@ import {
   updateAdminUserIncome,
 } from '@/redux/slice/AdminSlice'
 import Modal from '@components/generals/Modal'
+import { traductDate } from '@/utils/traductDate'
 
 interface PropsModal {
   props: {
@@ -31,18 +32,18 @@ interface PropsModal {
     value: number
     id: String
     table: String
-    date: Date;
+    date: string;
     credit: string;
   }
 
 }
-
+const date = traductDate(new Date())
 const initialStateForm = {
   type: '',
   description: '',
   category: '',
   value: 0,
-  date: new Date(),
+  date: date,
   credit: 'Un pago',
 };
 
