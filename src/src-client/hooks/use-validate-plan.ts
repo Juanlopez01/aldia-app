@@ -3,7 +3,7 @@ import { PlansTypes } from '@/types/models.type'
 import { fetchPayment } from '@/utils/request'
 import {
   getRelativeTime,
-  calculateNextMonth,
+  calculate2Weeks,
   isAvaliablePlan,
 } from '@/utils/time-helpers'
 import { useSession } from 'next-auth/react'
@@ -45,7 +45,7 @@ export const useValidatePlan = () => {
         })
     } else if (!user?.payments?.length && status === 'authenticated') {
       setPlan('free')
-      const dateToExpireFreePlan = calculateNextMonth(user?.createdAt)
+      const dateToExpireFreePlan = calculate2Weeks(user?.createdAt)
       // si la diferencia es negativa es por que su plan ya venció
       if (!isAvaliablePlan(dateToExpireFreePlan)) redirectToPricing('free')
 
