@@ -43,10 +43,10 @@ export function Expense({
 
 	return (
 		<div
-			className="bg-link dark:bg-dark-blue col-3 rounded-4 text-white px-4 py-2 flex flex-col justify-around"
+			className="bg-link col-3 rounded-4 text-white px-4 py-2 flex flex-col justify-around"
 			style={{ width: "370px" }}
 		>
-			<div className="text-gray-900 dark:text-link">
+			<div className="text-gray-900">
 				<h5>Gastos</h5>
 				<h3>${totalExpenses}</h3>
 			</div>

@@ -24,12 +24,13 @@ function HeroComponent() {
 						<ButtonTransparent
 							handleClick={() => router.push("/auth")}
 							color="main-yellow"
-							classes="px-4 py-2"
+							classes="px-4 py-2 border-2 bg-main-green dark:bg-light-blue text-white
+							hover:bg-secondary-green hover:dark:bg-medium-blue"
 						>
 							Iniciar sesión
 						</ButtonTransparent>
 
-						<ButtonSolid color="main-yellow" classes="px-4 py-2">
+						<ButtonSolid color="main-yellow" classes="px-4 py-2 border-[1px] border-black">
 							Registrarse
 						</ButtonSolid>
 					</div>
