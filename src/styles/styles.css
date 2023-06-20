@@ -10817,7 +10817,7 @@ textarea.form-control-lg {
   border-radius: 100px !important;
 }
 
-:is(.dark .dark\:btn-graphics){
+.dark .btn-graphics{
   background-color: #4F5EC7 !important;
 }
 
@@ -10850,6 +10850,13 @@ textarea.form-control-lg {
 
 .bg-difuminado{
   background-image: url('/difuminado.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.dark .bg-difuminado {
+  background-image: url('/difuminado2.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
