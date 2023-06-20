@@ -9,7 +9,7 @@ const Landing = () => {
     <div>
       <Hero />
       <SectionUno />
-      <Contact/>
+      <Contact showInfo={true}/>
       <Plans />
     </div>
   )
