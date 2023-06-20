@@ -23,7 +23,7 @@ const Index = () => {
 		<LayoutWithSideNav>
 			<div className="py-8 px-8 bg-light-green dark:bg-violet-blue-landing w-full min-h-[60vh]">
 				<SearchBarCredit filters={filters} setFilters={setFilters} />
-				<TableCredit transactions={transactions} />
+				<TableCredit transactions={transactions} type={filters.type} />
 			</div>
 		</LayoutWithSideNav>
 	);

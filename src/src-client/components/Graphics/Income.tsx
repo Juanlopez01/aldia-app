@@ -43,15 +43,15 @@ export function Income({
     type === 'negocio' ? s.CompanyReducer : s.PersonalReducer
   )
 
-  return (
-    <div
-      className="bg-link dark:bg-dark-blue rounded-4 px-4
+	return (
+		<div
+			className="bg-link rounded-4 px-4
       w-[350px] pt-2  flex flex-col justify-around py-2"
-    >
-      <div className="text-gray-900 dark:text-link">
-        <h5>Ingresos</h5>
-        <h3>${totalIncomes}</h3>
-      </div>
+		>
+			<div className="text-gray-900">
+				<h5>Ingresos</h5>
+				<h3>${totalIncomes}</h3>
+			</div>
 
       {data?.labels?.length ? (
         <div>

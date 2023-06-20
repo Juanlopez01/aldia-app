@@ -2,12 +2,13 @@ import { catTransactions } from '@/utils/categoriesTransactions'
 import Calendar from 'react-calendar'
 import React from 'react'
 import { creditList } from '@/utils/listCredits'
+import { traductDate } from '@/utils/traductDate'
 export interface FormType {
   type: string
   description: string
   category: string
   value: number
-  date: Date
+  date: string
   credit: string
 }
 
@@ -32,16 +33,19 @@ export default function FormRegister({ form, setForm }: FormProps) {
       setForm({ ...form, [name]: parseInt(value) })
     } else if (name === 'category' && value === 'Otros') {
       setShowOtherCategory(true)
-    } else if (name==='other-category') {
+    } else if (name === 'other-category') {
       setOtherCategory(value)
       setForm({ ...form, category: value })
+    } else if (name === 'credit') {
+      setForm({ ...form, [name]: `${value} nochecked` })
     } else {
       setForm({ ...form, [name]: value })
     }
   }
 
   const handleDateChange = (e: any) => {
-    setForm({ ...form, date: e })
+    const formatDate = traductDate(e)
+    setForm({ ...form, date: formatDate })
     setDateShow(true)
   }
 
@@ -106,7 +110,7 @@ export default function FormRegister({ form, setForm }: FormProps) {
 
       <div className="input-group mb-3 mt-3 w-100">
         <label htmlFor="value" className="input-group-text">
-          Valor
+          Importe
         </label>
         <input
           type="number"

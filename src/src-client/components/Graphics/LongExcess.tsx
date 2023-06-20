@@ -36,10 +36,10 @@ export function LongExcess({ options, data, type }: any) {
   }
   return (
     <div
-      className="bg-link dark:bg-dark-blue rounded-4 flex flex-col md:flex-row justify-center gap-5 w-full text-white h-[500px] py-8"
-      style={{ width: '100%', maxWidth: '100%' }} // Add maxWidth property
+      className="bg-link rounded-4 flex flex-col md:flex-row justify-center gap-5 w-full text-white h-[500px] py-8"
+      style={{ width: "100%", maxWidth: "100%" }} // Add maxWidth property
     >
-      <div className="pl-8 text-gray-900 dark:text-link">
+      <div className="pl-8 text-gray-900">
         <h4>Excedentes</h4>
         <h2>${excess}</h2>
       </div>

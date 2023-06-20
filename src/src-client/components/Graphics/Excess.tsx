@@ -48,11 +48,11 @@ export function Excess({ options, data , type}: any) {
 
 	return (
 		<div
-			className="bg-link dark:bg-dark-blue rounded-4 flex flex-col justify-around text-white containerGraphicosDivExc px-4
+			className="bg-link rounded-4 flex flex-col justify-around text-white containerGraphicosDivExc px-4
 			w-[350px]"
 			
 		>
-			<div className="text-gray-900 dark:text-link">
+			<div className="text-gray-900">
 				<h5>Excedentes</h5>
 				<h3>${excess}</h3>
 			</div>
