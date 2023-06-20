@@ -30,7 +30,9 @@ export default function FormRegister({ form, setForm }: FormProps) {
 
     if (name === "value") {
       setForm({ ...form, [name]: parseInt(value) });
-    } else {
+    } else if(name === 'credit'){
+      setForm({ ...form, [name]: `${value} nochecked` });
+    }else{
       setForm({ ...form, [name]: value });
     }
   };
@@ -84,7 +86,7 @@ export default function FormRegister({ form, setForm }: FormProps) {
       
       <div className="input-group mb-3 mt-3 w-100">
         <label htmlFor="value" className="input-group-text">
-          Valor
+          Importe
         </label>
         <input
           type="number"

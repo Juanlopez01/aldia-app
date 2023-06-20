@@ -1,1 +1,1 @@
-export const creditList = ['Un pago', 'Dos pagos', 'Tres pagos', 'Seis pagos', 'Doce pagos', 'Dieciocho pagos', 'Más pagos']
+export const creditList = ['No', 'Un pago', 'Dos pagos', 'Tres pagos', 'Seis pagos', 'Doce pagos', 'Dieciocho pagos', 'Más pagos']

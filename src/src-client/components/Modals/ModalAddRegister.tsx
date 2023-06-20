@@ -21,14 +21,17 @@ interface PropsModal {
 	};
 	type?: string;
 }
-
+const newDate = new Date()
+const year = newDate.getFullYear()
+const month = newDate.getMonth()
+const day = newDate.getDate()
 const initialStateForm = {
 	type: "",
 	description: "",
 	category: "Banco",
 	value: 0,
 	date: new Date(),
-	credit: 'Un pago',
+	credit: 'No',
 };
 
 export function ModalAddRegister({

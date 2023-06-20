@@ -12,10 +12,10 @@ function HeroComponent() {
 			<div className="col-span-2">
 				<div className="w-[90vw] lg:w-[80vw] xl:w-[60%] mx-auto my-20 md:my-32 grid gap-2">
 					<div className="text-5xl xl:text-6xl text-center font-bold">
-						Simplifica tu vida financiera con ALDíA
+					CONTROLA TUS FINANZAS CON ALDIA: SIMPLIFICA TU VIDA FINANCIERA
 					</div>
 					<div className="flex align-items-center justify-center py-6 md:py-12">
-						<p className="text-xl md:text-2xl text-center">Lorem ipsum dolor</p>
+						<p className="text-xl md:text-2xl text-center">¡Empieza tu viaje hacia la libertad financiera ahora mismo!</p>
 					</div>
 					<div className="flex align-items-center justify-center gap-4">
 						<ButtonTransparent
