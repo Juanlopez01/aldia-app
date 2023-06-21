@@ -65,31 +65,37 @@ const Company = () => {
 								<EnterModal data={companyAllNames} />
 							</>
 						)}
-						<div className="flex flex-wrap justify-center">
-							{companyNames && (
-								<div className="flex items-center">
-									<div className="input-group">
-										<label className="input-group-text h-10">Compañía</label>
-										<select
-											className="!w-1/5 form-control h-10"
-											onChange={(e) => handleSelect(e)}
-										>
-											{companyNames?.map((company: any) => {
-												return (
-													<option key={company.id} value={company.id} className="flex-row">
-														<span className="text-light">{company.name}</span>
-													</option>
-												);
-											})}
-										</select>
+						<div>
+							<div className="flex flex-wrap flex-col md:flex-row justify-center bg-white dark:!bg-transparent w-full md:w-[70vw] rounded-lg
+							">
+								{companyNames && (
+									<div className="flex flex-col pt-4 px-3 md:flex-row md:!pt-0 items-center">
+										<div className="input-group">
+											<label className="input-group-text h-10">Compañía</label>
+											<select
+												className="!w-1/5 form-control h-10"
+												onChange={(e) => handleSelect(e)}
+											>
+												{companyNames?.map((company: any) => {
+													return (
+														<option key={company.id} value={company.id} className="flex-row">
+															<span className="text-light">{company.name}</span>
+														</option>
+													);
+												})}
+											</select>
+										</div>
+										<div className="px-3 flex items-center">
+											<ModalRegister classes="w-[160px] relative bottom-6 !bg-[#e9ecef] !text-black rounded-lg border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]" />
+											<EnterModal
+												data={companyAllNames}
+												classes="
+												w-[160px] bg-darkest-blue text-black px-3 py-2 relative ml-4 rounded-lg !bg-[#e9ecef] border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]"
+											/>
+										</div>
 									</div>
-									<div className="px-3 flex items-center">
-										<ModalRegister classes="w-[160px] relative bottom-6 !bg-[#e9ecef] !text-black rounded-lg border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]" />
-										<EnterModal data={companyAllNames} classes="
-										w-[160px] bg-darkest-blue text-black px-3 py-2 relative ml-4 rounded-lg !bg-[#e9ecef] border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]"/>
-									</div>
-								</div>
-							)}
+								)}
+							</div>
 							{companySelect && companyData && (
 								<>
 									{/* <h2 className="mt-2">{companyData.name}</h2> */}
