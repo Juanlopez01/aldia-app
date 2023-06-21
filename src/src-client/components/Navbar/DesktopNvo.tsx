@@ -28,7 +28,7 @@ const DesktopNvo = () => {
                 list={links?.loggedIn[0]}
                 showIcons={false}
                 section="sidenav"
-                classes="px-12 py-1 relative top-2 hover:dark:!bg-medium-blue"
+                classes="px-12 py-1 relative top-2 hover:opacity-80"
               />
             </ul>
           ) : (
