@@ -2,7 +2,7 @@ import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Doughnut, Pie } from "react-chartjs-2";
 import { ModalAddRegister } from "../Modals/ModalAddRegister";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/src-client/hooks/use-redux";
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
@@ -40,6 +40,8 @@ export function Expense({
 		},
 	};
 
+	const reduce = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
+
 
 	return (
 		<div
@@ -48,7 +50,7 @@ export function Expense({
 		>
 			<div className="text-gray-900">
 				<h5>Gastos</h5>
-				<h3>${totalExpenses}</h3>
+				<h3>${reduce}</h3>
 			</div>
 			{data?.labels?.length ? (
 				<Pie

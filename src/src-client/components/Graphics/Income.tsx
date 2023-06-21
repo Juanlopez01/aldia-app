@@ -1,48 +1,48 @@
-import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import { Doughnut, Pie } from "react-chartjs-2";
-import { ModalAddRegister } from "../Modals/ModalAddRegister";
-import { useState } from "react";
-import { Modal } from "react-bootstrap";
-import { TableComponent } from "../../components/Tables/TableComponent";
-import Table from "react-bootstrap/Table";
-import { useSelector } from "react-redux";
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js'
+import ChartDataLabels from 'chartjs-plugin-datalabels'
+import { Pie } from 'react-chartjs-2'
+import { ModalAddRegister } from '../Modals/ModalAddRegister'
+import { useAppSelector } from '@/src-client/hooks/use-redux'
 
-ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
+ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels)
 
 interface IncomeProps {
-	type?: string;
-	options: object;
-	data: any;
-	setTableContent: Function;
+  type?: string
+  options: object
+  data: any
+  setTableContent: Function
 }
 export function Income({
-	type,
-	options,
-	data,
-	setTableContent,
-	totalDataIncomes,
-	totalDataExpenses,
-	totalIncomes,
-	openModalTable,
-}: any) {
-	const propsModal = {
-		title: "Agregar",
-		buttonText: "Agregar",
-		type: "income",
-	};
 
-	const optionsPlus = {
-		...options,
-		onClick: function (event: any, elements: any) {
-			const slice = {
-				type: "ingresos",
-				slice: type,
-			};
-			openModalTable(true);
-			setTableContent(slice);
-		},
-	};
+  type,
+  options,
+  data,
+  setTableContent,
+  totalDataIncomes,
+  totalDataExpenses,
+  openModalTable,
+
+}: any) {
+  const propsModal = {
+    title: 'Agregar',
+    buttonText: 'Agregar',
+    type: 'income',
+  }
+
+  const optionsPlus = {
+    ...options,
+    onClick: function (event: any, elements: any) {
+      const slice = {
+        type: 'ingresos',
+        slice: type,
+      }
+      openModalTable(true)
+      setTableContent(slice)
+    },
+  }
+
+
+  const reduce = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
 
 
 	return (
@@ -52,28 +52,28 @@ export function Income({
 		>
 			<div className="text-gray-900">
 				<h5>Ingresos</h5>
-				<h3>${totalIncomes}</h3>
+				<h3>${reduce}</h3>
 			</div>
 
-			{data?.labels?.length ? (
-				<div>
-					<Pie
-						options={optionsPlus}
-						height="250"
-						width="250"
-						id="income_canva"
-						data={data}
-					/>
-				</div>
-			) : (
-				<h2>No hay registros</h2>
-			)}
-			<ModalAddRegister
-				type={type}
-				props={propsModal}
-				dataIncomes={totalDataIncomes}
-				dataExpenses={totalDataExpenses}
-			/>
-		</div>
-	);
+      {data?.labels?.length ? (
+        <div>
+          <Pie
+            options={optionsPlus}
+            height="250"
+            width="250"
+            id="income_canva"
+            data={data}
+          />
+        </div>
+      ) : (
+        <h2>No hay registros</h2>
+      )}
+      <ModalAddRegister
+        type={type}
+        props={propsModal}
+        dataIncomes={totalDataIncomes}
+        dataExpenses={totalDataExpenses}
+      />
+    </div>
+  )
 }

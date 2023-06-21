@@ -1,24 +1,26 @@
-import { getAllNames, getNames } from "@/redux/slice/CompanySlice";
+import {  getNames } from "@/redux/slice/CompanySlice";
 import { Graphics } from "@/src-client/components/Graphics";
 import EnterModal from "@/src-client/components/Modals/Company/EnterModal";
 import ModalRegister from "@/src-client/components/Modals/Company/ModalRegister";
 import { getCompany } from "@/src-client/utilities/getCompany";
 import verifyUserCompany from "@/src-client/utilities/verifyCompany";
-import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LayoutWithSideNav from "@/src-client/components/layouts/LayoutSideNav";
-import { sendCompanyNotification } from "@/redux/slice/CompanySlice";
 import Notifications from "@/src-client/components/Modals/Company/Notifications";
+import { useValidatePlan } from "@/src-client/hooks/use-validate-plan";
+import { useAppSelector } from "@/src-client/hooks/use-redux";
+import {  UserWithMongooseId } from "@/models/user.model";
 
 const Company = () => {
   const dispatch: Function = useDispatch()
-  const { data: session } : any = useSession()
+  const { session }  = useValidatePlan()
   const [company, setCompany] = useState('loadingCompany')
   const [companySelect, setCompanySelect] = useState('')
-  const companyData = useSelector(
-    (state: any) => state.CompanyReducer.selectedCompany
+  const companyData = useAppSelector(
+    (state) => state.CompanyReducer.selectedCompany
   )
+  const user = session?.user as unknown as UserWithMongooseId || {}
   const companyNames = useSelector((state: any) => state.CompanyReducer.names)
   const companyAllNames = useSelector((state : any) => state.CompanyReducer.allNames)
   const email = session?.user?.email
@@ -52,6 +54,7 @@ const Company = () => {
     	md:items-center pl-4"
 		>
       <div className="container-graphics">
+
         <div className="min-h-screen">
           {company === 'loadingCompany' && companyData?.name !== '' && (
             <span className="loader"></span>
@@ -84,13 +87,14 @@ const Company = () => {
             <>
               <h2 className="mt-2">{companyData.name}</h2> 
               { session?.user && session.user._id === companyData.users[0] && 
+
               <>
               <Notifications data={companyData} dispatch={dispatch}/>
               </>}
               <Graphics
                 type="negocio"
-                incomes={companyData.incomes}
-                expenses={companyData.expenses}
+                incomes={companyData.incomes as []}
+                expenses={companyData.expenses as []}
               />
             </>
           )}
