@@ -82,7 +82,7 @@ const { blue, yellow, light_text, dark_text, hover_btn, lightGreen } = colors;
 
 const plans = [
 	{
-		name: "Gratuito",
+		name: "Plan Gratuito por 14 días",
 		value: 'free',
 		color: {
 			bg: `dark:bg-${blue} bg-${lightGreen} `,
@@ -93,27 +93,31 @@ const plans = [
 			color_text_button: ` text-gray-900 dark:text-${light_text} `,
 		},
 		subtext:
-			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
-		price: 0,
+			"Acceso completo a todas las funcionalidades de ALDIA durante 14 días.",
+		price: "0",
 		tags:
 			/* check: tick in tag, cross: cruz in tag component */
 			{ 
 				check: [
-					"20,000+ of PNG & SVG graphics",
-					"Access to 100 million stock images",
+					"Registro de ingresos y egresos ilimitados.",
+					"Categorización de transacciones y seguimiento de gastos e ingresos.",
+					"Generación de gráficos y reportes.",
+					"Establecimiento de metas de ahorro.",
+					"Notificaciones y recordatorios.",
+					"Soporte técnico por correo electrónico durante el periodo de prueba."
 				],
-				cross: [
-					"Upload custom icons and fonts",
-					"Unlimited Sharing",
-					"Upload graphics & video in up to 4k",
-					"Unlimited Projects",
-					"Instant Access to our design system",
-				],
+				// cross: [
+				// 	"Upload custom icons and fonts",
+				// 	"Unlimited Sharing",
+				// 	"Upload graphics & video in up to 4k",
+				// 	"Unlimited Projects",
+				// 	"Instant Access to our design system",
+				// ],
 			},
 	},
 	{
-		name: "Básico",
-			value: 'basic',
+		name: "Plan mensual",
+		value: 'basic',
 		color: {
 			bg: `bg-${yellow}`,
 			text: dark_text,
@@ -123,25 +127,28 @@ const plans = [
 			color_text_button: ` text-gray-900 dark:bg-light-blue dark:text-${light_text}`,
 		},
 		subtext:
-			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
+			"Acceso completo a todas las funcionalidades de ALDIA.",
 		price: 10,
 		tags:
 			/* check: tick in tag, cross: cruz in tag component */
 			{
 				check: [
-					"20,000+ of PNG & SVG graphics",
-					"Access to 100 million stock images",
-					"20,000+ of PNG & SVG graphics",
-					"Access to 100 million stock images",
+					"Registro de ingresos y egresos ilimitados.",
+					"Categorización de transacciones y seguimiento de gastos e ingresos.",
+					"Generación de gráficos y reportes.",
+					"Establecimiento de metas de ahorro.",
+					"Notificaciones y recordatorios.",
+					"Soporte técnico prioritario por correo electrónico.",
+					"Actualizaciones regulares de nuevas características y mejoras.",
 				],
-				cross: [
-					"Upload custom icons and fonts",
-					"Unlimited Sharing",
-				],
+				// cross: [
+				// 	"Upload custom icons and fonts",
+				// 	"Unlimited Sharing",
+				// ],
 			},
 	},
 	{
-		name: "Premium",
+		name: "Plan Anual o Premium",
 		value: 'premium',
 		color: {
 			bg: `dark:bg-${blue} bg-${lightGreen} `,
@@ -152,22 +159,30 @@ const plans = [
 			color_text_button: ` text-gray-900 dark:text-${light_text} `,
 		},
 		subtext:
-			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
-		price: 20,
+			"Acceso completo a todas las funcionalidades de ALDIA.",
+		price: 100,
 		tags:
 			/* check: tick in tag, cross: cruz in tag component */
 			{
 				check: [
-					"20,000+ of PNG & SVG graphics",
-					"Access to 100 million stock images",
+					"Registro de ingresos y egresos ilimitados.",
+					"Categorización de transacciones y seguimiento de gastos e ingresos.",
+					"Generación de gráficos y reportes.",
+					"Establecimiento de metas de ahorro.",
+					"Notificaciones y recordatorios.",
+					"Soporte técnico prioritario por whatsapp.",
+					"Actualizaciones regulares de nuevas características y mejoras.",
+					"Descuento equivalente a dos meses de uso al pagar el plan anual.",
+					"Acceso exclusivo a cursos de capacitación en temas de negocios para mejorar tus habilidades financieras.",
+					"Contenido educativo adicional sobre estrategias de ahorro y gestión financiera."
 				],
-				cross: [
-					"Upload custom icons and fonts",
-					"Unlimited Sharing",
-					"Upload graphics & video in up to 4k",
-					"Unlimited Projects",
-					"Instant Access to our design system",
-				],
+				// cross: [
+				// 	"Upload custom icons and fonts",
+				// 	"Unlimited Sharing",
+				// 	"Upload graphics & video in up to 4k",
+				// 	"Unlimited Projects",
+				// 	"Instant Access to our design system",
+				// ],
 			},
 	},
 ];
