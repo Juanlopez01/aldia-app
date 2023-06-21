@@ -102,7 +102,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		IncomesResult.categories.slice(0, 6)
 	);
 	const dataLongExcess = {
-		labels: catTransactions,
+		labels: IncomesResult.categories.slice(0, 6),
 		datasets: [
 			{
 				label: "Ingresos",
