@@ -106,13 +106,13 @@ const plans = [
 					"Notificaciones y recordatorios.",
 					"Soporte técnico por correo electrónico durante el periodo de prueba."
 				],
-				// cross: [
-				// 	"Upload custom icons and fonts",
-				// 	"Unlimited Sharing",
-				// 	"Upload graphics & video in up to 4k",
-				// 	"Unlimited Projects",
-				// 	"Instant Access to our design system",
-				// ],
+				cross: [
+					"Soporte técnico prioritario por whatsapp.",
+					"Actualizaciones regulares de nuevas características y mejoras.",
+					"Descuento equivalente a dos meses de uso al pagar el plan anual.",
+					"Acceso exclusivo a cursos de capacitación en temas de negocios para mejorar tus habilidades financieras.",
+					"Contenido educativo adicional sobre estrategias de ahorro y gestión financiera."
+				],
 			},
 	},
 	{
@@ -137,14 +137,15 @@ const plans = [
 					"Categorización de transacciones y seguimiento de gastos e ingresos.",
 					"Generación de gráficos y reportes.",
 					"Establecimiento de metas de ahorro.",
-					"Notificaciones y recordatorios.",
+					"Notificaciones y recordatorios.", 
 					"Soporte técnico prioritario por correo electrónico.",
 					"Actualizaciones regulares de nuevas características y mejoras.",
 				],
-				// cross: [
-				// 	"Upload custom icons and fonts",
-				// 	"Unlimited Sharing",
-				// ],
+				cross: [
+					"Descuento equivalente a dos meses de uso al pagar el plan anual.",
+					"Acceso exclusivo a cursos de capacitación en temas de negocios para mejorar tus habilidades financieras.",
+					"Contenido educativo adicional sobre estrategias de ahorro y gestión financiera."
+				],
 			},
 	},
 	{

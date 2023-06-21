@@ -11,7 +11,7 @@ const PLANS = {
   },
   premium: {
     name: 'Premium',
-    price: 20,
+    price: 100,
   },
 }
 
