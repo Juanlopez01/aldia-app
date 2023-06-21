@@ -4,6 +4,7 @@ import React from 'react'
 import PhotoComponent from '../goals/PhotoComponent';
 import { useDispatch } from 'react-redux';
 import { updatePersonalExpense, updatePersonalIncome } from '@/redux/slice/PersonalSlice';
+import Swal from 'sweetalert2';
 
 interface Props {
     transaction: IncomeType | ExpenseType;
@@ -13,15 +14,33 @@ interface Props {
 const TableCreditRow = ({transaction, type} : Props) => {
   const dispatch : Function = useDispatch()
   const cat= transaction?.category?.toString()
-  const check = transaction.credit.split(' ')[2]
+  const check = transaction.credit?.split(' ')[2]
   const handleChange = (e : any) => {
-    if(type === 'incomes'){
-      transaction._id &&
-      dispatch(updatePersonalIncome({...transaction, credit: e.target.checked ? `${transaction.credit} checked` : `${transaction.credit} nochecked` }, transaction._id))
-    } else {
-      transaction._id &&
-      dispatch(updatePersonalExpense({...transaction, credit: e.target.checked ? `${transaction.credit} checked` : `${transaction.credit} nochecked` }, transaction._id))
-    }
+    Swal.fire({
+      title: 'Este crédito ha concluído?',
+      text: 'Una vez aceptado no se podrá volver atrás',
+      icon:'question',
+      showCloseButton: true,
+      showConfirmButton: true,
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      if(result.isConfirmed){
+        let creditName
+        if(transaction.credit.split(' ')[0] === 'No'){
+          creditName = transaction.credit.split(' ')[0]
+        } else {
+          creditName = transaction.credit.split(' ').slice(0, 2).join(' ')
+        }
+        if(type === 'incomes'){
+          transaction._id &&
+          dispatch(updatePersonalIncome({...transaction, credit: e.target.checked ? `${creditName} checked` : `${creditName} nochecked` }, transaction._id))
+        } else {
+          transaction._id &&
+          dispatch(updatePersonalExpense({...transaction, credit: e.target.checked ? `${creditName} checked` : `${creditName} nochecked` }, transaction._id))
+        }
+      }
+    })
+    
   }
   return (
     <>
@@ -33,9 +52,9 @@ const TableCreditRow = ({transaction, type} : Props) => {
               <span>{transaction.category}</span>
             </td>
             <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>{transaction.description ? transaction.description : "No hay descripción"}</td>
-            <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>{transaction.credit}</td>
+            <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>{transaction.credit ? transaction.credit.split(' ')[0] === 'No' ? 'No' : transaction.credit.split(' ').slice(0, 2).join(' ') : 'No'}</td>
             <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>${transaction.value}</td>
-            <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'><input type='checkbox' name='checkbox' checked={check === 'checked' ? true : false} onChange={handleChange}/></td>
+            <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'><input type='checkbox' name='checkbox' checked={check === 'checked' ? true : false} disabled={check === 'checked'} onChange={handleChange}/></td>
         </tr>
     </>
   )
