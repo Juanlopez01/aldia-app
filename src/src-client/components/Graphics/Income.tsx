@@ -13,6 +13,7 @@ interface IncomeProps {
   setTableContent: Function
 }
 export function Income({
+
   type,
   options,
   data,
@@ -20,6 +21,7 @@ export function Income({
   totalDataIncomes,
   totalDataExpenses,
   openModalTable,
+
 }: any) {
   const propsModal = {
     title: 'Agregar',
@@ -39,7 +41,9 @@ export function Income({
     },
   }
 
+
   const reduce = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
+
 
 	return (
 		<div

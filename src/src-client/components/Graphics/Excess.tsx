@@ -23,7 +23,9 @@ interface IOptions {
 	data: any;
 	options: any;
 }
+
 export function Excess({ options, data , type, totalDataIncomes, totalDataExpenses}: any) {
+
 	const optionsBar = {
 		responsive: true,
 		plugins: {
@@ -41,9 +43,11 @@ export function Excess({ options, data , type, totalDataIncomes, totalDataExpens
 		},
 	};
 
+
 	const reduceIncomes = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
 	const reduceExpenses = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
 	const excessResult = reduceIncomes - reduceExpenses
+
 
 	return (
 		<div

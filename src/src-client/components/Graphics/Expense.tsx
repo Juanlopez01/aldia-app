@@ -19,6 +19,7 @@ export function Expense({
 	setTableContent,
 	totalDataIncomes,
 	totalDataExpenses,
+	totalExpenses,
 	openModalTable,
 }: any) {
 	const propsModal = {
@@ -39,13 +40,13 @@ export function Expense({
 		},
 	};
 
-
 	const reduce = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
+
 
 	return (
 		<div
 			className="bg-link col-3 rounded-4 text-white px-4 py-2 flex flex-col justify-around"
-			style={{ width: "370px" }}
+			style={{ width: "350px" }}
 		>
 			<div className="text-gray-900">
 				<h5>Gastos</h5>

@@ -23,6 +23,7 @@ export function LongExcess({ options, data, type, totalDataIncomes, totalDataExp
     type === 'negocio' ? s.CompanyReducer : s.PersonalReducer
   )
   const excess = totalIncomes - totalExpenses
+
   const optionsBar = {
     responsive: true,
     plugins: {
