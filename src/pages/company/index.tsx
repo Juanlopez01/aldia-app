@@ -99,7 +99,7 @@ const Company = () => {
 							{companySelect && companyData && (
 								<>
 									{/* <h2 className="mt-2">{companyData.name}</h2> */}
-									{session?.user && session.user._id === companyData.users[0] && (
+									{session?.user && user._id === companyData.users[0] && (
 										<>{/* <Notifications data={companyData} dispatch={dispatch} /> */}</>
 									)}
 									<Graphics
@@ -117,55 +117,6 @@ const Company = () => {
 	);
 };
 
-        <div className="min-h-screen">
-          {company === 'loadingCompany' && companyData?.name !== '' && (
-            <span className="loader"></span>
-          )}
-          {company === 'Not found' && companyData?.name === '' && (
-            <>
-              <ModalRegister />
-              <EnterModal data={companyAllNames}/>
-            </>
-          )}
-          {companyNames && (
-            <div className="">
-              <div className= "input-group">
-                <label className="input-group-text">Compañía</label>
-                <select className="!w-1/5 form-control" onClick={(e) => handleSelect(e)} >
-                  {companyNames?.map((company: any) => {
-                    return (
-                      <option key={company.id} value={company.id} className="flex-row">
-                          <span className="text-light">{company.name}</span>
-                      </option>
-                    )
-                  })}
-                </select>
-              </div>
-              <ModalRegister />
-              <EnterModal data={companyAllNames}/>
-            </div>
-          )}
-          {companySelect && companyData && (
-            <>
-              <h2 className="mt-2">{companyData.name}</h2> 
-              { session?.user && user._id === companyData.users[0] && 
-
-              <>
-              <Notifications data={companyData} dispatch={dispatch}/>
-              </>}
-              <Graphics
-                type="negocio"
-                incomes={companyData.incomes as []}
-                expenses={companyData.expenses as []}
-              />
-            </>
-          )}
-        </div>
-      </div>
-      </div>
-    </LayoutWithSideNav>
-  )
-}
 
 export default Company
 
