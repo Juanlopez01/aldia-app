@@ -59,7 +59,7 @@ export function LongExcess({ options, data, type, totalDataIncomes, totalDataExp
           data={data}
         />
       ) : (
-        <h2 className="heandingExcedent">No hay registros</h2>
+        <p className="heandingExcedent text-black text-xl italic" >No hay registros</p>
       )}
     </div>
   )
