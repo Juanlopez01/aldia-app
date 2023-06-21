@@ -4,6 +4,7 @@ import { IncomeType } from "@/models/income.model";
 import { PaymentType } from "@/models/payment.model";
 import { UserType, UserWithId } from "@/models/user.model";
 import { calculateTotal, extractOtherCategories } from "@/utils/calculateTotal";
+import { catTransactionsEntries } from "@/utils/categoriesTransactions";
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { ObjectId } from "mongodb";
