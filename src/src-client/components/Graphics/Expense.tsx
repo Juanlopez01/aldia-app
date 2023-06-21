@@ -61,7 +61,7 @@ export function Expense({
 					data={data}
 				/>
 			) : (
-				<h2>No hay registros</h2>
+				<h2 className="heandingExcedent text-black">No hay registros</h2>
 			)}
 			<ModalAddRegister
 				type={type}

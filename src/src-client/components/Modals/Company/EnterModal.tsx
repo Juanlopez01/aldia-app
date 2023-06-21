@@ -11,8 +11,9 @@ import {
 
 interface EnterProps {
 	data: [any];
+	classes?: string;
 }
-const EnterModal = ({ data }: EnterProps) => {
+const EnterModal = ({ data, classes }: EnterProps) => {
 	const [showModal, setShowModal] = useState(false);
 	const { data: session } = useSession();
 	const dispatch: Function = useDispatch();
@@ -44,8 +45,9 @@ const EnterModal = ({ data }: EnterProps) => {
 					setShowModal(true);
 					dispatch(getAllNames());
 				}}
+				className={classes}
 			>
-				Ingresar a una compañía
+				Ingresar compañía
 			</button>
 			<Modal
 				title="Ingresar a una compañía"

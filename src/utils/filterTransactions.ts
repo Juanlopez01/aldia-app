@@ -19,7 +19,7 @@ export const filterTransactions = (incomes : [IncomeType] | [], expenses : [Expe
                 filterExpenses = expenses;
             break;
             case 'Este mes':
-                filterIncomes = incomes?.filter((income: IncomeType) => income?.date?.toString().split('-')[1].includes(`${monthsNames[month]}`));
+                filterIncomes = incomes?.filter((income: IncomeType) => income?.date?.toString().split('-')[1]?.includes(`${monthsNames[month]}`));
                 filterExpenses = expenses?.filter((expense: ExpenseType) => expense?.date?.toString()?.split('-')[1]?.includes(`${monthsNames[month]}`));
             break;
             case 'Este año':
