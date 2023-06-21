@@ -19,13 +19,13 @@ const Footer = () => {
 
         <ul className="w-full flex justify-around text-[14px] lg:text-[16px]">
           <Link href="/" className="text-link link no-underline">
-            Home
+            Inicio
           </Link>
           <Link href="/pricing" className="text-link link no-underline">
             Precios
           </Link>
           <Link href="/faqs" className="text-link link no-underline">
-            FAQS
+            Preguntas frecuentes
           </Link>
         </ul>
 

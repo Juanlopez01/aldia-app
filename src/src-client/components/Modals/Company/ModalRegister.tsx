@@ -7,7 +7,7 @@ import Modal from '../../generals/Modal';
 import Swal from 'sweetalert2';
 
 
-const ModalRegister = () => {
+const ModalRegister = (props: {classes?: string}) => {
     const dispatch: Function = useDispatch()
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);
@@ -38,8 +38,8 @@ const ModalRegister = () => {
     }
     return (
         <div className='mt-5 text-center'>
-            <button className='px-3 py-2 bg-slate-900' onClick={handleShow}>
-                <span className="text-light">Registrar una compañia</span>
+            <button className={`px-3 py-2 bg-slate-900 ${props?.classes}`} onClick={handleShow}>
+                <span className="">Registrar compañia</span>
             </button>
             <Modal 
             showModal={show} 
