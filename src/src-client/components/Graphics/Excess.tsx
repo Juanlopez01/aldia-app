@@ -23,7 +23,7 @@ interface IOptions {
 	data: any;
 	options: any;
 }
-export function Excess({ options, data , type}: any) {
+export function Excess({ options, data , type, totalDataIncomes, totalDataExpenses}: any) {
 	const optionsBar = {
 		responsive: true,
 		plugins: {
@@ -41,10 +41,9 @@ export function Excess({ options, data , type}: any) {
 		},
 	};
 
-	const { totalIncomes, totalExpenses } = useAppSelector(
-		(s) => type === 'negocio' ?s.CompanyReducer: s.PersonalReducer
-	);
-	const excess = totalIncomes - totalExpenses;
+	const reduceIncomes = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
+	const reduceExpenses = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
+	const excessResult = reduceIncomes - reduceExpenses
 
 	return (
 		<div
@@ -54,7 +53,7 @@ export function Excess({ options, data , type}: any) {
 		>
 			<div className="text-gray-900">
 				<h5>Excedentes</h5>
-				<h3>${excess}</h3>
+				<h3>{excessResult>=0 ? `$${excessResult}` : `-$${excessResult*(-1)}`}</h3>
 			</div>
 
 			{data?.datasets[0].data[0] !== 0 || data?.datasets[0].data[1] !== 0 ? (

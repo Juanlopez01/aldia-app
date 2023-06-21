@@ -18,7 +18,7 @@ interface IOptions {
   options: any
 }
 
-export function LongExcess({ options, data, type }: any) {
+export function LongExcess({ options, data, type, totalDataIncomes, totalDataExpenses }: any) {
   const { totalIncomes, totalExpenses } = useAppSelector((s) =>
     type === 'negocio' ? s.CompanyReducer : s.PersonalReducer
   )
@@ -34,6 +34,11 @@ export function LongExcess({ options, data, type }: any) {
       },
     },
   }
+
+  const reduceIncomes = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
+	const reduceExpenses = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
+	const excessResult = reduceIncomes - reduceExpenses
+
   return (
     <div
       className="bg-link rounded-4 flex flex-col md:flex-row justify-center gap-5 w-full text-white h-[500px] py-8"
@@ -41,7 +46,7 @@ export function LongExcess({ options, data, type }: any) {
     >
       <div className="pl-8 text-gray-900">
         <h4>Excedentes</h4>
-        <h2>${excess}</h2>
+        <h2>{excessResult>=0 ? `$${excessResult}` : `-$${excessResult*(-1)}`}</h2>
       </div>
 
       {data.datasets[0].data.length > 0 ? (

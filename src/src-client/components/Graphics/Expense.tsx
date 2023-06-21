@@ -39,7 +39,8 @@ export function Expense({
 		},
 	};
 
-	const { totalExpenses } = useAppSelector((s) => type === 'negocio' ?s.CompanyReducer: s.PersonalReducer);
+
+	const reduce = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
 
 	return (
 		<div
@@ -48,7 +49,7 @@ export function Expense({
 		>
 			<div className="text-gray-900">
 				<h5>Gastos</h5>
-				<h3>${totalExpenses}</h3>
+				<h3>${reduce}</h3>
 			</div>
 			{data?.labels?.length ? (
 				<Pie
