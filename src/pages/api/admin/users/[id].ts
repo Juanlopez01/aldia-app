@@ -11,7 +11,8 @@ const getInitialDates = async (user: any, plan: 'basic' | 'premium') => {
   let end_date: Date
   if (user?.payments?.length) {
     const lastPay = await Payment.findById(user.payments.at(-1))
-    end_date = new Date(new Date(lastPay.end_date).setMonth(new Date(lastPay.end_date).getMonth() + monthsToAdd))
+    const payDate = new Date(lastPay.end_date)
+    end_date = new Date(payDate.setMonth(payDate.getMonth() + monthsToAdd))
   } else end_date = new Date(date.setMonth(date.getMonth() + monthsToAdd))
 
   return {
