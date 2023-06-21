@@ -16,6 +16,7 @@ export interface FormType {
 interface FormProps {
   form: FormType
   setForm: Function
+  type: string
 }
 
 const inyectOtherCategories = (otherCats : string[])=>{
@@ -26,11 +27,11 @@ const inyectOtherCategories = (otherCats : string[])=>{
 
 }
 
-export default function FormRegister({ form, setForm }: FormProps) {
+export default function FormRegister({ form, setForm,type }: FormProps) {
   const [dateShow, setDateShow] = React.useState(true)
   const [showOtherCategory, setShowOtherCategory] = React.useState(false)
   const [otherCategory, setOtherCategory] = React.useState('')
-  const {otherCategories}= useAppSelector(s=>s.PersonalReducer)
+  const {otherCategories}= useAppSelector(s=> type==='negocio'? s.CompanyReducer  : s.PersonalReducer)
 
   const handleChange = (
     evt: React.FormEvent<

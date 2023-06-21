@@ -69,7 +69,7 @@ const Company = () => {
             <div className="">
               <div className= "input-group">
                 <label className="input-group-text">Compañía</label>
-                <select className="!w-1/5 form-control" onChange={(e) => handleSelect(e)} >
+                <select className="!w-1/5 form-control" onClick={(e) => handleSelect(e)} >
                   {companyNames?.map((company: any) => {
                     return (
                       <option key={company.id} value={company.id} className="flex-row">
