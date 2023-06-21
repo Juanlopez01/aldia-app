@@ -1,6 +1,21 @@
 import { ExpenseType } from "@/models/expense.model";
 import { IncomeType } from "@/models/income.model";
 import { TotalRegisters } from "@/types/TotalRegister.type";
+import { catTransactionsEntries } from "./categoriesTransactions";
+
+
+
+export const extractOtherCategories = (incomes: IncomeType[] , expenses:ExpenseType[]): string[] | []=>{
+  const otherCategories: string[] = []
+  const unionIncomeExpenses = [...incomes, ...expenses]
+  for(let i = 0; i < unionIncomeExpenses.length; i++) {
+    const category = unionIncomeExpenses[i].category
+  if(!catTransactionsEntries[(category as  keyof typeof catTransactionsEntries)]){
+  otherCategories.push(unionIncomeExpenses[i].category)
+  }
+  }
+  return otherCategories
+  }
 
 export const calculateTotal = (data: IncomeType[] | ExpenseType[]): number => {
   let sum = 0;

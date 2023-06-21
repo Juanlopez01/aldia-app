@@ -27,7 +27,7 @@ const date = traductDate(newDate)
 const initialStateForm = {
 	type: "",
 	description: "",
-	category: "Banco",
+	category: "Hogar",
 	value: 0,
 	date: date,
 	credit: 'No',

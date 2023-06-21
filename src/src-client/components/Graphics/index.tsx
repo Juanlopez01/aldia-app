@@ -134,7 +134,6 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		setShowModalChart(true);
 	};
 
-	console.log(IncomesResult);
 
 	return (
 		<div
