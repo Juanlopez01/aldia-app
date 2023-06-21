@@ -3,6 +3,7 @@ import Calendar from 'react-calendar'
 import React from 'react'
 import { creditList } from '@/utils/listCredits'
 import { traductDate } from '@/utils/traductDate'
+import { useAppSelector } from '@/src-client/hooks/use-redux'
 export interface FormType {
   type: string
   description: string
@@ -17,10 +18,19 @@ interface FormProps {
   setForm: Function
 }
 
+const inyectOtherCategories = (otherCats : string[])=>{
+  const lastCat = catTransactions.at(-1)
+  const allCategories = [...catTransactions.slice(0,catTransactions.length - 1), ...otherCats, lastCat]
+
+  return allCategories
+
+}
+
 export default function FormRegister({ form, setForm }: FormProps) {
   const [dateShow, setDateShow] = React.useState(true)
   const [showOtherCategory, setShowOtherCategory] = React.useState(false)
   const [otherCategory, setOtherCategory] = React.useState('')
+  const {otherCategories}= useAppSelector(s=>s.PersonalReducer)
 
   const handleChange = (
     evt: React.FormEvent<
@@ -62,7 +72,7 @@ export default function FormRegister({ form, setForm }: FormProps) {
           onChange={handleChange}
           required
         >
-          {catTransactions.map((category) => {
+          {inyectOtherCategories(otherCategories).map((category) => {
             return (
               <option key={category} value={category}>
                 {category}

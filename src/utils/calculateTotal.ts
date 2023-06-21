@@ -6,15 +6,15 @@ import { catTransactionsEntries } from "./categoriesTransactions";
 
 
 export const extractOtherCategories = (incomes: IncomeType[] , expenses:ExpenseType[]): string[] | []=>{
-  const otherCategories: string[] = []
+  const otherCategories= new Set<string>();
   const unionIncomeExpenses = [...incomes, ...expenses]
   for(let i = 0; i < unionIncomeExpenses.length; i++) {
     const category = unionIncomeExpenses[i].category
   if(!catTransactionsEntries[(category as  keyof typeof catTransactionsEntries)]){
-  otherCategories.push(unionIncomeExpenses[i].category)
+  otherCategories.add(unionIncomeExpenses[i].category)
   }
   }
-  return otherCategories
+  return [...otherCategories]
   }
 
 export const calculateTotal = (data: IncomeType[] | ExpenseType[]): number => {
