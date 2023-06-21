@@ -3,6 +3,8 @@ import Modal from '../../generals/Modal'
 import Swal from 'sweetalert2';
 import SearchBar from '../../generals/SearchBarWithResults';
 import { aceptNotification } from '@/redux/slice/CompanySlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Notifications = ({data, dispatch} : any) => {
   const [show, setShow] = useState(false)
@@ -24,16 +26,19 @@ const Notifications = ({data, dispatch} : any) => {
     });
   }
 
-
+  const usersListSet = new Set();
+  data.notifications?.forEach((user : any) => usersListSet.add(user.user))
+  let usersList : any= [];
+  usersListSet.forEach((user : any) => usersList.push(user));
 
   const list = (
     <>
       {data.notifications.length > 0 && data.notifications.length < 10 &&<ul>
-        {data.notifications.map((notification : any) => {
-           return <li key={notification.user}><button onClick={() => {handleAcept(notification.user); closeModal()}}>{notification.user}</button></li>
+        {usersList.map((user : any) => {
+           return <li key={user} className='flex gap-5'><span>{user}</span><button onClick={() => {handleAcept(user); closeModal()}}><FontAwesomeIcon icon={faUserPlus} className='m-auto' /></button></li>
         })}
       </ul>}
-      {data.notifications.length >= 10 && <SearchBar data={data.notifications.map((notif : any) => notif.user)} closeModal={closeModal} placeholder='Escribe el correo del usuario' handleAcept={handleAcept} sendNotification={null}/>}
+      {data.notifications.length >= 10 && <SearchBar data={usersList.map((notif : any) => notif.user)} closeModal={closeModal} placeholder='Escribe el correo del usuario' handleAcept={handleAcept} sendNotification={null}/>}
     </>
   )
   return (

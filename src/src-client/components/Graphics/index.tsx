@@ -26,12 +26,18 @@ export interface graphsProp {
 	expenses: [];
 }
 
-
 export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
-	const [dateRange, setDateRange] = useState('Todo')
-	const {filterIncomes, filterExpenses} = filterTransactions(incomes, expenses, dateRange)
+	const [dateRange, setDateRange] = useState("Todo");
+	const { filterIncomes, filterExpenses } = filterTransactions(
+		incomes,
+		expenses,
+		dateRange
+	);
 
-	const { IncomesResult, ExpensesResult } = totalGenerate(filterIncomes, filterExpenses);
+	const { IncomesResult, ExpensesResult } = totalGenerate(
+		filterIncomes,
+		filterExpenses
+	);
 	const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExcess = [totalIncomes, totalExpenses];
@@ -39,7 +45,6 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		type: "",
 		slice: "",
 	});
-
 
 	const dataIncomes = {
 		labels: IncomesResult.categories.slice(0, 5),
@@ -91,7 +96,11 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		],
 	};
 
-	const longExcessData = totalLongExcess(filterIncomes, filterExpenses, IncomesResult.categories.slice(0, 6));
+	const longExcessData = totalLongExcess(
+		filterIncomes,
+		filterExpenses,
+		IncomesResult.categories.slice(0, 6)
+	);
 	const dataLongExcess = {
 		labels: catTransactions,
 		datasets: [
@@ -125,29 +134,38 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		setShowModalChart(true);
 	};
 
+	console.log(IncomesResult);
+
 	return (
 		<div
-			className="text-center bg-light-green dark:bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
+			className="text-center bg-light-green dark:bg-violet-blue-profile pt-10 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
     	md:items-center pl-4"
 		>
 			{!incomes || (!expenses && <span className="loader" />)}
 			{incomes && expenses && (
 				<>
 
-					<div>
-						<select name="dateRange" id="dateRange" required defaultValue={'Todo'} onChange={(e) => setDateRange(e.target.value)} >
+
+					<div className="!w-1/5 input-group pb-4  ">
+						<label className="input-group-text">Fecha</label>
+						<select className='form-control' name="dateRange" id="dateRange" required defaultValue={'Todo'} onChange={(e) => setDateRange(e.target.value)} >
+
 							{datesRange.map((category) => {
-								return <option value={category} key={category}>{category}</option>
+								return (
+									<option value={category} key={category}>
+										{category}
+									</option>
+								);
 							})}
 						</select>
 					</div>
 
 					{/* desktop charts, options at left */}
 					<div
-						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-8
+						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-4
           				hidden md:grid"
 					>
-            			<Income
+						<Income
 							type={type}
 							options={options}
 							data={dataIncomes}
@@ -155,6 +173,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							totalDataIncomes={IncomesResult.totals}
 							totalDataExpenses={ExpensesResult.totals}
 							openModalTable={handleIncomeClick}
+							totalIncomes={totalIncomes}
 							className="m-1"
 						/>
 
@@ -166,14 +185,19 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							totalDataIncomes={IncomesResult.totals}
 							totalDataExpenses={ExpensesResult.totals}
 							openModalTable={handleIncomeClick}
+							totalExpenses={totalExpenses}
 							className="m-1"
 						/>
 
 						<Excess
+							type={type}
 							options={options}
 							data={dataExcess}
 							setTableContent={setTableContent}
+							excess={totalIncomes - totalExpenses}
 							className="m-1"
+							totalDataIncomes={IncomesResult.totals}
+							totalDataExpenses={ExpensesResult.totals}
 						/>
 
 						<div
@@ -181,10 +205,14 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							col-start-1 md:col-end-3 xl:col-end-4"
 						>
 							<LongExcess
+								type={type}
 								options={options}
 								data={dataLongExcess}
 								className="m-1"
+								excess = {totalIncomes - totalExpenses}
 								setTableContent={setTableContent}
+								totalDataIncomes={IncomesResult.totals}
+								totalDataExpenses={ExpensesResult.totals}
 							/>
 						</div>
 					</div>
@@ -214,6 +242,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 						/>
 
 						<Excess
+							type={type}
 							options={optionsMobile}
 							data={dataExcess}
 							setTableContent={setTableContent}
@@ -225,6 +254,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
             				col-start-1 md:col-end-3 xl:col-end-4"
 						>
 							<LongExcess
+								type={type}
 								options={optionsMobile}
 								data={dataLongExcess}
 								className="m-1"

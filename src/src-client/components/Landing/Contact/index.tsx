@@ -15,7 +15,7 @@ import validateForm from "./validateForm";
 import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
 
-const Contact = () => {
+const Contact = (props: {showInfo?: boolean}) => {
 	const initialInputs = {
 		name: "",
 		email: "",
@@ -120,7 +120,7 @@ const Contact = () => {
 			<div className="grid lg:flex lg:flex-wrap lg:gap-8 lg:justify-center w-full lg:w-11/12 xl:w-10/12 mx-auto">
 				{/* form send message */}
 				<form className="px-4" onSubmit={handleSubmit}>
-					<div className="grid lg:grid-cols-2 gap-4">
+					<div className="grid lg:grid-cols-2 gap-8">
 						{/* name */}
 						<div className="flex flex-col items-center">
 							<label className="text-black">Nombre</label>
@@ -187,10 +187,12 @@ const Contact = () => {
 				</form>
 
 				{/* contact info */}
+				{props?.showInfo && 
 				<div className="flex flex-col gap-2 mt-12 lg:my-4">
 					{/* phone */}
 					{dataContact?.map(item=><CardMap item={item} key={item?.value}/>)}
 				</div>
+				}
 			</div>
 		</div>
 	);

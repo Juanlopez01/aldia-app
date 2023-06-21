@@ -1,5 +1,5 @@
+import { useAppSelector } from "@/src-client/hooks/use-redux";
 import {
-	ArcElement,
 	Chart as ChartJS,
 	Legend,
 	Tooltip,
@@ -8,9 +8,7 @@ import {
 	BarElement,
 	Title,
 } from "chart.js";
-import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
-import { useSelector } from "react-redux";
 
 ChartJS.register(
 	CategoryScale,
@@ -25,7 +23,9 @@ interface IOptions {
 	data: any;
 	options: any;
 }
-export function Excess({ options, data }: any) {
+
+export function Excess({ options, data , type, totalDataIncomes, totalDataExpenses}: any) {
+
 	const optionsBar = {
 		responsive: true,
 		plugins: {
@@ -43,20 +43,21 @@ export function Excess({ options, data }: any) {
 		},
 	};
 
-	const { totalIncomes, totalExpenses } = useSelector(
-		(s: any) => s.PersonalReducer
-	);
-	const excess = totalIncomes - totalExpenses;
+
+	const reduceIncomes = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
+	const reduceExpenses = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
+	const excessResult = reduceIncomes - reduceExpenses
+
 
 	return (
 		<div
-			className="bg-link dark:bg-dark-blue rounded-4 flex flex-col justify-around text-white containerGraphicosDivExc px-4
+			className="bg-link rounded-4 flex flex-col justify-around text-white containerGraphicosDivExc px-4
 			w-[350px]"
 			
 		>
-			<div className="text-gray-900 dark:text-link">
+			<div className="text-gray-900">
 				<h5>Excedentes</h5>
-				<h3>${excess}</h3>
+				<h3>{excessResult>=0 ? `$${excessResult}` : `-$${excessResult*(-1)}`}</h3>
 			</div>
 
 			{data?.datasets[0].data[0] !== 0 || data?.datasets[0].data[1] !== 0 ? (

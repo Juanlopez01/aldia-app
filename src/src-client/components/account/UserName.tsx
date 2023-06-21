@@ -45,19 +45,20 @@ export default function UserName({ name, lastname, userId }: UserNameParams) {
   return (
     <>
       <div>
-        <div className="text-main-yellow flex items-center w-fit text-md gap-2 hover:last:hidden">
+        <div className="text-gray-900 dark:text-main-yellow flex items-center w-fit text-md gap-2 hover:last:hidden">
           <FontAwesomeIcon icon={faUser} />
           <span className="">Usuario</span>
           <FontAwesomeIcon
             icon={faPencil}
-            className="text-white hover:cursor-pointer"
+            className="text-gray-900 dark:text-white hover:cursor-pointer"
             onClick={toggleHandler}
           />
         </div>
         <p
-          className={`text-white mt-2 text-md bg-violet-blue-profile outline-0 outline-white py-1 pl-1 border-b-0`}
+          className={`text-white mt-2 text-md bg-main-green dark:bg-violet-blue-profile outline-0 outline-white py-1 pl-1 border-b-0`}
         >{`${name} ${lastname}`}</p>
-        <hr className="border-main-yellow border-2"></hr>
+        <hr className="border-gray-900 dark:border-main-yellow border-2"></hr>
+        
         <Modal
           showModal={toggle}
           title="Cambia tu nombre y/o apellido"

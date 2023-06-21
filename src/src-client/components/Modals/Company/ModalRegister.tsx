@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import { createCompany } from '@/redux/slice/CompanySlice';
 import Modal from '../../generals/Modal';
+import Swal from 'sweetalert2';
 
 
 const ModalRegister = () => {
@@ -19,9 +20,17 @@ const ModalRegister = () => {
 
     const sendForm = () => {
         if (session && session.user !== undefined && session.user.email !== undefined && session.user.email) {
-            setForm({ ...form, user: session.user.email })
-            dispatch(createCompany({ ...form, user: session.user.email }))
-            setShow(false)
+            if(form.name !== ''){
+                setForm({ ...form, user: session.user.email })
+                dispatch(createCompany({ ...form, user: session.user.email }))
+                setShow(false)
+            } else {
+                Swal.fire({
+                    title: 'No has elegido un nombre',
+                    icon: 'warning',
+                    showCloseButton: true,
+                })
+            }
         }
     }
     const handleChange = (e: any) => {
@@ -36,11 +45,11 @@ const ModalRegister = () => {
             showModal={show} 
             closeModal={handleClose} 
             title='Registrar una compañía' 
-            footer={<button onClick={sendForm}>Registrar</button>} 
+            footer={<button className='px-4 py-2 bg-[#198754] rounded-md' onClick={sendForm}>Registrar</button>} 
             >
-                {<form>
-                    <label>Nombre</label>
-                    <input type="text" name="name" placeholder='Escribe el nombre' onChange={(e) => handleChange(e)} value={form.name} />
+                {<form className='input-group'>
+                    <label className='input-group-text'>Nombre</label>
+                    <input className='form-control' type="text" name="name" placeholder='Escribe el nombre' onChange={(e) => handleChange(e)} value={form.name} />
                 </form>}
             </Modal>
         </div>
