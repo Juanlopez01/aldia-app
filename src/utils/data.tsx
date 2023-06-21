@@ -55,17 +55,17 @@ const links = {
 	notLoggedIn: [
 		{
 			name: "Nosotros",
-			url: "/",
-			endpoint: "/us",
+			url: "#section1",
+			endpoint: "#section1",
 			icon: <FontAwesomeIcon icon={faUsers} />,
 		},
 		{
 			name: "Contacto",
-			url: "/",
-			endpoint: "/contact",
+			url: "#contact",
+			endpoint: "#contact",
 			icon: <FontAwesomeIcon icon={faPhone} />,
 		},
-		{ name: "Planes", url: "/", endpoint: "plans" },
+		{ name: "Planes", url: "#plans", endpoint: "#plans" },
 	],
 };
 

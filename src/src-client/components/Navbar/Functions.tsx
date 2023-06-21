@@ -51,7 +51,7 @@ const GetNavLinks = (props: {
 								className={`${
 									pathname !== link?.endpoint
 										? "dark:text-link dark:bg-light-blue text-gray-900 bg-link"
-										: "bg-main-yellow text-black"
+										: "bg-main-yellow dark:hover:!bg-secondary-yellow text-black"
 								}  no-underline rounded-full text-center w-full 
 								relative right-3 ${props?.classes} ${props?.classes} 
 								`}

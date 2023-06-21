@@ -161,8 +161,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 					{/* desktop charts, options at left */}
 					<div
-						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-4
-          				hidden md:grid"
+						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-4 hidden md:grid "
 					>
 						<Income
 							type={type}
@@ -245,6 +244,8 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							options={optionsMobile}
 							data={dataExcess}
 							setTableContent={setTableContent}
+							totalDataIncomes={IncomesResult.totals}
+							totalDataExpenses={ExpensesResult.totals}
 							className="m-1"
 						/>
 
@@ -258,6 +259,8 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 								data={dataLongExcess}
 								className="m-1"
 								setTableContent={setTableContent}
+								totalDataIncomes={IncomesResult.totals}
+							totalDataExpenses={ExpensesResult.totals}
 							/>
 						</div>
 					</div>

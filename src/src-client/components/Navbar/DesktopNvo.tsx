@@ -28,18 +28,18 @@ const DesktopNvo = () => {
                 list={links?.loggedIn[0]}
                 showIcons={false}
                 section="sidenav"
-                classes="px-12 py-1 relative top-2"
+                classes="px-12 py-1 relative top-2 hover:dark:!bg-medium-blue"
               />
             </ul>
           ) : (
             <>
-              <ButtonTransparent
+              {/* <ButtonTransparent
                 handleClick={() => router.push('/auth')}
                 color="main-yellow"
                 classes="px-3 py-[4px] border-main-yellow text-main-yellow hover:bg-transparent"
               >
                 Iniciar sesión
-              </ButtonTransparent>
+              </ButtonTransparent> */}
             </>
           )}
         </div>
