@@ -127,15 +127,16 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 	return (
 		<div
-			className="text-center bg-light-green dark:bg-violet-blue-profile pt-12 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
+			className="text-center bg-light-green dark:bg-violet-blue-profile pt-10 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
     	md:items-center pl-4"
 		>
 			{!incomes || (!expenses && <span className="loader" />)}
 			{incomes && expenses && (
 				<>
 
-					<div>
-						<select name="dateRange" id="dateRange" required defaultValue={'Todo'} onChange={(e) => setDateRange(e.target.value)} >
+					<div className="!w-1/5 input-group pb-4  ">
+						<label className="input-group-text">Fecha</label>
+						<select className='form-control' name="dateRange" id="dateRange" required defaultValue={'Todo'} onChange={(e) => setDateRange(e.target.value)} >
 							{datesRange.map((category) => {
 								return <option value={category} key={category}>{category}</option>
 							})}
@@ -144,7 +145,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 					{/* desktop charts, options at left */}
 					<div
-						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-8
+						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-4
           				hidden md:grid"
 					>
             			<Income
@@ -155,6 +156,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							totalDataIncomes={IncomesResult.totals}
 							totalDataExpenses={ExpensesResult.totals}
 							openModalTable={handleIncomeClick}
+							totalIncomes={totalIncomes}
 							className="m-1"
 						/>
 
@@ -166,6 +168,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							totalDataIncomes={IncomesResult.totals}
 							totalDataExpenses={ExpensesResult.totals}
 							openModalTable={handleIncomeClick}
+							totalExpenses={totalExpenses}
 							className="m-1"
 						/>
 
@@ -173,6 +176,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							options={options}
 							data={dataExcess}
 							setTableContent={setTableContent}
+							excess={totalIncomes - totalExpenses}
 							className="m-1"
 						/>
 
@@ -184,6 +188,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 								options={options}
 								data={dataLongExcess}
 								className="m-1"
+								excess = {totalIncomes - totalExpenses}
 								setTableContent={setTableContent}
 							/>
 						</div>

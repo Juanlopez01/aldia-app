@@ -27,11 +27,7 @@ interface IOptions {
   options: any;
 }
 
-export function LongExcess({ options, data }: any) {
-  const { totalIncomes, totalExpenses } = useSelector(
-    (s: any) => s.PersonalReducer
-  );
-  const excess = totalIncomes - totalExpenses;
+export function LongExcess({ options, data , excess}: any) {
 
   const optionsBar = {
     responsive: true,

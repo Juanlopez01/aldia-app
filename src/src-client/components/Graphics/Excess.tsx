@@ -25,7 +25,7 @@ interface IOptions {
 	data: any;
 	options: any;
 }
-export function Excess({ options, data }: any) {
+export function Excess({ options, data, excess }: any) {
 	const optionsBar = {
 		responsive: true,
 		plugins: {
@@ -43,10 +43,6 @@ export function Excess({ options, data }: any) {
 		},
 	};
 
-	const { totalIncomes, totalExpenses } = useSelector(
-		(s: any) => s.PersonalReducer
-	);
-	const excess = totalIncomes - totalExpenses;
 
 	return (
 		<div

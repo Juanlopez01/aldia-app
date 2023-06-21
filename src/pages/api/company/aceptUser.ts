@@ -19,9 +19,12 @@ export default async function companyID(
         const userObj = await User.findOne({email: user});
         const companyObj = await Company.findOne({ _id: company});
         companyObj.users.push(userObj._id);
+        const notificationsNew = companyObj.notifications.filter((notification : any) => notification.user !== userObj.email);
+        companyObj.notifications = notificationsNew
         companyObj.save();
         userObj.company.push(companyObj._id);
         userObj.save();
+        
 
         res.status(200).json({ status: "success" });
       } catch (error) {

@@ -95,6 +95,10 @@ const companySlice = createSlice({
     },
     getAllNames: (state, action) => {
       state.allNames = action.payload
+    },
+    aceptNotification: (state, action) => {
+      const notificationsNew = state.selectedCompany.notifications.filter((notification : any) => notification.user !== action.payload);
+      state.selectedCompany.notifications = notificationsNew;
     }
   },
 });
@@ -212,6 +216,7 @@ export const sendCompanyNotification = (user : string, company : string) => asyn
 export const aceptNotification = (user : string, company : string) => async (dispatch: Function) => {
   const urlAcept = url + '/aceptUser?company=' + company + '&user=' + user
   const notif = await axios.post(urlAcept);
+  dispatch(companySlice.actions.aceptNotification(user));
   return notif
 }
 

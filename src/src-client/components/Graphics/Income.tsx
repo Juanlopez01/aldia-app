@@ -23,6 +23,7 @@ export function Income({
 	setTableContent,
 	totalDataIncomes,
 	totalDataExpenses,
+	totalIncomes,
 	openModalTable,
 }: any) {
 	const propsModal = {
@@ -43,7 +44,6 @@ export function Income({
 		},
 	};
 
-	const { totalIncomes } = useSelector((s: any) => s.PersonalReducer);
 
 	return (
 		<div

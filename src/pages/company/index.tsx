@@ -36,7 +36,8 @@ const Company = () => {
       dispatch(getNames(company))
   }
 
-  const handleSelect = (id: string) => {
+  const handleSelect = (e : any) => {
+    const id = e.target.value
     if (id !== companySelect) {
       getCompany(id, dispatch)
       setCompanySelect(id)
@@ -46,44 +47,42 @@ const Company = () => {
 
 	return (
     <LayoutWithSideNav>
-      <div className="container-graphics w-50 gap-2">
+      <div
+			className="text-center bg-light-green dark:bg-violet-blue-profile pt-10 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
+    	md:items-center pl-4"
+		>
+      <div className="container-graphics">
         <div className="min-h-screen">
           {company === 'loadingCompany' && companyData?.name !== '' && (
             <span className="loader"></span>
           )}
           {company === 'Not found' && companyData?.name === '' && (
             <>
-              <h1>No hemos encontrado tu compañía</h1>
               <ModalRegister />
               <EnterModal data={companyAllNames}/>
             </>
           )}
           {companyNames && (
-            <>
-              <h1 className="w-100  text-center">Seleccionar compañía</h1>
-              <div className="d-flex list-unstyled">
-                <ul className="list-unstyled d-flex flex-row gap-4 w-100 overflow-scroll ">
+            <div className="">
+              <div className= "input-group">
+                <label className="input-group-text">Compañía</label>
+                <select className="!w-1/5 form-control" onChange={(e) => handleSelect(e)} >
                   {companyNames?.map((company: any) => {
                     return (
-                      <li key={company.id} className="flex-row">
-                        <button
-                          className="px-3 py-2 bg-gray-800"
-                          onClick={() => handleSelect(company.id)}
-                        >
+                      <option key={company.id} value={company.id} className="flex-row">
                           <span className="text-light">{company.name}</span>
-                        </button>
-                      </li>
+                      </option>
                     )
                   })}
-                </ul>
+                </select>
               </div>
               <ModalRegister />
               <EnterModal data={companyAllNames}/>
-            </>
+            </div>
           )}
           {companySelect && companyData && (
             <>
-              <h2 className="mt-5">{companyData.name}</h2> 
+              <h2 className="mt-2">{companyData.name}</h2> 
               { session?.user && session.user._id === companyData.users[0] && 
               <>
               <Notifications data={companyData} dispatch={dispatch}/>
@@ -96,6 +95,7 @@ const Company = () => {
             </>
           )}
         </div>
+      </div>
       </div>
     </LayoutWithSideNav>
   )
