@@ -19,7 +19,7 @@ export const bdInfo = [
 		image: CajaFuerte,
 		title: "Toma decisiones inteligentes",
 
-		description: "Con ALDIA, obtén una visión clara y detallada de tus finanzas a través de gráficos y reportes personalizados. Analiza tus hábitos de gasto, identifica áreas de mejora y toma decisiones informadas para alcanzar tus metas financieras. ¡Con ALDIA, tendrás el control de tu dinero al alcance de tus manos!",
+		description: "Obtén una visión clara y detallada de tus finanzas a través de gráficos y reportes personalizados. Analiza tus hábitos de gasto, identifica áreas de mejora y toma decisiones informadas. ¡Con ALDIA, tendrás el control de tu dinero al alcance de tus manos!",
 
 	},
 	{
@@ -53,7 +53,7 @@ function CardSectionUno() {
 	return (
 		<>
 			{/* dark */}
-			<div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 py-4">
+			<div className="grid md:grid-cols-2 px-4 xl:grid-cols-3 gap-4 py-4">
 				{bdInfo.map((info, index) => (
 					<>
 						<div key={index} className=" md:p-4 grid-rows-1 gap-3">
