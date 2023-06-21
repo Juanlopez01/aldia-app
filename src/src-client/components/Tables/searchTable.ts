@@ -16,13 +16,13 @@ export const searchTable = () => {
     const tds = trs[i].getElementsByTagName("td");
     let visible = false;
     if (filter === "") {
-      if (
-        trs[i].classList.contains("table-head") ||
-        trs[i].classList.contains("table-head-row")
-      ) {
+      // if (
+      //   trs[i].classList.contains("table-head") ||
+      //   trs[i].classList.contains("table-head-row")
+      // ) {
         // Verificar si es una fila de encabezado
         visible = true;
-      }
+      // }
     } else {
       if (
         !trs[i].classList.contains("table-head") ||

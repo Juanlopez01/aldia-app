@@ -1,12 +1,10 @@
 import { CompanType } from '@/models/company.model'
 import { ExpenseType } from '@/models/expense.model'
 import { IncomeType } from '@/models/income.model'
-import { getCompany } from '@/src-client/utilities/getCompany'
 import verifyUserCompany from '@/src-client/utilities/verifyCompany'
-import { calculateTotal } from '@/utils/calculateTotal'
+import { calculateTotal, extractOtherCategories } from '@/utils/calculateTotal'
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { Schema } from 'mongoose'
 
 const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/company`
 
@@ -14,6 +12,7 @@ interface Company {
   selectedCompany: CompanType
   totalExpenses: number
   totalIncomes: number
+  otherCategories: string[]
   names: string[]
   allNames: string[]
 }
@@ -32,6 +31,7 @@ const initialState: Company = {
   },
   totalExpenses: 0,
   totalIncomes: 0,
+  otherCategories:[],
   names: [],
   allNames: [],
 }
@@ -40,7 +40,6 @@ const companySlice = createSlice({
   initialState,
   reducers: {
     getTransactions: (state, action) => {
-      console.log({ state, action })
       state.selectedCompany.expenses = action.payload.expenses
       state.selectedCompany.incomes = action.payload.incomes
       state.selectedCompany.users = action.payload.users
@@ -49,6 +48,7 @@ const companySlice = createSlice({
       state.selectedCompany.notifications = action.payload.notifications
       state.totalExpenses = calculateTotal(action.payload.expenses)
       state.totalIncomes = calculateTotal(action.payload.incomes)
+      state.otherCategories = extractOtherCategories(action.payload?.incomes,action.payload?.expenses)
     },
     addCompanyIncome: (state, action) => {
       state.selectedCompany.incomes.includes(action.payload)
