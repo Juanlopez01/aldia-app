@@ -34,7 +34,7 @@ const PlanCard = ({plan, isPricingPage}: plansProps) => {
         <div className={`text-${text_color}`}>
           <div className="flex items-center">
             <span className="text-[45px] font-bold">${price}</span>
-            <span>&nbsp; / Mes</span>
+            <span>&nbsp; s/ {value==="premium" ? "año" : "mes"}</span>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ const PlanCard = ({plan, isPricingPage}: plansProps) => {
           <div key={index} className="flex">
             <FontAwesomeIcon
               icon={faCheck}
-              className={`mr-3 py-1 px-[6px] text-xl bg-gray-900 dark:bg-link text-link dark:text-gray-900 rounded-full`}
+              className={`mr-3 py-[3px] px-[4px] text-xl bg-gray-900 dark:bg-link text-link dark:text-gray-900 rounded-full`}
             />
             <p className="py-1 text-sm">{tag}</p>
           </div>

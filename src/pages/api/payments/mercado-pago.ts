@@ -14,13 +14,13 @@ interface PlansType{
     frequency: 1,
     frequency_type: 'months',
     transaction_amount: 10,
-    currency_id: 'ARS',
+    currency_id: 'PEN',
   },
   premium: {
-    frequency: 1,
+    frequency: 12,
     frequency_type: 'months',
-    transaction_amount: 20,
-    currency_id: 'ARS',
+    transaction_amount: 100,
+    currency_id: 'PEN',
   },
   
 }
@@ -30,13 +30,13 @@ const PLANS:PlansType ={
     frequency: 1,
     frequency_type: 'months',
     transaction_amount: 10,
-    currency_id: 'ARS',
+    currency_id: 'PEN',
   },
   premium: {
-    frequency: 1,
+    frequency: 12,
     frequency_type: 'months',
-    transaction_amount: 20,
-    currency_id: 'ARS',
+    transaction_amount: 100,
+    currency_id: 'PEN',
   },
 }
 
@@ -55,10 +55,7 @@ export default async function handler(
       const bodyToSend = {
         reason: `AlDía ${plan}`,
         auto_recurring: PLANS[plan],
-        /* una vez deployado hay que cambiar esta propiedad
-        por la de /pricing/finish-payment o cualquier otra que 
-        le diga al usuario que su pago esta siendo procesado */
-        back_url: 'https://google.com.ar/',
+        back_url: 'https://aldia.lat/home',
         external_reference: body.userId,
       }
       const { data } = await axios.post(MP_SUBS_URL, bodyToSend, {

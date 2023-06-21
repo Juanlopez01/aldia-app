@@ -102,7 +102,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		IncomesResult.categories.slice(0, 6)
 	);
 	const dataLongExcess = {
-		labels: catTransactions,
+		labels: IncomesResult.categories.slice(0, 6),
 		datasets: [
 			{
 				label: "Ingresos",
@@ -134,7 +134,6 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		setShowModalChart(true);
 	};
 
-	console.log(IncomesResult);
 
 	return (
 		<div
@@ -146,7 +145,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 				<>
 
 
-					<div className="!w-1/5 input-group pb-4  ">
+					<div className="!w-3/5 md:!w-2/5 xl:!w-1/5 input-group pb-4  ">
 						<label className="input-group-text">Fecha</label>
 						<select className='form-control' name="dateRange" id="dateRange" required defaultValue={'Todo'} onChange={(e) => setDateRange(e.target.value)} >
 

@@ -27,7 +27,7 @@ const date = traductDate(newDate)
 const initialStateForm = {
 	type: "",
 	description: "",
-	category: "Banco",
+	category: "Hogar",
 	value: 0,
 	date: date,
 	credit: 'No',
@@ -61,7 +61,6 @@ export function ModalAddRegister({
 					setForm(initialStateForm);
 					handleClose();
 				}
-				// }
 			} else {
 				if (type === "negocio") {
 					dispatch(addCompanyIncome({ ...form, type: type! }, id));
@@ -90,7 +89,7 @@ export function ModalAddRegister({
 
 			<Modal closeModal={handleClose} showModal={show} title={`${props.title} ${props.type === 'expense'? 'gasto' : 'ingreso'}`} footer={<button onClick={sendForm} className="bg-main-yellow px-4 py-2 text-black rounded-md shadow-md">{props.buttonText}</button>}
 			className="bg-light-green px-10 py-4 shadow-sm rounded-xl text-black">
-				<FormRegister setForm={setForm} form={form} />
+				<FormRegister setForm={setForm} form={form} type={type} />
 			</Modal>
 
 		</>

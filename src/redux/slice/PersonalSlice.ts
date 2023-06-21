@@ -3,7 +3,8 @@ import { GoalsTypes } from "@/models/goal.model";
 import { IncomeType } from "@/models/income.model";
 import { PaymentType } from "@/models/payment.model";
 import { UserType, UserWithId } from "@/models/user.model";
-import { calculateTotal } from "@/utils/calculateTotal";
+import { calculateTotal, extractOtherCategories } from "@/utils/calculateTotal";
+import { catTransactionsEntries } from "@/utils/categoriesTransactions";
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { ObjectId } from "mongodb";
@@ -16,6 +17,7 @@ interface PersonalFinance {
   expenses: ExpenseType[];
   goals: GoalsTypes[]; 
   payments: PaymentType[];
+  otherCategories: string[];
   totalIncomes: number;
   totalExpenses: number;
 }
@@ -40,11 +42,11 @@ const initialState: PersonalFinance = {
   incomes: [],
   expenses: [],
   payments:[],
+  otherCategories: [],
   goals: [],
   totalIncomes: 0,
   totalExpenses: 0,
 };
-
 const personalSlice = createSlice({
   name: "personal",
   initialState,
@@ -62,6 +64,7 @@ const personalSlice = createSlice({
       state.payments = payments;
       state.totalExpenses = calculateTotal(action.payload?.expenses);
       state.totalIncomes = calculateTotal(action.payload?.incomes);
+      state.otherCategories = extractOtherCategories(action.payload?.incomes,action.payload?.expenses)
     },
     addPersonalIncome: (state, action) => {
       const oldState = state.incomes;

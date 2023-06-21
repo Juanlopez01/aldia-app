@@ -26,7 +26,7 @@ import { traductDate } from '@/utils/traductDate'
 
 interface PropsModal {
   props: {
-    type: String
+    type: string
     description: String
     category: String
     value: number
@@ -131,7 +131,7 @@ export function ModalEdit({ props }: PropsModal) {
           </div>
         }
       >
-        <FormRegister setForm={setForm} form={form} />
+        <FormRegister setForm={setForm} form={form} type={props.type} />
       </Modal>
     </>
   )

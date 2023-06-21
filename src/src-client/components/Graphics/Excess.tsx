@@ -69,7 +69,7 @@ export function Excess({ options, data , type, totalDataIncomes, totalDataExpens
 					data={data}
 				/>
 			) : (
-				<h2 className="heandingExcedent">No hay registros</h2>
+				<h2 className="heandingExcedent text-black">No hay registros</h2>
 			)}
 
 			<div></div>

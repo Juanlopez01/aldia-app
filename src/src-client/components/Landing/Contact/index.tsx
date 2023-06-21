@@ -66,7 +66,7 @@ const Contact = (props: {showInfo?: boolean}) => {
 						from_name: inputs?.name,
 						to_name: "Nicolás",
 						from_email: inputs?.email,
-						to_email: "nicovon24@gmail.com",
+						to_email: "al.dia.aplication@gmail.com",
 						subject: inputs?.subject,
 						message: inputs?.message,
 					},
@@ -84,9 +84,9 @@ const Contact = (props: {showInfo?: boolean}) => {
 	};
 
 	const dataContact = [
-		{ name: "Teléfono", value: "+54 351 1111 111", icon: faPhone },
-		{ name: "Dirección", value: "Lorem ipsum", icon: faLocationDot },
-		{ name: "Mail", value: "nep@gmail.com", icon: faEnvelope },
+		{ name: "Teléfono", value: "+51 976 886 575", icon: faPhone },
+		{ name: "Dirección", value: "Perú", icon: faLocationDot },
+		{ name: "Mail", value: "al.dia.aplication@gmail.com", icon: faEnvelope },
 	];
 
 	interface ContactProps {
