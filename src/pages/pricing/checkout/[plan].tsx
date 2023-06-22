@@ -113,7 +113,7 @@ export default function Checkout() {
                 beneficios del plan que seleccionaste.
               </p>
               <p>
-                Dale click al siguiente boton 1 vez para notificar al
+                Dale click al siguiente botón solo una vez para notificar al
                 administrador que realizaste el pago.
               </p>
               <footer className="grid max-w-[250px] mt-4 ">
