@@ -243,6 +243,9 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							type={type}
 							options={optionsMobile}
 							data={dataExcess}
+							excess = {totalIncomes - totalExpenses}
+							totalDataIncomes={IncomesResult.totals}
+							totalDataExpenses={ExpensesResult.totals}
 							setTableContent={setTableContent}
 							totalDataIncomes={IncomesResult.totals}
 							totalDataExpenses={ExpensesResult.totals}
@@ -256,7 +259,10 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							<LongExcess
 								type={type}
 								options={optionsMobile}
+								excess = {totalIncomes - totalExpenses}
 								data={dataLongExcess}
+								totalDataIncomes={IncomesResult.totals}
+								totalDataExpenses={ExpensesResult.totals}
 								className="m-1"
 								setTableContent={setTableContent}
 								totalDataIncomes={IncomesResult.totals}

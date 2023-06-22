@@ -17,14 +17,13 @@ export default function CheckoutModal({ classBtn, name, value }: Props) {
   const { toggle, toggleHandler } = useToggle(false)
   const router = useRouter()
   if (value === 'free') {
-    const planName = name.replace('o', 'a')
     return (
       <button
         className={classBtn}
         onClick={() => {
           Swal.fire({
-            title: `Suscripción ${planName}`,
-            text: `Para obtener tu suscripción ${planName} simplemente debes registarte en AlDía`,
+            title: `Suscripción ${name}`,
+            text: `Para obtener tu suscripción ${name} simplemente debes registarte en AlDía`,
             timer: 10000,
             showCloseButton: true,
             confirmButtonText: 'Registrate',
@@ -33,7 +32,7 @@ export default function CheckoutModal({ classBtn, name, value }: Props) {
           })
         }}
       >
-        Obtener suscripción {planName}
+        Obtener suscripción {name}
       </button>
     )
   }
