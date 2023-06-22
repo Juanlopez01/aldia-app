@@ -48,11 +48,13 @@ const Company = () => {
 		}
 	};
 
+	console.log(companyData.incomes)
+
 	return (
 		<LayoutWithSideNav>
 			<div
 				className="text-center bg-light-green dark:bg-violet-blue-profile pt-10 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
-    	md:items-center pl-4"
+    	md:items-center px-4"
 			>
 				<div className="container-graphics">
 					<div className="min-h-screen">
@@ -66,7 +68,7 @@ const Company = () => {
 							</>
 						)}
 						<div>
-							<div className="flex flex-wrap md:flex-row md:justify-center bg-white dark:!bg-violet-blue-landing w-[90vw] md:w-[70vw] rounded-lg
+							<div className="flex flex-wrap md:flex-row md:justify-center bg-white dark:!bg-violet-blue-landing w-[85vw] md:w-[70vw] rounded-lg
 							">
 								{companyNames && (
 									<div className="w-full flex flex-col pt-4 px-3 md:flex-row md:!pt-0 items-center">
@@ -100,7 +102,9 @@ const Company = () => {
 								<>
 									{/* <h2 className="mt-2">{companyData.name}</h2> */}
 									{session?.user && user._id === companyData.users[0] && (
-										<>{/* <Notifications data={companyData} dispatch={dispatch} /> */}</>
+										<>
+											<Notifications data={companyData} dispatch={dispatch} /> 
+										</>
 									)}
 									<Graphics
 										type="negocio"
