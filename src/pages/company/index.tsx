@@ -48,7 +48,6 @@ const Company = () => {
 		}
 	};
 
-	console.log(companyData.incomes)
 
 	return (
 		<LayoutWithSideNav>
@@ -76,7 +75,7 @@ const Company = () => {
 											<label className="input-group-text h-10">Compañía</label>
 											<select
 												className="!w-1/5 form-control h-10"
-												onChange={(e) => handleSelect(e)}
+												onClick={(e) => handleSelect(e)}
 											>
 												{companyNames?.map((company: any) => {
 													return (
