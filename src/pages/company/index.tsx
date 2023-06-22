@@ -35,7 +35,7 @@ const Company = () => {
 	};
 	//Si aun no tengo companias cargadas en el estado
 	if (company === "loadingCompany" || companyNames?.length === 0) {
-		if (company === "loadingCompany") verification();
+		if (company === 'loadingCompany') verification();
 		if (company !== "loadingCompany" && company !== "Not found")
 			dispatch(getNames(company));
 	}
@@ -99,7 +99,7 @@ const Company = () => {
 							{companySelect && companyData && (
 								<>
 									{/* <h2 className="mt-2">{companyData.name}</h2> */}
-									{session?.user && session.user._id === companyData.users[0] && (
+									{session?.user && user._id === companyData.users[0] && (
 										<>{/* <Notifications data={companyData} dispatch={dispatch} /> */}</>
 									)}
 									<Graphics
