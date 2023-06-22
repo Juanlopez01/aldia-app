@@ -1,12 +1,21 @@
 import React from "react";
 import {
+	Hogar,
+	Transporte,
+	Alimentacion,
+	Salud,
 	Entretenimiento,
-	Hobbies,
+	Educación,
+	Deudas,
+	Ahorro_e_inversión,
+	Vestimenta_y_cuidado_personal,
+	Regalos_y_donaciones,
 	Mercaderia,
 	Negocio,
+	Success,
+	Hobbies,
 	Banco,
 	Otros,
-	Hogar
 } from "../../../../public/goals/index";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
@@ -22,13 +31,22 @@ interface Props {
 }
 
 const photos: Photos = {
-	Mercaderia: Mercaderia,
-	Negocio: Negocio,
-	Entretenimiento: Entretenimiento,
-	Hobbies: Hobbies,
-	Banco: Banco,
+	Hogar : Hogar,
+	Transporte : Transporte,
+	Alimentacion : Alimentacion,
+	Salud : Salud,
+	Entretenimiento : Entretenimiento,
+	Educación : Educación,
+	Deudas : Deudas,
+	'Ahorro e inversión' : Ahorro_e_inversión,
+	'Vestimenta y cuidado personal' : Vestimenta_y_cuidado_personal,
+	'Regalos y donaciones' : Regalos_y_donaciones,
+	Mercaderia : Mercaderia,
+	Negocio : Negocio,
+	Success : Success,
+	Hobbies : Hobbies,
+	Banco : Banco,
 	Otros: Otros,
-	Hogar: Hogar
 };
 
 const PhotoComponent: React.FC<Props> = ({ category, width, height }) => {

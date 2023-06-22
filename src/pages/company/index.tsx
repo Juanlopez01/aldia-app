@@ -35,7 +35,7 @@ const Company = () => {
 	};
 	//Si aun no tengo companias cargadas en el estado
 	if (company === "loadingCompany" || companyNames?.length === 0) {
-		if (company === "loadingCompany") verification();
+		if (company === 'loadingCompany') verification();
 		if (company !== "loadingCompany" && company !== "Not found")
 			dispatch(getNames(company));
 	}
