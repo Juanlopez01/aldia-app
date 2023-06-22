@@ -32,7 +32,7 @@ const photos: Photos = {
 };
 
 const PhotoComponent: React.FC<Props> = ({ category, width, height }) => {
-	const photo = photos?.[category];
+	const photo = photos?.[category] || photos.Otros
 
 	return <div className="h-full flex items-center">
 		<Image src={photo} alt="photo" width={width} height={height}/>
