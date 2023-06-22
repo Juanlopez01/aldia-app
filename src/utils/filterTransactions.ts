@@ -19,20 +19,20 @@ export const filterTransactions = (incomes : [IncomeType] | [], expenses : [Expe
                 filterExpenses = expenses;
             break;
             case 'Este mes':
-                filterIncomes = incomes?.filter((income: IncomeType) => income?.date?.toString().split('-')[1]?.includes(`${monthsNames[month]}`));
-                filterExpenses = expenses?.filter((expense: ExpenseType) => expense?.date?.toString()?.split('-')[1]?.includes(`${monthsNames[month]}`));
+                filterIncomes = incomes?.filter((income: IncomeType) => income?.date?.toString().split(' ')[2]?.includes(`${monthsFullNames[month]}`));
+                filterExpenses = expenses?.filter((expense: ExpenseType) => expense?.date?.toString()?.split(' ')[2]?.includes(`${monthsFullNames[month]}`));
             break;
             case 'Este año':
-                filterIncomes = incomes?.filter((income:IncomeType) => income?.date?.toString().split('-')[0].includes(`${year}`));
-                filterExpenses = expenses?.filter((expense:ExpenseType) => expense.date?.toString().split('-')[0].includes(`${year}`));
+                filterIncomes = incomes?.filter((income:IncomeType) => income?.date?.toString().split(' ')[3].includes(`${year}`));
+                filterExpenses = expenses?.filter((expense:ExpenseType) => expense.date?.toString().split(' ')[3].includes(`${year}`));
                 break;
             case 'Año pasado': 
-                filterIncomes = incomes?.filter((income:IncomeType) => income?.date?.toString().split('-')[0].includes(`${year - 1}`));
-                filterExpenses = expenses?.filter((expense:ExpenseType) => expense?.date?.toString().split('-')[0].includes(`${year - 1}`));
+                filterIncomes = incomes?.filter((income:IncomeType) => income?.date?.toString().split(' ')[3].includes(`${year - 1}`));
+                filterExpenses = expenses?.filter((expense:ExpenseType) => expense?.date?.toString().split(' ')[3].includes(`${year - 1}`));
                 break;
             default : 
-                filterIncomes = incomes?.filter((income:IncomeType) => income?.date?.toString()?.split('-')[1]?.includes(`${monthsNames[monthsFullNames.indexOf(range)]}`) && income?.date?.toString()?.split('-')[0]?.includes(`${year}`));
-                filterExpenses = expenses?.filter((expense:ExpenseType) => expense?.date?.toString()?.split('-')[1]?.includes(`${monthsNames[monthsFullNames.indexOf(range)]}`) && expense?.date?.toString()?.split('-')[0]?.includes(`${year}`));
+                filterIncomes = incomes?.filter((income:IncomeType) => income?.date?.toString()?.split(' ')[2]?.includes(`${range}`) && income?.date?.toString()?.split(' ')[3]?.includes(`${year}`));
+                filterExpenses = expenses?.filter((expense:ExpenseType) => expense?.date?.toString()?.split(' ')[2]?.includes(`${range}`) && expense?.date?.toString()?.split(' ')[3]?.includes(`${year}`));
             break;
         }
     }
