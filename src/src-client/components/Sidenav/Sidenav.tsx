@@ -64,7 +64,7 @@ const Sidenav = () => {
 							list={links?.loggedIn[1]}
 							showIcons={false}
 							section="sidenav"
-							classes="px-6 py-2 "
+							classes="px-6 py-2 hover:opacity-80"
 							isAdmin={user?.role === 'admin'}
 						/>
 					</ul>
