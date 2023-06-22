@@ -74,7 +74,7 @@ function CardSectionUno() {
 
 							{/* description */}
 							<div className=" flex justify-center">
-								<p className="text-gray-300">{info.description}</p>
+								<p className="text-gray-300 text-justify">{info.description}</p>
 							</div>
 						</div>
 					</>
