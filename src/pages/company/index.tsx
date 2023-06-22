@@ -99,7 +99,7 @@ const Company = () => {
 							{companySelect && companyData && (
 								<>
 									{/* <h2 className="mt-2">{companyData.name}</h2> */}
-									{session?.user && session.user._id === companyData.users[0] && (
+									{session?.user && user._id === companyData.users[0] && (
 										<>{/* <Notifications data={companyData} dispatch={dispatch} /> */}</>
 									)}
 									<Graphics

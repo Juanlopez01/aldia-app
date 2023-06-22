@@ -247,8 +247,6 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							totalDataIncomes={IncomesResult.totals}
 							totalDataExpenses={ExpensesResult.totals}
 							setTableContent={setTableContent}
-							totalDataIncomes={IncomesResult.totals}
-							totalDataExpenses={ExpensesResult.totals}
 							className="m-1"
 						/>
 
@@ -265,8 +263,6 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 								totalDataExpenses={ExpensesResult.totals}
 								className="m-1"
 								setTableContent={setTableContent}
-								totalDataIncomes={IncomesResult.totals}
-							totalDataExpenses={ExpensesResult.totals}
 							/>
 						</div>
 					</div>
