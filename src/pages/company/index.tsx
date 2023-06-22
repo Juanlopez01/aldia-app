@@ -66,10 +66,10 @@ const Company = () => {
 							</>
 						)}
 						<div>
-							<div className="flex flex-wrap flex-col md:flex-row justify-center bg-white dark:!bg-violet-blue-landing dark:!bg- w-[90vw] md:w-[70vw]  rounded-lg
+							<div className="flex flex-wrap md:flex-row md:justify-center bg-white dark:!bg-violet-blue-landing w-[90vw] md:w-[70vw] rounded-lg
 							">
 								{companyNames && (
-									<div className="flex flex-col pt-4 px-3 md:flex-row md:!pt-0 items-center">
+									<div className="w-full flex flex-col pt-4 px-3 md:flex-row md:!pt-0 items-center">
 										<div className="input-group">
 											<label className="input-group-text h-10">Compañía</label>
 											<select
@@ -86,11 +86,11 @@ const Company = () => {
 											</select>
 										</div>
 										<div className="px-3 flex flex-col md:flex-row md:items-center pb-4">
-											<ModalRegister classes="w-[160px] relative bottom-3 !bg-[#e9ecef] !text-black rounded-lg border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]" />
+											<ModalRegister classes="w-[160px] relative md:bottom-3 !bg-[#e9ecef] !text-black rounded-lg border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb] mb-2 md:!mb-0" />
 											<EnterModal
 												data={companyAllNames}
 												classes="
-												w-[160px] bg-darkest-blue text-black px-3 py-2 relative ml-0 relative top-3 md:ml-4 rounded-lg !bg-[#e9ecef] border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]"
+												w-[160px] bg-darkest-blue text-black px-3 py-2 relative ml-0 relative md:top-3 md:ml-4 rounded-lg !bg-[#e9ecef] border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]"
 											/>
 										</div>
 									</div>
