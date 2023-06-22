@@ -193,7 +193,7 @@ const questions: QuestionType[] = [
 	  question: '¿Has realizado un pago y no tienes el plan que pagaste?',
 	  solution:
 		'La verificación del pago puede demorar alguno minutos o hasta horas, pero si ha pasado mas de 1 día comumnicate via email o whatsapp para agilizar la activación de tu plan',
-	  extra: 'Whatsapp: +53 123 345 1231235',
+	  extra: 'Whatsapp: +51976866575',
 	},
 	{
 	  question: '¿No puedes acceder a tu cuenta?',
@@ -205,13 +205,13 @@ const questions: QuestionType[] = [
 	  question: '¿Tienes un error de redirección o de datos erroneos?',
 	  solution:
 		'Cuando quieres ir a una pagina te redirecciona a otra o la infomación que se muesta es errornea. Envia una email o un mesaje de whatsapp con el asunto de "ISSUE" con una descripción del error en cuestión y sera resuelto a la brevedad ',
-	  extra: 'Whatsapp: +53 123 345 1231235',
+	  extra: 'Whatsapp: +51976866575',
 	},
 	{
 	  question: '¿Quieres que se agregue una funcionalidad?',
 	  solution:
 		'Envia una email o un mesaje de whatsapp con el asunto de "FEATURE" para que la funcionalidad sea agregada proximamente y ayudes a la aplicación a ser mas efieciente y util para los demás usuarios',
-	  extra: 'Whatsapp: +53 123 345 1231235',
+	  extra: 'Whatsapp: +51976866575',
 	},
   ]
 

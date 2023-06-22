@@ -28,38 +28,51 @@ export default function Checkout() {
       <main className="flex justify-center bg-light-green dark:bg-violet-blue-landing py-16">
         <ul className="flex flex-wrap gap-8 justify-center m-0 p-0 flex-grow px-4 my-4">
           {/* 1. pay your subscription */}
-          <li className="max-w-[450px] flex flex-col items-start justify-between shadow-plan py-6 px-8 rounded-lg">
+          <li className="max-w-[450px] flex flex-col items-center justify-between shadow-plan py-6 px-8 rounded-lg">
             <article className="[&>p]:m-0 mt-2 flex flex-col justify-around">
               <header className="">
                 <h2 className="text-3xl font-bold my-4 drop-shadow-xl text-center">
-                  <span className="text-main-green dark:text-medium-blue mr-2">01.</span> Paga tu
-                  suscripción
+                  <span className="text-main-green dark:text-medium-blue mr-2">
+                    01.
+                  </span>{' '}
+                  Paga tu suscripción
                 </h2>
               </header>
               <p>
-                Realiza tu pago escaneando el codigo QR o haciendo un deposito
-                al siguiente CVU con el motivo &quot;Suscripción a AlDía nivel{' '}
-                {PLANS[plan].name}&quot; con un monto de {PLANS[plan].price}{' '}
-                soles.
+                Realiza tu pago escaneando el codigo QR, ya sea de el de Plim o
+                Yape, y realiza un deposito con el motivo &quot;Suscripción a
+                AlDía nivel {PLANS[plan].name}&quot; con un monto de{' '}
+                {PLANS[plan].price} soles.
               </p>
             </article>
-            <p className='font-bold'>CVU: alskdnoalds-asidnoasld-asd1901292os</p>
-            <figure className="mt-3">
-              <Image
-                src={QrSvg}
-                alt="QR to pay suscription"
-                height="300"
-                width="300"
-              />
-            </figure>
+            <section className="mt-3 w-full h-full flex flex-col justify-around items-center">
+              <figure>
+                <Image
+                  src="/yape-qr.jpeg"
+                  alt="QR to pay suscription"
+                  height="300"
+                  width="300"
+                />
+              </figure>
+              <figure>
+                <Image
+                  src="/plim-qr.jpeg"
+                  alt="QR to pay suscription"
+                  height="300"
+                  width="300"
+                />
+              </figure>
+            </section>
           </li>
 
           {/* 2. notification */}
-          <li className="max-w-[450px] flex flex-col items-start justify-between shadow-plan py-6 px-8 rounded-lg">
+          <li className="max-w-[450px] flex flex-col items-center justify-between shadow-plan py-6 px-8 rounded-lg">
             <article className="[&>p]:m-0 mt-2 flex flex-col justify-around">
               <header className="">
                 <h2 className="text-3xl font-bold m-0 my-4 drop-shadow-xl text-center">
-                  <span className="text-main-green dark:text-medium-blue mr-2">02.</span>
+                  <span className="text-main-green dark:text-medium-blue mr-2">
+                    02.
+                  </span>
                   Envía una notificación
                 </h2>
               </header>
@@ -70,7 +83,7 @@ export default function Checkout() {
             </article>
 
             <footer>
-              <p className='font-bold mt-3'>Whatsapp: +69 1313 040613.</p>
+              <p className="font-bold mt-3">Whatsapp: +51976866575.</p>
             </footer>
 
             <figure className="flex pt-4">
@@ -84,11 +97,13 @@ export default function Checkout() {
           </li>
 
           {/* 3. espera */}
-          <li className="max-w-[600px] flex flex-col items-start justify-between shadow-plan py-6 px-8 rounded-lg">
+          <li className="max-w-[600px] flex flex-col items-center justify-between shadow-plan py-6 px-8 rounded-lg">
             <article className="mt-2 [&>p]:m-0 flex flex-col justify-around">
               <header className="">
                 <h2 className="text-3xl font-bold m-0 my-4 text-center">
-                  <span className="text-main-green dark:text-medium-blue mr-2 mb-2 drop-shadow-xl">03.</span>
+                  <span className="text-main-green dark:text-medium-blue mr-2 mb-2 drop-shadow-xl">
+                    03.
+                  </span>
                   Espera
                 </h2>
               </header>
@@ -101,7 +116,7 @@ export default function Checkout() {
                 Dale click al siguiente boton 1 vez para notificar al
                 administrador que realizaste el pago.
               </p>
-              <footer className='grid max-w-[250px] mt-4'>
+              <footer className="grid max-w-[250px] mt-4 ">
                 <NotifyBtn plan={plan} />
               </footer>
             </article>
