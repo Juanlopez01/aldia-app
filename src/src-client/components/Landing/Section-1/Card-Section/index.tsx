@@ -17,7 +17,7 @@ export const bdInfo = [
 	},
 	{
 		image: CajaFuerte,
-		title: "Toma decisiones inteligentes",
+		title: "Decisiones inteligentes",
 
 		description: "Obtén una visión clara y detallada de tus finanzas a través de gráficos y reportes personalizados. Analiza tus hábitos de gasto, identifica áreas de mejora y toma decisiones informadas. ¡Con ALDIA, tendrás el control de tu dinero al alcance de tus manos!",
 
@@ -39,7 +39,7 @@ export const bdInfoLight = [
 	},
 	{
 		image: CajaFuerteLight,
-		title: "Toma decisiones inteligentes",
+		title: "Decisiones inteligentes",
 		description: "Con nuestras herramientas tendras el control.",
 	},
 	{

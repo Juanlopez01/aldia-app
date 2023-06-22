@@ -111,6 +111,7 @@ const Contact = (props: {showInfo?: boolean}) => {
 	return (
 		<div
 			className={`w-full bg-light-green dark:bg-violet-blue-landing py-5 ${stylesLandingContainers}`}
+			id="contact"
 		>
 			<h1 className="text-center text-3xl font-bold text-black pb-6">
 				Contáctate con nosotros

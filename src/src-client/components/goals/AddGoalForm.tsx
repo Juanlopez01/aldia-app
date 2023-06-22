@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { createGoal, updateGoal } from "@/redux/slice/PersonalSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { catTransactions } from "@/utils/categoriesTransactions";
 
 const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) => {
 	const handleChange = (e: any) => {
@@ -69,10 +70,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 							required
 							className="form-control"
 						>
-							<option value={"Otros"} key={"Otros"}>
-								Otros
-							</option>
-							{categories.map((category) => {
+							{catTransactions.map((category) => {
 								return (
 									<option value={category} key={category}>
 										{category}

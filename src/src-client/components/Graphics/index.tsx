@@ -138,7 +138,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	return (
 		<div
 			className="text-center bg-light-green dark:bg-violet-blue-profile pt-10 py-8 w-full overflow-hidden min-h-[80vh] flex flex-col
-    	md:items-center pl-4"
+    	md:items-center pl-4 pr-4"
 		>
 			{!incomes || (!expenses && <span className="loader" />)}
 			{incomes && expenses && (
@@ -161,8 +161,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 					{/* desktop charts, options at left */}
 					<div
-						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-4
-          				hidden md:grid"
+						className="flex-col justify-center flex-wrap md:grid-cols-2 xl:grid-cols-3 place-content-center gap-4 hidden md:grid "
 					>
 						<Income
 							type={type}
@@ -244,6 +243,9 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							type={type}
 							options={optionsMobile}
 							data={dataExcess}
+							excess = {totalIncomes - totalExpenses}
+							totalDataIncomes={IncomesResult.totals}
+							totalDataExpenses={ExpensesResult.totals}
 							setTableContent={setTableContent}
 							className="m-1"
 						/>
@@ -255,7 +257,10 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 							<LongExcess
 								type={type}
 								options={optionsMobile}
+								excess = {totalIncomes - totalExpenses}
 								data={dataLongExcess}
+								totalDataIncomes={IncomesResult.totals}
+								totalDataExpenses={ExpensesResult.totals}
 								className="m-1"
 								setTableContent={setTableContent}
 							/>
