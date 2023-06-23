@@ -131,7 +131,7 @@ export function ModalEdit({ props }: PropsModal) {
           </div>
         }
       >
-        <FormRegister setForm={setForm} form={form} type={props.type} />
+        <FormRegister setForm={setForm} form={form} type={props.type} extraCategories={null}/>
       </Modal>
     </>
   )

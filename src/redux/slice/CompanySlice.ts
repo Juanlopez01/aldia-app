@@ -105,7 +105,7 @@ const companySlice = createSlice({
       state.allNames = action.payload
     },
     aceptNotification: (state, action) => {
-      const notificationsNew = state.selectedCompany.notifications.filter((notification : any) => notification.user !== action.payload);
+      const notificationsNew = state.selectedCompany.notifications?.filter((notification : any) => notification.user !== action.payload);
       state.selectedCompany.notifications = notificationsNew;
     }
 

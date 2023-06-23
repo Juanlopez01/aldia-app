@@ -13,7 +13,8 @@ export interface CompanType {
   incomes: IncomeType[];
   expenses: ExpenseType[];
   users:Schema.Types.ObjectId[];
-  notifications: NotificationType[];
+  notifications?: NotificationType[];
+  categories?: string[] | [];
 }
 
 const companySchema = new Schema<CompanType, Model<CompanType>>({
@@ -21,6 +22,7 @@ const companySchema = new Schema<CompanType, Model<CompanType>>({
   incomes: [{ type: Schema.Types.ObjectId, ref: "Income", default: [] }],
   expenses: [{ type: Schema.Types.ObjectId, ref: "Expense", default: [] }],
   users:[{type: Schema.Types.ObjectId, ref: "User", default: [] }],
+  categories:[{ type: String, ref: "Category", default:[] }],
   notifications:[{ type: Object, ref: 'Notification', default: []}],
 });
 

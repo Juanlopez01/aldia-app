@@ -27,6 +27,7 @@ export interface UserType {
   expenses?: ExpenseType[] | [];
   goals?: GoalsTypes[] | [];
   payments?: PaymentType[] | [];
+  categories?: string[] | [];
   role: String;
   status: StatusType | string;
   createdAt: Date;
@@ -97,6 +98,7 @@ const userSchema = new Schema<UserType, Model<UserType>>(
     payments: [{ type: Schema.Types.ObjectId, ref: 'Payment', default: [] }],
     expenses: [{ type: Schema.Types.ObjectId, ref: 'Expense', default: [] }],
     goals: [{ type: Schema.Types.ObjectId, ref: 'Goal', default: [] }],
+    categories: [{ type: String, ref: 'Category', default: [] }],
   },
   { versionKey: false, timestamps: true }
 )
