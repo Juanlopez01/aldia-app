@@ -11,12 +11,14 @@ export interface FormType {
   value: number
   date: string
   credit: string
+
 }
 
 interface FormProps {
   form: FormType
   setForm: Function
   type: string
+  extraCategories : string[] | [] | null | undefined
 }
 
 const inyectOtherCategories = (otherCats : string[])=>{
@@ -27,7 +29,7 @@ const inyectOtherCategories = (otherCats : string[])=>{
 
 }
 
-export default function FormRegister({ form, setForm,type }: FormProps) {
+export default function FormRegister({ form, setForm,type, extraCategories }: FormProps) {
   const [dateShow, setDateShow] = React.useState(true)
   const [showOtherCategory, setShowOtherCategory] = React.useState(false)
   const [otherCategory, setOtherCategory] = React.useState('')
@@ -72,7 +74,14 @@ export default function FormRegister({ form, setForm,type }: FormProps) {
           defaultValue={form.category}
           onChange={handleChange}
           required
-        >
+        > 
+          {extraCategories && extraCategories.length > 0 && extraCategories.map((category : string) => {
+            return (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            )
+          })}
           {inyectOtherCategories(otherCategories).map((category) => {
             return (
               <option key={category} value={category}>

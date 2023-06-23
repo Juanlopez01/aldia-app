@@ -3,6 +3,7 @@ import { Income } from "@/models/income.model";
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../src-backend/db";
 import { User, UserWithId } from "@/models/user.model";
+import { catTransactions } from "@/utils/categoriesTransactions";
 
 dbConnect();
 
@@ -35,12 +36,18 @@ export default async function income(
       let result;
       if (body.type === "negocio") {
         company = await Company.findById({ _id: query.Id });
+        if(!catTransactions.includes(body.category)) {
+          await company.categories.push(body.category);
+        }
         result = await Income.create(body);
 
         await company.incomes.push(result);
         await company.save();
       } else {
         let user = await User.findOne({ email: query.Id });
+        if(!catTransactions.includes(body.category)) {
+          await user.categories.push(body.category);
+        }
         result = await Income.create(body);
 
         user.incomes.push(result);
