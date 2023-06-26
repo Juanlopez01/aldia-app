@@ -47,7 +47,7 @@ const EnterModal = ({ data, classes }: EnterProps) => {
 				}}
 				className={classes}
 			>
-				Ingresar compañía
+				Ingresar a compañía
 			</button>
 			<Modal
 				title="Ingresar a una compañía"

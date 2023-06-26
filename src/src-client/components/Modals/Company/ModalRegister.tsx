@@ -39,7 +39,7 @@ const ModalRegister = (props: {classes?: string}) => {
     return (
         <div className='mt-5 text-center'>
             <button className={`px-3 py-2 bg-slate-900 ${props?.classes}`} onClick={handleShow}>
-                <span className="">Registrar compañia</span>
+                <span className="">Registrar a compañia</span>
             </button>
             <Modal 
             showModal={show} 
