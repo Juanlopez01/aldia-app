@@ -60,12 +60,12 @@ const Company = () => {
 						{company === "loadingCompany" && companyData?.name !== "" && (
 							<span className="loader"></span>
 						)}
-						{company === "Not found" && companyData?.name === "" && (
+						{/* {company === "Not found" && companyData?.name === "" && (
 							<>
 								<ModalRegister />
 								<EnterModal data={companyAllNames} />
 							</>
-						)}
+						)} */}
 						<div>
 							<div className="flex flex-wrap md:flex-row md:justify-center bg-white dark:!bg-violet-blue-landing w-[85vw] md:w-[70vw] rounded-lg
 							">
