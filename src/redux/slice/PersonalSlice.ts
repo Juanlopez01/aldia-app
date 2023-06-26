@@ -151,6 +151,7 @@ export const addPersonalIncome =
 //UPDATE
 export const updatePersonalIncome =
   (income: IncomeType, id: String) => async (dispatch: Function) => {
+    console.log(income)
     const res = await axios.put(BASE_URL + "/income/" + id, income);
 
     dispatch(personalSlice.actions.updatePersonalIncome(res.data.payload));
