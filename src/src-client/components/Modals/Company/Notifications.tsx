@@ -77,7 +77,7 @@ const Notifications = ({ data, dispatch }: any) => {
 					className={`${notifications?.length>0 ? "bg-[#b93d30] text-white" : "bg-[#e9ecef]"} border-2 border-[#dbddf0] px-3 py-2 rounded-xl`}
 				>
 					Notificaciones
-					{notifications?.length>0 ? `(${notifications.length})` : ""}
+					{notifications?.length>0 ? ` (${notifications.length})` : ""}
 				</button>
 			</div>
 			<Modal

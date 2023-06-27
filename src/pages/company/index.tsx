@@ -42,7 +42,7 @@ const Company = () => {
 
 	const handleSelect = (e: any) => {
 		const id = e.target.value;
-		if (id !== companySelect) {
+		if (id !== 'null' && id !== companySelect) {
 			getCompany(id, dispatch);
 			setCompanySelect(id);
 		}
@@ -72,11 +72,12 @@ const Company = () => {
 								{companyNames && (
 									<div className="w-full flex flex-col pt-4 px-3 md:flex-row md:!pt-0 items-center">
 										<div className="input-group">
-											<label className="input-group-text h-10">Compañía</label>
+											<label className="input-group-text h-10">Seleccionar compañía</label>
 											<select
 												className="!w-1/5 form-control h-10"
 												onClick={(e) => handleSelect(e)}
 											>
+												<option value="null" key='null'></option>
 												{companyNames?.map((company: any) => {
 													return (
 														<option key={company.id} value={company.id} className="flex-row">

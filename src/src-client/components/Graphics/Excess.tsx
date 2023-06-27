@@ -47,7 +47,6 @@ export function Excess({ options, data , type, totalDataIncomes, totalDataExpens
 	const reduceIncomes = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
 	const reduceExpenses = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
 	const excessResult = reduceIncomes - reduceExpenses
-	console.log(totalDataIncomes)
 
 	return (
 		<div
