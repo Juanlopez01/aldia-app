@@ -34,13 +34,22 @@ const GetNavLinks = (props: {
 	return (
 		<>
 			{props?.list?.map((link: any) => {
+				let hrefLinks =
+					props.activeSection?.left === "/company"
+						? "/company" + (link.url === "/home" ? "/" : link.url)
+						: link?.url;
 				return (
-					<div className={`flex items-center ${props?.activeSection?.left==="/admin" ? "hidden" : "flex"}`} key={link?.name}>
+					<div
+						className={`flex items-center ${
+							props?.activeSection?.left === "/admin" ? "hidden" : "flex"
+						}`}
+						key={link?.name}
+					>
 						{props?.section !== "sidenav" ? (
 							<Link
-								href={pathname?.includes("/company") ? "/company" + (link.url==="/home" ? "/" : link.url) : link?.url}
+								href={hrefLinks}
 								className={`${
-									!pathname?.includes(link?.endpoint) ? "unlink" : "text-link link"
+									(!pathname?.includes(link?.endpoint) || (props?.activeSection?.left==="/home" && link?.url==='/home') ) ? "unlink" : "text-link link"
 								} no-underline`}
 								onClick={() =>
 									props?.screen === "mobile" &&
@@ -59,7 +68,7 @@ const GetNavLinks = (props: {
 						) : (
 							//*render in sidenav
 							<Link
-								href={props?.activeSection?.left==="/company" ? "/company" + link?.url : link?.url}
+								href={hrefLinks}
 								className={`${
 									!pathname?.includes(link?.endpoint)
 										? "dark:text-link dark:bg-light-blue text-gray-900 bg-link"
