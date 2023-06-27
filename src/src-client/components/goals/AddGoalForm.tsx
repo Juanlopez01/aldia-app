@@ -9,36 +9,64 @@ import { createGoal, updateGoal } from "@/redux/slice/PersonalSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { catTransactions } from "@/utils/categoriesTransactions";
+import { useRouter } from "next/router";
+import { createCompanyGoal, updateCompanyGoal } from "@/redux/slice/CompanySlice";
 
 const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) => {
 	const handleChange = (e: any) => {
 		setForm({ ...form, [e.target.id]: e.target.value });
 	};
-
+	const router = useRouter()
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		if (type === "register") {
-			dispatch(createGoal(form));
-			setForm({
-				...form,
-				title: "",
-				category: "",
-				goalValue: 0,
-				expiresDate: "",
-				_id: "",
-				priority: 1,
-				plazo: "Corto plazo",
-				status: "Pending",
-			});
-		}
-		if (type === "edit") {
-			dispatch(
-				updateGoal({
-					status: form.status,
-					goalValue: form.goalValue,
-					_id: form._id,
-				})
-			);
+		if(router.pathname === '/company/goals'){
+			if (type === "register") {
+				dispatch(createCompanyGoal(form));
+				setForm({
+					...form,
+					title: "",
+					category: "",
+					goalValue: 0,
+					expiresDate: "",
+					_id: "",
+					priority: 1,
+					plazo: "Corto plazo",
+					status: "Pending",
+				});
+			}
+			if (type === "edit") {
+				dispatch(
+					updateCompanyGoal({
+						status: form.status,
+						goalValue: form.goalValue,
+						_id: form._id,
+					})
+				);
+			}
+		} else {
+			if (type === "register") {
+				dispatch(createGoal(form));
+				setForm({
+					...form,
+					title: "",
+					category: "",
+					goalValue: 0,
+					expiresDate: "",
+					_id: "",
+					priority: 1,
+					plazo: "Corto plazo",
+					status: "Pending",
+				});
+			}
+			if (type === "edit") {
+				dispatch(
+					updateGoal({
+						status: form.status,
+						goalValue: form.goalValue,
+						_id: form._id,
+					})
+				);
+			}
 		}
 		setShow(false)
 	};
@@ -66,10 +94,11 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 							id="category"
 							onChange={handleChange}
 							value={form.category}
-							defaultValue={"Otros"}
+							placeholder="Seleccione una categoria"
 							required
 							className="form-control"
 						>
+							<option value='' key={'Null'}></option>
 							{catTransactions.map((category) => {
 								return (
 									<option value={category} key={category}>
@@ -80,7 +109,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 						</select>
 					</div>
 					<div className="input-group mb-3 w-100">
-					<label htmlFor="text" className="input-group-text ">Valor</label>
+					<label htmlFor="text" className="input-group-text ">Importe</label>
 						<input
 							type="number"
 							id="goalValue"
@@ -95,7 +124,6 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 					<label htmlFor="text" className="input-group-text ">Plazo</label>
 						<select
 							id="plazo"
-							defaultValue={"Corto plazo"}
 							onChange={handleChange}
 							value={form.plazo}
 							className="form-control"
@@ -115,10 +143,10 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 								id="expiresDate"
 								onChange={handleChange}
 								required
-								value={form.expiresValue}
-								defaultValue={"Una semana"}
+								value={form.expiresDate}
 								className="form-control"
 							>
+								<option value='' key={'Null'}></option>
 								{shortExpiresValues.map((expires) => {
 									return (
 										<option value={expires} key={expires}>
@@ -136,10 +164,10 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 								id="expiresDate"
 								onChange={handleChange}
 								required
-								value={form.expiresValue}
-								defaultValue={"Dos años"}
+								value={form.expiresDate}
 								className="form-control"
 							>
+								<option value='' key={'Null'}></option>
 								{longExpiresValues.map((expires) => {
 									return (
 										<option value={expires} key={expires}>
@@ -155,7 +183,6 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 						<select
 							id="priority"
 							required
-							defaultValue={1}
 							value={form.priority}
 							onChange={handleChange}
 							className="form-control"

@@ -4,6 +4,7 @@ import { User, UserWithId } from "@/models/user.model";
 import { Goal } from "@/models/goal.model";
 import { dateFormatter } from "@/utils/dateFormatter";
 import { Expense } from "@/models/expense.model";
+import { CompanType, Company } from "@/models/company.model";
 dbConnect();
 
 export default async function goal(
@@ -11,21 +12,35 @@ export default async function goal(
     res: NextApiResponse
   ) {
     try {
-        const { email } = req.query;
+        const { email, type } = req.query;
         const {title, category, goalValue, priority, plazo, expiresDate} = req.body;
         switch (req.method) {
             case "GET":
-                const result = await User.findOne({ email: email})
-                .populate('goals')
-                .lean();
-                res.status(200).json({goals: (result as UserWithId).goals});
+                if(type === 'user'){
+                    const result = await User.findOne({ email: email})
+                    .populate('goals')
+                    .lean();
+                    res.status(200).json({goals: (result as UserWithId).goals});
+                } else {
+                    const result = await Company.findOne({ _id: email})
+                    .populate('goals')
+                    .lean();
+                    res.status(200).json({goals: (result as CompanType).goals});
+                }
+            
                 break;
             case 'POST':
                 const date = await dateFormatter(expiresDate)
                 const newGoal = await Goal.create({title, category, goalValue, priority, plazo, expires: date});
-                const user = await User.findOne({email: email });
-                await user.goals.push(newGoal);
-                await user.save();
+                if(type === 'user'){
+                    const user = await User.findOne({email: email });
+                    await user.goals.push(newGoal);
+                    await user.save();
+                } else {
+                    const company = await Company.findOne({_id: email});
+                    company.goals.push(newGoal);
+                    company.save();
+                }
                 res.status(200).json({message: 'created ', goal: newGoal});
                 break;
             default:

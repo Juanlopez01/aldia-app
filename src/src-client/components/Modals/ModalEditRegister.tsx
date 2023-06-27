@@ -131,7 +131,7 @@ export function ModalEdit({ props }: PropsModal) {
           </div>
         }
       >
-        <FormRegister setForm={setForm} form={form} type={props.type} extraCategories={null}/>
+        <FormRegister setForm={setForm} form={form} type={props.type} extraCategories={null} transactionType={props.table === 'ingresos' ? 'income' : 'expense'}/>
       </Modal>
     </>
   )
