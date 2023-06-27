@@ -45,7 +45,7 @@ const ModalRegister = (props: {classes?: string}) => {
             showModal={show} 
             closeModal={handleClose} 
             title='Registrar una compañía' 
-            footer={<button className='px-4 py-2 bg-[#198754] rounded-md' onClick={sendForm}>Registrar</button>} 
+            footer={<button className='px-4 py-2 bg-[#198754] text-white rounded-md' onClick={sendForm}>Registrar</button>} 
             >
                 {<form className='input-group'>
                     <label className='input-group-text'>Nombre</label>

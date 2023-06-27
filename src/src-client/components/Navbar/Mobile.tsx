@@ -1,6 +1,6 @@
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useRef, useState } from "react";
+import React, { SetStateAction, useRef, useState } from "react";
 import { ButtonTransparent } from "../Styles/Button";
 import { GetNavLinks, signOutFunction } from "./Functions";
 import { useRouter } from "next/router";
@@ -11,7 +11,7 @@ import Image from "next/image";
 import DarkMode from "./DarkMode";
 
 //*todo MOBILE NAV
-const NavbarMobile = () => {
+const NavbarMobile = (props: {activeSection: any, setActiveSection: SetStateAction<any>}) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const { data: session } = useSession();
 	const profile_image = session?.user?.image!;
@@ -80,6 +80,8 @@ const NavbarMobile = () => {
 									screen="mobile"
 									setIsOpen={setIsOpen}
 									handleAnimateHamburger={handleAnimateHamburger}
+									activeSection={props?.activeSection}
+                	setActiveSection={props?.setActiveSection}
 									showIcons={true}
 								/>
 							</ul>
@@ -87,12 +89,16 @@ const NavbarMobile = () => {
 							<>
 								<hr className="border-2 border-darkest-blue"></hr>
 
-								<ul className="text-white flex flex-col gap-y-4 relative right-4 pt-8">
+								<ul className={`text-white flex flex-col gap-y-4 relative right-4 pt-8 ${
+									props?.activeSection?.left === "/admin" ? "hidden" : "flex"
+									}`}>
 									<GetNavLinks
 										list={links?.loggedIn[0]}
 										screen="mobile"
 										setIsOpen={setIsOpen}
 										handleAnimateHamburger={handleAnimateHamburger}
+										activeSection={props?.activeSection}
+                		setActiveSection={props?.setActiveSection}
 										showIcons={true}
 									/>
 								</ul>
@@ -104,6 +110,8 @@ const NavbarMobile = () => {
 										screen="mobile"
 										setIsOpen={setIsOpen}
 										handleAnimateHamburger={handleAnimateHamburger}
+										activeSection={props?.activeSection}
+                		setActiveSection={props?.setActiveSection}
 										showIcons={true}
 									/>
 								</ul>
