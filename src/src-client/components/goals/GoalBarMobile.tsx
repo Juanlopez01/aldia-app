@@ -6,6 +6,8 @@ import ProgressBar from "./ProgressBar";
 import { traductDate } from "@/utils/traductDate";
 import { addCompanyExpense, updateCompanyGoal } from "@/redux/slice/CompanySlice";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 interface GoalBarTypes {
 	title: String;
@@ -66,14 +68,16 @@ const GoalBarMobile = ({
 				<div className="w-full">
           {status === "Pending" && (
             <div className="flex flex-col text-sm md:text-lg">
-              <button onClick={() => handleDelete(_id)}>Delete</button>
+              <button onClick={() => handleDelete(_id)}>
+			  <FontAwesomeIcon icon={faTrash} size="lg"/>
+				</button>
               <button
                 onClick={() => {
                   setFormType("edit");
                   setForm({ ...form, _id: _id });
                 }}
               >
-                Editar valor
+                <FontAwesomeIcon icon={faPenToSquare} size="lg"/>
               </button>
             </div>
           )}
@@ -126,8 +130,9 @@ const GoalBarMobile = ({
 									}
 								});
 							}}
-						>
-							Completado
+							className="px-2 py-1 rounded-lg bg-[#198754] text-white"
+					>
+						Completar
 						</button>
 					)}
 				</div>

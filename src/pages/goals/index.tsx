@@ -64,7 +64,7 @@ const Index = () => {
     return (
       <LayoutWithSideNav>
         <div className="bg-light-green dark:bg-violet-blue-profile w-full min-h-[70vh] flex">
-          <div className="flex flex-col w-full xl:w-3/4 2xl:w-9/12 mx-auto py-12 h-full">
+          <div className="flex flex-col w-full xl:w-3/4 2xl:w-9/12 mx-auto py-2 h-full">
             {/* <ProgressBar completed={completedGoals} /> */}
             <Modal showModal={show} closeModal={handleClose} title={formType === 'register' ? 'Agregar meta' : 'Editar meta'} >
               <AddGoalForm

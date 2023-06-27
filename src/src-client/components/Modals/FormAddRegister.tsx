@@ -4,6 +4,7 @@ import React from 'react'
 import { creditList } from '@/utils/listCredits'
 import { traductDate } from '@/utils/traductDate'
 import { useAppSelector } from '@/src-client/hooks/use-redux'
+import { expensesCompany, incomesCompany } from '@/utils/companyTransactions'
 export interface FormType {
   type: string
   description: string
@@ -19,22 +20,22 @@ interface FormProps {
   setForm: Function
   type: string
   extraCategories : string[] | [] | null | undefined
+  transactionType: string
 }
 
-const inyectOtherCategories = (otherCats : string[])=>{
-  const lastCat = catTransactions.at(-1)
-  const allCategories = [...catTransactions.slice(0,catTransactions.length - 1), ...otherCats, lastCat]
+const inyectOtherCategories = (otherCats : string[], defaultCategories : string[])=>{
+  const lastCat = defaultCategories.at(-1)
+  const allCategories = [...defaultCategories.slice(0,defaultCategories.length - 1), ...otherCats, lastCat]
 
   return allCategories
 
 }
 
-export default function FormRegister({ form, setForm,type, extraCategories }: FormProps) {
+export default function FormRegister({ form, setForm,type, extraCategories, transactionType }: FormProps) {
   const [dateShow, setDateShow] = React.useState(true)
   const [showOtherCategory, setShowOtherCategory] = React.useState(false)
   const [otherCategory, setOtherCategory] = React.useState('')
   const {otherCategories}= useAppSelector(s=> type==='negocio'? s.CompanyReducer  : s.PersonalReducer)
-
   const handleChange = (
     evt: React.FormEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -75,6 +76,7 @@ export default function FormRegister({ form, setForm,type, extraCategories }: Fo
           onChange={handleChange}
           required
         > 
+         <option value="" key={'null'}></option>
           {extraCategories && extraCategories.length > 0 && extraCategories.map((category : string) => {
             return (
               <option key={category} value={category}>
@@ -82,7 +84,7 @@ export default function FormRegister({ form, setForm,type, extraCategories }: Fo
               </option>
             )
           })}
-          {inyectOtherCategories(otherCategories).map((category) => {
+          {inyectOtherCategories(otherCategories, type === 'negocio' ? transactionType === 'expense' ? expensesCompany : incomesCompany : catTransactions).map((category) => {
             return (
               <option key={category} value={category}>
                 {category}
