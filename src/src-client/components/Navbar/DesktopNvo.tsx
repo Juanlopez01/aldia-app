@@ -7,13 +7,10 @@ import { useSession } from 'next-auth/react'
 import { ButtonTransparent } from '../Styles/Button'
 import Link from 'next/link'
 import DarkMode from './DarkMode'
-import { useState } from 'react'
+import { SetStateAction, useState } from 'react'
 
-const DesktopNvo = () => {
+const DesktopNvo = (props: {activeSection: any, setActiveSection: SetStateAction<any>}) => {
   const { data: session } = useSession()
-  const [activeSection, setActiveSection] = useState({
-    left: "/home", top: ""
-  });
 
   return (
     <div
@@ -31,8 +28,8 @@ const DesktopNvo = () => {
                 list={links?.loggedIn[0]}
                 showIcons={false}
                 section="sidenav"
-                activeSection={activeSection}
-                setActiveSection={setActiveSection}
+                activeSection={props?.activeSection}
+                setActiveSection={props?.setActiveSection}
                 classes="px-12 py-1 relative top-2 hover:opacity-80"
               />}
             </ul>

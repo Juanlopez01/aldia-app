@@ -31,7 +31,8 @@ const GetNavLinks = (props: {
 		}
 	}, [pathname]);
 
-	console.log(props?.activeSection)
+	const section = props.activeSection?.left;
+	console.log(section)
 
 	return (
 		<>
@@ -42,8 +43,8 @@ const GetNavLinks = (props: {
 						: link?.url;
 				return (
 					<div
-						className={`flex items-center ${
-							props?.activeSection?.left === "/admin" ? "hidden" : "flex"
+						className={`flex items-center ${(props?.section==="sidenav" &&
+							props?.activeSection?.left) === "/admin" ? "hidden" : "flex"
 						}`}
 						key={link?.name}
 					>
@@ -51,7 +52,9 @@ const GetNavLinks = (props: {
 							<Link
 								href={hrefLinks}
 								className={`${
-									(!pathname?.includes(link?.endpoint) || (props?.activeSection?.left==="/home" && link?.url==='/home') ) ? "unlink" : "text-link link"
+									pathname?.includes(link?.endpoint) 
+									|| ((pathname==="/credit" || pathname==="/goals") && link?.name==="Personal")
+									|| ((section==="/company" && link?.name==="General")) ? "unlink" : "text-link link"
 								} no-underline`}
 								onClick={() =>
 									props?.screen === "mobile" &&
@@ -74,7 +77,7 @@ const GetNavLinks = (props: {
 								className={`${
 									pathname?.includes(link?.endpoint) 
 									|| ((pathname==="/credit" || pathname==="/goals") && link?.name==="Personal")
-									|| ((pathname==="/company" && link?.name==="General"))
+									|| ((section==="/company" && link?.name==="General"))
 										? "bg-main-yellow dark:hover:!bg-secondary-yellow text-black"
 										: "dark:text-link dark:bg-light-blue text-gray-900 bg-link" 
 								}  no-underline rounded-full text-center w-full 
