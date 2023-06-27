@@ -79,16 +79,16 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	};
 
 	const dataExcess = {
-		labels: ["Excess"],
+		labels: ["Excedentes"],
 		datasets: [
 			{
-				label: "Income",
+				label: "Ingresos",
 				data: [totalExcess[0]],
 				backgroundColor: "rgba(75, 192, 192, 0.8)",
 				hoverOffset: 4,
 			},
 			{
-				label: "Expense",
+				label: "Gastos",
 				data: [totalExcess[1]],
 				backgroundColor: "rgba(255, 99, 132, 0.8)",
 				hoverOffset: 4,
