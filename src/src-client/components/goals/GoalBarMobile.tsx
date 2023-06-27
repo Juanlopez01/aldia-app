@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import PhotoComponent from "./PhotoComponent";
 import ProgressBar from "./ProgressBar";
 import { traductDate } from "@/utils/traductDate";
+import { addCompanyExpense, updateCompanyGoal } from "@/redux/slice/CompanySlice";
+import { useRouter } from "next/router";
 
 interface GoalBarTypes {
 	title: String;
@@ -17,7 +19,7 @@ interface GoalBarTypes {
 	dispatch: Function;
 	_id: String | undefined;
 	handleDelete: Function;
-	email: String;
+	email: string;
 	setFormType: Function;
 	setForm: Function;
 	form: any;
@@ -41,7 +43,7 @@ const GoalBarMobile = ({
 	form,
 }: GoalBarTypes) => {
 	const porcentaje = Math.round((excess.valueOf() * 100) / goalValue.valueOf());
-
+	const router =useRouter()
 	//*for debugging, we want the 'Comprar' goal to be full
 	let porcentajeFinal = porcentaje;
 	let excessFinal = excess;
@@ -89,20 +91,37 @@ const GoalBarMobile = ({
 									icon: "warning",
 								}).then((result) => {
 									if (result.isConfirmed) {
-										dispatch(updateGoal({ status: "Completed", goalValue, _id }));
+										if(router.pathname === "/company/goals"){
+											dispatch(updateCompanyGoal({ status: "Completed", goalValue, _id }));
 										dispatch(
-											addPersonalExpense(
+											addCompanyExpense(
 												{
-													type: "personales",
-													value: goalValue,
+													type: "negocio",
+													value: goalValue.valueOf(),
 													description: title,
 													category: "Metas",
-													date: traductDate(new Date()),
+													date:traductDate(new Date()),
 													credit: 'Un pago',
 												},
 												email
 											)
 										);
+										} else {
+											dispatch(updateGoal({ status: "Completed", goalValue, _id }));
+											dispatch(
+												addPersonalExpense(
+													{
+														type: "personales",
+														value: goalValue.valueOf(),
+														description: title,
+														category: "Metas",
+														date:traductDate(new Date()),
+														credit: 'Un pago',
+													},
+													email
+												)
+											);
+										}
 									} else {
 									}
 								});

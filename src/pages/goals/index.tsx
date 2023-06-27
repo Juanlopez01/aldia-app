@@ -18,9 +18,9 @@ const Index = () => {
   const dispatch: Function = useDispatch()
   const [form, setForm] = useState({
     title: '',
-    category: 'Hogar',
+    category: '',
     goalValue: 0,
-    expiresDate: 'Una semana',
+    expiresDate: '',
     email: email,
     _id: '',
     priority: 0,

@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 import { createCompanyGoal, updateCompanyGoal } from "@/redux/slice/CompanySlice";
 
 const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) => {
-	console.log(form)
 	const handleChange = (e: any) => {
 		setForm({ ...form, [e.target.id]: e.target.value });
 	};
@@ -26,9 +25,9 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 				setForm({
 					...form,
 					title: "",
-					category: "Hogar",
+					category: "",
 					goalValue: 0,
-					expiresDate: "Una semana",
+					expiresDate: "",
 					_id: "",
 					priority: 1,
 					plazo: "Corto plazo",
@@ -50,9 +49,9 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 				setForm({
 					...form,
 					title: "",
-					category: "Hogar",
+					category: "",
 					goalValue: 0,
-					expiresDate: "Una semana",
+					expiresDate: "",
 					_id: "",
 					priority: 1,
 					plazo: "Corto plazo",
@@ -94,10 +93,12 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 						<select
 							id="category"
 							onChange={handleChange}
-							defaultValue={"Hogar"}
+							value={form.category}
+							placeholder="Seleccione una categoria"
 							required
 							className="form-control"
 						>
+							<option value='' key={'Null'}></option>
 							{catTransactions.map((category) => {
 								return (
 									<option value={category} key={category}>
@@ -108,7 +109,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 						</select>
 					</div>
 					<div className="input-group mb-3 w-100">
-					<label htmlFor="text" className="input-group-text ">Valor</label>
+					<label htmlFor="text" className="input-group-text ">Importe</label>
 						<input
 							type="number"
 							id="goalValue"
@@ -145,6 +146,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 								value={form.expiresDate}
 								className="form-control"
 							>
+								<option value='' key={'Null'}></option>
 								{shortExpiresValues.map((expires) => {
 									return (
 										<option value={expires} key={expires}>
@@ -165,6 +167,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 								value={form.expiresDate}
 								className="form-control"
 							>
+								<option value='' key={'Null'}></option>
 								{longExpiresValues.map((expires) => {
 									return (
 										<option value={expires} key={expires}>

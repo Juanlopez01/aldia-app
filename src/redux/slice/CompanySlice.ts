@@ -231,7 +231,7 @@ export const getAllNames = () => async (dispatch: Function) => {
     })
     dispatch(companySlice.actions.getAllNames(companiesArray))
   } catch (error) {
-    console.log()
+    console.log(error)
   }
 }
 
@@ -261,7 +261,6 @@ interface createGoal extends GoalsTypes {
 export const createCompanyGoal = ({title, category, goalValue, status = 'Pending', expiresDate, email, plazo, priority} : createGoal) => async (dispatch: Function) => {
   try {
     const url = BASE_GOAL_URL + `?email=${email}&type=company`
-    console.log(expiresDate)
     const response = await axios.post(url, {title, category, goalValue, status, expiresDate, plazo, priority})
     dispatch(companySlice.actions.addCompanyGoal(response.data.goal))
   } catch (error) {
@@ -273,7 +272,6 @@ export const updateCompanyGoal = ({status, goalValue, _id} : any) => async (disp
   try {
 
     const url = BASE_GOAL_URL + `/${_id}`
-    console.log(url)
     const response = await axios.put(url, {status, goalValue,})
     dispatch(companySlice.actions.updateCompanyGoal(response.data.goal))
   } catch (error) {

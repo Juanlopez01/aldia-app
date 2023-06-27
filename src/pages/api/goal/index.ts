@@ -31,7 +31,6 @@ export default async function goal(
                 break;
             case 'POST':
                 const date = await dateFormatter(expiresDate)
-                console.log(expiresDate, category)
                 const newGoal = await Goal.create({title, category, goalValue, priority, plazo, expires: date});
                 if(type === 'user'){
                     const user = await User.findOne({email: email });
@@ -39,7 +38,6 @@ export default async function goal(
                     await user.save();
                 } else {
                     const company = await Company.findOne({_id: email});
-                    console.log(company)
                     company.goals.push(newGoal);
                     company.save();
                 }
