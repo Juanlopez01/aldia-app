@@ -74,6 +74,7 @@ const GetNavLinks = (props: {
 								className={`${
 									pathname?.includes(link?.endpoint) 
 									|| ((pathname==="/credit" || pathname==="/goals") && link?.name==="Personal")
+									|| ((pathname==="/company" && link?.name==="General"))
 										? "bg-main-yellow dark:hover:!bg-secondary-yellow text-black"
 										: "dark:text-link dark:bg-light-blue text-gray-900 bg-link" 
 								}  no-underline rounded-full text-center w-full 
