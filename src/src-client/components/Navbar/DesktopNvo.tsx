@@ -7,10 +7,13 @@ import { useSession } from 'next-auth/react'
 import { ButtonTransparent } from '../Styles/Button'
 import Link from 'next/link'
 import DarkMode from './DarkMode'
+import { useState } from 'react'
 
 const DesktopNvo = () => {
   const { data: session } = useSession()
-  const router = useRouter()
+  const [activeSection, setActiveSection] = useState({
+    left: "/home", top: ""
+  });
 
   return (
     <div
@@ -24,12 +27,14 @@ const DesktopNvo = () => {
         <div>
           {session ? (
             <ul className="flex items-center gap-x-4">
-              <GetNavLinks
+              {<GetNavLinks
                 list={links?.loggedIn[0]}
                 showIcons={false}
                 section="sidenav"
+                activeSection={activeSection}
+                setActiveSection={setActiveSection}
                 classes="px-12 py-1 relative top-2 hover:opacity-80"
-              />
+              />}
             </ul>
           ) : (
             <>

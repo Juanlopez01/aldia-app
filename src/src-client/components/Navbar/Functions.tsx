@@ -1,7 +1,7 @@
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import Swal from "sweetalert2";
 
 const GetNavLinks = (props: {
@@ -14,20 +14,33 @@ const GetNavLinks = (props: {
 	section?: string;
 	classes?: string;
 	isAdmin?: boolean;
+	activeSection?: { left: string; top: string };
+	setActiveSection?: SetStateAction<any>;
 }) => {
-	const pathname = usePathname()
+	const pathname = usePathname();
+
+	useEffect(() => {
+		if (
+			pathname === "/home" ||
+			pathname === "/admin" ||
+			pathname === "/company"
+		) {
+			if (props.setActiveSection && pathname) {
+				props.setActiveSection({ ...props.activeSection, left: pathname });
+			}
+		}
+	}, [pathname]);
+
 	return (
 		<>
 			{props?.list?.map((link: any) => {
-				if(!props.isAdmin && link.name === 'Administrador') return null
 				return (
-					<div className="flex items-center" key={link?.name}>
-						{props?.section !== "sidenav" 
-						? (
+					<div className={`flex items-center ${props?.activeSection?.left==="/admin" ? "hidden" : "flex"}`} key={link?.name}>
+						{props?.section !== "sidenav" ? (
 							<Link
-								href={link?.url}
+								href={pathname?.includes("/company") ? "/company" + (link.url==="/home" ? "/" : link.url) : link?.url}
 								className={`${
-									pathname === link?.endpoint ? "unlink" : "text-link link"
+									!pathname?.includes(link?.endpoint) ? "unlink" : "text-link link"
 								} no-underline`}
 								onClick={() =>
 									props?.screen === "mobile" &&
@@ -43,13 +56,12 @@ const GetNavLinks = (props: {
 								)}
 								<span>{link?.name}</span>
 							</Link>
-						) 
-						//*render in sidenav
-						: (
+						) : (
+							//*render in sidenav
 							<Link
-								href={link?.url}
+								href={props?.activeSection?.left==="/company" ? "/company" + link?.url : link?.url}
 								className={`${
-									pathname !== link?.endpoint
+									!pathname?.includes(link?.endpoint)
 										? "dark:text-link dark:bg-light-blue text-gray-900 bg-link"
 										: "bg-main-yellow dark:hover:!bg-secondary-yellow text-black"
 								}  no-underline rounded-full text-center w-full 
@@ -63,12 +75,13 @@ const GetNavLinks = (props: {
 								}
 							>
 								{
-								/* icon */
-								props?.showIcons && (
-									<span className="mr-[6px] inline lg:hidden xl:inline">
-										{link?.icon}
-									</span>
-								)}
+									/* icon */
+									props?.showIcons && (
+										<span className="mr-[6px] inline lg:hidden xl:inline">
+											{link?.icon}
+										</span>
+									)
+								}
 								<span>{link?.name}</span>
 							</Link>
 						)}
