@@ -31,6 +31,8 @@ const GetNavLinks = (props: {
 		}
 	}, [pathname]);
 
+	console.log(props?.activeSection)
+
 	return (
 		<>
 			{props?.list?.map((link: any) => {
@@ -70,9 +72,10 @@ const GetNavLinks = (props: {
 							<Link
 								href={hrefLinks}
 								className={`${
-									!pathname?.includes(link?.endpoint)
-										? "dark:text-link dark:bg-light-blue text-gray-900 bg-link"
-										: "bg-main-yellow dark:hover:!bg-secondary-yellow text-black"
+									pathname?.includes(link?.endpoint) 
+									|| ((pathname==="/credit" || pathname==="/goals") && link?.name==="Personal")
+										? "bg-main-yellow dark:hover:!bg-secondary-yellow text-black"
+										: "dark:text-link dark:bg-light-blue text-gray-900 bg-link" 
 								}  no-underline rounded-full text-center w-full 
 								relative right-3 ${props?.classes} ${props?.classes} 
 								`}
