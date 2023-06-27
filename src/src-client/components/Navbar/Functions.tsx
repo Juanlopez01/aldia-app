@@ -32,13 +32,12 @@ const GetNavLinks = (props: {
 	}, [pathname]);
 
 	const section = props.activeSection?.left;
-	console.log(section)
 
 	return (
 		<>
 			{props?.list?.map((link: any) => {
 				let hrefLinks =
-					props.activeSection?.left === "/company"
+					(props.activeSection?.left === "/company" && link?.name!=="Personal" && link?.name!=="Administrador")
 						? "/company" + (link.url === "/home" ? "/" : link.url)
 						: link?.url;
 				return (
