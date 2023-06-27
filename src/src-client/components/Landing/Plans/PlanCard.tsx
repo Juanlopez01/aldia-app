@@ -33,8 +33,8 @@ const PlanCard = ({plan, isPricingPage}: plansProps) => {
         {/* description and price */}
         <div className={`text-${text_color}`}>
           <div className="flex items-center">
-            <span className="text-[45px] font-bold">${price}</span>
-            <span>&nbsp; <span className="font-extrabold">s/</span> {value==="premium" ? "año" : "mes"}</span>
+            <span className="text-[45px] font-bold">s/{price}</span>
+            <span>&nbsp; <span className="font-extrabold"></span> {value==="premium" ? "año" : "mes"}</span>
           </div>
         </div>
       </div>
