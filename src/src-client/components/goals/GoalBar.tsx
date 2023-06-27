@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import PhotoComponent from "./PhotoComponent";
 import ProgressBar from "./ProgressBar";
 import { traductDate } from "@/utils/traductDate";
+import { useRouter } from "next/router";
+import { addCompanyExpense, updateCompanyGoal } from "@/redux/slice/CompanySlice";
 
 interface GoalBarTypes {
 	title: String;
@@ -17,7 +19,7 @@ interface GoalBarTypes {
 	dispatch: Function;
 	_id: String | undefined;
 	handleDelete: Function;
-	email: String;
+	email: string;
 	setFormType: Function;
 	setForm: Function;
 	form: any;
@@ -43,7 +45,7 @@ const GoalBar = ({
 	setShow
 }: GoalBarTypes) => {
 	const porcentaje = Math.round((excess.valueOf() * 100) / goalValue.valueOf());
-
+	const router = useRouter()
 	//*for debugging, we want the 'Comprar' goal to be full
 	let porcentajeFinal = porcentaje;
 	let excessFinal = excess;
@@ -117,11 +119,12 @@ const GoalBar = ({
 								icon: "warning",
 							}).then((result) => {
 								if (result.isConfirmed) {
-									dispatch(updateGoal({ status: "Completed", goalValue, _id }));
+									if(router.pathname === "/company/goals"){
+										dispatch(updateCompanyGoal({ status: "Completed", goalValue, _id }));
 									dispatch(
-										addPersonalExpense(
+										addCompanyExpense(
 											{
-												type: "personales",
+												type: "negocio",
 												value: goalValue.valueOf(),
 												description: title,
 												category: "Metas",
@@ -131,6 +134,22 @@ const GoalBar = ({
 											email
 										)
 									);
+									} else {
+										dispatch(updateGoal({ status: "Completed", goalValue, _id }));
+										dispatch(
+											addPersonalExpense(
+												{
+													type: "personales",
+													value: goalValue.valueOf(),
+													description: title,
+													category: "Metas",
+													date:traductDate(new Date()),
+													credit: 'Un pago',
+												},
+												email
+											)
+										);
+									}
 								} else {
 								}
 							});

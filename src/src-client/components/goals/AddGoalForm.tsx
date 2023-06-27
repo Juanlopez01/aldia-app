@@ -9,36 +9,65 @@ import { createGoal, updateGoal } from "@/redux/slice/PersonalSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { catTransactions } from "@/utils/categoriesTransactions";
+import { useRouter } from "next/router";
+import { createCompanyGoal, updateCompanyGoal } from "@/redux/slice/CompanySlice";
 
 const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) => {
+	console.log(form)
 	const handleChange = (e: any) => {
 		setForm({ ...form, [e.target.id]: e.target.value });
 	};
-
+	const router = useRouter()
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		if (type === "register") {
-			dispatch(createGoal(form));
-			setForm({
-				...form,
-				title: "",
-				category: "",
-				goalValue: 0,
-				expiresDate: "",
-				_id: "",
-				priority: 1,
-				plazo: "Corto plazo",
-				status: "Pending",
-			});
-		}
-		if (type === "edit") {
-			dispatch(
-				updateGoal({
-					status: form.status,
-					goalValue: form.goalValue,
-					_id: form._id,
-				})
-			);
+		if(router.pathname === '/company/goals'){
+			if (type === "register") {
+				dispatch(createCompanyGoal(form));
+				setForm({
+					...form,
+					title: "",
+					category: "Hogar",
+					goalValue: 0,
+					expiresDate: "Una semana",
+					_id: "",
+					priority: 1,
+					plazo: "Corto plazo",
+					status: "Pending",
+				});
+			}
+			if (type === "edit") {
+				dispatch(
+					updateCompanyGoal({
+						status: form.status,
+						goalValue: form.goalValue,
+						_id: form._id,
+					})
+				);
+			}
+		} else {
+			if (type === "register") {
+				dispatch(createGoal(form));
+				setForm({
+					...form,
+					title: "",
+					category: "Hogar",
+					goalValue: 0,
+					expiresDate: "Una semana",
+					_id: "",
+					priority: 1,
+					plazo: "Corto plazo",
+					status: "Pending",
+				});
+			}
+			if (type === "edit") {
+				dispatch(
+					updateGoal({
+						status: form.status,
+						goalValue: form.goalValue,
+						_id: form._id,
+					})
+				);
+			}
 		}
 		setShow(false)
 	};
@@ -65,8 +94,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 						<select
 							id="category"
 							onChange={handleChange}
-							value={form.category}
-							defaultValue={"Otros"}
+							defaultValue={"Hogar"}
 							required
 							className="form-control"
 						>
@@ -95,7 +123,6 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 					<label htmlFor="text" className="input-group-text ">Plazo</label>
 						<select
 							id="plazo"
-							defaultValue={"Corto plazo"}
 							onChange={handleChange}
 							value={form.plazo}
 							className="form-control"
@@ -115,8 +142,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 								id="expiresDate"
 								onChange={handleChange}
 								required
-								value={form.expiresValue}
-								defaultValue={"Una semana"}
+								value={form.expiresDate}
 								className="form-control"
 							>
 								{shortExpiresValues.map((expires) => {
@@ -136,8 +162,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 								id="expiresDate"
 								onChange={handleChange}
 								required
-								value={form.expiresValue}
-								defaultValue={"Dos años"}
+								value={form.expiresDate}
 								className="form-control"
 							>
 								{longExpiresValues.map((expires) => {
@@ -155,7 +180,6 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 						<select
 							id="priority"
 							required
-							defaultValue={1}
 							value={form.priority}
 							onChange={handleChange}
 							className="form-control"
