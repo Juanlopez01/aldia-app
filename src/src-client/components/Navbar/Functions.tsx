@@ -53,7 +53,8 @@ const GetNavLinks = (props: {
 								className={`${
 									pathname?.includes(link?.endpoint) 
 									|| ((pathname==="/credit" || pathname==="/goals") && link?.name==="Personal")
-									|| ((section==="/company" && link?.name==="General")) ? "unlink" : "text-link link"
+									|| ((section==="/company" && link?.name==="General" && pathname!=="/company/credit"
+									&& pathname!=="/company/goals")) ? "unlink" : "text-link link"
 								} no-underline`}
 								onClick={() =>
 									props?.screen === "mobile" &&
@@ -76,7 +77,8 @@ const GetNavLinks = (props: {
 								className={`${
 									pathname?.includes(link?.endpoint) 
 									|| ((pathname==="/credit" || pathname==="/goals") && link?.name==="Personal")
-									|| ((section==="/company" && link?.name==="General"))
+									|| ((section==="/company" && link?.name==="General" && pathname!=="/company/credit"
+									&& pathname!=="/company/goals"))
 										? "bg-main-yellow dark:hover:!bg-secondary-yellow text-black"
 										: "dark:text-link dark:bg-light-blue text-gray-900 bg-link" 
 								}  no-underline rounded-full text-center w-full 
