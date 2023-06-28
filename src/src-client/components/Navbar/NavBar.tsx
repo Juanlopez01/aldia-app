@@ -9,6 +9,9 @@ const NavBar = () => {
 	const { data: session } = useSession();
 	const [admin, setAdmin] = useState(false);
 	const email = session?.user?.email;
+  const [activeSection, setActiveSection] = useState({
+    left: "/home", top: ""
+  });
 
 	useEffect(() => {
 		if (!admin && session && session.user) getRole(email, setAdmin);
@@ -17,11 +20,11 @@ const NavBar = () => {
 	return (
     <nav className="h-20">
       <div className="hidden lg:block">
-        <DesktopNvo />
+        <DesktopNvo activeSection={activeSection} setActiveSection={setActiveSection}/>
       </div>
 
       <div className="block lg:hidden">
-        <NavbarMobile />
+        <NavbarMobile activeSection={activeSection} setActiveSection={setActiveSection}/>
       </div>
     </nav>
   )

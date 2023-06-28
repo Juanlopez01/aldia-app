@@ -5,13 +5,20 @@ import PhotoComponent from '../goals/PhotoComponent';
 import { useDispatch } from 'react-redux';
 import { updatePersonalExpense, updatePersonalIncome } from '@/redux/slice/PersonalSlice';
 import Swal from 'sweetalert2';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
+import { updateCompanyExpense, updateCompanyIncome } from '@/redux/slice/CompanySlice';
 
 interface Props {
     transaction: IncomeType | ExpenseType;
     type: string;
 }
 
+
+
 const TableCreditRow = ({transaction, type} : Props) => {
+  const router = useRouter()
+
   const dispatch : Function = useDispatch()
   const cat= transaction?.category?.toString()
   const check = transaction.credit?.split(' ')[2]
@@ -31,12 +38,22 @@ const TableCreditRow = ({transaction, type} : Props) => {
         } else {
           creditName = transaction.credit.split(' ').slice(0, 2).join(' ')
         }
-        if(type === 'incomes'){
-          transaction._id &&
-          dispatch(updatePersonalIncome({...transaction, credit: e.target.checked ? `${creditName} checked` : `${creditName} nochecked` }, transaction._id))
+        if(router.pathname === '/company/credit') {
+          if(type === 'incomes'){
+            transaction._id &&
+            dispatch(updateCompanyIncome({...transaction, credit: e.target.checked ? `${creditName} nochecked` : `${creditName} checked` }, transaction._id))
+          } else {
+            transaction._id &&
+            dispatch(updateCompanyExpense({...transaction, credit: e.target.checked ? `${creditName} nochecked` : `${creditName} checked` }, transaction._id))
+          }
         } else {
-          transaction._id &&
-          dispatch(updatePersonalExpense({...transaction, credit: e.target.checked ? `${creditName} checked` : `${creditName} nochecked` }, transaction._id))
+          if(type === 'incomes'){
+            transaction._id &&
+            dispatch(updatePersonalIncome({...transaction, credit: e.target.checked ? `${creditName} nochecked` : `${creditName} checked` }, transaction._id))
+          } else {
+            transaction._id &&
+            dispatch(updatePersonalExpense({...transaction, credit: e.target.checked ? `${creditName} nochecked` : `${creditName} checked` }, transaction._id))
+          }
         }
       }
     })

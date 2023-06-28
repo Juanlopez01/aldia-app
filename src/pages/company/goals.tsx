@@ -11,17 +11,20 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from 'next/router'
+import { deleteCompanyGoal } from '@/redux/slice/CompanySlice'
 
 const Index = () => {
+    const router = useRouter()
   const { session } = useValidatePlan()
-  const email = useSelector((state: any) => state.PersonalReducer.user.email)
+  const id = useSelector((state: any) => state.CompanyReducer.selectedCompany._id)
   const dispatch: Function = useDispatch()
   const [form, setForm] = useState({
     title: '',
-    category: '',
+    category: 'Hogar',
     goalValue: 0,
-    expiresDate: '',
-    email: email,
+    expiresDate: 'Una semana',
+    email: id,
     _id: '',
     priority: 0,
     plazo: 'Corto plazo',
@@ -29,13 +32,13 @@ const Index = () => {
   })
   const [goalsExpirated, setGoalsExpirated] = useState(0)
   const incomes = useSelector(
-    (state: any) => state.PersonalReducer.totalIncomes
+    (state: any) => state.CompanyReducer.totalIncomes
   )
   const expenses = useSelector(
-    (state: any) => state.PersonalReducer.totalExpenses
+    (state: any) => state.CompanyReducer.totalExpenses
   )
   const [formType, setFormType] = useState('register')
-  const goals = useSelector((state: any) => state.PersonalReducer.goals)
+  const goals = useSelector((state: any) => state.CompanyReducer.goals)
   const [show, setShow] = useState(false)
   const handleClose = () => {setShow(false)}
 
@@ -49,17 +52,21 @@ const Index = () => {
       icon: 'warning',
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteGoal({ _id }))
+        if(router.pathname === '/company/goals') {
+            dispatch(deleteCompanyGoal({ _id }))
+        } else {
+            dispatch(deleteGoal({ _id }))
+        }
       }
     })
   }
 
-  const goalsCompleted = goals.filter(
-    (goal: GoalsTypes) => goal.status === 'Completed'
-  )
-  const completedGoals = Math.floor(
-    (goalsCompleted.length * 100) / goals.length
-  )
+//   const goalsCompleted = goals?.filter(
+//     (goal: GoalsTypes) => goal.status === 'Completed'
+//   )
+//   const completedGoals = Math.floor(
+//     (goalsCompleted?.length * 100) / goals.length
+//   )
   if (session && session.user) {
     return (
       <LayoutWithSideNav>
@@ -86,7 +93,7 @@ const Index = () => {
                   category: '',
                   goalValue: 0,
                   expiresDate: '',
-                  email: email,
+                  email: id.toString(),
                   _id: '',
                   priority: 0,
                   plazo: 'Corto plazo',
@@ -102,7 +109,7 @@ const Index = () => {
 				    </div>
             <div className="w-full">
               <ul className="flex flex-col justify-center w-full gap-y-4">
-                {goals.length > 0 &&
+                {goals && goals.length > 0 &&
                   goals.map((goal: GoalsTypes) => {
                     if (goal.status === 'Pending')
                       dateDifference(
@@ -136,7 +143,7 @@ const Index = () => {
                           dispatch={dispatch}
                           _id={goal._id}
                           handleDelete={handleDelete}
-                          email={email}
+                          email={id}
                           setFormType={setFormType}
                           setForm={setForm}
                           form={form}

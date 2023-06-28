@@ -151,6 +151,7 @@ export const addPersonalIncome =
 //UPDATE
 export const updatePersonalIncome =
   (income: IncomeType, id: String) => async (dispatch: Function) => {
+    (income)
     const res = await axios.put(BASE_URL + "/income/" + id, income);
 
     dispatch(personalSlice.actions.updatePersonalIncome(res.data.payload));
@@ -208,7 +209,7 @@ interface createGoal extends GoalsTypes {
 }
 export const createGoal = ({title, category, goalValue, status = 'Pending', expiresDate, email, plazo, priority} : createGoal) => async (dispatch: Function) => {
   try {
-    const url = BASE_GOAL_URL + `?email=${email}`
+    const url = BASE_GOAL_URL + `?email=${email}&type=user`
     const response = await axios.post(url, {title, category, goalValue, status, expiresDate, plazo, priority})
     dispatch(personalSlice.actions.addUserGoal(response.data.goal))
   } catch (error) {
@@ -220,7 +221,6 @@ export const updateGoal = ({status, goalValue, _id} : any) => async (dispatch: F
   try {
 
     const url = BASE_GOAL_URL + `/${_id}`
-    console.log(url)
     const response = await axios.put(url, {status, goalValue,})
     dispatch(personalSlice.actions.updateUserGoal(response.data.goal))
   } catch (error) {

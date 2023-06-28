@@ -2,7 +2,6 @@ import { formatDate } from "@/utils/formatDates";
 import { utils, write } from "xlsx";
 
 export function exportData(data) {
-  console.log(data)
   const workbook = utils.book_new();
 
   const formatedData = formatData(data);
@@ -45,7 +44,6 @@ const formatData = (data) => {
 
   data.forEach((element) => {
     const date = formatDate(element.updatedAt);
-    console.log(element)
     const credit = element.credit ? element.credit.split(' ')[0] === 'No' ? 'No' : element.credit.split(' ').slice(0, 2).join(' ') : 'No';
     aux.push({
       Categoria: element.category,

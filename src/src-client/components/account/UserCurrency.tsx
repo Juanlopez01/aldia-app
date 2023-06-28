@@ -58,13 +58,13 @@ export default function UserCurrency({ currency, userId}:UserCurrency) {
       >
         <div className="relative">
           {toggle && (
-            <div className="absolute bg-medium-blue p-2 rounded max-h-40 overflow-y-scroll ">
+            <div className="absolute bg-secondary-green dark:bg-main-blue p-2 rounded max-h-40 overflow-y-scroll ">
               <ul className="p-0 m-0">
                 {Object.keys(currencyFlags).map((curr: string, i: number) => (
                   <li
                     key={i}
                     onClick={() => handleClickCurrencies(curr)}
-                    className="cursor-pointer hover:bg-light-blue/50 rounded-sm py-1 px-2 "
+                    className="cursor-pointer dark:hover:bg-light-blue/50 hover:bg-secondary-green rounded-sm py-1 px-2 "
                   >{`${curr} ${currencyFlags[curr]}`}</li>
                 ))}
               </ul>

@@ -33,6 +33,8 @@ const Notifications = ({ data, dispatch }: any) => {
 	let usersList: any = [];
 	usersListSet.forEach((user: any) => usersList.push(user));
 
+	const {notifications} = data
+
 	const list = (
 		<>
 			{data.notifications.length > 0 && data.notifications.length < 10 && (
@@ -72,9 +74,10 @@ const Notifications = ({ data, dispatch }: any) => {
 					onClick={() => {
 						setShow(true);
 					}}
-					className="bg-[#e9ecef] border-2 border-[#dbddf0] px-3 py-1 rounded-xl"
+					className={`${notifications?.length>0 ? "bg-[#b93d30] text-white" : "bg-[#e9ecef]"} border-2 border-[#dbddf0] px-3 py-2 rounded-xl`}
 				>
 					Notificaciones
+					{notifications?.length>0 ? ` (${notifications.length})` : ""}
 				</button>
 			</div>
 			<Modal
