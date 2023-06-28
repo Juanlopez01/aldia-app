@@ -42,7 +42,7 @@ export default function UserImage({ image, userId }: { image: string; userId: Ob
         />
         <div className="top-0 left-0 w-full h-full absolute flex items-end justify-end ">
           <button onClick={toggleHandler} className="mr-4">
-            <FontAwesomeIcon icon={faPencil} className="w-10 h-10 text-white" />
+            <FontAwesomeIcon icon={faPencil} className="w-10 h-10 text-black dark:text-white" />
           </button>
         </div>
         <Modal
