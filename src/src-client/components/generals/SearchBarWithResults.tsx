@@ -1,3 +1,5 @@
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
@@ -83,17 +85,18 @@ function SearchBar({
 			</div>
 			{filteredData.length != 0 && (
 				<div className="flex">
-					<ul className="flex flex-col " style={{ listStyleType: "initial", paddingLeft: "1rem" }}>
+					<ul className="flex flex-col w-full " style={{ listStyleType: "initial", paddingLeft: "1rem" }}>
 						{filteredData.slice(0, 15).map((value: DataType, key) => {
 							return (
-								<li key={sendNotification ? value.name : value.user} className=" list-item">
+								<li key={sendNotification ? value.name : value.user} className="w-full flex justify-between px-2 border-b-2 border-black">
+									<span>{sendNotification ? value.name : value.user}</span>
 									<button
 										onClick={() => {
 											handleClick(value);
 											closeModal();
 										}}
 									>
-										{sendNotification ? value.name : value.user}
+										<FontAwesomeIcon icon={faPlus} />
 									</button>
 								</li>
 							);
