@@ -18,7 +18,7 @@ function HeroComponent() {
 					</div>
 					<div className="flex align-items-center justify-center py-6 md:py-12">
 						<p className="text-xl md:text-2xl text-center">
-							Y con nosotros simplifica tu vida financiera
+							Y simplifica tu vida financiera
 						</p>
 					</div>
 					<div className="flex align-items-center justify-center gap-4">
