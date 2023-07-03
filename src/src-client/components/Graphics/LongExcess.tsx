@@ -47,7 +47,7 @@ export function LongExcess({ options, data, type, totalDataIncomes, totalDataExp
     >
       <div className="pl-8 text-gray-900">
         <h4>Excedentes</h4>
-        <h2>{excessResult>=0 ? `$${excessResult}` : `-$${excessResult*(-1)}`}</h2>
+        <h2>{excessResult>=0 ? `s/ ${excessResult}` : `-s/ ${excessResult*(-1)}`}</h2>
       </div>
 
       {data.datasets[0].data.length > 0 ? (

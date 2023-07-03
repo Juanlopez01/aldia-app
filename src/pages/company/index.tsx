@@ -11,6 +11,7 @@ import Notifications from "@/src-client/components/Modals/Company/Notifications"
 import { useValidatePlan } from "@/src-client/hooks/use-validate-plan";
 import { useAppSelector } from "@/src-client/hooks/use-redux";
 import { UserWithMongooseId } from "@/models/user.model";
+import DeleteModal from "@/src-client/components/Modals/Company/DeleteModal";
 
 const Company = () => {
 	const dispatch: Function = useDispatch();
@@ -102,9 +103,10 @@ const Company = () => {
 								<>
 									{/* <h2 className="mt-2">{companyData.name}</h2> */}
 									{session?.user && user._id === companyData.users[0] && (
-										<>
+										<div className="flex gap-6 justify-center">
 											<Notifications data={companyData} dispatch={dispatch} /> 
-										</>
+											<DeleteModal user={email} id={companyData._id} />
+										</div>
 									)}
 									<Graphics
 										type="negocio"
