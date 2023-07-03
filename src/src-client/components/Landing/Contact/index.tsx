@@ -64,9 +64,9 @@ const Contact = (props: {showInfo?: boolean}) => {
 					"template_eue0omc",
 					{
 						from_name: inputs?.name,
-						to_name: "Nicolás",
+						to_name: "Aldia",
 						from_email: inputs?.email,
-						to_email: "al.dia.aplication@gmail.com",
+						to_email: "informes@aldia.lat",
 						subject: inputs?.subject,
 						message: inputs?.message,
 					},
@@ -86,7 +86,7 @@ const Contact = (props: {showInfo?: boolean}) => {
 	const dataContact = [
 		{ name: "Teléfono", value: "+51 976 886 575", icon: faPhone },
 		{ name: "Dirección", value: "Perú", icon: faLocationDot },
-		{ name: "Mail", value: "al.dia.aplication@gmail.com", icon: faEnvelope },
+		{ name: "Mail", value: "informes@aldia.lat", icon: faEnvelope },
 	];
 
 	interface ContactProps {
@@ -142,7 +142,7 @@ const Contact = (props: {showInfo?: boolean}) => {
 							<InputTransparent
 								type="email"
 								name="email"
-								placeholder="ej. al.dia.aplication@gmail.com"
+								placeholder="ej. informes@aldia.lat"
 								classes="w-full max-w-[350px] lg:max-w-[1000px]"
 								maxLength={40}
 								handleChange={handleChangeInput}

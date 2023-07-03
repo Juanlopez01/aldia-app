@@ -12,3 +12,14 @@ export const catTransactionsEntries = {
   'Regalos y donaciones': true,
   Otros: true,
 }
+export const incomesPersonal =['Salario',
+  'Trabajos independientes',
+  'Alquiler',
+  'Inversiones',
+  'Regalías',
+  'Intereses bancarios',
+  'Dividendos',
+  'Ganancias por ventas',
+  'Consultoría',
+  'Enseñanza/tutoría',
+  'Otros']
