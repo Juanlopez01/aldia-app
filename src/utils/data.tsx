@@ -198,8 +198,8 @@ const questions: QuestionType[] = [
 	{
 	  question: '¿No puedes acceder a tu cuenta?',
 	  solution:
-		'Si no puedes acceder a tu cuenta, no te procuepes, ve a la página de autenticación y presiona la opción de "Me olvidé mi constraseña", pon el email con el cual te registraste, esto te enviará un email en el cual te redigirá a una página donde podrás recuperar tu cuenta y elegir una nueva contraseña',
-	  extra: 'Si lo aterior no funciona enviar un email con el asunto "RECOVER-ACCOUNT" en el cual expliques tu problema en cuestión y sera solucionado a la brevedad',
+		'Si no puedes acceder a tu cuenta, no te procuepes, ve a la pagina de autenticación y preciona la opción de "Me olvidé mi contraseña", pon el email con el cual te registaste, esto te enviará un email en el cual te redigira a una pagina donde podras recuperar tu cuenta y elegir una nueva contraseña',
+	  extra: 'Si lo anterior no funciona enviar un email con el asunto "RECOVER-ACCOUNT" en el cual expliques tu problema en cuestión y sera solucionado a la brevedad',
 	},
 	{
 	  question: '¿Tienes un error de redirección o de datos erroneos?',
