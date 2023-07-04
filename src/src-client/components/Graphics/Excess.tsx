@@ -56,7 +56,7 @@ export function Excess({ options, data , type, totalDataIncomes, totalDataExpens
 		>
 			<div className="text-gray-900">
 				<h5>Excedentes</h5>
-				<h3>{excessResult>=0 ? `$${excessResult}` : `-$${excessResult*(-1)}`}</h3>
+				<h3>{excessResult>=0 ? `s/ ${excessResult}` : `-s/ ${excessResult*(-1)}`}</h3>
 			</div>
 
 			{data?.datasets[0].data[0] !== 0 || data?.datasets[0].data[1] !== 0 ? (

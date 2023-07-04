@@ -16,7 +16,7 @@ interface Company {
   totalIncomes: number
   otherCategories: string[]
   goals: GoalsTypes[];
-  names: string[]
+  names: any[];
   allNames: string[]
 }
 interface formCompany {
@@ -129,7 +129,18 @@ const companySlice = createSlice({
       const filter = state.goals?.filter((ele) => ele._id !== action.payload);
       state.goals = filter;
     },
-
+    deleteCompany: (state, action) => {
+      state.selectedCompany = {
+        _id: '',
+        name: '',
+        expenses: [],
+        incomes: [],
+        users: [],
+        notifications: [],
+      };
+      const namesFilter = state.names.filter((company) => action.payload.includes(company.id))
+      state.names = namesFilter;
+    }
   },
 })
 
@@ -250,6 +261,13 @@ export const sendCompanyNotification =
     const notification = await axios.post(urlNotification)
     return notification
   }
+
+export const deleteCompany = (user : string, company : string) => async (dispatch : Function) => {
+  const urlDelete = url + '?id=' + company + '&user=' + user;
+  const deleteCompany = await axios.delete(urlDelete);
+  dispatch(companySlice.actions.deleteCompany(deleteCompany.data));
+  return deleteCompany
+}
 
   //GOALS
 

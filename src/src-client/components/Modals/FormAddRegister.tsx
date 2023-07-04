@@ -1,4 +1,4 @@
-import { catTransactions } from '@/utils/categoriesTransactions'
+import { catTransactions, incomesPersonal } from '@/utils/categoriesTransactions'
 import Calendar from 'react-calendar'
 import React from 'react'
 import { creditList } from '@/utils/listCredits'
@@ -84,7 +84,7 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
               </option>
             )
           })}
-          {inyectOtherCategories(otherCategories, type === 'negocio' ? transactionType === 'expense' ? expensesCompany : incomesCompany : catTransactions).map((category) => {
+          {inyectOtherCategories(otherCategories, type === 'negocio' ? transactionType === 'expense' ? expensesCompany : incomesCompany : transactionType === 'expense' ? catTransactions : incomesPersonal).map((category) => {
             return (
               <option key={category} value={category}>
                 {category}

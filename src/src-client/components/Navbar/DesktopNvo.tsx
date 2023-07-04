@@ -11,7 +11,8 @@ import { SetStateAction, useState } from 'react'
 
 const DesktopNvo = (props: {activeSection: any, setActiveSection: SetStateAction<any>}) => {
   const { data: session } = useSession()
-
+  const routers = useRouter()
+  
   return (
     <div
       className="bg-main-green dark:bg-darkest-blue fixed z-[10000] w-full h-20 flex justify-between items-center 
@@ -22,7 +23,7 @@ const DesktopNvo = (props: {activeSection: any, setActiveSection: SetStateAction
           <Image src={Logo} alt="logo img" className="w-24" />
         </Link>
         <div>
-          {session ? (
+          {session && routers.pathname !== '/' ? (
             <ul className="flex items-center gap-x-4">
               {<GetNavLinks
                 list={links?.loggedIn[0]}
