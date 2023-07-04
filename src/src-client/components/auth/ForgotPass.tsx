@@ -28,7 +28,7 @@ export default function ForgotPass() {
         className="text-sm m-0 hover:underline hover:text-medium-blue hover:cursor-pointer"
         onClick={toggleHandler}
       >
-        Me olvidé mi constraseña
+        Me olvidé mi contraseña
       </p>
       <Modal
         title="Recupera tu cuenta"
