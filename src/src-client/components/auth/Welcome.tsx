@@ -18,7 +18,7 @@ export default function Welcome({ contentToShow }: { contentToShow: Boolean }) {
 				} text-white flex-col overflow-hidden md:py-16 relative z-[100] hidden md:flex`}
 			>
 				<header className="grid gap-2 pb-4">
-					<h1 className="text-4xl md:text-5xl font-black ">Bienvendo a ALDIA</h1>
+					<h1 className="text-4xl md:text-5xl font-black ">Bienvenido a ALDIA</h1>
 					<p>La aplicación de finanzas por excelencia</p>
 					<DarkMode />
 				</header>

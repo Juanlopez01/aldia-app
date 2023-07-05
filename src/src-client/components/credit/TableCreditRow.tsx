@@ -70,7 +70,7 @@ const TableCreditRow = ({transaction, type} : Props) => {
             </td>
             <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>{transaction.description ? transaction.description : "No hay descripción"}</td>
             <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>{transaction.credit ? transaction.credit.split(' ')[0] === 'No' ? 'No' : transaction.credit.split(' ').slice(0, 2).join(' ') : 'No'}</td>
-            <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>${transaction.value}</td>
+            <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>s/{transaction.value}</td>
             <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'><input type='checkbox' name='checkbox' checked={check === 'checked' ? true : false} disabled={check === 'checked'} onChange={handleChange}/></td>
         </tr>
     </>
