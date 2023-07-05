@@ -198,6 +198,12 @@ export const deletePersonalExpense =
 export const updateUserStatusP = (user : UserType) => async (dispatch : Function) => {
   dispatch(personalSlice.actions.updateUserStatus(user));
 }
+export const deleteCompany = (user : string, company : string) => async (dispatch : Function) => {
+  const urlDelete = URL + '?id=' + company + '&user=' + user;
+  const deleteCompany = await axios.delete(urlDelete)
+
+  
+}
 
 
 //GOALS

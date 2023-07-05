@@ -57,6 +57,19 @@ export default async function income(
         break;
       }
       break;
+    case "DELETE":
+      try {
+        const objUser = await User.findOne({ email: query.user });
+        await Company.deleteOne({ _id: query.id });
+        const companyFilter = objUser.company.filter((company : any) => company.toString() !== query.id);
+        objUser.company = companyFilter
+        res.status(200).json(companyFilter);
+      } catch (error) {
+        console.log(error);
+        res.status(400).json({ status: "error", payload: error });
+        break;
+      }
+      break;
 
     default:
       res.status(400).json({ error: "Invalid Method" });
