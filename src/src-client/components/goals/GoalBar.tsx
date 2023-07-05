@@ -86,7 +86,7 @@ const GoalBar = ({
 						<>
 							{/* porcentaje */}
 							{flagIsFilled && " - "}
-							<span className="text-sm md:text-lg">{`$${excessFinal} / $${goalValue}`}</span>
+							<span className="text-sm md:text-lg">{`s/${excessFinal} / s/${goalValue}`}</span>
 							{/*  <span>{expires}</span>
 						<span>{plazo}</span> */}
 						</>
