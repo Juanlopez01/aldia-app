@@ -9,7 +9,7 @@ const GoogleButton = (props: {children: string}) => {
     <button
       onClick={() =>
         signIn("google", {
-          callbackUrl: `${window.location.origin}/company`,
+          callbackUrl: `${window.location.origin}/home`,
         })
       }
       className="flex items-center justify-center gap-2 py-2 border-2 border-main-green dark:border-darkest-blue bg-white rounded "

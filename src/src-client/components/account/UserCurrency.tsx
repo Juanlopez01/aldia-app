@@ -40,7 +40,7 @@ export default function UserCurrency({ currency, userId}:UserCurrency) {
   return (
     <>
       <div
-        className="text-main-yellow flex items-center
+        className="text-gray-900 dark:text-main-yellow flex items-center
                 justify-between w-full"
       >
         <div className="flex items-center gap-2 text-md">
@@ -49,22 +49,22 @@ export default function UserCurrency({ currency, userId}:UserCurrency) {
           <FontAwesomeIcon
             icon={faPencil}
             onClick={toggleHandler}
-            className="text-white cursor-pointer"
+            className=" text-gray-900 dark:text-white cursor-pointer"
           />
         </div>
       </div>
       <p
-        className={`text-white mt-2 text-md bg-violet-blue-profile outline-0 outline-white py-1 pl-1 `}
+        className={`text-white mt-2 text-md bg-main-green dark:bg-violet-blue-profile outline-0 outline-white py-1 pl-1 `}
       >
         <div className="relative">
           {toggle && (
-            <div className="absolute bg-medium-blue p-2 rounded max-h-40 overflow-y-scroll ">
+            <div className="absolute bg-secondary-green dark:bg-main-blue p-2 rounded max-h-40 overflow-y-scroll ">
               <ul className="p-0 m-0">
                 {Object.keys(currencyFlags).map((curr: string, i: number) => (
                   <li
                     key={i}
                     onClick={() => handleClickCurrencies(curr)}
-                    className="cursor-pointer hover:bg-light-blue/50 rounded-sm py-1 px-2 "
+                    className="cursor-pointer dark:hover:bg-light-blue/50 hover:bg-secondary-green rounded-sm py-1 px-2 "
                   >{`${curr} ${currencyFlags[curr]}`}</li>
                 ))}
               </ul>
@@ -73,7 +73,7 @@ export default function UserCurrency({ currency, userId}:UserCurrency) {
         </div>
         {`${currency} ${currencyFlags[currency]}`}
       </p>
-      <hr className="border-main-yellow border-2"></hr>
+      <hr className="border-gray-900 dark:border-main-yellow border-2"></hr>
     </>
   )
 }

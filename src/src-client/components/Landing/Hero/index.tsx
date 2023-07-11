@@ -4,7 +4,9 @@ import HeroComponent from "./DivUno/Hero"
 
 function Hero() {
     return (
-        <div className={`bg-light-green dark:bg-violet-blue-landing ${stylesLandingContainers}`}>
+        <div className={`
+        bg-difuminado
+        ${stylesLandingContainers}`}>
             <HeroComponent />
         </div>
     )

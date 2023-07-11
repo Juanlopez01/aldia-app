@@ -8,44 +8,76 @@ import Swal from "sweetalert2";
 import { createGoal, updateGoal } from "@/redux/slice/PersonalSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { catTransactions } from "@/utils/categoriesTransactions";
+import { useRouter } from "next/router";
+import { createCompanyGoal, updateCompanyGoal } from "@/redux/slice/CompanySlice";
 
-const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
+const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) => {
 	const handleChange = (e: any) => {
 		setForm({ ...form, [e.target.id]: e.target.value });
 	};
-
+	const router = useRouter()
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		if (type === "register") {
-			dispatch(createGoal(form));
-			setForm({
-				...form,
-				title: "",
-				category: "",
-				goalValue: 0,
-				expiresDate: "",
-				_id: "",
-				priority: 1,
-				plazo: "Corto plazo",
-				status: "Pending",
-			});
+		if(router.pathname === '/company/goals'){
+			if (type === "register") {
+				dispatch(createCompanyGoal(form));
+				setForm({
+					...form,
+					title: "",
+					category: "",
+					goalValue: 0,
+					expiresDate: "",
+					_id: "",
+					priority: 1,
+					plazo: "Corto plazo",
+					status: "Pending",
+				});
+			}
+			if (type === "edit") {
+				dispatch(
+					updateCompanyGoal({
+						status: form.status,
+						goalValue: form.goalValue,
+						_id: form._id,
+					})
+				);
+			}
+		} else {
+			if (type === "register") {
+				dispatch(createGoal(form));
+				setForm({
+					...form,
+					title: "",
+					category: "",
+					goalValue: 0,
+					expiresDate: "",
+					_id: "",
+					priority: 1,
+					plazo: "Corto plazo",
+					status: "Pending",
+				});
+			}
+			if (type === "edit") {
+				dispatch(
+					updateGoal({
+						status: form.status,
+						goalValue: form.goalValue,
+						_id: form._id,
+					})
+				);
+			}
 		}
-		if (type === "edit") {
-			dispatch(
-				updateGoal({
-					status: form.status,
-					goalValue: form.goalValue,
-					_id: form._id,
-				})
-			);
-		}
+		setShow(false)
 	};
 
 	return (
-		<div>
+		<div className='flex justify-center'>
 			<form className="flex flex-col w-11/12 xl:w-10/12" onSubmit={handleSubmit}>
 				{type === "register" && (
 					<>
+					<div className="input-group mb-3 mt-1 w-100">
+					<label htmlFor="text" className="input-group-text ">Título</label>
 						<input
 							type="text"
 							id="title"
@@ -53,18 +85,21 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 							value={form.title}
 							onChange={handleChange}
 							required
+							className="form-control"
 						/>
+					</div>
+					<div className="input-group mb-3 w-100">
+					<label htmlFor="text" className="input-group-text ">Categoría</label>	
 						<select
 							id="category"
 							onChange={handleChange}
 							value={form.category}
-							defaultValue={"Otros"}
+							placeholder="Seleccione una categoria"
 							required
+							className="form-control"
 						>
-							<option value={"Otros"} key={"Otros"}>
-								Otros
-							</option>
-							{categories.map((category) => {
+							<option value='' key={'Null'}></option>
+							{catTransactions.map((category) => {
 								return (
 									<option value={category} key={category}>
 										{category}
@@ -72,6 +107,9 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 								);
 							})}
 						</select>
+					</div>
+					<div className="input-group mb-3 w-100">
+					<label htmlFor="text" className="input-group-text ">Importe</label>
 						<input
 							type="number"
 							id="goalValue"
@@ -79,12 +117,16 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 							onChange={handleChange}
 							value={form.goalValue}
 							required
+							className="form-control"
 						/>
+					</div>
+					<div className="input-group mb-3 w-100">
+					<label htmlFor="text" className="input-group-text ">Plazo</label>
 						<select
 							id="plazo"
-							defaultValue={"Corto plazo"}
 							onChange={handleChange}
 							value={form.plazo}
+							className="form-control"
 						>
 							<option key={"Cortoplazo"} value="Corto plazo">
 								Corto plazo
@@ -93,14 +135,18 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 								Largo plazo
 							</option>
 						</select>
+					</div>
 						{form.plazo === "Corto plazo" && (
+							<div className="input-group mb-3 w-100">
+							<label htmlFor="text" className="input-group-text ">Vencimiento</label>
 							<select
 								id="expiresDate"
 								onChange={handleChange}
 								required
-								value={form.expiresValue}
-								defaultValue={"Una semana"}
+								value={form.expiresDate}
+								className="form-control"
 							>
+								<option value='' key={'Null'}></option>
 								{shortExpiresValues.map((expires) => {
 									return (
 										<option value={expires} key={expires}>
@@ -109,15 +155,19 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 									);
 								})}
 							</select>
+							</div>
 						)}
 						{form.plazo === "Largo plazo" && (
+							<div className="input-group mb-3 w-100">
+							<label htmlFor="text" className="input-group-text ">Vencimiento</label>
 							<select
 								id="expiresDate"
 								onChange={handleChange}
 								required
-								value={form.expiresValue}
-								defaultValue={"Dos años"}
+								value={form.expiresDate}
+								className="form-control"
 							>
+								<option value='' key={'Null'}></option>
 								{longExpiresValues.map((expires) => {
 									return (
 										<option value={expires} key={expires}>
@@ -126,13 +176,16 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 									);
 								})}
 							</select>
+							</div>
 						)}
+						<div className="input-group mb-3 w-100">
+						<label htmlFor="text" className="input-group-text ">Prioridad</label>
 						<select
 							id="priority"
 							required
-							defaultValue={1}
 							value={form.priority}
 							onChange={handleChange}
+							className="form-control"
 						>
 							<option key="1" value={1}>
 								Alta
@@ -144,10 +197,12 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 								Baja
 							</option>
 						</select>
+						</div>
 					</>
 				)}
 				{type === "edit" && (
-					<>
+					<div className="input-group mb-3 mt-1 w-100">
+						<label htmlFor="text" className="input-group-text ">Valor</label>
 						<input
 							type="number"
 							id="goalValue"
@@ -155,6 +210,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
 							onChange={handleChange}
 							value={form.goalValue}
 							required
+							className="form-control"
 						/>
 						{/* {form.plazo==='Corto plazo' &&
             <select id='expiresDate' onChange={handleChange} required value={form.expiresValue} defaultValue={'Una semana'}>
@@ -173,7 +229,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch }: any) => {
               <option key='2' value={2}>Media</option>
               <option key='3' value={3}>Baja</option>
               </select>        */}
-					</>
+					</div>
 				)}
 				<div className="flex justify-center py-4">
 					<button

@@ -7,7 +7,7 @@ import GoogleButton from "./GoogleButton";
 
 const authProps = {
 	action: "login",
-	redirect: "company",
+	redirect: "home",
 	initialState: {
 		email: "",
 		password: "",

@@ -7,11 +7,12 @@ import { useSession } from 'next-auth/react'
 import { ButtonTransparent } from '../Styles/Button'
 import Link from 'next/link'
 import DarkMode from './DarkMode'
+import { SetStateAction, useState } from 'react'
 
-const DesktopNvo = () => {
+const DesktopNvo = (props: {activeSection: any, setActiveSection: SetStateAction<any>}) => {
   const { data: session } = useSession()
-  const router = useRouter()
-
+  const routers = useRouter()
+  
   return (
     <div
       className="bg-main-green dark:bg-darkest-blue fixed z-[10000] w-full h-20 flex justify-between items-center 
@@ -22,24 +23,26 @@ const DesktopNvo = () => {
           <Image src={Logo} alt="logo img" className="w-24" />
         </Link>
         <div>
-          {session ? (
+          {session && routers.pathname !== '/' ? (
             <ul className="flex items-center gap-x-4">
-              <GetNavLinks
+              {<GetNavLinks
                 list={links?.loggedIn[0]}
                 showIcons={false}
                 section="sidenav"
-                classes="px-12 py-1 relative top-2"
-              />
+                activeSection={props?.activeSection}
+                setActiveSection={props?.setActiveSection}
+                classes="px-12 py-1 relative top-2 hover:opacity-80"
+              />}
             </ul>
           ) : (
             <>
-              <ButtonTransparent
+              {/* <ButtonTransparent
                 handleClick={() => router.push('/auth')}
                 color="main-yellow"
-                classes="px-3 py-[4px]"
+                classes="px-3 py-[4px] border-main-yellow text-main-yellow hover:bg-transparent"
               >
                 Iniciar sesión
-              </ButtonTransparent>
+              </ButtonTransparent> */}
             </>
           )}
         </div>

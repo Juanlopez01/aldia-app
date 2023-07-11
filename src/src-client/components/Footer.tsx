@@ -19,19 +19,13 @@ const Footer = () => {
 
         <ul className="w-full flex justify-around text-[14px] lg:text-[16px]">
           <Link href="/" className="text-link link no-underline">
-            Product
+            Inicio
           </Link>
-          <Link href="/" className="text-link link no-underline">
-            Features
+          <Link href="/pricing" className="text-link link no-underline">
+            Precios
           </Link>
-          <Link href="/" className="text-link link no-underline">
-            Pricing
-          </Link>
-          <Link href="/" className="text-link link no-underline">
-            Resources
-          </Link>
-          <Link href="/fqas" className="text-link link no-underline">
-            FQAs
+          <Link href="/faqs" className="text-link link no-underline">
+            Preguntas frecuentes
           </Link>
         </ul>
 
@@ -53,7 +47,7 @@ const Footer = () => {
         </div>
 
         <div className="text-[#CBD5E1] text-[12px] flex justify-center lg:col-start-1 lg:col-end-4">
-          <p>@ Copyright 2023. All rights Reserved by ALDIA</p>
+          <p>@ Copyright 2023. Todos los derechos reservados por ALDIA</p>
         </div>
       </div>
     </footer>

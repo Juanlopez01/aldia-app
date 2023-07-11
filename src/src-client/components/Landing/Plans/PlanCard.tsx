@@ -33,8 +33,8 @@ const PlanCard = ({plan, isPricingPage}: plansProps) => {
         {/* description and price */}
         <div className={`text-${text_color}`}>
           <div className="flex items-center">
-            <span className="text-[45px] font-bold">${price}</span>
-            <span>&nbsp; / Mes</span>
+            <span className="text-[45px] font-bold">s/{price}</span>
+            <span>&nbsp; <span className="font-extrabold"></span> {value==="premium" ? "año" : "mes"}</span>
           </div>
         </div>
       </div>
@@ -53,20 +53,20 @@ const PlanCard = ({plan, isPricingPage}: plansProps) => {
 
       {/* text container */}
       <div className={`text-${text_color} pt-2`}>
-        {tags?.['check']?.map((tag: Array<string>, index: number) => (
+        {tags?.check?.map((tag: Array<string>, index: number) => (
           <div key={index} className="flex">
             <FontAwesomeIcon
               icon={faCheck}
-              className={`mr-3 py-1 px-[6px] text-xl bg-gray-900 dark:bg-link text-link dark:text-gray-900 rounded-full`}
+              className={`mr-3 py-[3px] px-[4px] text-xl bg-gray-900 dark:bg-link text-link dark:text-gray-900 rounded-full`}
             />
             <p className="py-1 text-sm">{tag}</p>
           </div>
         ))}
-        {tags?.['cross']?.map((tag: Array<string>, index: number) => (
+        {tags?.cross?.map((tag: Array<string>, index: number) => (
           <div key={index} className="flex">
             <FontAwesomeIcon
               icon={faClose}
-              className={`mr-3 py-1 px-[6px] text-xl bg-gray-900 dark:bg-link text-link dark:text-gray-900 rounded-full`}
+              className={`mr-3 py-1 px-[6px] text-xl bg-red-600 text-link rounded-full`}
             />
             <p className="py-1 text-sm">{tag}</p>
           </div>

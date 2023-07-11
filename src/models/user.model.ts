@@ -7,6 +7,7 @@ import { ObjectId } from "mongodb";
 import { Currency } from "@/types/auth.type";
 import { PaymentType } from "./payment.model";
 import { PlansTypes } from "@/types/models.type";
+import { ObjectId as mongooseObjectId } from "mongoose";
 
 const Schema = mongoose.Schema;
 
@@ -26,6 +27,7 @@ export interface UserType {
   expenses?: ExpenseType[] | [];
   goals?: GoalsTypes[] | [];
   payments?: PaymentType[] | [];
+  categories?: string[] | [];
   role: String;
   status: StatusType | string;
   createdAt: Date;
@@ -33,6 +35,9 @@ export interface UserType {
 }
 export interface UserWithId extends UserType{
   _id: ObjectId
+}
+export interface UserWithMongooseId extends UserType{
+  _id: mongooseObjectId
 }
 
 const userSchema = new Schema<UserType, Model<UserType>>(
@@ -93,6 +98,7 @@ const userSchema = new Schema<UserType, Model<UserType>>(
     payments: [{ type: Schema.Types.ObjectId, ref: 'Payment', default: [] }],
     expenses: [{ type: Schema.Types.ObjectId, ref: 'Expense', default: [] }],
     goals: [{ type: Schema.Types.ObjectId, ref: 'Goal', default: [] }],
+    categories: [{ type: String, ref: 'Category', default: [] }],
   },
   { versionKey: false, timestamps: true }
 )

@@ -44,13 +44,13 @@ const formatData = (data) => {
 
   data.forEach((element) => {
     const date = formatDate(element.updatedAt);
-
+    const credit = element.credit ? element.credit.split(' ')[0] === 'No' ? 'No' : element.credit.split(' ').slice(0, 2).join(' ') : 'No';
     aux.push({
-      Tipo: element.type[0],
       Categoria: element.category,
-      Valor: element.value,
+      Importe: element.value,
       Descripcion: element.description,
-      Fecha: `${date.day},${date.date}`,
+      Crédito: credit,
+      Fecha: element.date.split('T')[0],
     });
   });
   return aux;

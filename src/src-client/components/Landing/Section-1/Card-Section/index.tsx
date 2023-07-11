@@ -11,17 +11,23 @@ export const bdInfo = [
 	{
 		image: Imac,
 		title: "En tus dispositivos",
-		description: "Disponible para móvil, portátil y tablet.",
+
+		description: "Categoriza tus ingresos y gastos en segundos y mantén un seguimiento completo de tus finanzas personales de manera automática. ¡Diles adiós a las complicaciones y disfruta de la tranquilidad financiera!",
+
 	},
 	{
 		image: CajaFuerte,
-		title: "Toma decisiones inteligentes",
-		description: "Con nuestras herramientas tendras el control.",
+		title: "Decisiones inteligentes",
+
+		description: "Obtén una visión clara y detallada de tus finanzas a través de gráficos y reportes personalizados. Analiza tus hábitos de gasto, identifica áreas de mejora y toma decisiones informadas. ¡Con ALDIA, tendrás el control de tu dinero al alcance de tus manos!",
+
 	},
 	{
 		image: Locacion,
 		title: "Logra tus metas",
-		description: "Cumple tus objetivos con el sistema de metas.",
+
+		description: "¿Sueñas con un nuevo auto, unas vacaciones o la casa de tus sueños? Con ALDIA, podrás establecer metas de ahorro realistas y monitorear tu progreso en tiempo real. Mantén la motivación alta mientras ves cómo tus excedentes se acercan cada vez más a tus sueños. ¡Haz que tus metas financieras se hagan realidad con ALDIA!",
+
 	},
 ];
 
@@ -33,7 +39,7 @@ export const bdInfoLight = [
 	},
 	{
 		image: CajaFuerteLight,
-		title: "Toma decisiones inteligentes",
+		title: "Decisiones inteligentes",
 		description: "Con nuestras herramientas tendras el control.",
 	},
 	{
@@ -47,7 +53,7 @@ function CardSectionUno() {
 	return (
 		<>
 			{/* dark */}
-			<div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 py-4">
+			<div className="grid md:grid-cols-2 px-4 xl:grid-cols-3 gap-4 py-4">
 				{bdInfo.map((info, index) => (
 					<>
 						<div key={index} className=" md:p-4 grid-rows-1 gap-3">
@@ -68,7 +74,7 @@ function CardSectionUno() {
 
 							{/* description */}
 							<div className=" flex justify-center">
-								<p className="text-gray-300">{info.description}</p>
+								<p className="text-gray-300 text-justify">{info.description}</p>
 							</div>
 						</div>
 					</>

@@ -22,27 +22,28 @@ import {
   updateAdminUserIncome,
 } from '@/redux/slice/AdminSlice'
 import Modal from '@components/generals/Modal'
+import { traductDate } from '@/utils/traductDate'
 
 interface PropsModal {
   props: {
-    type: String
+    type: string
     description: String
     category: String
     value: number
     id: String
     table: String
-    date: Date;
+    date: string;
     credit: string;
   }
 
 }
-
+const date = traductDate(new Date())
 const initialStateForm = {
   type: '',
   description: '',
   category: '',
   value: 0,
-  date: new Date(),
+  date: date,
   credit: 'Un pago',
 };
 
@@ -67,8 +68,6 @@ export function ModalEdit({ props }: PropsModal) {
     setShow(true);
   };
 
-
-  console.log({ form, props })
   const sendForm = () => {
     switch (props.table) {
       case 'ingresos':
@@ -132,7 +131,7 @@ export function ModalEdit({ props }: PropsModal) {
           </div>
         }
       >
-        <FormRegister setForm={setForm} form={form} />
+        <FormRegister setForm={setForm} form={form} type={props.type} extraCategories={null} transactionType={props.table === 'ingresos' ? 'income' : 'expense'}/>
       </Modal>
     </>
   )

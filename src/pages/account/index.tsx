@@ -25,8 +25,8 @@ const Account = () => {
       currency,
     } = session?.user as unknown as UserWithId
     return (
-      <div className="min-h-[90vh] bg-darkest-blue w-100 d-flex justify-content-center align-items-center">
-        <aside className="bg-violet-blue-profile hadow-2xl min-h-[60vh] w-10/12 md:w-8/12 lg:w-1/2 xl:w-1/3 2xl:w-3/12 mx-auto rounded-[10px]">
+      <div className="min-h-[90vh] py-24 bg-light-green dark:bg-darkest-blue w-100 d-flex justify-content-center align-items-center">
+        <aside className="bg-gray-100 dark:bg-violet-blue-profile shadow-md min-h-[60vh] w-10/12 md:w-8/12 lg:w-1/2 xl:w-1/3 2xl:w-3/12 mx-auto rounded-[10px]">
           {session && (
             <div className="w-full flex flex-col items-center pb-6">
               <div className="w-full flex flex-col items-center">
@@ -52,7 +52,7 @@ const Account = () => {
                 {/* email */}
                 <div className="">
                   <div
-                    className="text-main-yellow flex items-center
+                    className="text-gray-900 dark:text-main-yellow flex items-center
                 justify-between w-full"
                   >
                     <div className="flex items-center gap-1 text-md">
@@ -61,11 +61,11 @@ const Account = () => {
                     </div>
                   </div>
                   <p
-                    className={`text-white mt-2 text-md bg-violet-blue-profile outline-0 outline-white py-1 pl-1`}
+                    className={`text-white mt-2 text-md bg-main-green dark:bg-violet-blue-profile outline-0 outline-white py-1 pl-1`}
                   >
                     {email}
                   </p>
-                  <hr className="border-main-yellow border-2"></hr>
+                  <hr className="border-gray-900 dark:border-main-yellow border-2"></hr>
                 </div>
 
                 {/* plan actual */}

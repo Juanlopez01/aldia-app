@@ -8,11 +8,13 @@ import {
 	getAllNames,
 	sendCompanyNotification,
 } from "@/redux/slice/CompanySlice";
+import { useAppSelector } from "@/src-client/hooks/use-redux";
 
 interface EnterProps {
 	data: [any];
+	classes?: string;
 }
-const EnterModal = ({ data }: EnterProps) => {
+const EnterModal = ({ data, classes }: EnterProps) => {
 	const [showModal, setShowModal] = useState(false);
 	const { data: session } = useSession();
 	const dispatch: Function = useDispatch();
@@ -24,12 +26,19 @@ const EnterModal = ({ data }: EnterProps) => {
 			dispatch(sendCompanyNotification(session.user.email, company));
 		}
 	};
-
+	const sel = useAppSelector(s=>s?.CompanyReducer?.names)
+	const currentCompanies = sel?.map((c: any)=>c?.name)
+	const filteredCompanies = data?.filter(c=>{
+		const find = currentCompanies?.find((c2: any)=>{
+			return c2===c.name
+		})
+		if(!find) return c
+	})
 	const modalContent = (
 		<>
 			<SearchBar
 				placeholder="Nombre de la compañía..."
-				data={data}
+				data={filteredCompanies}
 				closeModal={closeModal}
 				sendNotification={sendNotification}
 				handleAcept={null}
@@ -44,8 +53,9 @@ const EnterModal = ({ data }: EnterProps) => {
 					setShowModal(true);
 					dispatch(getAllNames());
 				}}
+				className={classes}
 			>
-				Ingresar a una compañía
+				Ingresar a compañía
 			</button>
 			<Modal
 				title="Ingresar a una compañía"

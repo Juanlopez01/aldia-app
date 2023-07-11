@@ -14,7 +14,7 @@ const Plans = ({ isPricingPage=false}) => {
       </h1>
       <div className="flex flex-wrap justify-center gap-3">
         {plans?.map((plan, index) =>
-            <PlanCard key={index} plan={plan} isPricingPage={isPricingPage}/>
+            <PlanCard key={index} plan={plan as any} isPricingPage={isPricingPage}/>
         )}
       </div>
     </div>

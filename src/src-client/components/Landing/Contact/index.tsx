@@ -15,7 +15,7 @@ import validateForm from "./validateForm";
 import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
 
-const Contact = () => {
+const Contact = (props: {showInfo?: boolean}) => {
 	const initialInputs = {
 		name: "",
 		email: "",
@@ -64,9 +64,9 @@ const Contact = () => {
 					"template_eue0omc",
 					{
 						from_name: inputs?.name,
-						to_name: "Nicolás",
+						to_name: "Aldia",
 						from_email: inputs?.email,
-						to_email: "nicovon24@gmail.com",
+						to_email: "informes@aldia.lat",
 						subject: inputs?.subject,
 						message: inputs?.message,
 					},
@@ -84,9 +84,9 @@ const Contact = () => {
 	};
 
 	const dataContact = [
-		{ name: "Teléfono", value: "+54 351 1111 111", icon: faPhone },
-		{ name: "Dirección", value: "Lorem ipsum", icon: faLocationDot },
-		{ name: "Mail", value: "nep@gmail.com", icon: faEnvelope },
+		{ name: "Teléfono", value: "+51 976 886 575", icon: faPhone },
+		{ name: "Dirección", value: "Perú", icon: faLocationDot },
+		{ name: "Mail", value: "informes@aldia.lat", icon: faEnvelope },
 	];
 
 	interface ContactProps {
@@ -111,6 +111,7 @@ const Contact = () => {
 	return (
 		<div
 			className={`w-full bg-light-green dark:bg-violet-blue-landing py-5 ${stylesLandingContainers}`}
+			id="contact"
 		>
 			<h1 className="text-center text-3xl font-bold text-black pb-6">
 				Contáctate con nosotros
@@ -120,7 +121,7 @@ const Contact = () => {
 			<div className="grid lg:flex lg:flex-wrap lg:gap-8 lg:justify-center w-full lg:w-11/12 xl:w-10/12 mx-auto">
 				{/* form send message */}
 				<form className="px-4" onSubmit={handleSubmit}>
-					<div className="grid lg:grid-cols-2 gap-4">
+					<div className="grid lg:grid-cols-2 gap-8">
 						{/* name */}
 						<div className="flex flex-col items-center">
 							<label className="text-black">Nombre</label>
@@ -141,7 +142,7 @@ const Contact = () => {
 							<InputTransparent
 								type="email"
 								name="email"
-								placeholder="ej. al.dia.aplication@gmail.com"
+								placeholder="ej. informes@aldia.lat"
 								classes="w-full max-w-[350px] lg:max-w-[1000px]"
 								maxLength={40}
 								handleChange={handleChangeInput}
@@ -187,10 +188,12 @@ const Contact = () => {
 				</form>
 
 				{/* contact info */}
+				{props?.showInfo && 
 				<div className="flex flex-col gap-2 mt-12 lg:my-4">
 					{/* phone */}
 					{dataContact?.map(item=><CardMap item={item} key={item?.value}/>)}
 				</div>
+				}
 			</div>
 		</div>
 	);

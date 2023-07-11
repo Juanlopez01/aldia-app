@@ -3,7 +3,8 @@ import { GoalsTypes } from "@/models/goal.model";
 import { IncomeType } from "@/models/income.model";
 import { PaymentType } from "@/models/payment.model";
 import { UserType, UserWithId } from "@/models/user.model";
-import { calculateTotal } from "@/utils/calculateTotal";
+import { calculateTotal, extractOtherCategories } from "@/utils/calculateTotal";
+import { catTransactionsEntries } from "@/utils/categoriesTransactions";
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { ObjectId } from "mongodb";
@@ -16,6 +17,7 @@ interface PersonalFinance {
   expenses: ExpenseType[];
   goals: GoalsTypes[]; 
   payments: PaymentType[];
+  otherCategories: string[];
   totalIncomes: number;
   totalExpenses: number;
 }
@@ -40,11 +42,11 @@ const initialState: PersonalFinance = {
   incomes: [],
   expenses: [],
   payments:[],
+  otherCategories: [],
   goals: [],
   totalIncomes: 0,
   totalExpenses: 0,
 };
-
 const personalSlice = createSlice({
   name: "personal",
   initialState,
@@ -62,6 +64,7 @@ const personalSlice = createSlice({
       state.payments = payments;
       state.totalExpenses = calculateTotal(action.payload?.expenses);
       state.totalIncomes = calculateTotal(action.payload?.incomes);
+      state.otherCategories = extractOtherCategories(action.payload?.incomes,action.payload?.expenses)
     },
     addPersonalIncome: (state, action) => {
       const oldState = state.incomes;
@@ -148,6 +151,7 @@ export const addPersonalIncome =
 //UPDATE
 export const updatePersonalIncome =
   (income: IncomeType, id: String) => async (dispatch: Function) => {
+    (income)
     const res = await axios.put(BASE_URL + "/income/" + id, income);
 
     dispatch(personalSlice.actions.updatePersonalIncome(res.data.payload));
@@ -194,6 +198,12 @@ export const deletePersonalExpense =
 export const updateUserStatusP = (user : UserType) => async (dispatch : Function) => {
   dispatch(personalSlice.actions.updateUserStatus(user));
 }
+export const deleteCompany = (user : string, company : string) => async (dispatch : Function) => {
+  const urlDelete = URL + '?id=' + company + '&user=' + user;
+  const deleteCompany = await axios.delete(urlDelete)
+
+  
+}
 
 
 //GOALS
@@ -205,7 +215,7 @@ interface createGoal extends GoalsTypes {
 }
 export const createGoal = ({title, category, goalValue, status = 'Pending', expiresDate, email, plazo, priority} : createGoal) => async (dispatch: Function) => {
   try {
-    const url = BASE_GOAL_URL + `?email=${email}`
+    const url = BASE_GOAL_URL + `?email=${email}&type=user`
     const response = await axios.post(url, {title, category, goalValue, status, expiresDate, plazo, priority})
     dispatch(personalSlice.actions.addUserGoal(response.data.goal))
   } catch (error) {
@@ -217,7 +227,6 @@ export const updateGoal = ({status, goalValue, _id} : any) => async (dispatch: F
   try {
 
     const url = BASE_GOAL_URL + `/${_id}`
-    console.log(url)
     const response = await axios.put(url, {status, goalValue,})
     dispatch(personalSlice.actions.updateUserGoal(response.data.goal))
   } catch (error) {

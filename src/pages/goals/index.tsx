@@ -1,13 +1,16 @@
 import { GoalsTypes } from '@/models/goal.model'
 import { deleteGoal } from '@/redux/slice/PersonalSlice'
+import Modal from '@/src-client/components/generals/Modal'
 import AddGoalForm from '@/src-client/components/goals/AddGoalForm'
 import GoalBar from '@/src-client/components/goals/GoalBar'
 import LayoutWithSideNav from '@/src-client/components/layouts/LayoutSideNav'
 import { useValidatePlan } from '@/src-client/hooks/use-validate-plan'
 import { dateDifference } from '@/utils/dateDiff'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
+import { faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Index = () => {
   const { session } = useValidatePlan()
@@ -33,6 +36,8 @@ const Index = () => {
   )
   const [formType, setFormType] = useState('register')
   const goals = useSelector((state: any) => state.PersonalReducer.goals)
+  const [show, setShow] = useState(false)
+  const handleClose = () => {setShow(false)}
 
   const handleDelete = (_id: any) => {
     Swal.fire({
@@ -58,16 +63,43 @@ const Index = () => {
   if (session && session.user) {
     return (
       <LayoutWithSideNav>
-        <div className="bg-light-green dark:bg-violet-blue-profile w-full h-auto flex">
-          <div className="flex flex-col w-full xl:w-3/4 2xl:w-9/12 mx-auto py-12 h-full">
+        <div className="bg-light-green dark:bg-violet-blue-profile w-full min-h-[70vh] flex">
+          <div className="flex flex-col w-full xl:w-3/4 2xl:w-9/12 mx-auto py-2 h-full">
             {/* <ProgressBar completed={completedGoals} /> */}
-            <AddGoalForm
-              setForm={setForm}
-              type={formType}
-              form={form}
-              excess={incomes - expenses}
-              dispatch={dispatch}
-            />
+            <Modal showModal={show} closeModal={handleClose} title={formType === 'register' ? 'Agregar meta' : 'Editar meta'} >
+              <AddGoalForm
+                setForm={setForm}
+                type={formType}
+                form={form}
+                excess={incomes - expenses}
+                dispatch={dispatch}
+                setShow={setShow}
+              />
+            </Modal>
+            <div className="flex justify-center py-4">
+              <button
+                type="submit"
+                className="w-[220px] text-white px-3 py-2 bg-main-green dark:bg-darkest-blue text-lg
+                rounded-full flex justify-center items-center gap-x-2"
+                onClick={() => {setFormType('register');setForm({
+                  title: '',
+                  category: '',
+                  goalValue: 0,
+                  expiresDate: '',
+                  email: email,
+                  _id: '',
+                  priority: 0,
+                  plazo: 'Corto plazo',
+                  status: 'Pending',
+                });setShow(true)}}
+              >
+                {
+                <>
+                  <FontAwesomeIcon icon={faPlus} className="text-white border-2 border-white rounded-full p-1"/>
+                  <span>AGREGAR META</span>
+                </>}
+              </button>
+				    </div>
             <div className="w-full">
               <ul className="flex flex-col justify-center w-full gap-y-4">
                 {goals.length > 0 &&
@@ -108,31 +140,12 @@ const Index = () => {
                           setFormType={setFormType}
                           setForm={setForm}
                           form={form}
+                          setShow={setShow}
                         />
                       </li>
                     )
                   })}
               </ul>
-              {formType === 'edit' && (
-                <button
-                  onClick={() => {
-                    setFormType('register')
-                    setForm({
-                      title: '',
-                      category: '',
-                      goalValue: 0,
-                      expiresDate: '',
-                      email: email,
-                      _id: '',
-                      priority: 0,
-                      plazo: 'Corto plazo',
-                      status: 'Pending',
-                    })
-                  }}
-                >
-                  Register
-                </button>
-              )}
             </div>
           </div>
         </div>

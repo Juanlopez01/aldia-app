@@ -35,7 +35,7 @@ const links = {
 			{
 				name: "Personal",
 				url: "/home",
-				endpoint: "/",
+				endpoint: "/home",
 				icon: <FontAwesomeIcon icon={faUser} />,
 			},
 			{
@@ -55,17 +55,17 @@ const links = {
 	notLoggedIn: [
 		{
 			name: "Nosotros",
-			url: "/",
-			endpoint: "/us",
+			url: "#section1",
+			endpoint: "#section1",
 			icon: <FontAwesomeIcon icon={faUsers} />,
 		},
 		{
 			name: "Contacto",
-			url: "/",
-			endpoint: "/contact",
+			url: "#contact",
+			endpoint: "#contact",
 			icon: <FontAwesomeIcon icon={faPhone} />,
 		},
-		{ name: "Planes", url: "/", endpoint: "plans" },
+		{ name: "Planes", url: "#plans", endpoint: "#plans" },
 	],
 };
 
@@ -82,7 +82,7 @@ const { blue, yellow, light_text, dark_text, hover_btn, lightGreen } = colors;
 
 const plans = [
 	{
-		name: "Gratuito",
+		name: "Plan Gratuito por 14 días",
 		value: 'free',
 		color: {
 			bg: `dark:bg-${blue} bg-${lightGreen} `,
@@ -93,27 +93,31 @@ const plans = [
 			color_text_button: ` text-gray-900 dark:text-${light_text} `,
 		},
 		subtext:
-			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
-		price: 0,
+			"Acceso completo a todas las funcionalidades de ALDIA durante 14 días.",
+		price: "0",
 		tags:
 			/* check: tick in tag, cross: cruz in tag component */
 			{ 
 				check: [
-					"20,000+ of PNG & SVG graphics",
-					"Access to 100 million stock images",
+					"Registro de ingresos y egresos ilimitados.",
+					"Categorización de transacciones y seguimiento de gastos e ingresos.",
+					"Generación de gráficos y reportes.",
+					"Establecimiento de metas de ahorro.",
+					"Notificaciones y recordatorios.",
+					"Soporte técnico por correo electrónico durante el periodo de prueba."
 				],
 				cross: [
-					"Upload custom icons and fonts",
-					"Unlimited Sharing",
-					"Upload graphics & video in up to 4k",
-					"Unlimited Projects",
-					"Instant Access to our design system",
+					"Soporte técnico prioritario por whatsapp.",
+					"Actualizaciones regulares de nuevas características y mejoras.",
+					"Descuento equivalente a dos meses de uso al pagar el plan anual.",
+					"Acceso exclusivo a cursos de capacitación en temas de negocios para mejorar tus habilidades financieras.",
+					"Contenido educativo adicional sobre estrategias de ahorro y gestión financiera."
 				],
 			},
 	},
 	{
-		name: "Básico",
-			value: 'basic',
+		name: "Plan mensual",
+		value: 'basic',
 		color: {
 			bg: `bg-${yellow}`,
 			text: dark_text,
@@ -123,25 +127,29 @@ const plans = [
 			color_text_button: ` text-gray-900 dark:bg-light-blue dark:text-${light_text}`,
 		},
 		subtext:
-			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
+			"Acceso completo a todas las funcionalidades de ALDIA.",
 		price: 10,
 		tags:
 			/* check: tick in tag, cross: cruz in tag component */
 			{
 				check: [
-					"20,000+ of PNG & SVG graphics",
-					"Access to 100 million stock images",
-					"20,000+ of PNG & SVG graphics",
-					"Access to 100 million stock images",
+					"Registro de ingresos y egresos ilimitados.",
+					"Categorización de transacciones y seguimiento de gastos e ingresos.",
+					"Generación de gráficos y reportes.",
+					"Establecimiento de metas de ahorro.",
+					"Notificaciones y recordatorios.", 
+					"Soporte técnico prioritario por correo electrónico.",
+					"Actualizaciones regulares de nuevas características y mejoras.",
 				],
 				cross: [
-					"Upload custom icons and fonts",
-					"Unlimited Sharing",
+					"Descuento equivalente a dos meses de uso al pagar el plan anual.",
+					"Acceso exclusivo a cursos de capacitación en temas de negocios para mejorar tus habilidades financieras.",
+					"Contenido educativo adicional sobre estrategias de ahorro y gestión financiera."
 				],
 			},
 	},
 	{
-		name: "Premium",
+		name: "Plan Anual o Premium",
 		value: 'premium',
 		color: {
 			bg: `dark:bg-${blue} bg-${lightGreen} `,
@@ -152,22 +160,30 @@ const plans = [
 			color_text_button: ` text-gray-900 dark:text-${light_text} `,
 		},
 		subtext:
-			"Ideal para controlar sus finanzas personales y las de sus negocios en un solo",
-		price: 20,
+			"Acceso completo a todas las funcionalidades de ALDIA.",
+		price: 100,
 		tags:
 			/* check: tick in tag, cross: cruz in tag component */
 			{
 				check: [
-					"20,000+ of PNG & SVG graphics",
-					"Access to 100 million stock images",
+					"Registro de ingresos y egresos ilimitados.",
+					"Categorización de transacciones y seguimiento de gastos e ingresos.",
+					"Generación de gráficos y reportes.",
+					"Establecimiento de metas de ahorro.",
+					"Notificaciones y recordatorios.",
+					"Soporte técnico prioritario por whatsapp.",
+					"Actualizaciones regulares de nuevas características y mejoras.",
+					"Descuento equivalente a dos meses de uso al pagar el plan anual.",
+					"Acceso exclusivo a cursos de capacitación en temas de negocios para mejorar tus habilidades financieras.",
+					"Contenido educativo adicional sobre estrategias de ahorro y gestión financiera."
 				],
-				cross: [
-					"Upload custom icons and fonts",
-					"Unlimited Sharing",
-					"Upload graphics & video in up to 4k",
-					"Unlimited Projects",
-					"Instant Access to our design system",
-				],
+				// cross: [
+				// 	"Upload custom icons and fonts",
+				// 	"Unlimited Sharing",
+				// 	"Upload graphics & video in up to 4k",
+				// 	"Unlimited Projects",
+				// 	"Instant Access to our design system",
+				// ],
 			},
 	},
 ];
@@ -176,26 +192,26 @@ const questions: QuestionType[] = [
 	{
 	  question: '¿Has realizado un pago y no tienes el plan que pagaste?',
 	  solution:
-		'La verificación del pago puede demorar alguno minutos o hasta horas, pero si ha pasado mas de 1 día comumnicate via email o whatsapp para agilizar la activación de tu plan',
-	  extra: 'Whatsapp: +53 123 345 1231235',
+		'La verificación del pago puede demorar alguno minutos o hasta horas, pero si ha pasado más de 1 día comumnicate via email o whatsapp para agilizar la activación de tu plan',
+	  extra: 'Whatsapp: +51976866575',
 	},
 	{
 	  question: '¿No puedes acceder a tu cuenta?',
 	  solution:
-		'Si no puedes acceder a tu cuenta, no te procuepes, ve a la pagina de autenticación y preciona la opción de "Me olvidé mi constraseña", pon el email con el cual te registaste, esto te enviará un email en el cual te redigira a una pagina donde podras recuperar tu cuenta y elegir una nueva contraseña',
-	  extra: 'Si lo aterior no funciona enviar un email con el asunto "RECOVER-ACCOUNT" en el cual expliques tu probelma en cuestion y sera soluciona en brevedad',
+		'Si no puedes acceder a tu cuenta, no te procuepes, ve a la pagina de autenticación y preciona la opción de "Me olvidé mi contraseña", pon el email con el cual te registaste, esto te enviará un email en el cual te redigira a una pagina donde podras recuperar tu cuenta y elegir una nueva contraseña',
+	  extra: 'Si lo anterior no funciona enviar un email con el asunto "RECOVER-ACCOUNT" en el cual expliques tu problema en cuestión y sera solucionado a la brevedad',
 	},
 	{
 	  question: '¿Tienes un error de redirección o de datos erroneos?',
 	  solution:
-		'Cuando quieres ir a una pagina te redirecciona a otra o la infomación que se muesta es errornea. Envia una email o un mesaje de whatsapp con el asunto de "ISSUE" con una descripción del error en cuestión y sera resuelto a la brevedad ',
-	  extra: 'Whatsapp: +53 123 345 1231235',
+		'¿Cuando quieres ir a una pagina te redirecciona a otra o la infomación que se muesta es errónea? Envia una email o un mensaje de whatsapp con el asunto de "ISSUE" con una descripción del error en cuestión y será resuelto a la brevedad ',
+	  extra: 'Whatsapp: +51976866575',
 	},
 	{
 	  question: '¿Quieres que se agregue una funcionalidad?',
 	  solution:
-		'Envia una email o un mesaje de whatsapp con el asunto de "FEATURE" para que la funcionalidad sea agregada proximamente y ayudes a la aplicación a ser mas efieciente y util para los demás usuarios',
-	  extra: 'Whatsapp: +53 123 345 1231235',
+		'Envia una email o un mesaje de whatsapp con el asunto de "FEATURE" para que la funcionalidad sea agregada próximamente y ayudes a la aplicación a ser mas eficiente y útil para los demás usuarios',
+	  extra: 'Whatsapp: +51976866575',
 	},
   ]
 

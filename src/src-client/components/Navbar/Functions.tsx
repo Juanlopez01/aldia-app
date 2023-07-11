@@ -1,7 +1,7 @@
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import Swal from "sweetalert2";
 
 const GetNavLinks = (props: {
@@ -14,20 +14,47 @@ const GetNavLinks = (props: {
 	section?: string;
 	classes?: string;
 	isAdmin?: boolean;
+	activeSection?: { left: string; top: string };
+	setActiveSection?: SetStateAction<any>;
 }) => {
-	const pathname = usePathname()
+	const pathname = usePathname();
+
+	useEffect(() => {
+		if (
+			pathname === "/home" ||
+			pathname === "/admin" ||
+			pathname === "/company"
+		) {
+			if (props.setActiveSection && pathname) {
+				props.setActiveSection({ ...props.activeSection, left: pathname });
+			}
+		}
+	}, [pathname]);
+
+	const section = props.activeSection?.left;
+
 	return (
 		<>
 			{props?.list?.map((link: any) => {
-				if(!props.isAdmin && link.name === 'Administrador') return null
+				let hrefLinks =
+					(props.activeSection?.left === "/company" && link?.name!=="Personal" && link?.name!=="Administrador")
+						? "/company" + (link.url === "/home" ? "/" : link.url)
+						: link?.url;
 				return (
-					<div className="flex items-center" key={link?.name}>
-						{props?.section !== "sidenav" 
-						? (
+					<div
+						className={`flex items-center ${(props?.section==="sidenav" &&
+							props?.activeSection?.left) === "/admin" ? "hidden" : "flex"
+						}`}
+						key={link?.name}
+					>
+						{props?.section !== "sidenav" ? (
 							<Link
-								href={link?.url}
+								href={hrefLinks}
 								className={`${
-									pathname === link?.endpoint ? "unlink" : "text-link link"
+									pathname?.includes(link?.endpoint) 
+									|| ((pathname==="/credit" || pathname==="/goals") && link?.name==="Personal")
+									|| ((section==="/company" && link?.name==="General" && pathname!=="/company/credit"
+									&& pathname!=="/company/goals")) ? "unlink" : "text-link link"
 								} no-underline`}
 								onClick={() =>
 									props?.screen === "mobile" &&
@@ -43,15 +70,17 @@ const GetNavLinks = (props: {
 								)}
 								<span>{link?.name}</span>
 							</Link>
-						) 
-						//*render in sidenav
-						: (
+						) : (
+							//*render in sidenav
 							<Link
-								href={link?.url}
+								href={hrefLinks}
 								className={`${
-									pathname !== link?.endpoint
-										? "dark:text-link dark:bg-light-blue text-gray-900 bg-link"
-										: "bg-main-yellow text-black"
+									pathname?.includes(link?.endpoint) 
+									|| ((pathname==="/credit" || pathname==="/goals") && link?.name==="Personal")
+									|| ((section==="/company" && link?.name==="General" && pathname!=="/company/credit"
+									&& pathname!=="/company/goals"))
+										? "bg-main-yellow dark:hover:!bg-secondary-yellow text-black"
+										: "dark:text-link dark:bg-light-blue text-gray-900 bg-link" 
 								}  no-underline rounded-full text-center w-full 
 								relative right-3 ${props?.classes} ${props?.classes} 
 								`}
@@ -63,12 +92,13 @@ const GetNavLinks = (props: {
 								}
 							>
 								{
-								/* icon */
-								props?.showIcons && (
-									<span className="mr-[6px] inline lg:hidden xl:inline">
-										{link?.icon}
-									</span>
-								)}
+									/* icon */
+									props?.showIcons && (
+										<span className="mr-[6px] inline lg:hidden xl:inline">
+											{link?.icon}
+										</span>
+									)
+								}
 								<span>{link?.name}</span>
 							</Link>
 						)}
