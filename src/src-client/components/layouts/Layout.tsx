@@ -12,7 +12,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="min-h-screen flex flex-col">
         <Head>
           <title>AlDia App</title>
-		  <link rel="icon" href="/favicon.ico" sizes="any" />
+		      <link rel="icon" href="/favicon.ico" sizes="any" />
+          <meta name="google-site-verification" content="7BxNDgjCwmalS--KUDO5GctAMUS3PkubWn0oIHLzM_w" />
         </Head>
         {flag && <NavBar />}
         {children}
