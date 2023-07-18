@@ -27,7 +27,7 @@ const TaskSection = () => {
 						<li>Registro detallado de tus ingresos y gastos personales.</li>
 						<li>
 							Categorización sencilla de transacciones para un seguimiento claro y
-							organizado.s
+							organizado.
 						</li>
 					</ul>
 				</div>
