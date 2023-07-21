@@ -6,7 +6,7 @@ export default function Document() {
       <head>
       <Head>
       <meta name="google-site-verification" content="7BxNDgjCwmalS--KUDO5GctAMUS3PkubWn0oIHLzM_w" />
-
+      <meta name="description" content="Con ALDIA, tu aplicación de control de finanzas, podrás tomar mejores decisiones sobre tu presupuesto y podrás visualizar el avance de tus metas."></meta>
       </Head>
       </head>
       <body>
