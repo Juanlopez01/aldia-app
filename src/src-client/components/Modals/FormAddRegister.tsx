@@ -44,7 +44,7 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
     const name = evt.currentTarget.name
     const value = evt.currentTarget.value
     if (name === 'value') {
-      setForm({ ...form, [name]: parseInt(value) })
+      setForm({ ...form, [name]: value.valueOf() })
     } else if (name === 'category' && value === 'Otros') {
       setShowOtherCategory(true)
     } else if (name === 'other-category') {
@@ -124,7 +124,7 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
       </div>
       <div className={`${!dateShow ? '' : 'hidden'}`}>
         <Calendar
-          value={form.date}
+          value={form.date ?? new Date()}
           onChange={handleDateChange}
           className="bg-white [span:bg-white text-center important]"
         />
@@ -138,6 +138,9 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
           type="number"
           value={form.value}
           onChange={handleChange}
+          step="0.01"
+          min="0.01"
+          max={Infinity}
           name="value"
           className="form-control"
           aria-describedby="Valor"

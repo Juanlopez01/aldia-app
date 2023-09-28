@@ -39,6 +39,12 @@ export function LongExcess({ options, data, type, totalDataIncomes, totalDataExp
   const reduceIncomes = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
 	const reduceExpenses = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
 	const excessResult = reduceIncomes - reduceExpenses
+  let excessDecimalResult
+	if (excessResult.toString().includes('.')) {
+		const integer = excessResult.toString().split('.')[0]
+		const decimal = excessResult.toString().split('.')[1].slice(0, 2)
+		excessDecimalResult = integer + '.' + decimal
+	}
 
   return (
     <div
@@ -47,7 +53,7 @@ export function LongExcess({ options, data, type, totalDataIncomes, totalDataExp
     >
       <div className="pl-8 text-gray-900">
         <h4>Excedentes</h4>
-        <h2>{excessResult>=0 ? `s/ ${excessResult}` : `-s/ ${excessResult*(-1)}`}</h2>
+        <h2>{excessResult>=0 ? `s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}` : `-s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}`}</h2>
       </div>
 
       {data.datasets[0].data.length > 0 ? (

@@ -39,6 +39,20 @@ const links = {
 				icon: <FontAwesomeIcon icon={faUser} />,
 			},
 			{
+				name: "Compañías",
+				url: "/company",
+				endpoint: "/company",
+				icon: <FontAwesomeIcon icon={faChartSimple} />,
+			},
+		],
+		[
+			{
+				name: "Personal",
+				url: "/home",
+				endpoint: "/home",
+				icon: <FontAwesomeIcon icon={faUser} />,
+			},
+			{
 				name: "Administrador",
 				url: "/admin",
 				endpoint: "/admin",

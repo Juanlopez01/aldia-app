@@ -61,7 +61,7 @@ const Sidenav = () => {
 					{/* navlinks: personal, admin, companies */}
 					<ul className="flex flex-col gap-y-6 pt-12">
 						<GetNavLinks
-							list={links?.loggedIn[1]}
+							list={user?.role === 'admin' ? links?.loggedIn[2] : links.loggedIn[1]}
 							showIcons={false}
 							section="sidenav"
 							classes="px-6 py-2 hover:opacity-80"
