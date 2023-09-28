@@ -93,7 +93,7 @@ export const TableComponent = ({ content, filters }: any) => {
                 <tr key={Math.random()}>
                   <td>{capitalize(filters.type)}</td>
                   <td>{capitalize(ele.category)}</td>
-                  <td>${ele.value}</td>
+                  <td>s/ {ele.value}</td>
                   <td>
                     <p className="max-w-xs m-0 text-start">
                       {ele.description}

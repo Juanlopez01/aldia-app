@@ -47,7 +47,12 @@ export function Excess({ options, data , type, totalDataIncomes, totalDataExpens
 	const reduceIncomes = totalDataIncomes?.reduce((acc: number, val: number)=>acc+val, 0)
 	const reduceExpenses = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
 	const excessResult = reduceIncomes - reduceExpenses
-
+	let excessDecimalResult
+	if (excessResult.toString().includes('.')) {
+		const integer = excessResult.toString().split('.')[0]
+		const decimal = excessResult.toString().split('.')[1].slice(0, 2)
+		excessDecimalResult = integer + '.' + decimal
+	}
 	return (
 		<div
 			className="bg-link rounded-4 flex flex-col justify-around text-white containerGraphicosDivExc px-4
@@ -56,7 +61,7 @@ export function Excess({ options, data , type, totalDataIncomes, totalDataExpens
 		>
 			<div className="text-gray-900">
 				<h5>Excedentes</h5>
-				<h3>{excessResult>=0 ? `s/ ${excessResult}` : `-s/ ${excessResult*(-1)}`}</h3>
+				<h3>{excessResult>=0 ? `s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}` : `-s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}`}</h3>
 			</div>
 
 			{data?.datasets[0].data[0] !== 0 || data?.datasets[0].data[1] !== 0 ? (

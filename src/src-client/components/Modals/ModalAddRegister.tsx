@@ -12,7 +12,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormRegister from "./FormAddRegister";
 import Modal from "../generals/Modal";
-import { traductDate } from "@/utils/traductDate";
+import { traductDate, traductDateForm } from "@/utils/traductDate";
 import { UserWithMongooseId } from "@/models/user.model";
 
 interface PropsModal {
@@ -52,6 +52,7 @@ export function ModalAddRegister({
 	const email = session?.user?.email;
 
 	const sendForm = async () => {
+		form.date = traductDateForm(form.date);
 		if (email && email !== null && email !== undefined) {
 			if (props.type === "expense") {
 				if (type === "negocio") {

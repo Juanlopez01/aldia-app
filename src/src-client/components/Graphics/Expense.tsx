@@ -41,7 +41,12 @@ export function Expense({
 	};
 
 	const reduce = totalDataExpenses?.reduce((acc: number, val: number)=>acc+val, 0)
-
+	let incomeDecimalResult
+	if (reduce.toString().includes('.')) {
+		const integer = reduce.toString().split('.')[0]
+		const decimal = reduce.toString().split('.')[1].slice(0, 2)
+		incomeDecimalResult = integer + '.' + decimal
+	}
 
 	return (
 		<div
@@ -50,7 +55,7 @@ export function Expense({
 		>
 			<div className="text-gray-900">
 				<h5>Gastos</h5>
-				<h3>s/ {reduce}</h3>
+				<h3>{reduce>=0 ? `s/ ${reduce.toString().includes('.') ? incomeDecimalResult?.valueOf() : reduce}` : `-s/ ${reduce.toString().includes('.') ? incomeDecimalResult?.valueOf() : reduce}`}</h3>
 			</div>
 			{data?.labels?.length ? (
 				<Pie
