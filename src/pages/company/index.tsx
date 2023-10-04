@@ -72,10 +72,10 @@ const Company = () => {
 							">
 								{companyNames && (
 									<div className="w-full flex flex-col pt-4 px-3 md:flex-row md:!pt-0 items-center">
-										<div className="input-group">
-											<label className="input-group-text h-10">Seleccionar compañía</label>
+										<div className="flex-col input-group md:flex-row ">
+											<label className="input-group-text align-self-center md:align-self-start md:h-10 ">Seleccionar compañía</label>
 											<select
-												className="!w-1/5 form-control h-10"
+												className="!w-full md:!w-1/5 form-select h-10"
 												onClick={(e) => handleSelect(e)}
 											>
 												<option value="null" key='null'></option>

@@ -96,7 +96,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 							value={form.category}
 							placeholder="Seleccione una categoria"
 							required
-							className="form-control"
+							className="form-select"
 						>
 							<option value='' key={'Null'}></option>
 							{catTransactions.map((category) => {
@@ -126,7 +126,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 							id="plazo"
 							onChange={handleChange}
 							value={form.plazo}
-							className="form-control"
+							className="form-select"
 						>
 							<option key={"Cortoplazo"} value="Corto plazo">
 								Corto plazo
@@ -144,7 +144,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 								onChange={handleChange}
 								required
 								value={form.expiresDate}
-								className="form-control"
+								className="form-select"
 							>
 								<option value='' key={'Null'}></option>
 								{shortExpiresValues.map((expires) => {
@@ -165,7 +165,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 								onChange={handleChange}
 								required
 								value={form.expiresDate}
-								className="form-control"
+								className="form-select"
 							>
 								<option value='' key={'Null'}></option>
 								{longExpiresValues.map((expires) => {
@@ -185,7 +185,7 @@ const AddGoalForm = ({ setForm, type, form, excess, dispatch, setShow }: any) =>
 							required
 							value={form.priority}
 							onChange={handleChange}
-							className="form-control"
+							className="form-select"
 						>
 							<option key="1" value={1}>
 								Alta

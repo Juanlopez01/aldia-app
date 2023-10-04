@@ -43,7 +43,7 @@ const formatData = (data) => {
   const aux = [];
 
   data.forEach((element) => {
-    const date = formatDate(element.updatedAt);
+    const date = formatDate(element.date);
     const credit = element.credit ? element.credit.split(' ')[0] === 'No' ? 'No' : element.credit.split(' ').slice(0, 2).join(' ') : 'No';
     aux.push({
       Categoria: element.category,
@@ -51,6 +51,7 @@ const formatData = (data) => {
       Descripcion: element.description,
       Crédito: credit,
       Fecha: element.date.split('T')[0],
+      Mes: date
     });
   });
   return aux;

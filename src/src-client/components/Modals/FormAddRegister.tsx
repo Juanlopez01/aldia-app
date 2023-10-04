@@ -9,7 +9,7 @@ export interface FormType {
   type: string
   description: string
   category: string
-  value: number
+  value: number | undefined
   date: string
   credit: string
 
@@ -71,7 +71,7 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
         </label>
         <select
           name="category"
-          className="form-control"
+          className="form-select"
           defaultValue={form.category}
           onChange={handleChange}
           required
@@ -136,7 +136,7 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
         </label>
         <input
           type="number"
-          value={form.value}
+          value={form.value === 0 ? "" : form.value}
           onChange={handleChange}
           step="0.01"
           min="0.01"
@@ -154,7 +154,7 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
         </label>
         <select
           name="credit"
-          className="form-control"
+          className="form-select"
           defaultValue={form.credit}
           onChange={handleChange}
           required
