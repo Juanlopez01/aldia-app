@@ -40,7 +40,20 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	);
 	const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
-	const totalExcess = [totalIncomes, totalExpenses];
+	let incomeDecimalResult
+	if (totalIncomes.toString().includes('.')) {
+		const integer = totalIncomes.toString().split('.')[0]
+		const decimal = totalIncomes.toString().split('.')[1].slice(0, 2)
+		incomeDecimalResult = integer + '.' + decimal
+	}
+	let expenseDecimalResult
+	if (totalExpenses.toString().includes('.')) {
+		const integer = totalExpenses.toString().split('.')[0]
+		const decimal = totalExpenses.toString().split('.')[1].slice(0, 2)
+		expenseDecimalResult = integer + '.' + decimal
+	}
+
+	const totalExcess = [incomeDecimalResult, expenseDecimalResult];
 	const [tableContent, setTableContent] = useState({
 		type: "",
 		slice: "",
@@ -147,7 +160,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 
 					<div className="!w-3/5 md:!w-2/5 xl:!w-1/5 input-group pb-4  ">
 						<label className="input-group-text">Fecha</label>
-						<select className='form-control' name="dateRange" id="dateRange" required defaultValue={'Todo'} onChange={(e) => setDateRange(e.target.value)} >
+						<select className='form-select' name="dateRange" id="dateRange" required defaultValue={'Todo'} onChange={(e) => setDateRange(e.target.value)} >
 
 							{datesRange.map((category) => {
 								return (
