@@ -48,7 +48,7 @@ export function LongExcess({ options, data, type, totalDataIncomes, totalDataExp
 
   return (
     <div
-      className="bg-link rounded-4 flex flex-col md:flex-row justify-center gap-5 w-full text-white h-[500px] py-8"
+      className=" hidden sm:bg-link sm:rounded-4 sm:flex sm:flex-col md:flex-row justify-center gap-5 w-full text-white h-[500px] py-8"
       style={{ width: "100%", maxWidth: "100%" }} // Add maxWidth property
     >
       <div className="pl-8 text-gray-900">

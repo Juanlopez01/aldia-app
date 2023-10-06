@@ -33,7 +33,7 @@ export function Excess({ options, data , type, totalDataIncomes, totalDataExpens
 				position: "bottom" as const,
 				labels: {
 					color: "#747881", // Set the text color to white
-					fontColor: "white"
+					fontColor: "#747881"
 				},
 			},
 			title: {

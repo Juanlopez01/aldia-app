@@ -38,8 +38,8 @@ export const optionsMobile = {
     legend: {
         position: 'bottom' as const,
 				labels: {
-					color: "white", // Set the text color to white
-					fontColor: "white"
+					color: "#747881", // Set the text color to white
+					fontColor: "#747881"
 				},
       },
     datalabels: {
