@@ -22,7 +22,10 @@ const TableCredit = ({transactions, type} : Props) => {
                     <th className={`mob:px-2 md:px-8 py-3 text-sm md:text-md ${stylesTH}`}>Categoría</th>
                     <th className={`mob:px-2 md:px-8 py-3 text-sm md:text-md ${stylesTH}`}>Descripción</th>
                     <th className={`mob:px-2 md:px-8 py-3 text-sm md:text-md ${stylesTH}`}>Crédito</th>
+                    <th className={`mob:px-2 md:px-8 py-3 text-sm md:text-md ${stylesTH}`}>Cuotas restantes</th>
+                    <th className={`mob:px-2 md:px-8 py-3 text-sm md:text-md ${stylesTH}`}>Importe por cuota</th>
                     <th className={`mob:px-2 md:px-8 py-3 text-sm md:text-md ${stylesTH}`}>Importe</th>
+                    <th className={`mob:px-2 md:px-8 py-3 text-sm md:text-md ${stylesTH}`}>Pagar cuota</th>
                     <th className={`mob:px-2 md:px-8 py-3 text-sm md:text-md ${stylesTH}`}>Finalizado</th>
                 </tr>
             </thead>

@@ -53,7 +53,7 @@ export function LongExcess({ options, data, type, totalDataIncomes, totalDataExp
     >
       <div className="pl-8 text-gray-900">
         <h4>Excedentes</h4>
-        <h2>{excessResult>=0 ? `s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}` : `-s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}`}</h2>
+        <h2>{excessResult>=0 ? `s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}` : `s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}`}</h2>
       </div>
 
       {data.datasets[0].data.length > 0 ? (

@@ -61,7 +61,7 @@ export function Excess({ options, data , type, totalDataIncomes, totalDataExpens
 		>
 			<div className="text-gray-900">
 				<h5>Excedentes</h5>
-				<h3>{excessResult>=0 ? `s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}` : `-s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}`}</h3>
+				<h3>{excessResult>=0 ? `s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}` : `s/ ${excessResult.toString().includes('.') ? excessDecimalResult?.valueOf() : excessResult}`}</h3>
 			</div>
 
 			{data?.datasets[0].data[0] !== 0 || data?.datasets[0].data[1] !== 0 ? (

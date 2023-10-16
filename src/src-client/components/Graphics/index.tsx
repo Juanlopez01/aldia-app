@@ -40,20 +40,20 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 	);
 	const totalIncomes = IncomesResult.totals.reduce((acc, ele) => acc + ele, 0);
 	const totalExpenses = ExpensesResult.totals.reduce((acc, ele) => acc + ele, 0);
-	let incomeDecimalResult
+	let incomeDecimalResult = totalIncomes.toString()
 	if (totalIncomes.toString().includes('.')) {
 		const integer = totalIncomes.toString().split('.')[0]
 		const decimal = totalIncomes.toString().split('.')[1].slice(0, 2)
 		incomeDecimalResult = integer + '.' + decimal
 	}
-	let expenseDecimalResult
+	let expenseDecimalResult = totalExpenses.toString()
 	if (totalExpenses.toString().includes('.')) {
 		const integer = totalExpenses.toString().split('.')[0]
 		const decimal = totalExpenses.toString().split('.')[1].slice(0, 2)
 		expenseDecimalResult = integer + '.' + decimal
 	}
-
-	const totalExcess = [incomeDecimalResult, expenseDecimalResult];
+	console.log(incomeDecimalResult, expenseDecimalResult)
+	const totalExcess = [parseInt(incomeDecimalResult as string), parseInt(expenseDecimalResult as string)];
 	const [tableContent, setTableContent] = useState({
 		type: "",
 		slice: "",
