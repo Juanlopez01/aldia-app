@@ -1,7 +1,7 @@
 import { catTransactions, incomesPersonal } from '@/utils/categoriesTransactions'
 import Calendar from 'react-calendar'
 import React from 'react'
-import { creditList } from '@/utils/listCredits'
+import { creditList, getNumberCredit } from '@/utils/listCredits'
 import { traductDate } from '@/utils/traductDate'
 import { useAppSelector } from '@/src-client/hooks/use-redux'
 import { expensesCompany, incomesCompany } from '@/utils/companyTransactions'
@@ -36,6 +36,7 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
   const [showOtherCategory, setShowOtherCategory] = React.useState(false)
   const [otherCategory, setOtherCategory] = React.useState('')
   const {otherCategories}= useAppSelector(s=> type==='negocio'? s.CompanyReducer  : s.PersonalReducer)
+  const dateRegExp = new RegExp('\d{1,2}\/\d{1,2}\/\d{2,4}')
   const handleChange = (
     evt: React.FormEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -51,7 +52,7 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
       setOtherCategory(value)
       setForm({ ...form, category: value })
     } else if (name === 'credit') {
-      setForm({ ...form, [name]: `${value} nochecked` })
+      setForm({ ...form, [name]: `${value} nochecked ${value === 'no' ? '' : `0/${getNumberCredit(value)}` }`})
     } else {
       setForm({ ...form, [name]: value })
     }
@@ -124,7 +125,8 @@ export default function FormRegister({ form, setForm,type, extraCategories, tran
       </div>
       <div className={`${!dateShow ? '' : 'hidden'}`}>
         <Calendar
-          value={form.date ?? new Date()}
+          value={dateRegExp.test(form.date) ? new Date() : form.date}
+          activeStartDate={new Date()}
           onChange={handleDateChange}
           className="bg-white [span:bg-white text-center important]"
         />
