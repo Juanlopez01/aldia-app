@@ -69,7 +69,7 @@ const Notifications = ({ data, dispatch }: any) => {
 	);
 	return (
 		<div className="">
-			<div className="pt-4">
+			<div className="pt-2">
 				<button
 					onClick={() => {
 						setShow(true);

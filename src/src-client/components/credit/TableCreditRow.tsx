@@ -114,7 +114,7 @@ const TableCreditRow = ({transaction, type} : Props) => {
             <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>{transaction.credit ? transaction.credit.split(' ')[0] === 'No' ? 'No' : transaction.credit.split(' ')[3] : 'No'}</td>
           <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>s/{transaction.credit.split(' ')[0] === 'No' || transaction.credit.split(' ')[0] === 'Más'? transaction.value : transaction.value / parseInt(transaction.credit.split(' ')[3]?.split('/')[1]) }</td>
             <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'>s/{transaction.value}</td>
-            <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'><button className='text-[#ffffff] px-2 py-1 cursor-pointer bg-[#495057] rounded-sm border-2 border-solid border-[#495057] transition-all font-bold hover:bg-white hover:text-[#495057]' onClick={handleClick}>Pagar cuota</button></td>
+            <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'><button className='text-[#ffffff] px-2 py-1 cursor-pointer bg-[#495057] rounded-sm border-2 border-solid border-[#495057] transition-all font-bold hover:bg-white hover:text-[#495057] disabled:bg-[#717b86] disabled:text-white disabled:cursor-default' onClick={handleClick} disabled={transaction.credit.split(' ')[0] === 'No' || transaction.credit.split(' ')[0] !== 'No' && transaction.credit.split(' ')[3].split('/')[0] === transaction.credit.split(' ')[3].split('/')[1]}>Pagar cuota</button></td>
             <td className='mob:px-2 md:px-8 py-3 text-sm md:text-md'><input type='checkbox' name='checkbox' checked={check === 'checked' ? true : false} disabled={check === 'checked'} onChange={handleChange}/></td>
         </tr>
     </>
