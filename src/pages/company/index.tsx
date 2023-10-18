@@ -41,7 +41,7 @@ const Company = () => {
 			dispatch(getNames(company));
 	}
 
-	useEffect(() => {}, [companySelect])
+	useEffect(() => {}, [companySelect, companyData])
 	
 	const handleSelect = (e: any) => {
 		const id = e.target.value;

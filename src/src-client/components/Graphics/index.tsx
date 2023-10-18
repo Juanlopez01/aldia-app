@@ -52,7 +52,7 @@ export const Graphics = ({ type, incomes, expenses }: graphsProp) => {
 		const decimal = totalExpenses.toString().split('.')[1].slice(0, 2)
 		expenseDecimalResult = integer + '.' + decimal
 	}
-	console.log(incomeDecimalResult, expenseDecimalResult)
+	
 	const totalExcess = [parseInt(incomeDecimalResult as string), parseInt(expenseDecimalResult as string)];
 	const [tableContent, setTableContent] = useState({
 		type: "",
