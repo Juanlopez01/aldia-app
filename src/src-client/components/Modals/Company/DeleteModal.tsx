@@ -14,13 +14,13 @@ const DeleteModal = (props : any) => {
             showConfirmButton: true,
             confirmButtonText: 'Eliminar compañía',
         }).then((result) => {
-            Swal.fire({
-                title: 'Compañía eliminada con éxito',
-                icon: 'success',
-                timer: 5000,
-            })
             if(result.isConfirmed){
                 if(props.user && props.id) dispatch(deleteCompany(props.user, props.id))
+                Swal.fire({
+                    title: 'Compañía eliminada con éxito',
+                    icon: 'success',
+                    timer: 5000,
+                })
             }
 
         });

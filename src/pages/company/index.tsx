@@ -15,6 +15,7 @@ import DeleteModal from "@/src-client/components/Modals/Company/DeleteModal";
 
 const Company = () => {
 	const dispatch: Function = useDispatch();
+	const [recharge, setRecharge] = useState(true);
 	const { session } = useValidatePlan();
 	const [company, setCompany] = useState("loadingCompany");
 	const [companySelect, setCompanySelect] = useState("");
@@ -41,7 +42,7 @@ const Company = () => {
 			dispatch(getNames(company));
 	}
 
-	useEffect(() => {}, [companySelect, companyData])
+	useEffect(() => {}, [companySelect, companyData, recharge])
 	
 	const handleSelect = (e: any) => {
 		const id = e.target.value;
@@ -99,12 +100,17 @@ const Company = () => {
 							{companySelect && companyData && (
 								<>
 									{/* <h2 className="mt-2">{companyData.name}</h2> */}
+									<div className="flex gap-6 justify-center items-center">
 									{session?.user && user._id === companyData.users[0] && (
-										<div className="flex gap-6 justify-center">
+											<>
 											<Notifications data={companyData} dispatch={dispatch} /> 
 											<DeleteModal user={email} id={companyData._id} />
-										</div>
-									)}
+											</>
+											)}
+									<button onClick={() => setRecharge(!recharge)} className="bg-[#e9ecef] border-2 border-[#dbddf0] px-3 py-2 rounded-xl mt-2 md:hidden">
+										Ver datos
+									</button>
+									</div>
 									<Graphics
 										type="negocio"
 										incomes={companyData.incomes as []}
