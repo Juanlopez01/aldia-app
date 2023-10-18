@@ -4,7 +4,7 @@ import EnterModal from "@/src-client/components/Modals/Company/EnterModal";
 import ModalRegister from "@/src-client/components/Modals/Company/ModalRegister";
 import { getCompany } from "@/src-client/utilities/getCompany";
 import verifyUserCompany from "@/src-client/utilities/verifyCompany";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LayoutWithSideNav from "@/src-client/components/layouts/LayoutSideNav";
 import Notifications from "@/src-client/components/Modals/Company/Notifications";
@@ -41,6 +41,8 @@ const Company = () => {
 			dispatch(getNames(company));
 	}
 
+	useEffect(() => {}, [companySelect])
+	
 	const handleSelect = (e: any) => {
 		const id = e.target.value;
 		if (id !== 'null' && id !== companySelect) {
@@ -61,18 +63,13 @@ const Company = () => {
 						{company === "loadingCompany" && companyData?.name !== "" && (
 							<span className="loader"></span>
 						)}
-						{/* {company === "Not found" && companyData?.name === "" && (
-							<>
-								<ModalRegister />
-								<EnterModal data={companyAllNames} />
-							</>
-						)} */}
+						
 						<div>
 							<div className="flex flex-wrap md:flex-row md:justify-center bg-white dark:!bg-violet-blue-landing w-[85vw] md:w-[70vw] rounded-lg
 							">
 								{companyNames && (
-									<div className="w-full flex flex-col pt-4 px-3 md:flex-row md:!pt-0 items-center">
-										<div className="flex-col input-group md:flex-row ">
+									<div className="w-full flex flex-col pt-2 px-3 md:flex-row md:!pt-0 items-center">
+										<div className="flex-col input-group p-2  md:flex-row ">
 											<label className="input-group-text align-self-center md:align-self-start md:h-10 ">Seleccionar compañía</label>
 											<select
 												className="!w-full md:!w-1/5 form-select h-10"
@@ -88,7 +85,7 @@ const Company = () => {
 												})}
 											</select>
 										</div>
-										<div className="px-3 flex flex-col md:flex-row md:items-center pb-4">
+										<div className="px-3 flex flex-col md:flex-row md:items-center pb-2">
 											<ModalRegister classes="w-[180px] relative md:bottom-3 !bg-[#e9ecef] !text-black rounded-lg border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb] mb-2 md:!mb-0" />
 											<EnterModal
 												data={companyAllNames}

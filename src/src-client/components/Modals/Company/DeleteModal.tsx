@@ -27,7 +27,7 @@ const DeleteModal = (props : any) => {
     }
 
   return (
-    <div className='pt-4'>
+    <div className='pt-2'>
         <button className="bg-[#e9ecef] border-2 border-[#dbddf0] px-3 py-2 rounded-xl" onClick={handleClick}>
             Eliminar compañía
         </button>
