@@ -74,7 +74,7 @@ const Company = () => {
 											<label className="input-group-text align-self-center md:align-self-start md:h-10 ">Seleccionar compañía</label>
 											<select
 												className="!w-full md:!w-1/5 form-select h-10"
-												onClick={(e) => handleSelect(e)}
+												onChange={(e) => handleSelect(e)}
 											>
 												<option value="null" key='null'></option>
 												{companyNames?.map((company: any) => {
@@ -93,9 +93,9 @@ const Company = () => {
 												classes="
 												w-[180px] bg-darkest-blue text-black px-3 py-2 relative ml-0 relative md:top-0 md:ml-4 rounded-lg !bg-[#e9ecef] border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]"
 											/>
-											<button onClick={() => setRecharge(!recharge)} className="bg-[#e9ecef] border-2 border-[#dbddf0] px-3 py-2 rounded-xl mt-2 md:hidden">
+											{/* <button onClick={() => setRecharge(!recharge)} className="bg-[#e9ecef] border-2 border-[#dbddf0] px-3 py-2 rounded-xl mt-2 md:hidden">
 												Ver datos
-											</button>
+											</button> */}
 										</div>
 									</div>
 								)}
