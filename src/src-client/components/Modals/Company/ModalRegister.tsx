@@ -37,7 +37,7 @@ const ModalRegister = (props: {classes?: string}) => {
         setForm({ ...form, name: e.target.value })
     }
     return (
-        <div className='mt-5 text-center'>
+        <div className='mt-4 text-center'>
             <button className={`px-3 py-2 bg-slate-900 ${props?.classes}`} onClick={handleShow}>
                 <span className="">Registrar compañia</span>
             </button>
