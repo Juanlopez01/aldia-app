@@ -93,9 +93,9 @@ const Company = () => {
 												classes="
 												w-[180px] bg-darkest-blue text-black px-3 py-2 relative ml-0 relative md:top-0 md:ml-4 rounded-lg !bg-[#e9ecef] border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]"
 											/>
-											{/* <button onClick={() => setRecharge(!recharge)} className="bg-[#e9ecef] border-2 border-[#dbddf0] px-3 py-2 rounded-xl mt-2 md:hidden">
-												Ver datos
-											</button> */}
+											<button onClick={() => dispatch(getNames(company))} className="w-[180px] text-black px-3 py-2 relative ml-0 mb-2 mt-2 md:top-0 md:ml-4 rounded-lg !bg-[#e9ecef] border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]">
+												Actualizar
+											</button>
 										</div>
 									</div>
 								)}
