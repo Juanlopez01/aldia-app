@@ -75,6 +75,7 @@ const Company = () => {
 											<select
 												className="!w-full md:!w-1/5 form-select h-10"
 												onChange={(e) => handleSelect(e)}
+												disabled={companyNames.length === 0}
 											>
 												<option value="null" key='null'></option>
 												{companyNames?.map((company: any) => {
