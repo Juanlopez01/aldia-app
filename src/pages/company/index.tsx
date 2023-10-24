@@ -75,6 +75,7 @@ const Company = () => {
 											<select
 												className="!w-full md:!w-1/5 form-select h-10"
 												onChange={(e) => handleSelect(e)}
+												onClick={() => dispatch(getNames(company))}
 											>
 												<option value="null" key='null'></option>
 												{companyNames?.map((company: any) => {
@@ -93,9 +94,6 @@ const Company = () => {
 												classes="
 												w-[180px] bg-darkest-blue text-black px-3 py-2 relative ml-0 relative md:top-0 md:ml-4 rounded-lg !bg-[#e9ecef] border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]"
 											/>
-											<button onClick={() => dispatch(getNames(company))} className="w-[180px] text-black px-3 py-2 relative ml-0 mb-2 mt-2 md:top-0 md:ml-4 rounded-lg !bg-[#e9ecef] border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb]">
-												Actualizar
-											</button>
 										</div>
 									</div>
 								)}
