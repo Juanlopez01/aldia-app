@@ -42,7 +42,7 @@ const Company = () => {
 			dispatch(getNames(company));
 	}
 
-	useEffect(() => {}, [companySelect, companyData, recharge])
+	useEffect(() => {dispatch(getNames(company))}, [companySelect, companyData, recharge])
 	
 	const handleSelect = (e: any) => {
 		const id = e.target.value;
@@ -75,7 +75,6 @@ const Company = () => {
 											<select
 												className="!w-full md:!w-1/5 form-select h-10"
 												onChange={(e) => handleSelect(e)}
-												onClick={() => dispatch(getNames(company))}
 											>
 												<option value="null" key='null'></option>
 												{companyNames?.map((company: any) => {
@@ -86,6 +85,20 @@ const Company = () => {
 													);
 												})}
 											</select>
+											{/* <select
+												className=" md:hidden form-select h-10"
+												onChange={(e) => handleSelect(e)}
+												onClick={() => dispatch(getNames(company))}
+											>
+												<option value="null" key='null'></option>
+												{companyNames?.map((company: any) => {
+													return (
+														<option key={company.id} value={company.id} className="flex-row">
+															<span className="text-light">{company.name}</span>
+														</option>
+													);
+												})}
+											</select> */}
 										</div>
 										<div className="px-3 flex flex-col md:flex-row md:items-center items-center">
 											<ModalRegister classes="w-[180px] relative md:bottom-3 !bg-[#e9ecef] !text-black rounded-lg border-[2px] border-[#ced4da] text-sm hover:border-[#a4d0eb] mb-2 md:!mb-0" />
